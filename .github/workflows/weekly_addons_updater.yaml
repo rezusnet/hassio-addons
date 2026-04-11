@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install lastversion 2>/dev/null || true
-          if ! command -v jq >/dev/null 2>&1; then
+          if ! jq --version >/dev/null 2>&1; then
             wget -qO /tmp/jq https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-arm64
             sudo cp /tmp/jq /usr/local/bin/jq
             sudo chmod +x /usr/local/bin/jq

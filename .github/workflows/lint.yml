@@ -49,18 +49,18 @@ jobs:
 
       - name: Install linting tools
         run: |
-          if ! command -v shellcheck >/dev/null 2>&1; then
+          if ! shellcheck --version >/dev/null 2>&1; then
             wget -qO /tmp/shellcheck.tar.xz https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.aarch64.tar.xz
             tar -xJf /tmp/shellcheck.tar.xz -C /tmp shellcheck-v0.10.0/shellcheck
             sudo cp /tmp/shellcheck-v0.10.0/shellcheck /usr/local/bin/shellcheck
             sudo chmod +x /usr/local/bin/shellcheck
           fi
-          if ! command -v hadolint >/dev/null 2>&1; then
+          if ! hadolint --version >/dev/null 2>&1; then
             wget -qO /tmp/hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-arm64
             sudo cp /tmp/hadolint /usr/local/bin/hadolint
             sudo chmod +x /usr/local/bin/hadolint
           fi
-          if ! command -v shfmt >/dev/null 2>&1; then
+          if ! shfmt --version >/dev/null 2>&1; then
             wget -qO /tmp/shfmt https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64
             sudo cp /tmp/shfmt /usr/local/bin/shfmt
             sudo chmod +x /usr/local/bin/shfmt
@@ -116,7 +116,7 @@ jobs:
 
       - name: Install linting tools
         run: |
-          if ! command -v shfmt >/dev/null 2>&1; then
+          if ! shfmt --version >/dev/null 2>&1; then
             wget -qO /tmp/shfmt https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64
             sudo cp /tmp/shfmt /usr/local/bin/shfmt
             sudo chmod +x /usr/local/bin/shfmt
