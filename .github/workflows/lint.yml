@@ -37,7 +37,7 @@ jobs:
         run: |
           set -euo pipefail
           CHANGED_FILES=$(git diff --name-only "$DIFF_RANGE")
-          UNICODE_SPACES_REGEX=$'[\\u00A0\\u2002\\u2003\\u2007\\u2008\\u2009\\u202F\\u205F\\u3000\\u200B]'
+          UNICODE_SPACES_REGEX=$'[\u00A0\u2002\u2003\u2007\u2008\u2009\u202F\u205F\u3000\u200B]'
           for file in $CHANGED_FILES; do
             if [ -f "$file" ]; then
               MIME_TYPE=$(file --mime-type -b "$file")
@@ -47,25 +47,39 @@ jobs:
             fi
           done
 
-      - name: Run Super Linter
-        uses: super-linter/super-linter/slim@main
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_CHECKOV: false
-          VALIDATE_PYTHON_PYLINT: false
-          VALIDATE_JSCPD: false
-          VALIDATE_NATURAL_LANGUAGE: false
-          FILTER_REGEX_EXCLUDE: .github/workflows/.*
-          FIX_ENV: false
-          FIX_SHELL_SHFMT: true
+      - name: Install linting tools
+        run: |
+          command -v shellcheck >/dev/null 2>&1 || (sudo apt-get update -qq && sudo apt-get install -yqq shellcheck)
+          command -v hadolint >/dev/null 2>&1 || (wget -qO /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-arm64 && sudo chmod +x /usr/local/bin/hadolint)
+          command -v shfmt >/dev/null 2>&1 || (wget -qO /usr/local/bin/shfmt https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64 && sudo chmod +x /usr/local/bin/shfmt)
+
+      - name: Lint shell scripts
+        run: |
+          set -euo pipefail
+          RC=0
+          find . -type f \( -name "*.sh" -o -name "run" \) ! -path "./.git/*" | while read -r f; do
+            if ! shellcheck -x -s bash "$f" 2>&1; then
+              echo "::error file=$f::shellcheck found issues"
+            fi
+          done
+          echo "Shellcheck done"
+
+      - name: Lint Dockerfiles
+        run: |
+          set -euo pipefail
+          find . -name "Dockerfile*" ! -path "./.git/*" | while read -r f; do
+            if ! hadolint "$f" 2>&1; then
+              echo "::warning file=$f::hadolint found issues"
+            fi
+          done
+          echo "Hadolint done"
+
+      - name: Format shell scripts
+        run: |
+          find . -type f \( -name "*.sh" -o -name "run" \) ! -path "./.git/*" -exec shfmt -w -i 4 -ci -bn -sr {} +
 
       - name: Restore executable permissions
         run: find . -type f \( -name "*.sh" -o -name "run" \) -exec chmod +x {} \;
-
-      - name: Remove Super-Linter output
-        run: sudo rm -rf super-linter-output/
 
   lint-autofix:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -79,7 +93,7 @@ jobs:
       - name: Fix Unicode spaces in all text files
         run: |
           set -euo pipefail
-          UNICODE_SPACES_REGEX=$'[\\u00A0\\u2002\\u2003\\u2007\\u2008\\u2009\\u202F\\u205F\\u3000\\u200B]'
+          UNICODE_SPACES_REGEX=$'[\u00A0\u2002\u2003\u2007\u2008\u2009\u202F\u205F\u3000\u200B]'
           find . -type f ! -path "./.git/*" | while read -r file; do
             MIME_TYPE=$(file --mime-type -b "$file")
             if [[ "$MIME_TYPE" == text/* ]]; then
@@ -87,25 +101,16 @@ jobs:
             fi
           done
 
-      - name: Run Super Linter
-        uses: super-linter/super-linter/slim@main
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: true
-          VALIDATE_CHECKOV: false
-          VALIDATE_PYTHON_PYLINT: false
-          VALIDATE_JSCPD: false
-          VALIDATE_NATURAL_LANGUAGE: false
-          FILTER_REGEX_EXCLUDE: .github/workflows/.*
-          FIX_ENV: true
-          FIX_SHELL_SHFMT: true
+      - name: Install linting tools
+        run: |
+          command -v shfmt >/dev/null 2>&1 || (wget -qO /usr/local/bin/shfmt https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64 && sudo chmod +x /usr/local/bin/shfmt)
+
+      - name: Format shell scripts
+        run: |
+          find . -type f \( -name "*.sh" -o -name "run" \) ! -path "./.git/*" -exec shfmt -w -i 4 -ci -bn -sr {} +
 
       - name: Restore executable permissions
         run: find . -type f \( -name "*.sh" -o -name "run" \) -exec chmod +x {} \;
-
-      - name: Remove Super-Linter output
-        run: sudo rm -rf super-linter-output/
 
       - name: Check for changes
         id: changed

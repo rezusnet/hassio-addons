@@ -87,7 +87,22 @@ jobs:
           done
 
       - name: Assert no mixed CRLF/LF remain
-        uses: ymwymw/check-mixed-line-endings@v2
+        run: |
+          set -euo pipefail
+          mapfile -t addons < <(jq -r '.[]' <<<"$ADDONS_JSON")
+          found=0
+          for addon in "${addons[@]}"; do
+            while IFS= read -r -d '' file; do
+              if grep -Plq '\r\n' "$file"; then
+                echo "::warning file=$file::Mixed CRLF/LF line endings detected"
+                found=1
+              fi
+            done < <(find "$GITHUB_WORKSPACE/$addon" -type f -print0)
+          done
+          if [ "$found" -eq 1 ]; then
+            echo "::error::Mixed line endings found, fix before proceeding"
+            exit 1
+          fi
 
       - name: Commit sanitize changes
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
@@ -110,9 +125,72 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run Home Assistant Add-on Lint
-        uses: frenck/action-addon-linter@v2
-        with:
-          path: "./${{ matrix.addon }}"
+        shell: bash
+        run: |
+          set -euo pipefail
+          ADDON="${{ matrix.addon }}"
+          echo "Linting addon: $ADDON"
+
+          CONFIG=""
+          for f in config.yaml config.yml config.json; do
+            if [ -f "$ADDON/$f" ]; then
+              CONFIG="$ADDON/$f"
+              break
+            fi
+          done
+
+          if [ -z "$CONFIG" ]; then
+            echo "::error::No config file found in $ADDON"
+            exit 1
+          fi
+
+          echo "Config file: $CONFIG"
+
+          python3 - <<'PY'
+          import json, sys
+          from pathlib import Path
+
+          addon = "${{ matrix.addon }}"
+          addon_dir = Path(addon)
+
+          def load_config():
+              for name in ["config.yaml", "config.yml", "config.json"]:
+                  p = addon_dir / name
+                  if p.exists():
+                      text = p.read_text()
+                      if p.suffix == ".json":
+                          return json.loads(text)
+                      import yaml
+                      return yaml.safe_load(text) or {}
+              return {}
+
+          config = load_config()
+          errors = []
+
+          for field in ["name", "description", "version", "slug", "arch"]:
+              if field not in config:
+                  errors.append(f"Missing required field: {field}")
+
+          if "arch" in config and not isinstance(config["arch"], list):
+              errors.append("arch must be a list")
+
+          if "image" in config and "{arch}" not in str(config["image"]):
+              errors.append("image must contain {arch} placeholder")
+
+          if "options" in config and "schema" not in config:
+              errors.append("schema is required when options is defined")
+
+          if not (addon_dir / "Dockerfile").exists():
+              errors.append("Dockerfile is missing")
+
+          for e in errors:
+              print(f"::error::{e}")
+
+          if errors:
+              sys.exit(1)
+
+          print(f"Lint passed for {addon}")
+          PY
 
   build:
     if: ${{ needs.detect-changed-addons.outputs.changedAddons != '' && needs.detect-changed-addons.outputs.changedAddons != '[]' }}
@@ -290,25 +368,58 @@ jobs:
             echo "${{ matrix.arch }} is not a valid architecture for ${{ matrix.addon }}, skipping build."
           fi
 
-      - name: Build ${{ matrix.addon }} add-on
-        if: steps.info.outputs.build_arch == 'true' && steps.info.outputs.has_dockerfile == 'true'
-        uses: home-assistant/builder/actions/build-image@2025.03.0
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Set up QEMU for cross-arch builds
+        uses: docker/setup-qemu-action@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
-          arch: ${{ matrix.arch }}
-          cache-gha: "false"
-          cache-gha-scope: ${{ matrix.addon }}-${{ matrix.arch }}
-          context: ./${{ matrix.addon }}
-          file: ${{ steps.info.outputs.dockerfile }}
-          image: ${{ steps.info.outputs.image }}
-          image-tags: |
-            ${{ steps.info.outputs.version }}
-            latest
-          version: ${{ steps.info.outputs.version }}
-          push: "true"
-          cosign: "false"
-          container-registry-password: ${{ secrets.GITHUB_TOKEN }}
-          labels: ${{ steps.info.outputs.labels }}
-          build-args: ${{ steps.info.outputs.build_args }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push ${{ matrix.addon }} add-on
+        if: steps.info.outputs.build_arch == 'true' && steps.info.outputs.has_dockerfile == 'true'
+        run: |
+          set -euo pipefail
+
+          IMAGE="${{ steps.info.outputs.image }}"
+          VERSION="${{ steps.info.outputs.version }}"
+          DOCKERFILE="${{ steps.info.outputs.dockerfile }}"
+          CONTEXT="./${{ matrix.addon }}"
+          LABELS="${{ steps.info.outputs.labels }}"
+          BUILD_ARGS="${{ steps.info.outputs.build_args }}"
+
+          LABEL_FLAGS=""
+          while IFS= read -r label; do
+            [ -n "$label" ] && LABEL_FLAGS="$LABEL_FLAGS --label $label"
+          done <<< "$LABELS"
+
+          BUILD_ARG_FLAGS=""
+          while IFS= read -r arg; do
+            [ -n "$arg" ] && BUILD_ARG_FLAGS="$BUILD_ARG_FLAGS --build-arg $arg"
+          done <<< "$BUILD_ARGS"
+
+          ARCH="${{ matrix.arch }}"
+          if [ "$ARCH" = "amd64" ]; then
+            PLATFORM="linux/amd64"
+          else
+            PLATFORM="linux/arm64"
+          fi
+
+          echo "Building $IMAGE:$VERSION for $PLATFORM"
+          docker buildx build \
+            --platform "$PLATFORM" \
+            --file "$DOCKERFILE" \
+            --tag "$IMAGE:$VERSION" \
+            --tag "$IMAGE:latest" \
+            $LABEL_FLAGS \
+            $BUILD_ARG_FLAGS \
+            --push \
+            "$CONTEXT"
 
   make-changelog:
     if: >-

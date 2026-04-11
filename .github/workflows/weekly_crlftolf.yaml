@@ -1,8 +1,8 @@
 name: Fix CRLF Endings
-on:
+on: 
   workflow_call:
   workflow_dispatch:
-
+  
 jobs:
   fix-crlf:
     if: github.repository_owner == 'rezusnet'
@@ -11,21 +11,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check for CRLF endings
-        uses: erclu/check-crlf@v1.2.0
-        id: check-crlf
-        with:
-          path: |
-            ./*
-            !.git
-            !*.png
-            !*.jpg
-
-      - name: Fix CRLF
+      - name: Find and fix CRLF endings
         run: |
-          for f in ${{ steps.check-crlf.outputs.files }}; do
-            dos2unix -k "$f"
-          done
+          set -euo pipefail
+          FOUND=0
+          while IFS= read -r -d '' file; do
+            if grep -Plq '\r\n' "$file"; then
+              echo "Fixing CRLF in $file"
+              perl -i -pe 's/\r\n/\n/g' "$file"
+              FOUND=1
+            fi
+          done < <(find . -type f ! -path "./.git/*" ! -name "*.png" ! -name "*.jpg" ! -name "*.bin" -print0)
+
+          if [ "$FOUND" -eq 0 ]; then
+            echo "No CRLF endings found"
+          fi
 
       - name: Commit if needed
         uses: EndBug/add-and-commit@v10

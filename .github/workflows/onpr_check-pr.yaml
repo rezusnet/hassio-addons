@@ -67,10 +67,48 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Run Home Assistant Add-on Lint
-        uses: frenck/action-addon-linter@v2
-        with:
-          path: "./${{ matrix.addon }}"
+      - name: Lint addon config
+        shell: bash
+        run: |
+          set -euo pipefail
+          ADDON="${{ matrix.addon }}"
+          python3 - <<'PY'
+          import json, sys
+          from pathlib import Path
+
+          addon = "${{ matrix.addon }}"
+          addon_dir = Path(addon)
+
+          def load_config():
+              for name in ["config.yaml", "config.yml", "config.json"]:
+                  p = addon_dir / name
+                  if p.exists():
+                      text = p.read_text()
+                      if p.suffix == ".json":
+                          return json.loads(text)
+                      import yaml
+                      return yaml.safe_load(text) or {}
+              return {}
+
+          config = load_config()
+          errors = []
+          for field in ["name", "description", "version", "slug", "arch"]:
+              if field not in config:
+                  errors.append(f"Missing required field: {field}")
+          if "arch" in config and not isinstance(config["arch"], list):
+              errors.append("arch must be a list")
+          if "image" in config and "{arch}" not in str(config["image"]):
+              errors.append("image must contain {arch} placeholder")
+          if "options" in config and "schema" not in config:
+              errors.append("schema is required when options is defined")
+          if not (addon_dir / "Dockerfile").exists():
+              errors.append("Dockerfile is missing")
+          for e in errors:
+              print(f"::error::{e}")
+          if errors:
+              sys.exit(1)
+          print(f"Lint passed for {addon}")
+          PY
 
   check-build:
     name: Test addon build
@@ -85,11 +123,53 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Gather addon info
-        id: information
-        uses: frenck/action-addon-information@v1.4
-        with:
-          path: "./${{ matrix.addon }}/"
+      - name: Read addon metadata
+        id: info
+        run: |
+          set -euo pipefail
+          ADDON="${{ matrix.addon }}"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          import yaml
+
+          addon = os.environ["ADDON"]
+          addon_dir = Path(addon)
+          output_path = Path(os.environ["GITHUB_OUTPUT"])
+
+          def load_config():
+              for name in ["config.yaml", "config.yml", "config.json"]:
+                  p = addon_dir / name
+                  if p.exists():
+                      text = p.read_text()
+                      if p.suffix == ".json":
+                          return json.loads(text)
+                      return yaml.safe_load(text) or {}
+              return {}
+
+          def load_build():
+              for name in ["build.json", "build.yaml", "build.yml"]:
+                  p = addon_dir / name
+                  if p.exists():
+                      text = p.read_text()
+                      if p.suffix == ".json":
+                          return json.loads(text)
+                      return yaml.safe_load(text) or {}
+              return {}
+
+          config = load_config()
+          build = load_build()
+          build_from = build.get("build_from", {})
+
+          for arch in ["amd64", "aarch64"]:
+              has_arch = arch in (build_from.keys() if build_from else config.get("arch", []))
+              build_from_image = build_from.get(arch, "") if build_from else ""
+              with output_path.open("a") as f:
+                  f.write(f"{arch}={'true' if has_arch else 'false'}\n")
+                  f.write(f"{arch}_build_from={build_from_image}\n")
+          PY
+        env:
+          ADDON: ${{ matrix.addon }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
@@ -98,23 +178,25 @@ jobs:
         uses: docker/setup-buildx-action@v4
 
       - name: Build Addon - amd64
-        if: ${{ steps.information.outputs.amd64 == 'true' }}
+        if: ${{ steps.info.outputs.amd64 == 'true' }}
         uses: docker/build-push-action@v7
         with:
           context: ${{ matrix.addon }}
           push: false
-          load: true
+          load: false
           file: ${{ matrix.addon }}/Dockerfile
           tags: test/${{ matrix.addon }}:test
-          build-args: BUILD_FROM=${{ steps.information.outputs.amd64_build_from }}
+          platforms: linux/amd64
+          build-args: BUILD_FROM=${{ steps.info.outputs.amd64_build_from }}
 
       - name: Build Addon - aarch64
-        if: ${{ steps.information.outputs.aarch64 == 'true' }}
+        if: ${{ steps.info.outputs.aarch64 == 'true' }}
         uses: docker/build-push-action@v7
         with:
           context: ${{ matrix.addon }}
           push: false
-          load: true
+          load: false
           file: ${{ matrix.addon }}/Dockerfile
           tags: test/${{ matrix.addon }}:test
-          build-args: BUILD_FROM=${{ steps.information.outputs.aarch64_build_from }}
+          platforms: linux/arm64
+          build-args: BUILD_FROM=${{ steps.info.outputs.aarch64_build_from }}
