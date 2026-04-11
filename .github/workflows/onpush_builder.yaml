@@ -249,7 +249,19 @@ jobs:
           done
 
       - name: Install PyYAML
-        run: python3 -m pip install --disable-pip-version-check --break-system-packages pyyaml
+        run: |
+          if python3 -c "import yaml" 2>/dev/null; then
+            echo "PyYAML already available"
+          elif python3 -m pip --version >/dev/null 2>&1; then
+            python3 -m pip install --disable-pip-version-check --break-system-packages pyyaml
+          elif command -v pacman >/dev/null 2>&1; then
+            sudo pacman -S --noconfirm python-pyyaml
+          elif command -v apt-get >/dev/null 2>&1; then
+            sudo apt-get update -qq && sudo apt-get install -yqq python3-yaml
+          else
+            echo "ERROR: Cannot install PyYAML" >&2
+            exit 1
+          fi
 
       - name: Read add-on metadata
         id: info
@@ -394,14 +406,14 @@ jobs:
           LABELS="${{ steps.info.outputs.labels }}"
           BUILD_ARGS="${{ steps.info.outputs.build_args }}"
 
-          LABEL_FLAGS=""
+          LABEL_FLAGS=()
           while IFS= read -r label; do
-            [ -n "$label" ] && LABEL_FLAGS="$LABEL_FLAGS --label $label"
+            [ -n "$label" ] && LABEL_FLAGS+=("--label" "$label")
           done <<< "$LABELS"
 
-          BUILD_ARG_FLAGS=""
+          BUILD_ARG_FLAGS=()
           while IFS= read -r arg; do
-            [ -n "$arg" ] && BUILD_ARG_FLAGS="$BUILD_ARG_FLAGS --build-arg $arg"
+            [ -n "$arg" ] && BUILD_ARG_FLAGS+=("--build-arg" "$arg")
           done <<< "$BUILD_ARGS"
 
           ARCH="${{ matrix.arch }}"
@@ -417,8 +429,8 @@ jobs:
             --file "$DOCKERFILE" \
             --tag "$IMAGE:$VERSION" \
             --tag "$IMAGE:latest" \
-            $LABEL_FLAGS \
-            $BUILD_ARG_FLAGS \
+            "${LABEL_FLAGS[@]}" \
+            "${BUILD_ARG_FLAGS[@]}" \
             --push \
             "$CONTEXT"
 
