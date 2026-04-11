@@ -249,7 +249,7 @@ jobs:
           done
 
       - name: Install PyYAML
-        run: python3 -m pip install --disable-pip-version-check pyyaml
+        run: python3 -m pip install --disable-pip-version-check --break-system-packages pyyaml
 
       - name: Read add-on metadata
         id: info
