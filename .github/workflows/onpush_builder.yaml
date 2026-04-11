@@ -4,6 +4,7 @@ name: Builder
 
 on:
   workflow_call:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -37,7 +38,7 @@ jobs:
               git fetch --no-tags --depth=1 origin "$before" || true
               changed_config_files=$(git diff --name-only "$before" "${{ github.sha }}" | grep -E '^[^/]+/config\.(json|ya?ml)$' || true)
             else
-              changed_config_files=$(git diff-tree --no-commit-id --name-only -r "${{ github.sha }}" | grep -E '^[^/]+/config\.(json|ya?ml)$' || true)
+              changed_config_files=$(git diff-tree --root --no-commit-id --name-only -r "${{ github.sha }}" | grep -E '^[^/]+/config\.(json|ya?ml)$' || true)
             fi
             echo "Changed config files:"
             printf '%s\n' "$changed_config_files"
