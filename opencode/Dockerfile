@@ -7,11 +7,13 @@ ARG BUILD_VERSION
 
 USER root
 
-RUN apk add --no-cache \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
     bash \
     ca-certificates \
     curl \
-    tar
+    tar \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN if [ "$BUILD_ARCH" = "aarch64" ]; then \
         OPENCODE_ARCH="arm64"; \
@@ -32,9 +34,6 @@ RUN if [ "$BUILD_ARCH" = "aarch64" ]; then \
 
 COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
-
-RUN if [ ! -f /bin/sh ] && [ -f /usr/bin/sh ]; then ln -s /usr/bin/sh /bin/sh; fi && \
-    if [ ! -f /bin/bash ] && [ -f /usr/bin/bash ]; then ln -s /usr/bin/bash /bin/bash; fi
 
 ARG MODULES="00-banner.sh 01-custom_script.sh"
 
