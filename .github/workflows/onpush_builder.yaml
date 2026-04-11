@@ -449,6 +449,23 @@ jobs:
             --push \
             "$CONTEXT"
 
+      - name: Ensure package is public
+        if: steps.info.outputs.build_arch == 'true' && steps.info.outputs.has_dockerfile == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          IMAGE="${{ steps.info.outputs.image }}"
+          PKG_NAME=$(echo "$IMAGE" | sed 's|ghcr.io/||' | sed 's|/|-|g')
+          echo "Setting package $PKG_NAME to public..."
+          gh api --method PATCH \
+            "/user/packages/container/$PKG_NAME" \
+            -f visibility=public 2>/dev/null || \
+          gh api --method PATCH \
+            "/orgs/rezusnet/packages/container/$PKG_NAME" \
+            -f visibility=public 2>/dev/null || \
+          echo "WARNING: Could not set package visibility. Ensure GITHUB_TOKEN has write:packages scope."
+
   make-changelog:
     if: >-
       ${{
