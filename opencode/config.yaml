@@ -1,0 +1,49 @@
+arch:
+  - aarch64
+  - amd64
+description: >-
+  OpenCode is an open source AI coding agent. It provides a browser-based
+  interface for AI-powered code editing, analysis, and development with
+  support for multiple LLM providers.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2025.5.0
+image: ghcr.io/rezusnet/opencode-{arch}
+ingress: true
+ingress_port: 8071
+ingress_stream: true
+map:
+  - addon_config:rw
+  - media:rw
+  - all_addon_configs:rw
+  - homeassistant_config:rw
+  - addons:rw
+  - backup:rw
+  - share:rw
+  - ssl:rw
+name: OpenCode
+options:
+  env_vars: []
+  server_password: ""
+  workspace: /homeassistant
+  autoupdate: false
+panel_admin: true
+panel_icon: mdi:robot-outline
+ports:
+  8080/tcp: 8072
+ports_description:
+  8080/tcp: OpenCode web UI (direct access)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  server_password: password
+  workspace: str
+  autoupdate: bool
+  certfile: str?
+  keyfile: str?
+  ssl: bool?
+slug: opencode
+url: https://github.com/rezusnet/hassio-addons
+version: "1.4.3"
