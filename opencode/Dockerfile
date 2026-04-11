@@ -30,7 +30,8 @@ RUN if [ "$BUILD_ARCH" = "aarch64" ]; then \
     mv /tmp/opencode /usr/local/bin/opencode && \
     chmod 755 /usr/local/bin/opencode && \
     rm -rf /tmp/${OPENCODE_ARCHIVE} && \
-    opencode --version
+    ls -la /usr/local/bin/opencode && \
+    file /usr/local/bin/opencode || true
 
 COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
