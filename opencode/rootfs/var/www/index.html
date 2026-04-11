@@ -18,7 +18,8 @@
 <body>
 <div class="card">
   <h1>OpenCode</h1>
-  <p>OpenCode requires a direct connection and cannot run inside the Home Assistant sidebar.</p>
+  <p>Opening OpenCode in a new tab...</p>
+  <p>If it didn't open automatically, click below:</p>
   <a id="link" class="btn" href="#" target="_blank">Open OpenCode</a>
   <div class="hint" id="url"></div>
 </div>
@@ -26,6 +27,7 @@
   var url = window.location.protocol + '//' + window.location.hostname + ':8230';
   document.getElementById('link').href = url;
   document.getElementById('url').textContent = url;
+  window.open(url, '_blank');
 </script>
 </body>
 </html>
