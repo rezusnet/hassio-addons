@@ -12,6 +12,7 @@ RUN apt-get update && \
     bash \
     ca-certificates \
     curl \
+    python3 \
     tar \
     && rm -rf /var/lib/apt/lists/*
 
@@ -84,7 +85,7 @@ LABEL \
     org.opencontainers.image.revision=${BUILD_REF} \
     org.opencontainers.image.version=${BUILD_VERSION}
 
-ENV HEALTH_PORT="8080" \
+ENV HEALTH_PORT="8081" \
     HEALTH_URL=""
 HEALTHCHECK \
     --interval=5s \

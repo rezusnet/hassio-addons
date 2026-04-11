@@ -33,7 +33,7 @@ cat >"$OPENCODE_CONFIG" <<'JSONEOF'
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": false,
   "server": {
-    "port": 8080,
+    "port": 8081,
     "hostname": "0.0.0.0"
   }
 }
@@ -74,4 +74,10 @@ cd "$WORKSPACE" || {
 	exit 1
 }
 
-exec opencode web --hostname 0.0.0.0 --port 8080
+bashio::log.info "Starting ingress landing page on port 8080..."
+cd /var/www && python3 -m http.server 8080 --bind 0.0.0.0 &
+LANDING_PID=$!
+cd "$WORKSPACE"
+
+bashio::log.info "Starting OpenCode on port 8081 (mapped to host port 8230)..."
+exec opencode web --hostname 0.0.0.0 --port 8081

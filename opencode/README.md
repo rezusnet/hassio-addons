@@ -9,10 +9,11 @@
 
 [OpenCode](https://github.com/anomalyco/opencode) is an open-source AI coding agent with a browser-based interface. It supports multiple LLM providers (OpenAI, Anthropic, Google, Ollama, and more) and provides a full-featured code editor with AI-powered code generation, analysis, refactoring, and debugging.
 
-This add-on runs OpenCode alongside Home Assistant, exposing it on a dedicated port (default `8230`) for full compatibility with its web UI.
+This add-on runs OpenCode alongside Home Assistant. It appears in your sidebar with a link to open the full web UI on a dedicated port (default `8230`).
 
 **Key features:**
 
+- Sidebar entry with one-click access to the full web UI
 - Browser-based AI coding agent accessible on port 8230
 - Support for multiple LLM providers (configure via the web UI `/connect` flow)
 - Full read/write access to your Home Assistant configuration, add-ons, and media
@@ -26,7 +27,9 @@ This add-on runs OpenCode alongside Home Assistant, exposing it on a dedicated p
 2. Install the "OpenCode" add-on from the add-on store.
 3. Configure the add-on options (see below).
 4. Start the add-on.
-5. Access the OpenCode web UI at `http://<your-ha-ip>:8230`.
+5. Click "Open Web UI" in the sidebar, then click the button to open OpenCode, or go directly to `http://<your-ha-ip>:8230`.
+
+> **Note:** OpenCode does not support running inside an iframe (which HA ingress uses). The sidebar shows a landing page with a link that opens the full OpenCode UI in a new tab on port 8230.
 
 ## Configuration
 
