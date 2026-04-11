@@ -1,3 +1,5 @@
+## 1.4.3 (12-04-2026)
+- Minor bugs fixed
 ## 1.4.3
 
 - Initial release
