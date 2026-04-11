@@ -8,7 +8,7 @@ on:
 jobs:
   update-addons:
     if: github.repository_owner == 'rezusnet'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4

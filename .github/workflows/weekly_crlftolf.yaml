@@ -1,12 +1,12 @@
 name: Fix CRLF Endings
-on: 
+on:
   workflow_call:
   workflow_dispatch:
-  
+
 jobs:
   fix-crlf:
     if: github.repository_owner == 'rezusnet'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

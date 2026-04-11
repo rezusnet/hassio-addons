@@ -7,46 +7,46 @@ on:
 
 jobs:
   issues-linked:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v4
-    - name: Assign issues
-      run: |
-        echo "Starting"
-        curl -s -L https://api.github.com/repos/rezusnet/hassio-addons/issues > issueslist
-        for f in $( find -- * -maxdepth 0 -type d | sort -r ); do
-          if [ -f "$f"/config.yaml ] && [ -f "$f"/README.md ]; then
-            sed -i "/Open Issue :/d" "$f"/README.md
-            sed -i "/Open Request :/d" "$f"/README.md
-            COUNTER=0
-            while [[ $(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].title" issueslist) != null ]]; do
-              (( COUNTER=COUNTER+1 )) || true
-              TITLE="$(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].title" issueslist)"
-              TITLE="${TITLE//[<>\$\'\"]/}"
-              SLUG="$(grep -r "slug:" "$f"/config.yaml | awk '{print $2}')"
-              NAME="$(grep -r "^name:" "$f"/config.yaml | awk '{print $2}')"
-              if [[ "${TITLE,,}" == *"${f,,}"* ]] || [[ "${TITLE,,}" == *"${SLUG,,}"* ]] || [[ "${TITLE,,}" == *"${NAME,,}"* ]]; then
-                REQ="$(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].user.login" issueslist)"
-                URL="$(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].html_url" issueslist)"
-                LABEL="$(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].labels[].name" issueslist)"
-                DATEISSUE="$(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].created_at" issueslist)"
-                DATEISSUE="${DATEISSUE%T*}"
-                if [[ "$LABEL" == *"bug"* ]]; then
-                  sed -i "1i ## Open Issue : [$TITLE (opened ${DATEISSUE})]($URL) by [@${REQ}](https://github.com/$REQ)" "$f"/README.md
-                elif [[ "$LABEL" == *"enhancement"* ]]; then
-                  sed -i "1i ## Open Request : [$TITLE (opened ${DATEISSUE})]($URL) by [@${REQ}](https://github.com/$REQ)" "$f"/README.md
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Assign issues
+        run: |
+          echo "Starting"
+          curl -s -L https://api.github.com/repos/rezusnet/hassio-addons/issues > issueslist
+          for f in $( find -- * -maxdepth 0 -type d | sort -r ); do
+            if [ -f "$f"/config.yaml ] && [ -f "$f"/README.md ]; then
+              sed -i "/Open Issue :/d" "$f"/README.md
+              sed -i "/Open Request :/d" "$f"/README.md
+              COUNTER=0
+              while [[ $(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].title" issueslist) != null ]]; do
+                (( COUNTER=COUNTER+1 )) || true
+                TITLE="$(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].title" issueslist)"
+                TITLE="${TITLE//[<>\$\'\"]/}"
+                SLUG="$(grep -r "slug:" "$f"/config.yaml | awk '{print $2}')"
+                NAME="$(grep -r "^name:" "$f"/config.yaml | awk '{print $2}')"
+                if [[ "${TITLE,,}" == *"${f,,}"* ]] || [[ "${TITLE,,}" == *"${SLUG,,}"* ]] || [[ "${TITLE,,}" == *"${NAME,,}"* ]]; then
+                  REQ="$(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].user.login" issueslist)"
+                  URL="$(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].html_url" issueslist)"
+                  LABEL="$(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].labels[].name" issueslist)"
+                  DATEISSUE="$(jq -r --arg COUNTER "$COUNTER" ".[$COUNTER].created_at" issueslist)"
+                  DATEISSUE="${DATEISSUE%T*}"
+                  if [[ "$LABEL" == *"bug"* ]]; then
+                    sed -i "1i ## Open Issue : [$TITLE (opened ${DATEISSUE})]($URL) by [@${REQ}](https://github.com/$REQ)" "$f"/README.md
+                  elif [[ "$LABEL" == *"enhancement"* ]]; then
+                    sed -i "1i ## Open Request : [$TITLE (opened ${DATEISSUE})]($URL) by [@${REQ}](https://github.com/$REQ)" "$f"/README.md
+                  fi
                 fi
-              fi
-            done
-          fi
-        done
-        rm issueslist
-    - name: Commit if needed
-      uses: EndBug/add-and-commit@v10
-      with:
-        message: "Github bot: issues linked to readme"
-        default_author: github_actions
-        commit: -u
-        fetch: --force
-        push: --force
+              done
+            fi
+          done
+          rm issueslist
+      - name: Commit if needed
+        uses: EndBug/add-and-commit@v10
+        with:
+          message: "Github bot: issues linked to readme"
+          default_author: github_actions
+          commit: -u
+          fetch: --force
+          push: --force

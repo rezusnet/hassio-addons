@@ -10,7 +10,7 @@ on:
 jobs:
   check-addon-changes:
     if: ${{ github.repository_owner == 'rezusnet' && !contains(github.event.head_commit.message, 'nobuild') }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       changedAddons: ${{ steps.find_addons.outputs.changed_addons }}
       changedChangelogFiles: ${{ steps.changed-files.outputs.changelogs_files }}
@@ -41,7 +41,7 @@ jobs:
     name: Check if CHANGELOG.md changed
     needs: check-addon-changes
     if: ${{ needs.check-addon-changes.outputs.changedAddons != '[]' }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       fail-fast: false
       matrix:
@@ -59,7 +59,7 @@ jobs:
     name: Addon linting
     needs: check-addon-changes
     if: ${{ needs.check-addon-changes.outputs.changedAddons != '[]' }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       fail-fast: false
       matrix:
@@ -76,7 +76,7 @@ jobs:
     name: Test addon build
     needs: check-addon-changes
     if: ${{ needs.check-addon-changes.outputs.changedAddons != '[]' }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       fail-fast: false
       matrix:
