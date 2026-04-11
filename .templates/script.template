@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+
+#################
+# CODE INJECTOR #
+#################
+
+# Any commands written in this bash script will be executed at addon start

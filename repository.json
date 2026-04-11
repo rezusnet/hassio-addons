@@ -1,0 +1,6 @@
+{
+  "name": "HA Add-ons by rezusnet",
+  "udev": true,
+  "url": "https://github.com/rezusnet/hassio-addons",
+  "maintainer": "rezusnet"
+}

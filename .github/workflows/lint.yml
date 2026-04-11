@@ -1,0 +1,125 @@
+name: Lint workflows
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - "**/config.*"
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  lint-changes:
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set diff range
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "DIFF_RANGE=${{ github.event.pull_request.base.sha }}...${{ github.sha }}" >> $GITHUB_ENV
+          else
+            echo "DIFF_RANGE=${{ github.event.before }}...${{ github.sha }}" >> $GITHUB_ENV
+          fi
+
+      - name: Fix Unicode spaces in changed files
+        run: |
+          set -euo pipefail
+          CHANGED_FILES=$(git diff --name-only "$DIFF_RANGE")
+          UNICODE_SPACES_REGEX=$'[\\u00A0\\u2002\\u2003\\u2007\\u2008\\u2009\\u202F\\u205F\\u3000\\u200B]'
+          for file in $CHANGED_FILES; do
+            if [ -f "$file" ]; then
+              MIME_TYPE=$(file --mime-type -b "$file")
+              if [[ "$MIME_TYPE" == text/* ]]; then
+                perl -CSD -pe "s/$UNICODE_SPACES_REGEX/ /g" "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+              fi
+            fi
+          done
+
+      - name: Run Super Linter
+        uses: super-linter/super-linter/slim@main
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_CHECKOV: false
+          VALIDATE_PYTHON_PYLINT: false
+          VALIDATE_JSCPD: false
+          VALIDATE_NATURAL_LANGUAGE: false
+          FILTER_REGEX_EXCLUDE: .github/workflows/.*
+          FIX_ENV: false
+          FIX_SHELL_SHFMT: true
+
+      - name: Restore executable permissions
+        run: find . -type f \( -name "*.sh" -o -name "run" \) -exec chmod +x {} \;
+
+      - name: Remove Super-Linter output
+        run: sudo rm -rf super-linter-output/
+
+  lint-autofix:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fix Unicode spaces in all text files
+        run: |
+          set -euo pipefail
+          UNICODE_SPACES_REGEX=$'[\\u00A0\\u2002\\u2003\\u2007\\u2008\\u2009\\u202F\\u205F\\u3000\\u200B]'
+          find . -type f ! -path "./.git/*" | while read -r file; do
+            MIME_TYPE=$(file --mime-type -b "$file")
+            if [[ "$MIME_TYPE" == text/* ]]; then
+              perl -CSD -pe "s/$UNICODE_SPACES_REGEX/ /g" "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+            fi
+          done
+
+      - name: Run Super Linter
+        uses: super-linter/super-linter/slim@main
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_CHECKOV: false
+          VALIDATE_PYTHON_PYLINT: false
+          VALIDATE_JSCPD: false
+          VALIDATE_NATURAL_LANGUAGE: false
+          FILTER_REGEX_EXCLUDE: .github/workflows/.*
+          FIX_ENV: true
+          FIX_SHELL_SHFMT: true
+
+      - name: Restore executable permissions
+        run: find . -type f \( -name "*.sh" -o -name "run" \) -exec chmod +x {} \;
+
+      - name: Remove Super-Linter output
+        run: sudo rm -rf super-linter-output/
+
+      - name: Check for changes
+        id: changed
+        run: |
+          if ! git diff --quiet; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Pull Request
+        if: steps.changed.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "Github bot: fix linting issues"
+          commit-message: "fix: auto-fix linting issues"
+          branch-suffix: timestamp

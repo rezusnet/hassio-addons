@@ -1,0 +1,35 @@
+# yamllint disable rule:line-length
+---
+name: Weekly addons update
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  update-addons:
+    if: github.repository_owner == 'rezusnet'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          pip install lastversion 2>/dev/null || true
+          sudo apt-get update && sudo apt-get install -y jq git
+      - name: Run updater
+        env:
+          GITUSER: ${{ secrets.GH_BOT_USER }}
+          GITAPI: ${{ secrets.GH_BOT_TOKEN }}
+          REPOSITORY: rezusnet/hassio-addons
+        run: |
+          mkdir -p /data
+          cat > /data/options.json << EOF
+          {
+            "repository": "${REPOSITORY}",
+            "gituser": "${GITUSER}",
+            "gitapi": "${GITAPI}",
+            "verbose": false
+          }
+          EOF
+          chmod +x ./addons_updater/rootfs/etc/cont-init.d/99-run.sh
+          ./addons_updater/rootfs/etc/cont-init.d/99-run.sh

@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": true,
+  "files.trimTrailingWhitespace": true,
+  "files.eol": "\n",
+  "shellcheck.useWSL": false
+}

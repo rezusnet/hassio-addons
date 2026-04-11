@@ -1,0 +1,120 @@
+# yamllint disable rule:line-length
+---
+name: PR Check Build
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  check-addon-changes:
+    if: ${{ github.repository_owner == 'rezusnet' && !contains(github.event.head_commit.message, 'nobuild') }}
+    runs-on: ubuntu-latest
+    outputs:
+      changedAddons: ${{ steps.find_addons.outputs.changed_addons }}
+      changedChangelogFiles: ${{ steps.changed-files.outputs.changelogs_files }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Find changed addon directories
+        id: find_addons
+        run: |
+          git fetch origin "${{ github.event.before }}" || true
+          changed_config_files=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" | grep -E '^[^/]+/config\.(json|ya?ml)$' || true)
+          echo "Changed config files:"
+          echo "$changed_config_files"
+          changed_addons=$(printf '%s' "$changed_config_files" | awk -F/ '{print $1}' | sort -u | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "Changed addons: $changed_addons"
+          echo "changed_addons=$changed_addons" >> "$GITHUB_OUTPUT"
+      - name: Find changelog
+        id: changed-files
+        run: |
+          git fetch origin "${{ github.event.before }}" || true
+          changed_changelog_files=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" | grep -iE '^([^/]+/)?changelog\.(md|txt|ya?ml|json)$' || true)
+          changed_config_files=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" | grep -E '^[^/]+/config\.(json|ya?ml)$' || true)
+          all_changed_files=$(echo -e "$changed_config_files\n$changed_changelog_files" | sort -u)
+          changed_addons=$(printf '%s' "$all_changed_files" | awk -F/ '{print $1}' | sort -u | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "changed_addons=$changed_addons" >> "$GITHUB_OUTPUT"
+
+  check-changed-changelog:
+    name: Check if CHANGELOG.md changed
+    needs: check-addon-changes
+    if: ${{ needs.check-addon-changes.outputs.changedAddons != '[]' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        addon: ${{ fromJSON(needs.check-addon-changes.outputs.changedAddons) }}
+    steps:
+      - name: Check for updated CHANGELOG.md
+        shell: bash
+        run: |
+          if [[ ! "${{ needs.check-addon-changes.outputs.changedChangelogFiles }}" =~ "${{ matrix.addon }}/CHANGELOG.md" ]]; then
+            echo "::error::No new entries in ${{ matrix.addon }} CHANGELOG.md file!"
+            exit 1
+          fi
+
+  addon-linter:
+    name: Addon linting
+    needs: check-addon-changes
+    if: ${{ needs.check-addon-changes.outputs.changedAddons != '[]' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        addon: ${{ fromJSON(needs.check-addon-changes.outputs.changedAddons) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run Home Assistant Add-on Lint
+        uses: frenck/action-addon-linter@v2
+        with:
+          path: "./${{ matrix.addon }}"
+
+  check-build:
+    name: Test addon build
+    needs: check-addon-changes
+    if: ${{ needs.check-addon-changes.outputs.changedAddons != '[]' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        addon: ${{ fromJSON(needs.check-addon-changes.outputs.changedAddons) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Gather addon info
+        id: information
+        uses: frenck/action-addon-information@v1.4
+        with:
+          path: "./${{ matrix.addon }}/"
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build Addon - amd64
+        if: ${{ steps.information.outputs.amd64 == 'true' }}
+        uses: docker/build-push-action@v7
+        with:
+          context: ${{ matrix.addon }}
+          push: false
+          load: true
+          file: ${{ matrix.addon }}/Dockerfile
+          tags: test/${{ matrix.addon }}:test
+          build-args: BUILD_FROM=${{ steps.information.outputs.amd64_build_from }}
+
+      - name: Build Addon - aarch64
+        if: ${{ steps.information.outputs.aarch64 == 'true' }}
+        uses: docker/build-push-action@v7
+        with:
+          context: ${{ matrix.addon }}
+          push: false
+          load: true
+          file: ${{ matrix.addon }}/Dockerfile
+          tags: test/${{ matrix.addon }}:test
+          build-args: BUILD_FROM=${{ steps.information.outputs.aarch64_build_from }}

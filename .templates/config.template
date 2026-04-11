@@ -1,0 +1,8 @@
+#============================#
+# RESUSNET'S ENV INJECTOR    #
+#============================#
+#
+# All env variables set in this file will be enabled in the app
+# This file must be filled according to the yaml format.
+# EXAMPLE:
+# TZ: Europe/Paris
