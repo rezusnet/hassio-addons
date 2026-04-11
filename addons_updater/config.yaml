@@ -4,6 +4,7 @@ arch:
 boot: manual
 description: "Automatic addons update by aligning version tag with upstream releases"
 image: ghcr.io/rezusnet/addons_updater-{arch}
+icon: icon.png
 map:
   - addon_config:rw
 name: Addons updater
