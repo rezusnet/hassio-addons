@@ -10,6 +10,9 @@ environment:
   PUID: "0"
 homeassistant: 2025.5.0
 image: ghcr.io/rezusnet/opencode-{arch}
+ingress: true
+ingress_port: 8080
+ingress_stream: true
 map:
   - addon_config:rw
   - media:rw
@@ -25,10 +28,8 @@ options:
   env_vars: []
   server_password: ""
   workspace: /homeassistant
-ports:
-  8080/tcp: 8230
-ports_description:
-  8080/tcp: OpenCode Web UI
+panel_admin: true
+panel_icon: mdi:robot-outline
 schema:
   env_vars:
     - name: match(^[A-Za-z0-9_]+$)
@@ -37,4 +38,4 @@ schema:
   workspace: str
 slug: opencode
 url: https://github.com/rezusnet/hassio-addons
-version: "1.4.4"
+version: "1.4.3"
