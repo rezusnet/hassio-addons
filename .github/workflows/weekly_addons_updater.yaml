@@ -15,7 +15,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install lastversion 2>/dev/null || true
-          sudo apt-get update && sudo apt-get install -y jq git
+          if ! command -v jq >/dev/null 2>&1; then
+            wget -qO /usr/local/bin/jq https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-arm64
+            chmod +x /usr/local/bin/jq
+          fi
       - name: Run updater
         env:
           GITUSER: ${{ secrets.GH_BOT_USER }}

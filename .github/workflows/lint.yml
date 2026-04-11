@@ -49,9 +49,20 @@ jobs:
 
       - name: Install linting tools
         run: |
-          command -v shellcheck >/dev/null 2>&1 || (sudo apt-get update -qq && sudo apt-get install -yqq shellcheck)
-          command -v hadolint >/dev/null 2>&1 || (sudo wget -qO /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-arm64 && sudo chmod +x /usr/local/bin/hadolint)
-          command -v shfmt >/dev/null 2>&1 || (sudo wget -qO /usr/local/bin/shfmt https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64 && sudo chmod +x /usr/local/bin/shfmt)
+          if ! command -v shellcheck >/dev/null 2>&1; then
+            wget -qO /tmp/shellcheck.tar.xz https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.aarch64.tar.xz
+            tar -xJf /tmp/shellcheck.tar.xz -C /tmp shellcheck-v0.10.0/shellcheck
+            mv /tmp/shellcheck-v0.10.0/shellcheck /usr/local/bin/shellcheck
+            chmod +x /usr/local/bin/shellcheck
+          fi
+          if ! command -v hadolint >/dev/null 2>&1; then
+            wget -qO /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-arm64
+            chmod +x /usr/local/bin/hadolint
+          fi
+          if ! command -v shfmt >/dev/null 2>&1; then
+            wget -qO /usr/local/bin/shfmt https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64
+            chmod +x /usr/local/bin/shfmt
+          fi
 
       - name: Lint shell scripts
         run: |
@@ -103,7 +114,10 @@ jobs:
 
       - name: Install linting tools
         run: |
-          command -v shfmt >/dev/null 2>&1 || (sudo wget -qO /usr/local/bin/shfmt https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64 && sudo chmod +x /usr/local/bin/shfmt)
+          if ! command -v shfmt >/dev/null 2>&1; then
+            wget -qO /usr/local/bin/shfmt https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64
+            chmod +x /usr/local/bin/shfmt
+          fi
 
       - name: Format shell scripts
         run: |
