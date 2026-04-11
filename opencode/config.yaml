@@ -25,7 +25,13 @@ map:
 icon: icon.png
 name: OpenCode
 options:
+  custom_packages: ""
+  dev_profile:
+    - minimal
   env_vars: []
+  git_ssh_key: ""
+  git_token: ""
+  repositories: []
   server_password: ""
   workspace: /homeassistant
 panel_admin: true
@@ -35,9 +41,18 @@ ports:
 ports_description:
   8081/tcp: OpenCode Web UI
 schema:
+  custom_packages: str
+  dev_profile:
+    - list(minimal|python|node|full)
   env_vars:
     - name: match(^[A-Za-z0-9_]+$)
       value: str?
+  git_ssh_key: password
+  git_token: password
+  repositories:
+    - url: str
+      branch: str?
+      path: str
   server_password: password
   workspace: str
 slug: opencode

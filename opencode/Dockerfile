@@ -12,6 +12,8 @@ RUN apt-get update && \
     bash \
     ca-certificates \
     curl \
+    git \
+    openssh-client \
     python3 \
     tar \
     && rm -rf /var/lib/apt/lists/*
