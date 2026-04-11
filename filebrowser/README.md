@@ -1,5 +1,11 @@
 # Home Assistant add-on: Filebrowser
 
+[![Version](https://img.shields.io/badge/dynamic/yaml?label=Version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Ffilebrowser%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/filebrowser)
+[![Ingress](https://img.shields.io/badge/dynamic/yaml?color=blueviolet&label=Ingress&query=%24.ingress&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Ffilebrowser%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/filebrowser)
+[![Arch](https://img.shields.io/badge/dynamic/yaml?color=success&label=Arch&query=%24.arch&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Ffilebrowser%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/filebrowser)
+[![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
+
 ## About
 
 [Filebrowser](https://github.com/filebrowser/filebrowser) is a web-based file manager that provides a clean interface for managing files within a specified directory. Upload, download, delete, preview, rename, and edit your files directly from your browser.

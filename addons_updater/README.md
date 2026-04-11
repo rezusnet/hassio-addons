@@ -1,5 +1,10 @@
 # Home Assistant add-on: Addons updater
 
+[![Version](https://img.shields.io/badge/dynamic/yaml?label=Version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Faddons_updater%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/addons_updater)
+[![Arch](https://img.shields.io/badge/dynamic/yaml?color=success&label=Arch&query=%24.arch&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Faddons_updater%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/addons_updater)
+[![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
+
 ## About
 
 Addons updater is a utility that automatically checks for new releases of upstream projects and updates the add-on version tags in this repository. It monitors GitHub releases for each add-on's upstream source and creates pull requests with version bumps when new releases are detected.

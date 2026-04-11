@@ -3,12 +3,15 @@
 [![Add repository on my Home Assistant][repository-badge]][repository-url]
 
 [![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
+[![Last commit](https://img.shields.io/github/last-commit/rezusnet/hassio-addons?label=last%20update)](https://github.com/rezusnet/hassio-addons/commits/master)
+[![Stars](https://img.shields.io/github/stars/rezusnet/hassio-addons?style=flat)](https://github.com/rezusnet/hassio-addons/stargazers)
+[![Open issues](https://img.shields.io/github/issues/rezusnet/hassio-addons)](https://github.com/rezusnet/hassio-addons/issues)
+[![License](https://img.shields.io/github/license/rezusnet/hassio-addons)](https://github.com/rezusnet/hassio-addons/blob/master/LICENSE)
 
 ## About
 
 Home Assistant allows anyone to create add-on repositories to share their add-ons. This repository provides extra Home Assistant add-ons for your installation.
-
-The primary goal is to provide additional, high quality add-ons that allow you to take your automated home to the next level.
 
 ## Installation
 
@@ -22,9 +25,11 @@ https://github.com/rezusnet/hassio-addons
 
 ## Add-ons provided by this repository
 
-| Addon | Description |
-|-------|-------------|
-| [Filebrowser](filebrowser/) | Web-based file management interface for your Home Assistant system |
+| Addon | Version | Arch | Ingress | Updated |
+|-------|---------|------|---------|---------|
+| [![OpenCode][opencode-badge]](opencode/) | ![OpenCode Version](https://img.shields.io/badge/dynamic/yaml?label=&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fopencode%2Fconfig.yaml) | ![OpenCode Arch](https://img.shields.io/badge/dynamic/yaml?color=success&label=&query=%24.arch&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fopencode%2Fconfig.yaml) | ![OpenCode Port](https://img.shields.io/badge/dynamic/yaml?color=blue&label=port&query=%24.ports&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fopencode%2Fconfig.yaml) | ![OpenCode Updated](https://img.shields.io/badge/dynamic/json?label=&query=%24.last_update&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fopencode%2Fupdater.json) |
+| [![Filebrowser][filebrowser-badge]](filebrowser/) | ![Filebrowser Version](https://img.shields.io/badge/dynamic/yaml?label=&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Ffilebrowser%2Fconfig.yaml) | ![Filebrowser Arch](https://img.shields.io/badge/dynamic/yaml?color=success&label=&query=%24.arch&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Ffilebrowser%2Fconfig.yaml) | ![Filebrowser Ingress](https://img.shields.io/badge/dynamic/yaml?color=blueviolet&label=ingress&query=%24.ingress&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Ffilebrowser%2Fconfig.yaml) | ![Filebrowser Updated](https://img.shields.io/badge/dynamic/json?label=&query=%24.last_update&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Ffilebrowser%2Fupdater.json) |
+| [![Addons updater][addons_updater-badge]](addons_updater/) | ![Addons updater Version](https://img.shields.io/badge/dynamic/yaml?label=&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Faddons_updater%2Fconfig.yaml) | ![Addons updater Arch](https://img.shields.io/badge/dynamic/yaml?color=success&label=&query=%24.arch&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Faddons_updater%2Fconfig.yaml) | — | — |
 
 ## Using an Addon
 
@@ -37,92 +42,6 @@ https://github.com/rezusnet/hassio-addons
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for full development guidelines.
 
-Quick start:
-
-1. Create a directory with your addon slug name
-2. Add `config.yaml`, `Dockerfile`, `build.json`
-3. Optionally add `updater.json` for auto-version tracking
-4. Commit - CI will lint, build, and publish automatically
-
-### Addon Directory Structure
-
-```
-my-addon/
-├── config.yaml          # Addon manifest
-├── build.json           # Base images per arch
-├── Dockerfile           # Build instructions (6-section pattern)
-├── updater.json         # Auto-update tracking (optional)
-├── apparmor.txt         # Security profile (optional)
-├── rootfs/              # Files overlaid onto container
-│   └── etc/
-│       └── cont-init.d/ # S6 init scripts
-├── README.md            # Addon docs
-├── CHANGELOG.md         # Version history (auto-maintained)
-└── icon.png             # Addon icon
-```
-
-### The config.yaml Manifest
-
-```yaml
-name: My Addon
-description: What it does
-version: "1.0.0"
-arch:
-  - aarch64
-  - amd64
-image: ghcr.io/rezusnet/my-addon-{arch}
-slug: my_addon
-url: https://github.com/rezusnet/hassio-addons
-options:
-  setting: default_value
-schema:
-  setting: str
-```
-
-### The Dockerfile Pattern
-
-All addons follow a 6-section pattern:
-
-1. **Build Image** - `ARG BUILD_FROM; FROM ${BUILD_FROM}`
-2. **Modify Image** - S6 overlay environment variables
-3. **Install Apps** - Copy rootfs, download shared template modules, install packages
-4. **Entrypoint** - Copy `ha_entrypoint.sh` and `bashio-standalone.sh`
-5. **Labels** - OCI and `io.hass.*` labels
-6. **Healthcheck** - HTTP health check
-
-### Shared Templates (`.templates/`)
-
-Shared scripts are downloaded at build time from GitHub:
-- `00-banner.sh` - Startup info banner
-- `00-global_var.sh` - Converts options to environment variables
-- `00-smb_mounts.sh` - Mounts SMB/CIFS shares
-- `00-local_mounts.sh` - Mounts local disks
-- `01-custom_script.sh` - Runs custom user scripts
-- `ha_entrypoint.sh` - Main entrypoint with shebang detection
-- `bashio-standalone.sh` - Standalone bashio for non-Supervisor environments
-
-Reference in your Dockerfile:
-```dockerfile
-ARG MODULES="00-banner.sh 01-custom_script.sh"
-COPY ha_automodules.sh /ha_automodules.sh
-RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
-```
-
-### Auto-Update Tracking
-
-Add `updater.json` to your addon to enable automatic upstream version tracking:
-
-```json
-{
-  "source": "github",
-  "upstream_repo": "upstream/project",
-  "upstream_version": "1.0.0",
-  "repository": "rezusnet/hassio-addons",
-  "slug": "my_addon",
-  "paused": false
-}
-```
-
 ### CI/CD Pipeline
 
 - **Push to master** with `config.*` changes triggers the builder
@@ -131,16 +50,12 @@ Add `updater.json` to your addon to enable automatic upstream version tracking:
 - **Daily** stale issue management
 - **`[nobuild]`** in commit messages skips CI builds
 
-### Local Development
-
-Use the included devcontainer (requires Docker):
-1. Open in VS Code with Dev Containers extension
-2. The official HA devcontainer image provides Supervisor integration
-3. Test addon builds locally before pushing
-
 ## Support
 
 Open an issue on [GitHub Issues](https://github.com/rezusnet/hassio-addons/issues).
 
 [repository-badge]: https://img.shields.io/badge/Add%20repository%20to%20my-Home%20Assistant-41BDF5?logo=home-assistant&style=for-the-badge
 [repository-url]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Frezusnet%2Fhassio-addons
+[opencode-badge]: https://img.shields.io/badge/OpenCode-robot?logo=robot&style=flat
+[filebrowser-badge]: https://img.shields.io/badge/Filebrowser-folder?logo=folder&style=flat
+[addons_updater-badge]: https://img.shields.io/badge/Addons_updater-update?logo=refresh&style=flat
