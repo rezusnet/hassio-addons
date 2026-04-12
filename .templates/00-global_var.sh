@@ -6,7 +6,7 @@ set -e
 ################################################################################
 # Guard: only run inside Supervisor-managed add-ons
 ################################################################################
-if ! bashio::supervisor.ping 2>/dev/null; then
+if ! bashio::supervisor.ping 2> /dev/null; then
     echo "..."
     exit 0
 fi
@@ -25,7 +25,7 @@ ENV_FILE="/.env"
 ETC_ENV_FILE="/etc/environment"
 
 [[ -f "$JSONSOURCE" ]] || bashio::exit.nok "Missing $JSONSOURCE"
-command -v jq >/dev/null || bashio::exit.nok "jq is required"
+command -v jq > /dev/null || bashio::exit.nok "jq is required"
 
 mkdir -p /etc
 touch "$ETC_ENV_FILE"
@@ -48,7 +48,10 @@ SECRETSOURCE=""
 
 resolve_secret() {
     local v="$1" name line
-    [[ "$v" =~ ^[[:space:]]*\!secret[[:space:]]+(.+)$ ]] || { printf '%s' "$v"; return; }
+    [[ "$v" =~ ^[[:space:]]*\!secret[[:space:]]+(.+)$ ]] || {
+        printf '%s' "$v"
+        return
+    }
     name="${BASH_REMATCH[1]}"
     [[ -n "$SECRETSOURCE" ]] || bashio::exit.nok "Secrets not mounted"
 

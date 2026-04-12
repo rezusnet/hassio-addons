@@ -2,7 +2,7 @@
 # shellcheck shell=bash
 set -e
 
-if ! bashio::supervisor.ping 2>/dev/null; then
+if ! bashio::supervisor.ping 2> /dev/null; then
     exit 0
 fi
 
@@ -19,14 +19,14 @@ if bashio::config.has_value 'localdisks'; then
             continue
         fi
         if [ -b "/dev/$disk" ]; then
-            mount "/dev/$disk" "$mountpoint" 2>/dev/null || \
-                mount -t exfat "/dev/$disk" "$mountpoint" 2>/dev/null || \
-                mount -t ntfs-3g "/dev/$disk" "$mountpoint" 2>/dev/null || \
-                bashio::log.warning "Failed to mount $disk"
+            mount "/dev/$disk" "$mountpoint" 2> /dev/null \
+                || mount -t exfat "/dev/$disk" "$mountpoint" 2> /dev/null \
+                || mount -t ntfs-3g "/dev/$disk" "$mountpoint" 2> /dev/null \
+                || bashio::log.warning "Failed to mount $disk"
         else
             bashio::log.warning "/dev/$disk not found, trying label"
-            mount -L "$disk" "$mountpoint" 2>/dev/null || \
-                bashio::log.warning "Failed to mount by label $disk"
+            mount -L "$disk" "$mountpoint" 2> /dev/null \
+                || bashio::log.warning "Failed to mount by label $disk"
         fi
     done
 fi

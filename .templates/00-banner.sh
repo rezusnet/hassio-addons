@@ -2,7 +2,7 @@
 # shellcheck shell=bash disable=SC2016
 set -e
 
-if ! bashio::supervisor.ping 2>/dev/null; then
+if ! bashio::supervisor.ping 2> /dev/null; then
     if [ -f /usr/local/lib/bashio-standalone.sh ]; then
         source /usr/local/lib/bashio-standalone.sh
     fi
@@ -14,11 +14,11 @@ if ! bashio::supervisor.ping 2>/dev/null; then
     if [ ! -f /usr/bin/bashio ]; then
         cp -rf /usr/local/lib/bashio-standalone.sh /usr/bin/bashio
     fi
-    grep -rl "^#!.*bashio" /etc |
-    while IFS= read -r f; do
-        grep -qF "source /usr/local/lib/bashio-standalone.sh" "$f" && continue
-        sed -i '1a source /usr/local/lib/bashio-standalone.sh' "$f"
-    done
+    grep -rl "^#!.*bashio" /etc \
+        | while IFS= read -r f; do
+            grep -qF "source /usr/local/lib/bashio-standalone.sh" "$f" && continue
+            sed -i '1a source /usr/local/lib/bashio-standalone.sh' "$f"
+        done
 else
     bashio::log.blue '-----------------------------------------------------------'
     bashio::log.blue " Add-on: $(bashio::addon.name)"
@@ -43,7 +43,7 @@ bashio::log.blue '-----------------------------------------------------------'
 bashio::log.green ' Provided by: https://github.com/rezusnet/hassio-addons '
 bashio::log.blue '-----------------------------------------------------------'
 
-if command -v id &>/dev/null && id abc &>/dev/null; then
+if command -v id &> /dev/null && id abc &> /dev/null; then
     if bashio::config.has_value "PUID" && bashio::config.has_value "PGID"; then
         PUID="$(bashio::config "PUID")"
         PGID="$(bashio::config "PGID")"
