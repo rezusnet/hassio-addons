@@ -1,3 +1,4 @@
+## Open Request : [OpenCode: Add full ingress support (depends on upstream subpath support) (opened 2026-04-11)](https://github.com/rezusnet/hassio-addons/issues/6) by [@tibrezus](https://github.com/tibrezus)
 # Home Assistant add-on: OpenCode
 
 [![Version](https://img.shields.io/badge/dynamic/yaml?label=Version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fopencode%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/opencode)
