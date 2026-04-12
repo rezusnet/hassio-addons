@@ -4,6 +4,9 @@
 
 [![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
+[![Code Quality](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Code%20Quality)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/codeql.yml?label=CodeQL)](https://github.com/rezusnet/hassio-addons/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/rezusnet/hassio-addons/badge)](https://scorecard.dev/viewer/?uri=github.com/rezusnet/hassio-addons)
 [![Last commit](https://img.shields.io/github/last-commit/rezusnet/hassio-addons?label=last%20update)](https://github.com/rezusnet/hassio-addons/commits/master)
 [![Stars](https://img.shields.io/github/stars/rezusnet/hassio-addons?style=flat)](https://github.com/rezusnet/hassio-addons/stargazers)
 [![Open issues](https://img.shields.io/github/issues/rezusnet/hassio-addons)](https://github.com/rezusnet/hassio-addons/issues)
@@ -46,8 +49,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for full development guidelines.
 
 - **Push to master** with `config.*` changes triggers the builder
 - **PRs** are validated: linted + test-built (no push)
+- **Super-Linter** runs shellcheck, hadolint, markdownlint, shfmt, gitleaks, jscpd on changed files
+- **CodeQL** scans GitHub Actions workflows for security issues
+- **OpenSSF Scorecard** evaluates repo security posture
 - **Weekly** auto-updater checks upstream for new versions
-- **Daily** stale issue management
+- **Weekly** lint autofix creates PRs with formatting fixes
 - **`[nobuild]`** in commit messages skips CI builds
 
 ## Support

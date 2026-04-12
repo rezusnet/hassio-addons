@@ -1,0 +1,5 @@
+indent: 4
+space_redirects: true
+binary_next_line: true
+case_indent: true
+simplify: true
