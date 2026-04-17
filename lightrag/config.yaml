@@ -1,0 +1,70 @@
+arch:
+    - aarch64
+    - amd64
+description: >-
+    LightRAG is a simple and fast Retrieval-Augmented Generation system with a
+    web UI for document indexing, knowledge graph exploration, and RAG queries.
+    Requires an external LLM provider (OpenAI, Ollama, Azure, Gemini, etc.).
+environment:
+    PGID: "0"
+    PUID: "0"
+homeassistant: 2025.5.0
+image: ghcr.io/rezusnet/lightrag-{arch}
+ingress: true
+ingress_port: 9621
+ingress_stream: true
+map:
+    - addon_config:rw
+    - share:rw
+icon: icon.png
+name: LightRAG
+options:
+    llm_binding: openai
+    llm_binding_host: https://api.openai.com/v1
+    llm_binding_api_key: ""
+    llm_model: gpt-4o-mini
+    embedding_binding: openai
+    embedding_binding_host: https://api.openai.com/v1
+    embedding_binding_api_key: ""
+    embedding_model: text-embedding-3-small
+    embedding_dim: 1536
+    summary_language: English
+    chunk_size: 1200
+    max_async: 4
+    webui_title: My Graph KB
+    env_vars: []
+panel_admin: true
+panel_icon: mdi:graph-outline
+ports:
+    9621/tcp: null
+ports_description:
+    9621/tcp: LightRAG API and Web UI (not needed with ingress)
+schema:
+    llm_binding: list(openai|ollama|azure_openai|aws_bedrock|gemini)
+    llm_binding_host: str?
+    llm_binding_api_key: password
+    llm_model: str
+    embedding_binding: list(openai|ollama|azure_openai|aws_bedrock|gemini)
+    embedding_binding_host: str?
+    embedding_binding_api_key: password
+    embedding_model: str
+    embedding_dim: int
+    summary_language: list(English|Chinese|French|German|Spanish|Japanese|Korean)?
+    chunk_size: int(100,5000)?
+    max_async: int(1,16)?
+    webui_title: str?
+    kv_storage: list(JsonKVStorage|RedisKVStorage|PGKVStorage|MongoKVStorage|OpenSearchKVStorage)?
+    vector_storage: list(NanoVectorDBStorage|PGVectorStorage|MongoVectorDBStorage|MilvusVectorDBStorage|QdrantVectorDBStorage|OpenSearchVectorDBStorage|RedisVectorDBStorage)?
+    graph_storage: list(NetworkXStorage|Neo4JStorage|PGGraphStorage|MongoGraphStorage|MemgraphStorage|OpenSearchGraphStorage)?
+    doc_status_storage: list(JsonDocStatusStorage|RedisDocStatusStorage|PGDocStatusStorage|MongoDocStatusStorage|OpenSearchDocStatusStorage)?
+    auth_accounts: str?
+    token_secret: password?
+    llm_timeout: int(30,600)?
+    enable_llm_cache: bool?
+    top_k: int(1,200)?
+    env_vars:
+        - name: match(^[A-Za-z0-9_]+$)
+          value: str?
+slug: lightrag
+url: https://github.com/HKUDS/LightRAG
+version: "1.4.14"
