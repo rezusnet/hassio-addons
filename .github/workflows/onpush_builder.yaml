@@ -230,6 +230,16 @@ jobs:
           - arch: aarch64
             runner: ["self-hosted", "linux", "arm64"]
     steps:
+      - name: Clean stale workspace
+        run: |
+          WS="${{ github.workspace }}"
+          if [ -d "$WS/.git" ]; then
+            cd "$WS"
+            git submodule deinit --all -f 2>/dev/null || true
+            rm -rf .git/modules 2>/dev/null || true
+          fi
+          sudo rm -rf "$WS/super-linter-output" 2>/dev/null || true
+
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
