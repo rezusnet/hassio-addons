@@ -52,4 +52,4 @@ schema:
           value: str?
 slug: audiobookshelf
 url: https://github.com/advplyr/audiobookshelf
-version: "2.33.1"
+version: "2.33.2"

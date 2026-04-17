@@ -1,3 +1,7 @@
+## 2.33.2 (17-04-2026)
+
+- Replace icon with high-resolution version (512x512)
+
 ## 2.33.1 (17-04-2026)
 
 - Initial release
