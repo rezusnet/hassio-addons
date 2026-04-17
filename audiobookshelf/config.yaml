@@ -41,7 +41,7 @@ schema:
     audiobooks_path: str
     podcasts_path: str
     backup_path: str?
-    podcast_download_timeout: int(10, 300)
+    podcast_download_timeout: int(10,300)
     allow_cors: bool
     disable_ssrf_filter: bool
     ssrf_whitelist: str?
@@ -52,4 +52,4 @@ schema:
           value: str?
 slug: audiobookshelf
 url: https://github.com/advplyr/audiobookshelf
-version: "2.33.2"
+version: "2.33.3"

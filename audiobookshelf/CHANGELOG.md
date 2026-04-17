@@ -1,3 +1,7 @@
+## 2.33.3 (17-04-2026)
+
+- Fix schema validation: remove space in int(10,300) type expression
+
 ## 2.33.2 (17-04-2026)
 
 - Replace icon with high-resolution version (512x512)
