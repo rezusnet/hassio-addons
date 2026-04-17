@@ -230,17 +230,6 @@ jobs:
           - arch: aarch64
             runner: ["self-hosted", "linux", "arm64"]
     steps:
-      - name: Clean stale workspace
-        run: |
-          WS="${{ github.workspace }}"
-          if [ -d "$WS" ]; then
-            chmod -R u+w "$WS" 2>/dev/null || true
-            rm -rf "$WS" 2>/dev/null || true
-          fi
-          for sub in $(git config --global --get-regexp 'submodule\.' 2>/dev/null | awk '{print $1}' | sed 's/submodule\.\([^/]*\).*/\1/' | sort -u); do
-            git config --global --remove-section "submodule.$sub" 2>/dev/null || true
-          done
-
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
