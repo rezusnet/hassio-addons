@@ -230,6 +230,9 @@ jobs:
           - arch: aarch64
             runner: ["self-hosted", "linux", "arm64"]
     steps:
+      - name: Clean stale workspace
+        run: rm -rf "${{ github.workspace }}"
+
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
