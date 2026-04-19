@@ -1,7 +1,7 @@
 arch:
   - aarch64
   - amd64
-boot: manual
+boot: auto
 description: "Automatic addons update by aligning version tag with upstream releases"
 image: ghcr.io/rezusnet/addons_updater-{arch}
 icon: icon.png
@@ -11,8 +11,9 @@ name: Addons updater
 options:
   date_iso8601: true
   env_vars: []
-  gitapi: gitapi
-  gituser: gituser
+  gitapi: CHANGE_ME
+  gituser: tibrezus
+  verbose: true
   repository: rezusnet/hassio-addons
 schema:
   dry_run: bool?
