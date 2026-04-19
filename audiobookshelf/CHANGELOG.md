@@ -1,3 +1,7 @@
+## 2.33.4 (19-04-2026)
+
+- Fix startup: tini is at /sbin/tini, not /usr/bin/tini
+
 ## 2.33.3 (17-04-2026)
 
 - Fix schema validation: remove space in int(10,300) type expression

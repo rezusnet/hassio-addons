@@ -70,6 +70,6 @@ bashio::log.info "Config path: ${CONFIG_PATH}"
 bashio::log.info "Metadata path: ${METADATA_PATH}"
 bashio::log.info "Starting Audiobookshelf..."
 
-exec /usr/bin/tini -- node /app/index.js \
+exec /sbin/tini -- node /app/index.js \
     --config "$CONFIG_PATH" \
     --metadata "$METADATA_PATH"
