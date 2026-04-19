@@ -1,3 +1,9 @@
+## 2.33.8 (19-04-2026)
+
+- Fix ingress: rewrite client asset paths at build time to serve from /
+- Set ROUTER_BASE_PATH=/ for HA ingress compatibility
+- Remove ingress_entry, use default /
+
 ## 2.33.7 (19-04-2026)
 
 - Fix ingress_entry: remove leading slash (was causing //audiobookshelf/)

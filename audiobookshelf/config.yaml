@@ -13,7 +13,6 @@ homeassistant: 2025.5.0
 image: ghcr.io/rezusnet/audiobookshelf-{arch}
 ingress: true
 ingress_port: 8133
-ingress_entry: audiobookshelf
 ingress_stream: true
 map:
     - addon_config:rw
@@ -53,4 +52,4 @@ schema:
           value: str?
 slug: audiobookshelf
 url: https://github.com/advplyr/audiobookshelf
-version: "2.33.7"
+version: "2.33.8"

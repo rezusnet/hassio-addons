@@ -11,6 +11,7 @@ export METADATA_PATH="/data/metadata"
 export PORT="8133"
 export SOURCE="docker"
 export ALLOW_IFRAME="1"
+export ROUTER_BASE_PATH="/"
 
 if bashio::config.has_value 'backup_path'; then
     BACKUP_PATH=$(bashio::config 'backup_path')

@@ -13,6 +13,9 @@ RUN apk add --no-cache \
         curl \
         jq
 
+RUN find /app/client/dist -type f \( -name "*.html" -o -name "*.js" -o -name "*.json" \) \
+        -exec sed -i 's|/audiobookshelf||g' {} +
+
 COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
 
@@ -66,7 +69,7 @@ LABEL \
     org.opencontainers.image.version="${BUILD_VERSION}"
 
 ENV HEALTH_PORT="8133" \
-    HEALTH_URL="/audiobookshelf/"
+    HEALTH_URL=""
 HEALTHCHECK \
     --interval=30s \
     --retries=5 \
