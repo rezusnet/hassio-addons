@@ -1,3 +1,8 @@
+## 2.33.5 (19-04-2026)
+
+- Fix ingress: set ROUTER_BASE_PATH=/ so app serves from root
+- Fix tini subreaper warning with -s flag
+
 ## 2.33.4 (19-04-2026)
 
 - Fix startup: tini is at /sbin/tini, not /usr/bin/tini
