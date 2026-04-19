@@ -1,3 +1,8 @@
+## 2.33.6 (19-04-2026)
+
+- Fix ingress UI: use ingress_entry=/audiobookshelf/ instead of ROUTER_BASE_PATH=/
+- Keep upstream default ROUTER_BASE_PATH=/audiobookshelf for correct asset loading
+
 ## 2.33.5 (19-04-2026)
 
 - Fix ingress: set ROUTER_BASE_PATH=/ so app serves from root
