@@ -1,3 +1,7 @@
+## 2.33.9 (20-04-2026)
+
+- Disable ingress_stream to fix buffering issues with Nuxt SPA
+
 ## 2.33.8 (19-04-2026)
 
 - Fix ingress: rewrite client asset paths at build time to serve from /
