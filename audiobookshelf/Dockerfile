@@ -65,8 +65,8 @@ LABEL \
     org.opencontainers.image.revision=${BUILD_REF} \
     org.opencontainers.image.version="${BUILD_VERSION}"
 
-ENV HEALTH_PORT="80" \
-    HEALTH_URL=""
+ENV HEALTH_PORT="8133" \
+    HEALTH_URL="/audiobookshelf/"
 HEALTHCHECK \
     --interval=30s \
     --retries=5 \

@@ -8,7 +8,7 @@ mkdir -p /data/config /data/metadata
 
 export CONFIG_PATH="/data/config"
 export METADATA_PATH="/data/metadata"
-export PORT="80"
+export PORT="8133"
 export SOURCE="docker"
 export ALLOW_IFRAME="1"
 

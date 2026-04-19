@@ -1,3 +1,8 @@
+## 2.33.7 (19-04-2026)
+
+- Fix ingress_entry: remove leading slash (was causing //audiobookshelf/)
+- Change internal port from 80 to 8133 to avoid conflicts
+
 ## 2.33.6 (19-04-2026)
 
 - Fix ingress UI: use ingress_entry=/audiobookshelf/ instead of ROUTER_BASE_PATH=/
