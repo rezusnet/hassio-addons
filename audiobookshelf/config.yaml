@@ -22,11 +22,20 @@ options:
     podcasts_path: /media/podcasts
     backup_path: ""
     podcast_download_timeout: 30
+    max_failed_episode_checks: 24
     allow_cors: false
+    allow_iframe: true
     disable_ssrf_filter: false
     ssrf_whitelist: ""
     rate_limit_auth_window: 600000
     rate_limit_auth_max: 40
+    access_token_expiry: 3600
+    refresh_token_expiry: 2592000
+    router_base_path: /audiobookshelf
+    exp_proxy_support: false
+    use_x_accel: false
+    skip_binaries_check: false
+    query_logging: off
     env_vars: []
 panel_icon: mdi:book-open-page-variant
 ports:
@@ -37,15 +46,27 @@ schema:
     audiobooks_path: str
     podcasts_path: str
     backup_path: str?
-    podcast_download_timeout: int(10,300)
+    podcast_download_timeout: int(1,300)
+    max_failed_episode_checks: int?
     allow_cors: bool
+    allow_iframe: bool
     disable_ssrf_filter: bool
     ssrf_whitelist: str?
     rate_limit_auth_window: int?
     rate_limit_auth_max: int?
+    access_token_expiry: int?
+    refresh_token_expiry: int?
+    router_base_path: str
+    exp_proxy_support: bool
+    use_x_accel: bool
+    skip_binaries_check: bool
+    query_logging: list(off|log|benchmark)
+    sqlite_cache_size: int?
+    sqlite_mmap_size: int?
+    sqlite_temp_store: int(0,3)?
     env_vars:
         - name: match(^[A-Za-z0-9_]+$)
           value: str?
 slug: audiobookshelf
 url: https://github.com/advplyr/audiobookshelf
-version: "2.33.12"
+version: "2.33.13"

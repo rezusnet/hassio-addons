@@ -1,3 +1,9 @@
+## 2.33.13 (20-04-2026)
+
+- Expose all Audiobookshelf environment variables as HA add-on options (22 total)
+- New options: allow_iframe, max_failed_episode_checks, access_token_expiry, refresh_token_expiry, router_base_path, exp_proxy_support, use_x_accel, skip_binaries_check, query_logging, sqlite_cache_size, sqlite_mmap_size, sqlite_temp_store
+- Add full README.md documentation for every option
+
 ## 2.33.12 (20-04-2026)
 
 - Remove ingress proxy — Audiobookshelf Nuxt SPA is incompatible with HA ingress

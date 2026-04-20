@@ -10,7 +10,13 @@ export CONFIG_PATH="/data/config"
 export METADATA_PATH="/data/metadata"
 export PORT="8133"
 export SOURCE="docker"
-export ALLOW_IFRAME="1"
+
+ROUTER_BASE_PATH=$(bashio::config 'router_base_path')
+export ROUTER_BASE_PATH
+
+if bashio::config.true 'allow_iframe'; then
+    export ALLOW_IFRAME="1"
+fi
 
 if bashio::config.has_value 'backup_path'; then
     BACKUP_PATH=$(bashio::config 'backup_path')
@@ -21,6 +27,11 @@ fi
 
 PODCAST_DOWNLOAD_TIMEOUT=$(bashio::config 'podcast_download_timeout')
 export PODCAST_DOWNLOAD_TIMEOUT
+
+if bashio::config.has_value 'max_failed_episode_checks'; then
+    MAX_FAILED_EPISODE_CHECKS=$(bashio::config 'max_failed_episode_checks')
+    export MAX_FAILED_EPISODE_CHECKS
+fi
 
 if bashio::config.true 'allow_cors'; then
     export ALLOW_CORS="1"
@@ -41,6 +52,49 @@ RATE_LIMIT_AUTH_WINDOW=$(bashio::config 'rate_limit_auth_window')
 export RATE_LIMIT_AUTH_WINDOW
 RATE_LIMIT_AUTH_MAX=$(bashio::config 'rate_limit_auth_max')
 export RATE_LIMIT_AUTH_MAX
+
+if bashio::config.has_value 'access_token_expiry'; then
+    ACCESS_TOKEN_EXPIRY=$(bashio::config 'access_token_expiry')
+    export ACCESS_TOKEN_EXPIRY
+fi
+
+if bashio::config.has_value 'refresh_token_expiry'; then
+    REFRESH_TOKEN_EXPIRY=$(bashio::config 'refresh_token_expiry')
+    export REFRESH_TOKEN_EXPIRY
+fi
+
+if bashio::config.true 'exp_proxy_support'; then
+    export EXP_PROXY_SUPPORT="1"
+    bashio::log.info "Experimental proxy support enabled"
+fi
+
+if bashio::config.true 'use_x_accel'; then
+    export USE_X_ACCEL="1"
+fi
+
+if bashio::config.true 'skip_binaries_check'; then
+    export SKIP_BINARIES_CHECK="1"
+fi
+
+QUERY_LOGGING=$(bashio::config 'query_logging')
+if [ "$QUERY_LOGGING" != "off" ] && [ -n "$QUERY_LOGGING" ]; then
+    export QUERY_LOGGING
+fi
+
+if bashio::config.has_value 'sqlite_cache_size'; then
+    SQLITE_CACHE_SIZE=$(bashio::config 'sqlite_cache_size')
+    export SQLITE_CACHE_SIZE
+fi
+
+if bashio::config.has_value 'sqlite_mmap_size'; then
+    SQLITE_MMAP_SIZE=$(bashio::config 'sqlite_mmap_size')
+    export SQLITE_MMAP_SIZE
+fi
+
+if bashio::config.has_value 'sqlite_temp_store'; then
+    SQLITE_TEMP_STORE=$(bashio::config 'sqlite_temp_store')
+    export SQLITE_TEMP_STORE
+fi
 
 if bashio::config.has_value 'env_vars'; then
     bashio::log.info "Setting custom environment variables"
@@ -68,6 +122,7 @@ bashio::log.info "Audiobooks path: ${AUDIOBOOKS_PATH} (configure as library in w
 bashio::log.info "Podcasts path: ${PODCASTS_PATH} (configure as library in web UI)"
 bashio::log.info "Config path: ${CONFIG_PATH}"
 bashio::log.info "Metadata path: ${METADATA_PATH}"
+bashio::log.info "Router base path: ${ROUTER_BASE_PATH}"
 bashio::log.info "Starting Audiobookshelf on port ${PORT}..."
 
 exec /sbin/tini -s -- node /app/index.js
