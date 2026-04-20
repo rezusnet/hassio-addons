@@ -11,7 +11,6 @@ export METADATA_PATH="/data/metadata"
 export PORT="8133"
 export SOURCE="docker"
 export ALLOW_IFRAME="1"
-export ROUTER_BASE_PATH="/"
 
 if bashio::config.has_value 'backup_path'; then
     BACKUP_PATH=$(bashio::config 'backup_path')
@@ -69,6 +68,6 @@ bashio::log.info "Audiobooks path: ${AUDIOBOOKS_PATH} (configure as library in w
 bashio::log.info "Podcasts path: ${PODCASTS_PATH} (configure as library in web UI)"
 bashio::log.info "Config path: ${CONFIG_PATH}"
 bashio::log.info "Metadata path: ${METADATA_PATH}"
-bashio::log.info "Starting Audiobookshelf..."
+bashio::log.info "Starting Audiobookshelf on port ${PORT}..."
 
 exec /sbin/tini -s -- node /app/index.js

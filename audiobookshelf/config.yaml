@@ -11,9 +11,6 @@ environment:
     PUID: "0"
 homeassistant: 2025.5.0
 image: ghcr.io/rezusnet/audiobookshelf-{arch}
-ingress: true
-ingress_port: 8133
-ingress_stream: false
 map:
     - addon_config:rw
     - media:rw
@@ -31,12 +28,11 @@ options:
     rate_limit_auth_window: 600000
     rate_limit_auth_max: 40
     env_vars: []
-panel_admin: true
 panel_icon: mdi:book-open-page-variant
 ports:
-    8133/tcp: null
+    8133/tcp: 8133
 ports_description:
-    8133/tcp: Audiobookshelf Web UI (not needed with ingress)
+    8133/tcp: Audiobookshelf Web UI
 schema:
     audiobooks_path: str
     podcasts_path: str
@@ -52,4 +48,4 @@ schema:
           value: str?
 slug: audiobookshelf
 url: https://github.com/advplyr/audiobookshelf
-version: "2.33.9"
+version: "2.33.10"

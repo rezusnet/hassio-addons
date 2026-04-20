@@ -1,3 +1,11 @@
+## 2.33.10 (20-04-2026)
+
+- Remove HA ingress (incompatible with Audiobookshelf Nuxt SPA absolute API paths)
+- Expose port 8133 directly for web UI access
+- Revert client file rewriting — use upstream default ROUTER_BASE_PATH=/audiobookshelf
+- Access the UI at http://<HA-IP>:8133/audiobookshelf/
+- Optionally add a sidebar panel via HA Settings → Dashboards → Add Panel (iframe)
+
 ## 2.33.9 (20-04-2026)
 
 - Disable ingress_stream to fix buffering issues with Nuxt SPA
