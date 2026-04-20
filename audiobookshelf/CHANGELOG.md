@@ -1,3 +1,11 @@
+## 2.33.11 (20-04-2026)
+
+- Add Node.js ingress proxy for HA sidebar panel support
+- Proxy rewrites /audiobookshelf paths to dynamic ingress path via X-Ingress-Path header
+- Audiobookshelf runs on internal port 80, proxy exposes port 8133
+- Re-enable ingress with WebSocket (upgrade) support
+- Direct access still available at http://<HA-IP>:8133/audiobookshelf/
+
 ## 2.33.10 (20-04-2026)
 
 - Remove HA ingress (incompatible with Audiobookshelf Nuxt SPA absolute API paths)

@@ -8,7 +8,8 @@ mkdir -p /data/config /data/metadata
 
 export CONFIG_PATH="/data/config"
 export METADATA_PATH="/data/metadata"
-export PORT="8133"
+export PORT="80"
+export ROUTER_BASE_PATH="/audiobookshelf"
 export SOURCE="docker"
 export ALLOW_IFRAME="1"
 
@@ -68,6 +69,6 @@ bashio::log.info "Audiobooks path: ${AUDIOBOOKS_PATH} (configure as library in w
 bashio::log.info "Podcasts path: ${PODCASTS_PATH} (configure as library in web UI)"
 bashio::log.info "Config path: ${CONFIG_PATH}"
 bashio::log.info "Metadata path: ${METADATA_PATH}"
-bashio::log.info "Starting Audiobookshelf on port ${PORT}..."
+bashio::log.info "Starting Audiobookshelf on port ${PORT} with ingress proxy on 8133..."
 
-exec /sbin/tini -s -- node /app/index.js
+exec /sbin/tini -s -- sh -c "node /app/index.js & node /ingress-proxy.js & wait"

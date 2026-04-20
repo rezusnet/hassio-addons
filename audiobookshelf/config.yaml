@@ -16,6 +16,9 @@ map:
     - media:rw
     - share:rw
 icon: icon.png
+ingress: true
+ingress_port: 8133
+ingress_stream: true
 name: Audiobookshelf
 options:
     audiobooks_path: /media/audiobooks
@@ -48,4 +51,4 @@ schema:
           value: str?
 slug: audiobookshelf
 url: https://github.com/advplyr/audiobookshelf
-version: "2.33.10"
+version: "2.33.11"
