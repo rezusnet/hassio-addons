@@ -35,7 +35,7 @@ options:
     exp_proxy_support: false
     use_x_accel: false
     skip_binaries_check: false
-    query_logging: off
+    query_logging: "off"
     env_vars: []
 panel_icon: mdi:book-open-page-variant
 ports:
