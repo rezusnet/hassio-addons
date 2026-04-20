@@ -1,3 +1,7 @@
+## 2.33.14 (20-04-2026)
+
+- Fix query_logging schema: use str? instead of list() to avoid YAML boolean coercion of 'off'
+
 ## 2.33.13 (20-04-2026)
 
 - Expose all Audiobookshelf environment variables as HA add-on options (22 total)

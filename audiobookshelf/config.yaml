@@ -35,7 +35,7 @@ options:
     exp_proxy_support: false
     use_x_accel: false
     skip_binaries_check: false
-    query_logging: "off"
+    query_logging: ""
     env_vars: []
 panel_icon: mdi:book-open-page-variant
 ports:
@@ -60,7 +60,7 @@ schema:
     exp_proxy_support: bool
     use_x_accel: bool
     skip_binaries_check: bool
-    query_logging: list(off|log|benchmark)
+    query_logging: str?
     sqlite_cache_size: int?
     sqlite_mmap_size: int?
     sqlite_temp_store: int(0,3)?
@@ -69,4 +69,4 @@ schema:
           value: str?
 slug: audiobookshelf
 url: https://github.com/advplyr/audiobookshelf
-version: "2.33.13"
+version: "2.33.14"

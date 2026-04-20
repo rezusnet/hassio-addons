@@ -76,8 +76,8 @@ if bashio::config.true 'skip_binaries_check'; then
     export SKIP_BINARIES_CHECK="1"
 fi
 
-QUERY_LOGGING=$(bashio::config 'query_logging')
-if [ "$QUERY_LOGGING" != "off" ] && [ -n "$QUERY_LOGGING" ]; then
+if bashio::config.has_value 'query_logging'; then
+    QUERY_LOGGING=$(bashio::config 'query_logging')
     export QUERY_LOGGING
 fi
 

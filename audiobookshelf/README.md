@@ -77,7 +77,7 @@
 | Option | Type | Default | Env var | Description |
 |--------|------|---------|---------|-------------|
 | `skip_binaries_check` | bool | `false` | `SKIP_BINARIES_CHECK` | Skip the automatic ffmpeg/ffprobe binary download and version check at startup. The upstream Docker image includes these binaries, so this is usually not needed. |
-| `query_logging` | list | `off` | `QUERY_LOGGING` | SQL query logging level. Options: `off` (no logging), `log` (log all SQL queries), `benchmark` (log queries with execution times). Useful for debugging performance issues. |
+| `query_logging` | string | _(empty)_ | `QUERY_LOGGING` | SQL query logging level. Set to `log` to log all SQL queries, or `benchmark` to log queries with execution times. Leave empty for no logging. Useful for debugging performance issues. |
 | `sqlite_cache_size` | int | _(empty)_ | `SQLITE_CACHE_SIZE` | Set the `cache_size` pragma for the SQLite database. Controls the number of database pages held in memory. Higher values use more RAM but can improve query performance. Leave empty for the SQLite default. |
 | `sqlite_mmap_size` | int | _(empty)_ | `SQLITE_MMAP_SIZE` | Set the `mmap_size` pragma for the SQLite database. Memory-mapped I/O can improve read performance on supported systems. Leave empty for the SQLite default. |
 | `sqlite_temp_store` | int | _(empty)_ | `SQLITE_TEMP_STORE` | Set the `temp_store` pragma for the SQLite database. Controls where temporary tables and indices are stored: `0` or `1` = file, `2` or `3` = memory. Range: 0–3. Leave empty for the SQLite default. |
