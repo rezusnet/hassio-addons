@@ -15,10 +15,6 @@ permissions:
   contents: write
   pull-requests: write
 
-concurrency:
-  group: lint-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   super-lint:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
@@ -99,47 +95,33 @@ jobs:
             sudo chmod +x /usr/local/bin/shfmt
           fi
 
-      - name: Lint changed shell scripts
+      - name: Lint shell scripts
         run: |
           set -euo pipefail
-          CHANGED_SH=$(git diff --name-only "$DIFF_RANGE" | grep -E '\.(sh)$|(^|/)run$' || true)
-          for f in $CHANGED_SH; do
-            if [ -f "$f" ]; then
-              if ! shellcheck -x -s bash "$f" 2>&1; then
-                echo "::error file=$f::shellcheck found issues"
-              fi
+          RC=0
+          find . -type f \( -name "*.sh" -o -name "run" \) ! -path "./.git/*" | while read -r f; do
+            if ! shellcheck -x -s bash "$f" 2>&1; then
+              echo "::error file=$f::shellcheck found issues"
             fi
           done
           echo "Shellcheck done"
 
-      - name: Lint changed Dockerfiles
+      - name: Lint Dockerfiles
         run: |
           set -euo pipefail
-          CHANGED_DF=$(git diff --name-only "$DIFF_RANGE" | grep -iE '(^|/)Dockerfile' || true)
-          for f in $CHANGED_DF; do
-            if [ -f "$f" ]; then
-              if ! hadolint "$f" 2>&1; then
-                echo "::warning file=$f::hadolint found issues"
-              fi
+          find . -name "Dockerfile*" ! -path "./.git/*" | while read -r f; do
+            if ! hadolint "$f" 2>&1; then
+              echo "::warning file=$f::hadolint found issues"
             fi
           done
           echo "Hadolint done"
 
-      - name: Format changed shell scripts
+      - name: Format shell scripts
         run: |
-          CHANGED_SH=$(git diff --name-only "$DIFF_RANGE" | grep -E '\.(sh)$|(^|/)run$' || true)
-          for f in $CHANGED_SH; do
-            if [ -f "$f" ]; then
-              shfmt -w -i 4 -ci -bn -sr "$f"
-            fi
-          done
+          find . -type f \( -name "*.sh" -o -name "run" \) ! -path "./.git/*" -exec shfmt -w -i 4 -ci -bn -sr {} +
 
       - name: Restore executable permissions
-        run: |
-          CHANGED_SH=$(git diff --name-only "$DIFF_RANGE" | grep -E '\.(sh)$|(^|/)run$' || true)
-          for f in $CHANGED_SH; do
-            [ -f "$f" ] && chmod +x "$f"
-          done
+        run: find . -type f \( -name "*.sh" -o -name "run" \) -exec chmod +x {} \;
 
   lint-autofix:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'

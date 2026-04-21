@@ -1,3 +1,7 @@
+## 1.0.1 (2026-04-21)
+
+- Fix icon: use official HAProxy logo
+
 ## 1.0.0 (2026-04-21)
 
 - Initial release
