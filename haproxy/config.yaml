@@ -1,0 +1,32 @@
+arch:
+  - aarch64
+  - amd64
+description: >-
+  SNI and Host-header based TCP/HTTP routing proxy. Sits in front of Nginx
+  Proxy Manager to route specific domains to external backends (e.g. Traefik)
+  while forwarding everything else to NPM.
+host_network: true
+image: ghcr.io/rezusnet/haproxy-{arch}
+icon: icon.png
+name: HAProxy SNI Router
+options:
+  default_http_backend: 127.0.0.1:8080
+  default_https_backend: 127.0.0.1:8443
+  routes:
+    - backend_http_port: 80
+      backend_https_port: 443
+      backend_host: 192.168.7.5
+      domain_suffix: .rezus.net
+schema:
+  default_http_backend: str
+  default_https_backend: str
+  routes:
+    - backend_http_port: int
+      backend_https_port: int
+      backend_host: str
+      domain_suffix: str
+slug: haproxy
+startup: application
+boot: auto
+url: https://github.com/rezusnet/hassio-addons
+version: "1.0.0"
