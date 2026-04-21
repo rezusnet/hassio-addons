@@ -23,6 +23,10 @@ on:
     paths:
       - "**/config.*"
 
+concurrency:
+  group: builder-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   detect-changed-addons:
     if: >-
@@ -164,52 +168,7 @@ jobs:
           fi
 
           echo "Config file: $CONFIG"
-
-          python3 - <<'PY'
-          import json, sys
-          from pathlib import Path
-
-          addon = "${{ matrix.addon }}"
-          addon_dir = Path(addon)
-
-          def load_config():
-              for name in ["config.yaml", "config.yml", "config.json"]:
-                  p = addon_dir / name
-                  if p.exists():
-                      text = p.read_text()
-                      if p.suffix == ".json":
-                          return json.loads(text)
-                      import yaml
-                      return yaml.safe_load(text) or {}
-              return {}
-
-          config = load_config()
-          errors = []
-
-          for field in ["name", "description", "version", "slug", "arch"]:
-              if field not in config:
-                  errors.append(f"Missing required field: {field}")
-
-          if "arch" in config and not isinstance(config["arch"], list):
-              errors.append("arch must be a list")
-
-          if "image" in config and "{arch}" not in str(config["image"]):
-              errors.append("image must contain {arch} placeholder")
-
-          if "options" in config and "schema" not in config:
-              errors.append("schema is required when options is defined")
-
-          if not (addon_dir / "Dockerfile").exists():
-              errors.append("Dockerfile is missing")
-
-          for e in errors:
-              print(f"::error::{e}")
-
-          if errors:
-              sys.exit(1)
-
-          print(f"Lint passed for {addon}")
-          PY
+          python3 .scripts/lint_addon.py "$ADDON"
 
   build:
     if: ${{ needs.detect-changed-addons.outputs.changedAddons != '' && needs.detect-changed-addons.outputs.changedAddons != '[]' }}
@@ -230,24 +189,16 @@ jobs:
           - arch: aarch64
             runner: ["self-hosted", "linux", "arm64"]
     steps:
-      - name: Clean stale workspace
-        run: |
-          WS="${{ github.workspace }}"
-          if [ -d "$WS/.git" ]; then
-            cd "$WS"
-            git submodule deinit --all -f 2>/dev/null || true
-            rm -rf .git/modules 2>/dev/null || true
-          fi
-          sudo rm -rf "$WS/super-linter-output" 2>/dev/null || true
-
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
       - name: Resolve symlinks in repository copy
+        env:
+          ADDON: ${{ matrix.addon }}
         run: |
           set -euo pipefail
-          find . -type l | while read -r link; do
+          find "./$ADDON" -type l 2>/dev/null | while read -r link; do
             target=$(readlink -f "$link" || true)
             if [ -z "$target" ]; then
               echo "Skipping broken symlink: $link"

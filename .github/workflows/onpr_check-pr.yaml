@@ -7,6 +7,10 @@ on:
     branches:
       - master
 
+concurrency:
+  group: pr-check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   check-addon-changes:
     if: ${{ github.repository_owner == 'rezusnet' && !contains(github.event.head_commit.message, 'nobuild') }}
@@ -72,43 +76,7 @@ jobs:
         run: |
           set -euo pipefail
           ADDON="${{ matrix.addon }}"
-          python3 - <<'PY'
-          import json, sys
-          from pathlib import Path
-
-          addon = "${{ matrix.addon }}"
-          addon_dir = Path(addon)
-
-          def load_config():
-              for name in ["config.yaml", "config.yml", "config.json"]:
-                  p = addon_dir / name
-                  if p.exists():
-                      text = p.read_text()
-                      if p.suffix == ".json":
-                          return json.loads(text)
-                      import yaml
-                      return yaml.safe_load(text) or {}
-              return {}
-
-          config = load_config()
-          errors = []
-          for field in ["name", "description", "version", "slug", "arch"]:
-              if field not in config:
-                  errors.append(f"Missing required field: {field}")
-          if "arch" in config and not isinstance(config["arch"], list):
-              errors.append("arch must be a list")
-          if "image" in config and "{arch}" not in str(config["image"]):
-              errors.append("image must contain {arch} placeholder")
-          if "options" in config and "schema" not in config:
-              errors.append("schema is required when options is defined")
-          if not (addon_dir / "Dockerfile").exists():
-              errors.append("Dockerfile is missing")
-          for e in errors:
-              print(f"::error::{e}")
-          if errors:
-              sys.exit(1)
-          print(f"Lint passed for {addon}")
-          PY
+          python3 .scripts/lint_addon.py "$ADDON"
 
   check-build:
     name: Test addon build

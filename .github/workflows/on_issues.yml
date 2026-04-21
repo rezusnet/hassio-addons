@@ -14,7 +14,17 @@ jobs:
       - name: Assign issues
         run: |
           echo "Starting"
-          curl -s -L https://api.github.com/repos/rezusnet/hassio-addons/issues > issueslist
+          ALL_ISSUES=""
+          PAGE=1
+          while true; do
+            RESPONSE=$(curl -s -L "https://api.github.com/repos/rezusnet/hassio-addons/issues?per_page=100&page=$PAGE")
+            if [ "$(echo "$RESPONSE" | jq 'length')" = "0" ]; then
+              break
+            fi
+            ALL_ISSUES="${ALL_ISSUES}${RESPONSE}"
+            PAGE=$((PAGE + 1))
+          done
+          echo "$ALL_ISSUES" | jq -s 'flatten' > issueslist
           for f in $( find -- * -maxdepth 0 -type d | sort -r ); do
             if [ -f "$f"/config.yaml ] && [ -f "$f"/README.md ]; then
               sed -i "/Open Issue :/d" "$f"/README.md
