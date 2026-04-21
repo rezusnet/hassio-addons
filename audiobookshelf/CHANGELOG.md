@@ -1,3 +1,10 @@
+## 2.33.15 (20-04-2026)
+
+- Move full documentation to DOCS.md (Documentation tab in HA)
+- Slim README.md to essentials (Info tab)
+- Include official Audiobookshelf docs: first launch, library setup, formats, directory structure
+- Add guides: reverse proxy, OpenID Connect, troubleshooting, mobile apps
+
 ## 2.33.14 (20-04-2026)
 
 - Fix query_logging schema: use str? instead of list() to avoid YAML boolean coercion of 'off'
