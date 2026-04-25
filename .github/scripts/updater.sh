@@ -128,11 +128,17 @@ for tag in data.get('results', []):
 trigger_workflow() {
     local workflow="$1"
     if [ -n "$GH_TOKEN" ]; then
-        curl -sfX POST \
+        local http_code
+        http_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
             -H "Authorization: token ${GH_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${REPOSITORY}/actions/workflows/${workflow}/dispatches" \
-            -d '{"ref":"master"}' 2>/dev/null
+            -d '{"ref":"master"}' 2>/dev/null) || true
+        if [ "$http_code" = "204" ]; then
+            log "  Builder workflow triggered successfully"
+        else
+            warn "Could not trigger builder workflow (HTTP $http_code)"
+        fi
     fi
 }
 
