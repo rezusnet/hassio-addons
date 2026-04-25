@@ -1,3 +1,7 @@
+## 1.4.15 (25-04-2026)
+
+- Update to LightRAG v1.4.15
+
 ## 1.4.14 (17-04-2026)
 
 - Initial release

@@ -16,6 +16,97 @@ log() {
     fi
 }
 
+warn() {
+    echo "WARNING: $*" >&2
+}
+
+fetch_github_release_version() {
+    local repo="$1"
+    local include_prerelease="$2"
+    local endpoint
+
+    if [ "$include_prerelease" = "true" ]; then
+        endpoint="repos/${repo}/releases?per_page=1"
+    else
+        endpoint="repos/${repo}/releases?per_page=100"
+    fi
+
+    local releases
+    releases=$(gh api "$endpoint" --jq '.[].tag_name' 2>/dev/null) || return 1
+
+    if [ "$include_prerelease" != "true" ]; then
+        while IFS= read -r tag; do
+            [[ "$tag" =~ -(rc|beta|alpha|dev|pre) ]] && continue
+            echo "$tag"
+            return 0
+        done <<< "$releases"
+    else
+        echo "$releases" | head -1
+        return 0
+    fi
+
+    return 1
+}
+
+fetch_github_tags_version() {
+    local repo="$1"
+    local tag_filter="$2"
+
+    local tags
+    tags=$(gh api "repos/${repo}/tags?per_page=100" --jq '.[].name' 2>/dev/null) || return 1
+
+    while IFS= read -r tag; do
+        [[ "$tag" =~ -(rc|beta|alpha|dev|pre) ]] && continue
+        if [ -n "$tag_filter" ]; then
+            echo "$tag"
+            return 0
+        fi
+        echo "$tag"
+        return 0
+    done <<< "$tags"
+
+    return 1
+}
+
+fetch_dockerhub_version() {
+    local repo="$1"
+    local tag_filter="$2"
+
+    local api_url="https://hub.docker.com/v2/repositories/${repo}/tags?page_size=100&ordering=last_updated"
+    local response
+    response=$(curl -sf "$api_url" 2>/dev/null) || return 1
+
+    local full_tag
+    full_tag=$(echo "$response" | python3 -c "
+import json, sys, re
+data = json.load(sys.stdin)
+tag_filter = '${tag_filter}'
+for tag in data.get('results', []):
+    name = tag['name']
+    if not name:
+        continue
+    if re.search(r'dev|rc|beta|alpha|lts', name, re.IGNORECASE):
+        continue
+    if tag_filter and tag_filter not in name:
+        continue
+    base = name.split(tag_filter)[0] if tag_filter else name
+    if not re.match(r'^\d+\.\d+\.\d+', base):
+        continue
+    print(name)
+    break
+" 2>/dev/null) || return 1
+
+    [ -z "$full_tag" ] && return 1
+
+    local version="$full_tag"
+    if [ -n "$tag_filter" ]; then
+        version="${full_tag%%${tag_filter}*}"
+    fi
+    version="${version#v}"
+
+    echo "v${version}"
+}
+
 git config --global user.name "$GITUSER"
 git config --global user.email "$GITMAIL"
 git config --global credential.helper '!gh auth git-credential'
@@ -41,25 +132,44 @@ for addon_dir in */; do
 
     [ -z "$UPSTREAM_REPO" ] && { log "Skipping $addon_dir (no upstream_repo)"; continue; }
 
-    log "Checking $SLUG ($UPSTREAM_REPO) — current: ${CURRENT_VERSION:-none}"
+    log "Checking $SLUG ($UPSTREAM_REPO, source=$SOURCE) — current: ${CURRENT_VERSION:-none}"
 
     NEW_VERSION=""
 
-    if [ "$SOURCE" = "github" ]; then
-        GITHUB_BETA=$(jq -r '.github_beta // false' "$UPDATER_FILE")
-        if [ "$GITHUB_BETA" = "true" ]; then
-            NEW_VERSION=$(lastversion "$UPSTREAM_REPO" --format tag 2>/dev/null || true)
-        else
-            NEW_VERSION=$(lastversion "$UPSTREAM_REPO" --format tag --stable 2>/dev/null || true)
-        fi
-    elif [ "$SOURCE" = "dockerhub" ]; then
-        NEW_VERSION=$(lastversion "$UPSTREAM_REPO" --source dockerhub --format tag 2>/dev/null || true)
-    fi
+    case "$SOURCE" in
+        github)
+            GITHUB_BETA=$(jq -r '.github_beta // false' "$UPDATER_FILE")
+            NEW_VERSION=$(fetch_github_release_version "$UPSTREAM_REPO" "$GITHUB_BETA") || {
+                warn "  Failed to fetch GitHub releases for $UPSTREAM_REPO"
+                NEW_VERSION=""
+            }
+            ;;
+        github_tags)
+            TAG_FILTER=$(jq -r '.tag_filter // ""' "$UPDATER_FILE")
+            NEW_VERSION=$(fetch_github_tags_version "$UPSTREAM_REPO" "$TAG_FILTER") || {
+                warn "  Failed to fetch GitHub tags for $UPSTREAM_REPO"
+                NEW_VERSION=""
+            }
+            ;;
+        dockerhub)
+            DOCKERHUB_FILTER=$(jq -r '.dockerhub_tag_filter // ""' "$UPDATER_FILE")
+            NEW_VERSION=$(fetch_dockerhub_version "$UPSTREAM_REPO" "$DOCKERHUB_FILTER") || {
+                warn "  Failed to fetch Docker Hub tags for $UPSTREAM_REPO"
+                NEW_VERSION=""
+            }
+            ;;
+        *)
+            warn "  Unknown source '$SOURCE' for $SLUG"
+            ;;
+    esac
 
     [ -z "$NEW_VERSION" ] && { log "  No new version found"; continue; }
-    [ "$NEW_VERSION" = "$CURRENT_VERSION" ] && { log "  Already up to date"; continue; }
 
+    CURRENT_VERSION_CLEAN="${CURRENT_VERSION#v}"
     NEW_VERSION_CLEAN="${NEW_VERSION#v}"
+
+    [ "$NEW_VERSION_CLEAN" = "$CURRENT_VERSION_CLEAN" ] && { log "  Already up to date"; continue; }
+
     echo "Updating $SLUG from ${CURRENT_VERSION:-none} to $NEW_VERSION"
 
     if [ "$DRY_RUN" != "true" ]; then

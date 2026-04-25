@@ -1,3 +1,7 @@
+## 2.33.2 (25-04-2026)
+
+- Fix version to match actual upstream audiobookshelf release
+
 ## 2.33.15 (20-04-2026)
 
 - Move full documentation to DOCS.md (Documentation tab in HA)
