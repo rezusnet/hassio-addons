@@ -1,0 +1,59 @@
+# yamllint disable rule:line-length
+---
+name: Addons updater
+on:
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (no changes pushed)"
+        type: boolean
+        default: false
+      verbose:
+        description: "Verbose logging"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  update-addons:
+    if: github.repository_owner == 'rezusnet'
+    runs-on: [self-hosted, linux, arm64]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          if ! command -v lastversion >/dev/null 2>&1; then
+            pip install --break-system-packages lastversion 2>/dev/null || true
+          fi
+          if ! command -v jq >/dev/null 2>&1; then
+            wget -qO /tmp/jq https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-arm64
+            sudo cp /tmp/jq /usr/local/bin/jq
+            sudo chmod +x /usr/local/bin/jq
+          fi
+          echo "lastversion: $(lastversion --version 2>/dev/null || echo 'not available')"
+          echo "jq: $(jq --version 2>/dev/null || echo 'not available')"
+          echo "gh: $(gh --version 2>/dev/null | head -1 || echo 'not available')"
+
+      - name: Run updater
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITUSER: "github-actions[bot]"
+          GITMAIL: "github-actions[bot]@users.noreply.github.com"
+          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+          VERBOSE: ${{ inputs.verbose || 'true' }}
+        run: |
+          set -euo pipefail
+          bash .github/scripts/updater.sh
+
+      - name: Cleanup
+        if: always()
+        run: rm -rf /tmp/updater-repo

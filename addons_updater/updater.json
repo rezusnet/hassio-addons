@@ -1,8 +1,0 @@
-{
-  "paused": true,
-  "repository": "rezusnet/hassio-addons",
-  "slug": "addons_updater",
-  "source": "github",
-  "upstream_repo": "",
-  "upstream_version": "1.2.0"
-}
