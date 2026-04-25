@@ -31,17 +31,13 @@ jobs:
       - name: Install dependencies
         run: |
           set -euo pipefail
-          if ! command -v lastversion >/dev/null 2>&1; then
-            pip install --break-system-packages lastversion 2>/dev/null || true
-          fi
           if ! command -v jq >/dev/null 2>&1; then
             wget -qO /tmp/jq https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-arm64
             sudo cp /tmp/jq /usr/local/bin/jq
             sudo chmod +x /usr/local/bin/jq
           fi
-          echo "lastversion: $(lastversion --version 2>/dev/null || echo 'not available')"
           echo "jq: $(jq --version 2>/dev/null || echo 'not available')"
-          echo "gh: $(gh --version 2>/dev/null | head -1 || echo 'not available')"
+          echo "curl: $(curl --version 2>/dev/null | head -1 || echo 'not available')"
 
       - name: Run updater
         env:

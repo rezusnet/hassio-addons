@@ -3,10 +3,11 @@
 set -euo pipefail
 
 REPOSITORY="${GITHUB_REPOSITORY:-rezusnet/hassio-addons}"
-GITUSER="${GITUSER:-$(gh api user --jq .login 2>/dev/null || echo "github-actions[bot]")}"
+GITUSER="${GITUSER:-github-actions[bot]}"
 GITMAIL="${GITMAIL:-${GITUSER}@users.noreply.github.com}"
 DRY_RUN="${DRY_RUN:-false}"
 VERBOSE="${VERBOSE:-true}"
+GH_TOKEN="${GH_TOKEN:-}"
 
 WORKDIR="/tmp/updater-repo"
 
@@ -20,6 +21,16 @@ warn() {
     echo "WARNING: $*" >&2
 }
 
+github_api() {
+    local endpoint="$1"
+    local url="https://api.github.com/${endpoint}"
+    if [ -n "$GH_TOKEN" ]; then
+        curl -sfH "Authorization: token ${GH_TOKEN}" -H "Accept: application/vnd.github+json" "$url" 2>/dev/null
+    else
+        curl -sfH "Accept: application/vnd.github+json" "$url" 2>/dev/null
+    fi
+}
+
 fetch_github_release_version() {
     local repo="$1"
     local include_prerelease="$2"
@@ -31,11 +42,17 @@ fetch_github_release_version() {
         endpoint="repos/${repo}/releases?per_page=100"
     fi
 
+    local response
+    response=$(github_api "$endpoint") || return 1
+    [ -z "$response" ] && return 1
+
     local releases
-    releases=$(gh api "$endpoint" --jq '.[].tag_name' 2>/dev/null) || return 1
+    releases=$(echo "$response" | jq -r '.[].tag_name' 2>/dev/null) || return 1
+    [ -z "$releases" ] && return 1
 
     if [ "$include_prerelease" != "true" ]; then
         while IFS= read -r tag; do
+            [ -z "$tag" ] && continue
             [[ "$tag" =~ -(rc|beta|alpha|dev|pre) ]] && continue
             echo "$tag"
             return 0
@@ -50,17 +67,18 @@ fetch_github_release_version() {
 
 fetch_github_tags_version() {
     local repo="$1"
-    local tag_filter="$2"
+
+    local response
+    response=$(github_api "repos/${repo}/tags?per_page=100") || return 1
+    [ -z "$response" ] && return 1
 
     local tags
-    tags=$(gh api "repos/${repo}/tags?per_page=100" --jq '.[].name' 2>/dev/null) || return 1
+    tags=$(echo "$response" | jq -r '.[].name' 2>/dev/null) || return 1
+    [ -z "$tags" ] && return 1
 
     while IFS= read -r tag; do
+        [ -z "$tag" ] && continue
         [[ "$tag" =~ -(rc|beta|alpha|dev|pre) ]] && continue
-        if [ -n "$tag_filter" ]; then
-            echo "$tag"
-            return 0
-        fi
         echo "$tag"
         return 0
     done <<< "$tags"
@@ -107,9 +125,22 @@ for tag in data.get('results', []):
     echo "v${version}"
 }
 
+trigger_workflow() {
+    local workflow="$1"
+    if [ -n "$GH_TOKEN" ]; then
+        curl -sfX POST \
+            -H "Authorization: token ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPOSITORY}/actions/workflows/${workflow}/dispatches" \
+            -d '{"ref":"master"}' 2>/dev/null
+    fi
+}
+
 git config --global user.name "$GITUSER"
 git config --global user.email "$GITMAIL"
-git config --global credential.helper '!gh auth git-credential'
+if [ -n "$GH_TOKEN" ]; then
+    git config --global "http.https://github.com/.extraheader" "Authorization: token ${GH_TOKEN}"
+fi
 
 rm -rf "$WORKDIR"
 log "Cloning ${REPOSITORY}..."
@@ -145,8 +176,7 @@ for addon_dir in */; do
             }
             ;;
         github_tags)
-            TAG_FILTER=$(jq -r '.tag_filter // ""' "$UPDATER_FILE")
-            NEW_VERSION=$(fetch_github_tags_version "$UPSTREAM_REPO" "$TAG_FILTER") || {
+            NEW_VERSION=$(fetch_github_tags_version "$UPSTREAM_REPO") || {
                 warn "  Failed to fetch GitHub tags for $UPSTREAM_REPO"
                 NEW_VERSION=""
             }
@@ -199,7 +229,7 @@ fi
 
 if [ "$CHANGES_PUSHED" = "true" ]; then
     log "Triggering builder workflow..."
-    gh workflow run onpush_builder.yaml --ref master || log "WARNING: Could not trigger builder workflow"
+    trigger_workflow "onpush_builder.yaml" || warn "Could not trigger builder workflow"
 fi
 
 rm -rf "$WORKDIR"
