@@ -1,10 +1,10 @@
 {
   "github_beta": "true",
-  "last_update": "2025-04-11",
+  "last_update": "2026-04-25",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "filebrowser",
   "source": "github",
   "upstream_repo": "filebrowser/filebrowser",
-  "upstream_version": "2.63.1"
+  "upstream_version": "v2.63.2"
 }
