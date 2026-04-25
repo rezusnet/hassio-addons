@@ -8,33 +8,12 @@ COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
 
 RUN apk add --no-cache \
-        bash \
         git \
-        jq
+        jq \
+        py3-pip
 
-RUN pip install --no-cache-dir --break-system-packages lastversion || pip install --no-cache-dir lastversion || true
-
-ARG MODULES="00-banner.sh 01-custom_script.sh"
-
-COPY ha_automodules.sh /ha_automodules.sh
-RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
-
-ENV PACKAGES=""
-
-COPY ha_autoapps.sh /ha_autoapps.sh
-RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh
-
-COPY ha_entrypoint.sh /ha_entrypoint.sh
-RUN chmod 777 /ha_entrypoint.sh
-
-COPY bashio-standalone.sh /usr/local/lib/bashio-standalone.sh
-RUN chmod 0755 /usr/local/lib/bashio-standalone.sh
-
-VOLUME ["/data"]
-WORKDIR /
-
-ENTRYPOINT ["/usr/bin/env"]
-CMD ["/ha_entrypoint.sh"]
+RUN pip install --no-cache-dir --break-system-packages lastversion || \
+    pip install --no-cache-dir lastversion || true
 
 ARG BUILD_ARCH
 ARG BUILD_DATE
@@ -50,7 +29,7 @@ LABEL \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="rezusnet" \
+    maintainer="rezusnet (https://github.com/rezusnet)" \
     org.opencontainers.image.title="${BUILD_NAME}" \
     org.opencontainers.image.description="${BUILD_DESCRIPTION}" \
     org.opencontainers.image.vendor="Home Assistant Add-ons" \
