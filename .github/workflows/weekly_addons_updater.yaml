@@ -39,8 +39,9 @@ jobs:
           REPOSITORY: rezusnet/hassio-addons
         run: |
           set -euo pipefail
-          mkdir -p /data
-          cat > /data/options.json << EOF
+          STANDALONE_OPTIONS_JSON="/tmp/updater-options.json"
+          export STANDALONE_OPTIONS_JSON
+          cat > "$STANDALONE_OPTIONS_JSON" << 'OPTSEOF'
           {
             "repository": "${REPOSITORY}",
             "gituser": "${GITUSER}",
@@ -51,10 +52,13 @@ jobs:
             "date_iso8601": true,
             "env_vars": []
           }
-          EOF
-          echo "options.json created"
+          OPTSEOF
+          echo "STANDALONE_OPTIONS_JSON=$STANDALONE_OPTIONS_JSON" >> "$GITHUB_ENV"
+          echo "options.json created at $STANDALONE_OPTIONS_JSON"
 
       - name: Run updater script
+        env:
+          STANDALONE_OPTIONS_JSON: /tmp/updater-options.json
         run: |
           set -euo pipefail
           chmod +x ./addons_updater/rootfs/etc/cont-init.d/99-run.sh
@@ -62,4 +66,4 @@ jobs:
 
       - name: Cleanup
         if: always()
-        run: rm -rf /tmp/repo /data/options.json
+        run: rm -rf /tmp/repo /tmp/updater-options.json
