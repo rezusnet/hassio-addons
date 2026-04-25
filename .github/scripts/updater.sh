@@ -138,8 +138,9 @@ trigger_workflow() {
 
 git config --global user.name "$GITUSER"
 git config --global user.email "$GITMAIL"
+git config --global --unset-all credential.helper 2>/dev/null || true
 if [ -n "$GH_TOKEN" ]; then
-    git config --global "http.https://github.com/.extraheader" "Authorization: token ${GH_TOKEN}"
+    git config --global "http.https://github.com/.extraheader" "Authorization: basic $(printf '%s:x-access-token' "$GH_TOKEN" | base64)"
 fi
 
 rm -rf "$WORKDIR"
