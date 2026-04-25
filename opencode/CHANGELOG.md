@@ -1,3 +1,6 @@
+## 1.14.24 (2026-04-25)
+- Update to latest version from anomalyco/opencode
+
 ## 1.4.3 (12-04-2026)
 - Minor bugs fixed
 ## 1.4.3

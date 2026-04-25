@@ -57,4 +57,4 @@ schema:
   workspace: str
 slug: opencode
 url: https://github.com/rezusnet/hassio-addons
-version: "1.4.3"
+version: "1.14.24"
