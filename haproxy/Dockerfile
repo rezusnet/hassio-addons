@@ -8,7 +8,7 @@ ARG BUILD_VERSION
 USER root
 
 RUN apk add --no-cache \
-        haproxy
+        bash
 
 COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;

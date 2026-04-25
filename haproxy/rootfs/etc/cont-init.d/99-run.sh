@@ -7,9 +7,9 @@ bashio::log.info "Generating HAProxy configuration..."
 DEFAULT_HTTP=$(bashio::config 'default_http_backend')
 DEFAULT_HTTPS=$(bashio::config 'default_https_backend')
 
-mkdir -p /etc/haproxy
+mkdir -p /usr/local/etc/haproxy
 
-cat > /etc/haproxy/haproxy.cfg <<EOF
+cat > /usr/local/etc/haproxy/haproxy.cfg <<EOF
 global
     log stdout format raw local0
     maxconn 4096
@@ -38,12 +38,12 @@ for i in $(seq 0 $((ROUTE_COUNT - 1))); do
 
     bashio::log.info "HTTPS route: *${DOMAIN} -> ${BACKEND_HOST}:${BACKEND_PORT}"
 
-    cat >> /etc/haproxy/haproxy.cfg <<EOF
+    cat >> /usr/local/etc/haproxy/haproxy.cfg <<EOF
     use_backend ${BACKEND_NAME} if { req_ssl_sni -m end ${DOMAIN} }
 EOF
 done
 
-cat >> /etc/haproxy/haproxy.cfg <<EOF
+cat >> /usr/local/etc/haproxy/haproxy.cfg <<EOF
     default_backend default_https
 
 backend default_https
@@ -63,12 +63,12 @@ for i in $(seq 0 $((ROUTE_COUNT - 1))); do
 
     bashio::log.info "HTTP route: *${DOMAIN} -> ${BACKEND_HOST}:${BACKEND_PORT}"
 
-    cat >> /etc/haproxy/haproxy.cfg <<EOF
+    cat >> /usr/local/etc/haproxy/haproxy.cfg <<EOF
     use_backend ${BACKEND_NAME} if { hdr_end(host) ${DOMAIN} }
 EOF
 done
 
-cat >> /etc/haproxy/haproxy.cfg <<EOF
+cat >> /usr/local/etc/haproxy/haproxy.cfg <<EOF
     default_backend default_http
 
 backend default_http
@@ -81,7 +81,7 @@ for i in $(seq 0 $((ROUTE_COUNT - 1))); do
     HTTPS_PORT=$(bashio::config "routes[${i}].backend_https_port")
     HTTP_PORT=$(bashio::config "routes[${i}].backend_http_port")
 
-    cat >> /etc/haproxy/haproxy.cfg <<EOF
+    cat >> /usr/local/etc/haproxy/haproxy.cfg <<EOF
 
 backend route_${i}_https
     mode tcp
@@ -101,4 +101,4 @@ bashio::log.info "Starting HAProxy..."
 bashio::log.info "Default HTTPS backend: ${DEFAULT_HTTPS}"
 bashio::log.info "Default HTTP backend: ${DEFAULT_HTTP}"
 
-exec haproxy -f /etc/haproxy/haproxy.cfg -db
+exec /usr/local/sbin/haproxy -f /usr/local/etc/haproxy/haproxy.cfg -db

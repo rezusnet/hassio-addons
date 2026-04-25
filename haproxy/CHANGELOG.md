@@ -1,3 +1,9 @@
+## 3.3.7 (2026-04-25)
+
+- Switch to official HAProxy Docker image as base
+- Add updater.json for automatic version tracking
+- Update config paths to match official image layout
+
 ## 1.0.1 (2026-04-21)
 
 - Fix icon: use official HAProxy logo

@@ -29,4 +29,4 @@ slug: haproxy
 startup: application
 boot: auto
 url: https://github.com/rezusnet/hassio-addons
-version: "1.0.1"
+version: "3.3.7"
