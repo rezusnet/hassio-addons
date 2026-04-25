@@ -23,6 +23,11 @@ jobs:
     if: github.repository_owner == 'rezusnet'
     runs-on: [self-hosted, linux, arm64]
     steps:
+      - name: Clean stale git config
+        run: |
+          git config --global --unset-all credential.helper 2>/dev/null || true
+          git config --global --unset-all "http.https://github.com/.extraheader" 2>/dev/null || true
+
       - name: Checkout repo
         uses: actions/checkout@v6
         with:
@@ -52,4 +57,7 @@ jobs:
 
       - name: Cleanup
         if: always()
-        run: rm -rf /tmp/updater-repo
+        run: |
+          rm -rf /tmp/updater-repo
+          git config --global --unset-all credential.helper 2>/dev/null || true
+          git config --global --unset-all "http.https://github.com/.extraheader" 2>/dev/null || true

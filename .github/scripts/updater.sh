@@ -138,14 +138,14 @@ trigger_workflow() {
 
 git config --global user.name "$GITUSER"
 git config --global user.email "$GITMAIL"
-git config --global --unset-all credential.helper 2>/dev/null || true
-if [ -n "$GH_TOKEN" ]; then
-    git config --global "http.https://github.com/.extraheader" "Authorization: basic $(printf '%s:x-access-token' "$GH_TOKEN" | base64)"
-fi
 
 rm -rf "$WORKDIR"
 log "Cloning ${REPOSITORY}..."
-git clone "https://github.com/${REPOSITORY}.git" "$WORKDIR" 2>&1 | tail -1
+if [ -n "$GH_TOKEN" ]; then
+    git clone "https://x-access-token:${GH_TOKEN}@github.com/${REPOSITORY}.git" "$WORKDIR" 2>&1 | tail -1
+else
+    git clone "https://github.com/${REPOSITORY}.git" "$WORKDIR" 2>&1 | tail -1
+fi
 cd "$WORKDIR"
 
 CHANGES_PUSHED=false
