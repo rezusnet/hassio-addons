@@ -39,22 +39,10 @@ jobs:
           REPOSITORY: rezusnet/hassio-addons
         run: |
           set -euo pipefail
-          STANDALONE_OPTIONS_JSON="/tmp/updater-options.json"
-          export STANDALONE_OPTIONS_JSON
-          cat > "$STANDALONE_OPTIONS_JSON" << 'OPTSEOF'
-          {
-            "repository": "${REPOSITORY}",
-            "gituser": "${GITUSER}",
-            "gitapi": "${GITAPI}",
-            "gitmail": "${GITUSER}@users.noreply.github.com",
-            "dry_run": false,
-            "verbose": true,
-            "date_iso8601": true,
-            "env_vars": []
-          }
+          cat > /tmp/updater-options.json << OPTSEOF
+          {"repository":"${REPOSITORY}","gituser":"${GITUSER}","gitapi":"${GITAPI}","gitmail":"${GITUSER}@users.noreply.github.com","dry_run":false,"verbose":true,"date_iso8601":true,"env_vars":[]}
           OPTSEOF
-          echo "STANDALONE_OPTIONS_JSON=$STANDALONE_OPTIONS_JSON" >> "$GITHUB_ENV"
-          echo "options.json created at $STANDALONE_OPTIONS_JSON"
+          echo "STANDALONE_OPTIONS_JSON=/tmp/updater-options.json" >> "$GITHUB_ENV"
 
       - name: Run updater script
         env:
