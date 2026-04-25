@@ -1,9 +1,24 @@
 #!/usr/bin/with-contenv bashio
 # shellcheck shell=bash
+# shellcheck source=/dev/null
 set -e
 
-if ! bashio::supervisor.ping 2>/dev/null; then
-    echo "Running in standalone mode"
+if ! command -v bashio::config >/dev/null 2>&1; then
+    for _f in /usr/local/lib/bashio-standalone.sh ./.templates/bashio-standalone.sh ./addons_updater/../.templates/bashio-standalone.sh; do
+        if [ -f "$_f" ]; then
+            # shellcheck source=/dev/null
+            . "$_f"
+            break
+        fi
+    done
+fi
+
+if command -v bashio::supervisor.ping >/dev/null 2>&1; then
+    if ! bashio::supervisor.ping 2>/dev/null; then
+        echo "Running in standalone mode"
+    fi
+else
+    echo "Running in CI mode (no supervisor)"
 fi
 
 REPOSITORY="$(bashio::config 'repository')"
@@ -17,6 +32,8 @@ git config --global user.email "${GITUSER}@users.noreply.github.com"
 
 WORKDIR="/tmp/repo"
 rm -rf "$WORKDIR"
+
+[ "$VERBOSE" = "true" ] && echo "Cloning ${REPOSITORY}..."
 git clone "https://${GITUSER}:${GITAPI}@github.com/${REPOSITORY}.git" "$WORKDIR" 2>/dev/null
 cd "$WORKDIR" || exit 1
 
@@ -33,7 +50,9 @@ for addon_dir in */; do
     CURRENT_VERSION=$(jq -r '.upstream_version // ""' "$UPDATER_FILE")
     
     [ -z "$UPSTREAM_REPO" ] && continue
-    
+
+    [ "$VERBOSE" = "true" ] && echo "Checking $SLUG ($UPSTREAM_REPO) - current: $CURRENT_VERSION"
+
     NEW_VERSION=""
     
     if [ "$SOURCE" = "github" ]; then
