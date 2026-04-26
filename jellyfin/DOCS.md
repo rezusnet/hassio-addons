@@ -110,6 +110,7 @@ The add-on exposes `/dev/dri`, `/dev/vchiq`, and `/dev/video10-16` for hardware 
 **Pi 5**: V4L2 M2M and VAAPI should work with the exposed `/dev/dri` device.
 
 In Jellyfin: **Dashboard > Playback > Transcoding > Hardware Acceleration** select:
+
 - **Video Acceleration API (VAAPI)** if `/dev/dri/renderD128` is available
 - **OpenMAX** if `/dev/vchiq` is available
 - **Video4Linux2 (V4L2)** if `/dev/video10-12` are available
@@ -145,10 +146,12 @@ The HTTP port (8096) is enabled by default. Enable other ports in the add-on Con
 To enable HTTPS on port 8920:
 
 1. Generate a PFX certificate:
+
    ```bash
    openssl pkcs12 -export -in fullchain.pem -inkey private_key.pem -passout pass: -out server.pfx
    chmod 0700 server.pfx
    ```
+
 2. Place the `.pfx` file in your SSL directory (accessible via the `ssl` mapping)
 3. In Jellyfin: **Dashboard > Networking > HTTPS Settings** — set the certificate path and enable HTTPS
 

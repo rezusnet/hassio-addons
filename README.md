@@ -22,7 +22,7 @@ Home Assistant allows anyone to create add-on repositories to share their add-on
 
 Or manually: go to **Settings > Add-ons > Add-on Store > ... > Repositories** and add:
 
-```
+```text
 https://github.com/rezusnet/hassio-addons
 ```
 
