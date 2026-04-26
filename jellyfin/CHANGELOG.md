@@ -1,3 +1,9 @@
+## 10.11.10 (27-04-2026)
+
+- Fix init hang: 00-banner.sh bashio::supervisor.ping blocked forever in
+  standalone mode because the real bashio library's ping does an untimeouted
+  curl to the Supervisor API. Replaced with non-blocking detection.
+
 ## 10.11.9 (27-04-2026)
 
 - Fix startup failure: JELLYFIN_WEB_DIR was incorrectly redirected to data
