@@ -36,6 +36,7 @@ jobs:
           all_changed_files=$(echo -e "$changed_config_files\n$changed_changelog_files" | sort -u)
           changed_addons=$(printf '%s' "$all_changed_files" | awk -F/ '{print $1}' | sort -u | jq -R -s -c 'split("\n") | map(select(length > 0))')
           echo "changed_addons=$changed_addons" >> "$GITHUB_OUTPUT"
+          echo "changelogs_files=$changed_changelog_files" >> "$GITHUB_OUTPUT"
 
   check-changed-changelog:
     name: Check if CHANGELOG.md changed
@@ -72,6 +73,7 @@ jobs:
         run: |
           set -euo pipefail
           ADDON="${{ matrix.addon }}"
+          pip3 install pyyaml --quiet --break-system-packages 2>/dev/null || pip3 install pyyaml --quiet 2>/dev/null || true
           python3 - <<'PY'
           import json, sys
           from pathlib import Path
@@ -128,6 +130,7 @@ jobs:
         run: |
           set -euo pipefail
           ADDON="${{ matrix.addon }}"
+          pip3 install pyyaml --quiet --break-system-packages 2>/dev/null || pip3 install pyyaml --quiet 2>/dev/null || true
           python3 - <<'PY'
           import json, os
           from pathlib import Path
