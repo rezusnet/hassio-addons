@@ -8,10 +8,11 @@ _is_supervisor() {
 	curl -sf -o /dev/null --max-time 2 "http://supervisor/supervisor/ping" 2>/dev/null
 }
 
-if ! _is_supervisor; then
-	if [ -f /usr/local/lib/bashio-standalone.sh ]; then
-		source /usr/local/lib/bashio-standalone.sh
-	fi
+	if ! _is_supervisor; then
+		if [ -f /usr/local/lib/bashio-standalone.sh ]; then
+			# shellcheck source=/dev/null
+			source /usr/local/lib/bashio-standalone.sh
+		fi
 	bashio::log.blue '-----------------------------------------------------------'
 	bashio::log.blue "Starting addon in standalone mode (no Supervisor)"
 	bashio::log.blue "Version : ${BUILD_VERSION:-1.0}"
