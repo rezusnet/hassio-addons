@@ -40,7 +40,11 @@ jobs:
           all_changed_files=$(echo -e "$changed_config_files\n$changed_changelog_files" | sort -u)
           changed_addons=$(printf '%s' "$all_changed_files" | awk -F/ '{print $1}' | sort -u | jq -R -s -c 'split("\n") | map(select(length > 0))')
           echo "changed_addons=$changed_addons" >> "$GITHUB_OUTPUT"
-          echo "changelogs_files=$changed_changelog_files" >> "$GITHUB_OUTPUT"
+          {
+            echo "changelogs_files<<GITHUB_EOF"
+            echo "$changed_changelog_files"
+            echo "GITHUB_EOF"
+          } >> "$GITHUB_OUTPUT"
 
   check-changed-changelog:
     name: Check if CHANGELOG.md changed
