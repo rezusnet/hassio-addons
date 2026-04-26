@@ -205,15 +205,20 @@ jobs:
               with output_path.open("a") as f:
                   f.write(f"{arch}={'true' if has_arch else 'false'}\n")
                   f.write(f"{arch}_build_from={build_from_image}\n")
+
+          options = config.get("options", {})
+          options_json = json.dumps(options)
+          health_port = ""
+          for p in config.get("ports", {}):
+              port_str = str(p).split("/")[0]
+              health_port = port_str
+              break
+          with output_path.open("a") as f:
+              f.write(f"health_port={health_port}\n")
+              f.write(f"options_json={options_json}\n")
           PY
         env:
           ADDON: ${{ matrix.addon }}
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
 
       - name: Copy templates into addon build context
         env:
@@ -229,26 +234,99 @@ jobs:
             fi
           done
 
-      - name: Build Addon - amd64
-        if: ${{ steps.info.outputs.amd64 == 'true' }}
-        uses: docker/build-push-action@v7
-        with:
-          context: ${{ matrix.addon }}
-          push: false
-          load: false
-          file: ${{ matrix.addon }}/Dockerfile
-          tags: test/${{ matrix.addon }}:test
-          platforms: linux/amd64
-          build-args: BUILD_FROM=${{ steps.info.outputs.amd64_build_from }}
+      - name: Detect native architecture
+        id: arch
+        run: |
+          ARCH=$(uname -m)
+          if [ "$ARCH" = "x86_64" ]; then ARCH="amd64"
+          elif [ "$ARCH" = "aarch64" ]; then ARCH="aarch64"
+          fi
+          echo "arch=$ARCH" >> "$GITHUB_OUTPUT"
 
-      - name: Build Addon - aarch64
-        if: ${{ steps.info.outputs.aarch64 == 'true' }}
+      - name: Build addon image (native arch)
         uses: docker/build-push-action@v7
         with:
           context: ${{ matrix.addon }}
           push: false
-          load: false
+          load: true
           file: ${{ matrix.addon }}/Dockerfile
-          tags: test/${{ matrix.addon }}:test
-          platforms: linux/arm64
-          build-args: BUILD_FROM=${{ steps.info.outputs.aarch64_build_from }}
+          tags: test/${{ matrix.addon }}:smoke
+          build-args: |
+            BUILD_FROM=${{ steps.arch.outputs.arch == 'amd64' && steps.info.outputs.amd64_build_from || steps.info.outputs.aarch64_build_from }}
+
+      - name: Smoke test - run and health check
+        run: |
+          set -euo pipefail
+          ADDON="${{ matrix.addon }}"
+          IMAGE="test/${ADDON}:smoke"
+          HEALTH_PORT="${{ steps.info.outputs.health_port }}"
+          OPTIONS_JSON='${{ steps.info.outputs.options_json }}'
+
+          echo "=== Smoke test for ${ADDON} ==="
+          echo "Image: ${IMAGE}"
+          echo "Health port: ${HEALTH_PORT}"
+
+          TEST_DIR=$(mktemp -d)
+          mkdir -p "${TEST_DIR}/data" "${TEST_DIR}/share/${ADDON}" "${TEST_DIR}/addon_configs/${ADDON}"
+
+          echo "${OPTIONS_JSON}" > "${TEST_DIR}/data/options.json"
+
+          cleanup() {
+            echo "Cleaning up..."
+            docker rm -f "smoke-${ADDON}" 2>/dev/null || true
+            rm -rf "${TEST_DIR}"
+          }
+          trap cleanup EXIT
+
+          RUN_ARGS=(
+            --name "smoke-${ADDON}"
+            --privileged
+            --network host
+            -v "${TEST_DIR}/data:/data"
+            -v "${TEST_DIR}/share:/share"
+            -v "${TEST_DIR}/addon_configs/${ADDON}:/addon_configs/${ADDON}"
+          )
+
+          echo "Starting container..."
+          docker run -d "${RUN_ARGS[@]}" "${IMAGE}"
+
+          echo "Waiting for startup (max 90s)..."
+          MAX_WAIT=18
+          HEALTHY=false
+          for i in $(seq 1 $MAX_WAIT); do
+            if ! docker ps --filter "name=smoke-${ADDON}" --format '{{.Names}}' | grep -q "smoke-${ADDON}"; then
+              echo "::error::Container exited unexpectedly after $((i * 5))s"
+              echo "=== Container logs ==="
+              docker logs "smoke-${ADDON}" 2>&1 || true
+              exit 1
+            fi
+
+            if [ -n "${HEALTH_PORT}" ]; then
+              if curl -sf -o /dev/null "http://127.0.0.1:${HEALTH_PORT}/" 2>/dev/null; then
+                echo "Health check PASSED after $((i * 5))s"
+                HEALTHY=true
+                break
+              fi
+            fi
+
+            echo "  Waiting... ($((i * 5))s)"
+            sleep 5
+          done
+
+          echo "=== Container logs ==="
+          docker logs "smoke-${ADDON}" 2>&1 || true
+
+          if [ "${HEALTHY}" = "true" ]; then
+            echo "Smoke test PASSED for ${ADDON}"
+          elif [ -z "${HEALTH_PORT}" ]; then
+            echo "No health port configured, checking container is still running"
+            if docker ps --filter "name=smoke-${ADDON}" --format '{{.Names}}' | grep -q "smoke-${ADDON}"; then
+              echo "Smoke test PASSED for ${ADDON} (container running, no health endpoint)"
+            else
+              echo "::error::Container is not running"
+              exit 1
+            fi
+          else
+            echo "::error::Health check FAILED after 90s"
+            exit 1
+          fi
