@@ -3,7 +3,8 @@ arch:
   - amd64
 backup_exclude:
   - "**/logs/*"
-description: Indexer manager for PVR applications. Manages Torznab and Newznab indexers
+description:
+  Indexer manager for PVR applications. Manages Torznab and Newznab indexers
   for Sonarr, Radarr, Lidarr, and Readarr.
 devices:
   - /dev/sda

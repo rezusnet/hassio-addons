@@ -37,11 +37,11 @@ data_location: "/share/prowlarr"
 
 The add-on maps the following HA directories:
 
-| HA Path            | Container Path                   | Access     |
-| ------------------ | -------------------------------- | ---------- |
-| `/share/prowlarr`  | Configurable via `data_location` | Read/Write |
-| `/share/`          | `/share/`                        | Read/Write |
-| Add-on config      | `/addon_configs/*/`              | Read/Write |
+| HA Path           | Container Path                   | Access     |
+| ----------------- | -------------------------------- | ---------- |
+| `/share/prowlarr` | Configurable via `data_location` | Read/Write |
+| `/share/`         | `/share/`                        | Read/Write |
+| Add-on config     | `/addon_configs/*/`              | Read/Write |
 
 ## Ports
 

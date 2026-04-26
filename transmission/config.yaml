@@ -3,7 +3,8 @@ arch:
   - amd64
 backup_exclude:
   - "**/logs/*"
-description: Fast, easy, and free BitTorrent client. Lightweight torrent downloading
+description:
+  Fast, easy, and free BitTorrent client. Lightweight torrent downloading
   with web interface.
 devices:
   - /dev/sda

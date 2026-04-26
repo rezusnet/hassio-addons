@@ -7,6 +7,7 @@ Thank you for your interest in contributing to rezusnet/hassio-addons!
 ### 1. Plan
 
 Open or find an issue describing the add-on. The issue should specify:
+
 - Upstream Docker image (e.g., `lscr.io/linuxserver/sonarr`)
 - Web UI port, ingress support, required devices/permissions
 - Config options and schema
@@ -46,6 +47,7 @@ This validates the Dockerfile builds successfully without pushing to GHCR.
 ### 6. Merge
 
 Once lint + build pass, merge the PR. The builder workflow on master will:
+
 - Build multi-arch images
 - Push to `ghcr.io/rezusnet/<addon>-{arch}`
 - Update the CHANGELOG
@@ -53,6 +55,7 @@ Once lint + build pass, merge the PR. The builder workflow on master will:
 ### 7. Verify
 
 After merge, install the add-on from the HA Add-on Store and verify:
+
 - Add-on starts without errors
 - Web UI is accessible (Ingress or direct port)
 - Configuration options work
@@ -66,7 +69,7 @@ S6 service name, health check endpoint, and config options.
 
 ### File Manifest
 
-```
+```text
 <addon-name>/
 ├── config.yaml          # HA addon manifest
 ├── build.json           # Arch → LSIO image mapping
@@ -184,17 +187,17 @@ HEALTHCHECK \
 
 ### config.yaml — Key Fields
 
-| Field              | Value                                        | Notes                                |
-| ------------------ | -------------------------------------------- | ------------------------------------ |
-| `arch`             | `[aarch64, amd64]`                           | LSIO supports both                   |
-| `init`             | `false`                                      | Use S6 from LSIO base image          |
-| `host_network`     | `true`                                       | For apps that need LAN discovery     |
-| `ingress`          | `true`                                       | Web UI apps get sidebar entry        |
-| `ingress_port`     | `0`                                          | 0 = auto                             |
-| `ingress_stream`   | `true`                                       | TCP proxy, no nginx overlay needed   |
-| `image`            | `ghcr.io/rezusnet/<name>-{arch}`             | GHCR image path                      |
-| `map`              | `[addon_config:rw, media:rw, share:rw, ssl]` | Standard HA folder mappings          |
-| `privileged`       | `[SYS_ADMIN, DAC_READ_SEARCH]`               | For mount/device access              |
+| Field            | Value                                        | Notes                              |
+| ---------------- | -------------------------------------------- | ---------------------------------- |
+| `arch`           | `[aarch64, amd64]`                           | LSIO supports both                 |
+| `init`           | `false`                                      | Use S6 from LSIO base image        |
+| `host_network`   | `true`                                       | For apps that need LAN discovery   |
+| `ingress`        | `true`                                       | Web UI apps get sidebar entry      |
+| `ingress_port`   | `0`                                          | 0 = auto                           |
+| `ingress_stream` | `true`                                       | TCP proxy, no nginx overlay needed |
+| `image`          | `ghcr.io/rezusnet/<name>-{arch}`             | GHCR image path                    |
+| `map`            | `[addon_config:rw, media:rw, share:rw, ssl]` | Standard HA folder mappings        |
+| `privileged`     | `[SYS_ADMIN, DAC_READ_SEARCH]`               | For mount/device access            |
 
 ### 99-run.sh Template
 
@@ -207,9 +210,9 @@ bashio::log.info "Starting <Name> add-on initialization"
 LOCATION="$(bashio::config 'data_location')"
 
 if bashio::config.has_value 'TZ'; then
-	TZ_VAL="$(bashio::config 'TZ')"
-	export TZ="${TZ_VAL}"
-	bashio::log.info "Timezone set to ${TZ}"
+  TZ_VAL="$(bashio::config 'TZ')"
+  export TZ="${TZ_VAL}"
+  bashio::log.info "Timezone set to ${TZ}"
 fi
 
 mkdir -p "${LOCATION}/data"
@@ -249,13 +252,13 @@ instead of the LSIO S6 init. Key differences:
 
 ## Lint Requirements
 
-| Tool        | Rules                                                       |
-| ----------- | ----------------------------------------------------------- |
-| shellcheck  | All bash scripts                                            |
-| shfmt       | Tab indentation (not spaces)                                |
-| hadolint    | Dockerfile best practices                                   |
-| prettier    | JSON: 2-space indent, Markdown: padded tables, 2-space code |
-| gitleaks    | No secrets in code                                          |
+| Tool       | Rules                                                       |
+| ---------- | ----------------------------------------------------------- |
+| shellcheck | All bash scripts                                            |
+| shfmt      | Tab indentation (not spaces)                                |
+| hadolint   | Dockerfile best practices                                   |
+| prettier   | JSON: 2-space indent, Markdown: padded tables, 2-space code |
+| gitleaks   | No secrets in code                                          |
 
 ## Commit Convention
 

@@ -3,7 +3,8 @@ arch:
   - amd64
 backup_exclude:
   - "**/logs/*"
-description: Subtitle manager for Sonarr and Radarr. Automatically downloads and manages
+description:
+  Subtitle manager for Sonarr and Radarr. Automatically downloads and manages
   subtitles for your TV series and movies.
 devices:
   - /dev/sda
