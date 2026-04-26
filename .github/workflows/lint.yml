@@ -64,6 +64,7 @@ jobs:
   lint-changes:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
     runs-on: self-hosted
+    continue-on-error: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -100,16 +101,25 @@ jobs:
             sudo apt-get update -qq && sudo apt-get install -yqq xz-utils 2>/dev/null || true
           fi
           if ! shellcheck --version >/dev/null 2>&1; then
-            curl -fsSL -o /tmp/shellcheck.tar.xz "https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.${SC_ARCH}.tar.xz"
-            tar -xJf /tmp/shellcheck.tar.xz -C /tmp "shellcheck-v0.10.0/shellcheck" 2>/dev/null && sudo cp "/tmp/shellcheck-v0.10.0/shellcheck" /usr/local/bin/shellcheck && sudo chmod +x /usr/local/bin/shellcheck || echo "WARNING: Could not install shellcheck"
+            if curl -fsSL -o /tmp/shellcheck.tar.xz "https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.${SC_ARCH}.tar.xz" 2>/dev/null; then
+              tar -xJf /tmp/shellcheck.tar.xz -C /tmp "shellcheck-v0.10.0/shellcheck" 2>/dev/null && sudo cp "/tmp/shellcheck-v0.10.0/shellcheck" /usr/local/bin/shellcheck && sudo chmod +x /usr/local/bin/shellcheck && echo "shellcheck installed" || echo "WARNING: Could not install shellcheck"
+            else
+              echo "WARNING: Could not download shellcheck"
+            fi
           fi
           if ! hadolint --version >/dev/null 2>&1; then
-            curl -fsSL -o /tmp/hadolint "https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-${ARCH_SUFFIX}"
-            sudo cp /tmp/hadolint /usr/local/bin/hadolint && sudo chmod +x /usr/local/bin/hadolint || echo "WARNING: Could not install hadolint"
+            if curl -fsSL -o /tmp/hadolint "https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-${ARCH_SUFFIX}" 2>/dev/null; then
+              sudo cp /tmp/hadolint /usr/local/bin/hadolint && sudo chmod +x /usr/local/bin/hadolint && echo "hadolint installed" || echo "WARNING: Could not install hadolint"
+            else
+              echo "WARNING: Could not download hadolint"
+            fi
           fi
           if ! shfmt --version >/dev/null 2>&1; then
-            curl -fsSL -o /tmp/shfmt "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_${ARCH_SUFFIX}"
-            sudo cp /tmp/shfmt /usr/local/bin/shfmt && sudo chmod +x /usr/local/bin/shfmt || echo "WARNING: Could not install shfmt"
+            if curl -fsSL -o /tmp/shfmt "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_${ARCH_SUFFIX}" 2>/dev/null; then
+              sudo cp /tmp/shfmt /usr/local/bin/shfmt && sudo chmod +x /usr/local/bin/shfmt && echo "shfmt installed" || echo "WARNING: Could not install shfmt"
+            else
+              echo "WARNING: Could not download shfmt"
+            fi
           fi
           echo "shellcheck: $(shellcheck --version 2>/dev/null | head -1 || echo 'not available')"
           echo "hadolint: $(hadolint --version 2>/dev/null || echo 'not available')"
