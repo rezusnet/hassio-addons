@@ -282,7 +282,7 @@ jobs:
           cleanup() {
             echo "Cleaning up..."
             docker rm -f "smoke-${ADDON}" 2>/dev/null || true
-            rm -rf "${TEST_DIR}"
+            rm -rf "${TEST_DIR}" 2>/dev/null || true
           }
           trap cleanup EXIT
 
@@ -333,3 +333,4 @@ jobs:
             echo "::error::Container is not running"
             exit 1
           fi
+          exit 0

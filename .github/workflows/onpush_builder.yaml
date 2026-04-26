@@ -624,7 +624,7 @@ jobs:
           cleanup() {
             echo "Cleaning up..."
             docker rm -f "inttest-${ADDON}" 2>/dev/null || true
-            rm -rf "${TEST_DIR}"
+            rm -rf "${TEST_DIR}" 2>/dev/null || true
           }
           trap cleanup EXIT
 
@@ -708,6 +708,7 @@ jobs:
             echo "::error::Health check FAILED after 120s"
             exit 1
           fi
+          exit 0
 
   make-changelog:
     if: >-
