@@ -234,6 +234,13 @@ jobs:
             fi
           done
 
+          mkdir -p "$ADDON_DIR/modules"
+          for module in 00-banner.sh 01-custom_script.sh 00-local_mounts.sh 00-smb_mounts.sh 01-config_yaml.sh 00-global_var.sh; do
+            if [ -f "$TEMPLATES_DIR/$module" ]; then
+              cp "$TEMPLATES_DIR/$module" "$ADDON_DIR/modules/$module"
+            fi
+          done
+
       - name: Detect native architecture
         id: arch
         run: |
@@ -251,6 +258,7 @@ jobs:
           load: true
           file: ${{ matrix.addon }}/Dockerfile
           tags: test/${{ matrix.addon }}:smoke
+          network: host
           build-args: |
             BUILD_FROM=${{ steps.arch.outputs.arch == 'amd64' && steps.info.outputs.amd64_build_from || steps.info.outputs.aarch64_build_from }}
 
