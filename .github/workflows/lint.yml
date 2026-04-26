@@ -31,15 +31,34 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_BASH: true
-          VALIDATE_BASH_EXEC: true
-          VALIDATE_SHELL_SHFMT: true
-          VALIDATE_DOCKERFILE_HADOLINT: true
-          VALIDATE_MARKDOWN: true
-          VALIDATE_GITLEAKS: true
           VALIDATE_JSCPD: false
-          VALIDATE_JSON: true
-          VALIDATE_YAML: true
+          VALIDATE_CHECKOV: false
+          VALIDATE_PYTHON_PYLINT: false
+          VALIDATE_NATURAL_LANGUAGE: false
+          VALIDATE_TYPESCRIPT_STANDARD: false
+          VALIDATE_CPP: false
+          VALIDATE_CLANG_FORMAT: false
+          VALIDATE_GO: false
+          VALIDATE_JAVA: false
+          VALIDATE_RUST: false
+          VALIDATE_RUBY: false
+          VALIDATE_PHP: false
+          VALIDATE_CSHARP: false
+          VALIDATE_POWERSHELL: false
+          VALIDATE_CSS: false
+          VALIDATE_ENV: false
+          VALIDATE_HTML: false
+          VALIDATE_SQL: false
+          VALIDATE_XML: false
+          VALIDATE_ANSIBLE: false
+          VALIDATE_TERRAFORM_TFLINT: false
+          VALIDATE_TERRAFORM_TERRASCAN: false
+          VALIDATE_KOTLIN: false
+          VALIDATE_DART: false
+          VALIDATE_RAKU: false
+          VALIDATE_COFFEESCRIPT: false
+          VALIDATE_PERL: false
+          VALIDATE_SWIFT: false
           FILTER_REGEX_EXCLUDE: '.*[.]github/workflows/.*'
 
   lint-changes:
@@ -71,11 +90,12 @@ jobs:
 
       - name: Install linting tools
         run: |
+          if ! command -v xz >/dev/null 2>&1; then
+            sudo apt-get update -qq && sudo apt-get install -yqq xz-utils 2>/dev/null || true
+          fi
           if ! shellcheck --version >/dev/null 2>&1; then
             curl -Lsfo /tmp/shellcheck.tar.xz https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.aarch64.tar.xz
-            tar -xJf /tmp/shellcheck.tar.xz -C /tmp shellcheck-v0.10.0/shellcheck
-            sudo cp /tmp/shellcheck-v0.10.0/shellcheck /usr/local/bin/shellcheck
-            sudo chmod +x /usr/local/bin/shellcheck
+            tar -xJf /tmp/shellcheck.tar.xz -C /tmp shellcheck-v0.10.0/shellcheck 2>/dev/null && sudo cp /tmp/shellcheck-v0.10.0/shellcheck /usr/local/bin/shellcheck && sudo chmod +x /usr/local/bin/shellcheck || echo "WARNING: Could not install shellcheck"
           fi
           if ! hadolint --version >/dev/null 2>&1; then
             curl -Lsfo /tmp/hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-arm64
