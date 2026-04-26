@@ -90,23 +90,30 @@ jobs:
 
       - name: Install linting tools
         run: |
+          ARCH=$(uname -m)
+          case "$ARCH" in
+            aarch64|arm64) ARCH_SUFFIX="arm64"; SC_ARCH="aarch64" ;;
+            x86_64|amd64)  ARCH_SUFFIX="amd64"; SC_ARCH="x86_64" ;;
+            *) echo "Unsupported arch: $ARCH"; exit 1 ;;
+          esac
           if ! command -v xz >/dev/null 2>&1; then
             sudo apt-get update -qq && sudo apt-get install -yqq xz-utils 2>/dev/null || true
           fi
           if ! shellcheck --version >/dev/null 2>&1; then
-            curl -Lsfo /tmp/shellcheck.tar.xz https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.aarch64.tar.xz
-            tar -xJf /tmp/shellcheck.tar.xz -C /tmp shellcheck-v0.10.0/shellcheck 2>/dev/null && sudo cp /tmp/shellcheck-v0.10.0/shellcheck /usr/local/bin/shellcheck && sudo chmod +x /usr/local/bin/shellcheck || echo "WARNING: Could not install shellcheck"
+            curl -fsSL -o /tmp/shellcheck.tar.xz "https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.${SC_ARCH}.tar.xz"
+            tar -xJf /tmp/shellcheck.tar.xz -C /tmp "shellcheck-v0.10.0/shellcheck" 2>/dev/null && sudo cp "/tmp/shellcheck-v0.10.0/shellcheck" /usr/local/bin/shellcheck && sudo chmod +x /usr/local/bin/shellcheck || echo "WARNING: Could not install shellcheck"
           fi
           if ! hadolint --version >/dev/null 2>&1; then
-            curl -Lsfo /tmp/hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-arm64
-            sudo cp /tmp/hadolint /usr/local/bin/hadolint
-            sudo chmod +x /usr/local/bin/hadolint
+            curl -fsSL -o /tmp/hadolint "https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-${ARCH_SUFFIX}"
+            sudo cp /tmp/hadolint /usr/local/bin/hadolint && sudo chmod +x /usr/local/bin/hadolint || echo "WARNING: Could not install hadolint"
           fi
           if ! shfmt --version >/dev/null 2>&1; then
-            curl -Lsfo /tmp/shfmt https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64
-            sudo cp /tmp/shfmt /usr/local/bin/shfmt
-            sudo chmod +x /usr/local/bin/shfmt
+            curl -fsSL -o /tmp/shfmt "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_${ARCH_SUFFIX}"
+            sudo cp /tmp/shfmt /usr/local/bin/shfmt && sudo chmod +x /usr/local/bin/shfmt || echo "WARNING: Could not install shfmt"
           fi
+          echo "shellcheck: $(shellcheck --version 2>/dev/null | head -1 || echo 'not available')"
+          echo "hadolint: $(hadolint --version 2>/dev/null || echo 'not available')"
+          echo "shfmt: $(shfmt --version 2>/dev/null || echo 'not available')"
 
       - name: Lint shell scripts
         run: |
@@ -154,10 +161,15 @@ jobs:
 
       - name: Install linting tools
         run: |
+          ARCH=$(uname -m)
+          case "$ARCH" in
+            aarch64|arm64) ARCH_SUFFIX="arm64" ;;
+            x86_64|amd64)  ARCH_SUFFIX="amd64" ;;
+            *) echo "Unsupported arch: $ARCH"; exit 1 ;;
+          esac
           if ! shfmt --version >/dev/null 2>&1; then
-            curl -Lsfo /tmp/shfmt https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_arm64
-            sudo cp /tmp/shfmt /usr/local/bin/shfmt
-            sudo chmod +x /usr/local/bin/shfmt
+            curl -fsSL -o /tmp/shfmt "https://github.com/mvdan/sh/releases/download/v3.12.0/shfmt_v3.12.0_linux_${ARCH_SUFFIX}"
+            sudo cp /tmp/shfmt /usr/local/bin/shfmt && sudo chmod +x /usr/local/bin/shfmt || echo "WARNING: Could not install shfmt"
           fi
 
       - name: Format shell scripts
