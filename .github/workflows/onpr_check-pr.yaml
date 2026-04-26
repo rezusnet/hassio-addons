@@ -213,9 +213,25 @@ jobs:
               port_str = str(p).split("/")[0]
               health_port = port_str
               break
+
+          host_network = config.get("host_network", False)
+          host_dbus = config.get("host_dbus", False)
+          udev = config.get("udev", False)
+          maps = config.get("map", [])
+          devices = config.get("devices", [])
+          privileged = config.get("privileged", [])
+          env_vars = config.get("environment", {})
+
           with output_path.open("a") as f:
               f.write(f"health_port={health_port}\n")
               f.write(f"options_json={options_json}\n")
+              f.write(f"host_network={str(host_network).lower()}\n")
+              f.write(f"host_dbus={str(host_dbus).lower()}\n")
+              f.write(f"udev={str(udev).lower()}\n")
+              f.write(f"maps_json={json.dumps(maps)}\n")
+              f.write(f"devices_json={json.dumps(devices)}\n")
+              f.write(f"privileged_json={json.dumps(privileged)}\n")
+              f.write(f"env_vars_json={json.dumps(env_vars)}\n")
           PY
         env:
           ADDON: ${{ matrix.addon }}
@@ -268,14 +284,23 @@ jobs:
           ADDON="${{ matrix.addon }}"
           IMAGE="test/${ADDON}:smoke"
           HEALTH_PORT="${{ steps.info.outputs.health_port }}"
+          HOST_NETWORK="${{ steps.info.outputs.host_network }}"
+          HOST_DBUS="${{ steps.info.outputs.host_dbus }}"
+          UDEV="${{ steps.info.outputs.udev }}"
           OPTIONS_JSON='${{ steps.info.outputs.options_json }}'
+          MAPS_JSON='${{ steps.info.outputs.maps_json }}'
+          DEVICES_JSON='${{ steps.info.outputs.devices_json }}'
+          PRIVILEGED_JSON='${{ steps.info.outputs.privileged_json }}'
+          ENV_VARS_JSON='${{ steps.info.outputs.env_vars_json }}'
 
           echo "=== Smoke test for ${ADDON} ==="
           echo "Image: ${IMAGE}"
           echo "Health port: ${HEALTH_PORT}"
+          echo "Host network: ${HOST_NETWORK}"
 
           TEST_DIR=$(mktemp -d)
-          mkdir -p "${TEST_DIR}/data" "${TEST_DIR}/share/${ADDON}" "${TEST_DIR}/addon_configs/${ADDON}"
+          mkdir -p "${TEST_DIR}/data" "${TEST_DIR}/share" "${TEST_DIR}/media" \
+                    "${TEST_DIR}/ssl" "${TEST_DIR}/addon_configs/${ADDON}" "${TEST_DIR}/backup"
 
           echo "${OPTIONS_JSON}" > "${TEST_DIR}/data/options.json"
 
@@ -286,16 +311,76 @@ jobs:
           }
           trap cleanup EXIT
 
-          RUN_ARGS=(
-            --name "smoke-${ADDON}"
-            --privileged
-            --network host
-            -v "${TEST_DIR}/data:/data"
-            -v "${TEST_DIR}/share:/share"
-            -v "${TEST_DIR}/addon_configs/${ADDON}:/addon_configs/${ADDON}"
-          )
+          RUN_ARGS=("--name" "smoke-${ADDON}")
 
-          echo "Starting container..."
+          # --- Network ---
+          if [ "${HOST_NETWORK}" = "true" ]; then
+            RUN_ARGS+=("--network" "host")
+          elif [ -n "${HEALTH_PORT}" ]; then
+            RUN_ARGS+=("-p" "${HEALTH_PORT}:${HEALTH_PORT}")
+          fi
+
+          # --- Capabilities from privileged field ---
+          while IFS= read -r cap; do
+            [ -n "${cap}" ] || continue
+            RUN_ARGS+=("--cap-add" "${cap}")
+          done < <(echo "${PRIVILEGED_JSON}" | jq -r '.[] // empty' 2>/dev/null)
+
+          # --- Volume mounts from map ---
+          RUN_ARGS+=("-v" "${TEST_DIR}/data:/data:rw")
+
+          while IFS= read -r entry; do
+            [ -n "${entry}" ] || continue
+            map_name=$(echo "${entry}" | cut -d: -f1)
+            map_mode=$(echo "${entry}" | cut -d: -f2 -s)
+            [ -z "${map_mode}" ] && map_mode="rw"
+            case "${map_name}" in
+              addon_config)
+                RUN_ARGS+=("-v" "${TEST_DIR}/addon_configs/${ADDON}:/addon_configs/${ADDON}:${map_mode}")
+                ;;
+              media)
+                RUN_ARGS+=("-v" "${TEST_DIR}/media:/media:${map_mode}")
+                ;;
+              share)
+                RUN_ARGS+=("-v" "${TEST_DIR}/share:/share:${map_mode}")
+                ;;
+              ssl)
+                RUN_ARGS+=("-v" "${TEST_DIR}/ssl:/ssl:${map_mode}")
+                ;;
+              backup)
+                RUN_ARGS+=("-v" "${TEST_DIR}/backup:/backup:${map_mode}")
+                ;;
+              *)
+                echo "  Note: map '${map_name}' skipped"
+                ;;
+            esac
+          done < <(echo "${MAPS_JSON}" | jq -r '.[] // empty' 2>/dev/null)
+
+          # --- Devices ---
+          while IFS= read -r dev; do
+            [ -n "${dev}" ] || continue
+            if [ -e "${dev}" ]; then
+              RUN_ARGS+=("--device" "${dev}")
+            fi
+          done < <(echo "${DEVICES_JSON}" | jq -r '.[] // empty' 2>/dev/null)
+
+          # --- Environment variables ---
+          while IFS= read -r envline; do
+            [ -n "${envline}" ] || continue
+            RUN_ARGS+=("-e" "${envline}")
+          done < <(echo "${ENV_VARS_JSON}" | jq -r 'to_entries[] | "\(.key)=\(.value)"' 2>/dev/null)
+
+          # --- Host DBus ---
+          if [ "${HOST_DBUS}" = "true" ] && [ -e /run/dbus ]; then
+            RUN_ARGS+=("-v" "/run/dbus:/run/dbus:ro")
+          fi
+
+          # --- Udev ---
+          if [ "${UDEV}" = "true" ] && [ -e /run/udev ]; then
+            RUN_ARGS+=("-v" "/run/udev:/run/udev:ro")
+          fi
+
+          echo "Starting container with $(echo "${RUN_ARGS[@]}" | wc -w) args..."
           docker run -d "${RUN_ARGS[@]}" "${IMAGE}"
 
           echo "Waiting for startup (max 120s)..."
