@@ -4,7 +4,8 @@ arch:
 backup_exclude:
   - "**/logs/*"
   - "**/MediaCover/*"
-description: Smart PVR for newsgroup and bittorrent users. Monitors RSS feeds for
+description:
+  Smart PVR for newsgroup and bittorrent users. Monitors RSS feeds for
   new TV episodes and manages downloading, sorting, and renaming.
 devices:
   - /dev/dri

@@ -3,7 +3,8 @@ arch:
   - amd64
 backup_exclude:
   - "**/logs/*"
-description: Cross-platform BitTorrent client with web UI. Feature-rich, fast, and
+description:
+  Cross-platform BitTorrent client with web UI. Feature-rich, fast, and
   lightweight torrent downloading and management.
 devices:
   - /dev/sda

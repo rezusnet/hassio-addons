@@ -4,7 +4,8 @@ arch:
 backup_exclude:
   - "**/logs/*"
   - "**/MediaCover/*"
-description: Movie collection manager for Usenet and BitTorrent users. Monitors multiple
+description:
+  Movie collection manager for Usenet and BitTorrent users. Monitors multiple
   sources for movies and manages downloading and organization.
 devices:
   - /dev/dri

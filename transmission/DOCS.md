@@ -10,18 +10,18 @@ After installing and starting the add-on:
 
 ### Options
 
-| Option          | Type | Default              | Description                                     |
-| --------------- | ---- | -------------------- | ----------------------------------------------- |
-| `env_vars`      | list | `[]`                 | Custom environment variables (name/value pairs) |
-| `PGID`          | int  | `0`                  | Group ID for file permissions                   |
-| `PUID`          | int  | `0`                  | User ID for file permissions                    |
-| `data_location` | str  | `/share/transmission` | Path where Transmission stores config and data |
-| `TZ`            | str  | `""`                 | Timezone (e.g., `Europe/Bucharest`)             |
-| `localdisks`    | str  | `""`                 | Local drives to mount (e.g., `sda1,sdb1`)       |
-| `networkdisks`  | str  | `""`                 | SMB shares to mount (e.g., `//SERVER/SHARE`)    |
-| `cifsusername`  | str  | `""`                 | SMB username for network shares                 |
-| `cifspassword`  | str  | `""`                 | SMB password for network shares                 |
-| `cifsdomain`    | str  | `""`                 | SMB domain for network shares                   |
+| Option          | Type | Default               | Description                                     |
+| --------------- | ---- | --------------------- | ----------------------------------------------- |
+| `env_vars`      | list | `[]`                  | Custom environment variables (name/value pairs) |
+| `PGID`          | int  | `0`                   | Group ID for file permissions                   |
+| `PUID`          | int  | `0`                   | User ID for file permissions                    |
+| `data_location` | str  | `/share/transmission` | Path where Transmission stores config and data  |
+| `TZ`            | str  | `""`                  | Timezone (e.g., `Europe/Bucharest`)             |
+| `localdisks`    | str  | `""`                  | Local drives to mount (e.g., `sda1,sdb1`)       |
+| `networkdisks`  | str  | `""`                  | SMB shares to mount (e.g., `//SERVER/SHARE`)    |
+| `cifsusername`  | str  | `""`                  | SMB username for network shares                 |
+| `cifspassword`  | str  | `""`                  | SMB password for network shares                 |
+| `cifsdomain`    | str  | `""`                  | SMB domain for network shares                   |
 
 ### Example Configuration
 
@@ -39,12 +39,12 @@ cifspassword: "mypassword"
 
 The add-on maps the following HA directories:
 
-| HA Path                | Container Path                   | Access     |
-| ---------------------- | -------------------------------- | ---------- |
-| `/share/transmission`  | Configurable via `data_location` | Read/Write |
-| `/media/`              | `/media/`                        | Read/Write |
-| `/share/`              | `/share/`                        | Read/Write |
-| Add-on config          | `/addon_configs/*/`              | Read/Write |
+| HA Path               | Container Path                   | Access     |
+| --------------------- | -------------------------------- | ---------- |
+| `/share/transmission` | Configurable via `data_location` | Read/Write |
+| `/media/`             | `/media/`                        | Read/Write |
+| `/share/`             | `/share/`                        | Read/Write |
+| Add-on config         | `/addon_configs/*/`              | Read/Write |
 
 ## Download Paths
 

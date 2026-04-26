@@ -39,12 +39,12 @@ cifspassword: "mypassword"
 
 The add-on maps the following HA directories:
 
-| HA Path                | Container Path                   | Access     |
-| ---------------------- | -------------------------------- | ---------- |
-| `/share/qbittorrent`   | Configurable via `data_location` | Read/Write |
-| `/media/`              | `/media/`                        | Read/Write |
-| `/share/`              | `/share/`                        | Read/Write |
-| Add-on config          | `/addon_configs/*/`              | Read/Write |
+| HA Path              | Container Path                   | Access     |
+| -------------------- | -------------------------------- | ---------- |
+| `/share/qbittorrent` | Configurable via `data_location` | Read/Write |
+| `/media/`            | `/media/`                        | Read/Write |
+| `/share/`            | `/share/`                        | Read/Write |
+| Add-on config        | `/addon_configs/*/`              | Read/Write |
 
 ## Download Paths
 
@@ -53,11 +53,11 @@ Common choices: `/media/downloads`, `/share/downloads`, or a mounted network sha
 
 ## Ports
 
-| Port   | Protocol | Default | Description    |
-| ------ | -------- | ------- | -------------- |
-| `8080` | TCP      | `8080`  | Web interface  |
-| `6881` | TCP      | `6881`  | Torrent port   |
-| `6881` | UDP      | `6881`  | Torrent (UDP)  |
+| Port   | Protocol | Default | Description   |
+| ------ | -------- | ------- | ------------- |
+| `8080` | TCP      | `8080`  | Web interface |
+| `6881` | TCP      | `6881`  | Torrent port  |
+| `6881` | UDP      | `6881`  | Torrent (UDP) |
 
 ## Upstream Documentation
 
