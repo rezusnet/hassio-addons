@@ -2,7 +2,13 @@
 # shellcheck shell=bash disable=SC2016
 set -e
 
-if ! bashio::supervisor.ping 2>/dev/null; then
+_is_supervisor() {
+    [ -S /var/run/supervisor.sock ] 2>/dev/null && return 0
+    [ -n "${SUPERVISOR_TOKEN:-}" ] 2>/dev/null && return 0
+    curl -sf -o /dev/null --max-time 2 "http://supervisor/supervisor/ping" 2>/dev/null
+}
+
+if ! _is_supervisor; then
     if [ -f /usr/local/lib/bashio-standalone.sh ]; then
         source /usr/local/lib/bashio-standalone.sh
     fi
