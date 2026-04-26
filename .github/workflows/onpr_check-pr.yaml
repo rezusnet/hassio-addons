@@ -9,7 +9,7 @@ on:
 
 jobs:
   check-addon-changes:
-    if: ${{ github.repository_owner == 'rezusnet' && !contains(github.event.head_commit.message, 'nobuild') }}
+    if: ${{ github.repository_owner == 'rezusnet' && !github.event.pull_request.draft && !contains(github.event.head_commit.message, 'nobuild') }}
     runs-on: self-hosted
     outputs:
       changedAddons: ${{ steps.find_addons.outputs.changed_addons }}
