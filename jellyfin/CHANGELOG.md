@@ -1,3 +1,11 @@
+## 10.11.9 (27-04-2026)
+
+- Fix startup failure: JELLYFIN_WEB_DIR was incorrectly redirected to data
+  location instead of /usr/share/jellyfin/web, preventing the web UI from
+  loading
+- Fix LOCATION fallback: the null/empty check was setting LOCATION to itself
+  instead of /config due to sed substitution order
+
 ## 10.11.8 (26-04-2026)
 
 - Initial release based on Jellyfin 10.11.8
