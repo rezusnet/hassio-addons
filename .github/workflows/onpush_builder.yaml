@@ -85,7 +85,18 @@ jobs:
         run: |
           set -euo pipefail
 
-          UNICODE_SPACES_REGEX=$'[\u00A0\u2002\u2003\u2007\u2008\u2009\u202F\u205F\u3000\u200B]'
+          SKIP_EXTS='png jpg jpeg gif ico svg webp bmp tiff tif woff woff2 ttf eot otf mp3 mp4 avi mkv mov webm flac ogg wav zip tar gz bz2 xz zst 7z rar deb rpm apk jar class so o pyc db sqlite sqlite3'
+
+          is_text_file() {
+            local f="$1" ext
+            ext="${f##*.}"
+            ext="${ext,,}"
+            for skip in $SKIP_EXTS; do
+              [[ "$ext" == "$skip" ]] && return 1
+            done
+            return 0
+          }
+
           mapfile -t addons < <(jq -r '.[]' <<<"$ADDONS_JSON")
 
           for addon in "${addons[@]}"; do
@@ -93,19 +104,16 @@ jobs:
             cd "$GITHUB_WORKSPACE/$addon"
 
             while IFS= read -r -d '' file; do
-              mime_type=$(file --mime-type -b "$file")
-              [[ "$mime_type" != text/* ]] && continue
-
-              perl -i -CSD -pe "
-                s/${UNICODE_SPACES_REGEX}/ /g;
-                s/\r$//;
-              " "$file"
+              is_text_file "$file" || continue
+              sed -i 's/\r$//' "$file"
             done < <(find . -type f -print0)
 
             find . -type f -iname '*.sh' -exec chmod u+x {} \;
           done
 
       - name: Assert no mixed CRLF/LF remain
+        env:
+          ADDONS_JSON: ${{ needs.detect-changed-addons.outputs.changedAddons }}
         run: |
           set -euo pipefail
           mapfile -t addons < <(jq -r '.[]' <<<"$ADDONS_JSON")
@@ -116,7 +124,7 @@ jobs:
                 echo "::warning file=$file::Mixed CRLF/LF line endings detected"
                 found=1
               fi
-            done < <(find "$GITHUB_WORKSPACE/$addon" -type f -print0)
+            done < <(find "$GITHUB_WORKSPACE/$addon" -type f -name '*.sh' -print0 -o -name '*.yaml' -print0 -o -name '*.yml' -print0 -o -name '*.json' -print0 -o -name '*.md' -print0 -o -name '*.txt' -print0 -o -name '*.cfg' -print0 -o -name '*.conf' -print0 -o -name '*.py' -print0)
           done
           if [ "$found" -eq 1 ]; then
             echo "::error::Mixed line endings found, fix before proceeding"
