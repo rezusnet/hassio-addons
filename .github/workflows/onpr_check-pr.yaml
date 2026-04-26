@@ -76,12 +76,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Install PyYAML
+        run: |
+          if python3 -c "import yaml" 2>/dev/null; then
+            echo "PyYAML already available"
+          elif python3 -m pip --version >/dev/null 2>&1; then
+            python3 -m pip install --disable-pip-version-check --break-system-packages pyyaml
+          elif command -v pacman >/dev/null 2>&1; then
+            sudo pacman -S --noconfirm python-pyyaml
+          elif command -v apt-get >/dev/null 2>&1; then
+            sudo apt-get update -qq && sudo apt-get install -yqq python3-yaml
+          else
+            echo "ERROR: Cannot install PyYAML" >&2
+            exit 1
+          fi
       - name: Lint addon config
         shell: bash
         run: |
           set -euo pipefail
           ADDON="${{ matrix.addon }}"
-          pip3 install pyyaml --quiet --break-system-packages 2>/dev/null || pip3 install pyyaml --quiet 2>/dev/null || true
           python3 - <<'PY'
           import json, sys
           from pathlib import Path
@@ -133,12 +146,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Install PyYAML
+        run: |
+          if python3 -c "import yaml" 2>/dev/null; then
+            echo "PyYAML already available"
+          elif python3 -m pip --version >/dev/null 2>&1; then
+            python3 -m pip install --disable-pip-version-check --break-system-packages pyyaml
+          elif command -v pacman >/dev/null 2>&1; then
+            sudo pacman -S --noconfirm python-pyyaml
+          elif command -v apt-get >/dev/null 2>&1; then
+            sudo apt-get update -qq && sudo apt-get install -yqq python3-yaml
+          else
+            echo "ERROR: Cannot install PyYAML" >&2
+            exit 1
+          fi
+
       - name: Read addon metadata
         id: info
         run: |
           set -euo pipefail
           ADDON="${{ matrix.addon }}"
-          pip3 install pyyaml --quiet --break-system-packages 2>/dev/null || pip3 install pyyaml --quiet 2>/dev/null || true
           python3 - <<'PY'
           import json, os
           from pathlib import Path
