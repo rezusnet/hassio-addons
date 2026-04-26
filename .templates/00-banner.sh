@@ -20,8 +20,7 @@ if ! _is_supervisor; then
 	if [ ! -f /usr/bin/bashio ]; then
 		cp -rf /usr/local/lib/bashio-standalone.sh /usr/bin/bashio
 	fi
-	grep -rl "^#!.*bashio" /etc |
-	while IFS= read -r f; do
+	grep -rl "^#!.*bashio" /etc | while IFS= read -r f; do
 		grep -qF "source /usr/local/lib/bashio-standalone.sh" "$f" && continue
 		sed -i '1a source /usr/local/lib/bashio-standalone.sh' "$f"
 	done
