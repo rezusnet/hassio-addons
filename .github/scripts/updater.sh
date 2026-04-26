@@ -25,9 +25,9 @@ github_api() {
     local endpoint="$1"
     local url="https://api.github.com/${endpoint}"
     if [ -n "$GH_TOKEN" ]; then
-        curl -sfH "Authorization: token ${GH_TOKEN}" -H "Accept: application/vnd.github+json" "$url" 2>/dev/null
+        curl -sfH "Authorization: token ${GH_TOKEN}" -H "Accept: application/vnd.github+json" "$url" 2> /dev/null
     else
-        curl -sfH "Accept: application/vnd.github+json" "$url" 2>/dev/null
+        curl -sfH "Accept: application/vnd.github+json" "$url" 2> /dev/null
     fi
 }
 
@@ -47,7 +47,7 @@ fetch_github_release_version() {
     [ -z "$response" ] && return 1
 
     local releases
-    releases=$(echo "$response" | jq -r '.[].tag_name' 2>/dev/null) || return 1
+    releases=$(echo "$response" | jq -r '.[].tag_name' 2> /dev/null) || return 1
     [ -z "$releases" ] && return 1
 
     if [ "$include_prerelease" != "true" ]; then
@@ -73,7 +73,7 @@ fetch_github_tags_version() {
     [ -z "$response" ] && return 1
 
     local tags
-    tags=$(echo "$response" | jq -r '.[].name' 2>/dev/null) || return 1
+    tags=$(echo "$response" | jq -r '.[].name' 2> /dev/null) || return 1
     [ -z "$tags" ] && return 1
 
     while IFS= read -r tag; do
@@ -92,7 +92,7 @@ fetch_dockerhub_version() {
 
     local api_url="https://hub.docker.com/v2/repositories/${repo}/tags?page_size=100&ordering=last_updated"
     local response
-    response=$(curl -sf "$api_url" 2>/dev/null) || return 1
+    response=$(curl -sf "$api_url" 2> /dev/null) || return 1
 
     local full_tag
     full_tag=$(echo "$response" | python3 -c "
@@ -112,7 +112,7 @@ for tag in data.get('results', []):
         continue
     print(name)
     break
-" 2>/dev/null) || return 1
+" 2> /dev/null) || return 1
 
     [ -z "$full_tag" ] && return 1
 
@@ -133,7 +133,7 @@ trigger_workflow() {
             -H "Authorization: token ${GH_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${REPOSITORY}/actions/workflows/${workflow}/dispatches" \
-            -d '{"ref":"master"}' 2>/dev/null) || true
+            -d '{"ref":"master"}' 2> /dev/null) || true
         if [ "$http_code" = "204" ]; then
             log "  Builder workflow triggered successfully"
         else
@@ -161,14 +161,20 @@ for addon_dir in */; do
 
     UPDATER_FILE="$addon_dir/updater.json"
     PAUSED=$(jq -r '.paused // false' "$UPDATER_FILE")
-    [ "$PAUSED" = "true" ] && { log "Skipping $addon_dir (paused)"; continue; }
+    [ "$PAUSED" = "true" ] && {
+        log "Skipping $addon_dir (paused)"
+        continue
+    }
 
     SLUG=$(jq -r '.slug // ""' "$UPDATER_FILE")
     UPSTREAM_REPO=$(jq -r '.upstream_repo // ""' "$UPDATER_FILE")
     SOURCE=$(jq -r '.source // "github"' "$UPDATER_FILE")
     CURRENT_VERSION=$(jq -r '.upstream_version // ""' "$UPDATER_FILE")
 
-    [ -z "$UPSTREAM_REPO" ] && { log "Skipping $addon_dir (no upstream_repo)"; continue; }
+    [ -z "$UPSTREAM_REPO" ] && {
+        log "Skipping $addon_dir (no upstream_repo)"
+        continue
+    }
 
     log "Checking $SLUG ($UPSTREAM_REPO, source=$SOURCE) — current: ${CURRENT_VERSION:-none}"
 
@@ -200,12 +206,18 @@ for addon_dir in */; do
             ;;
     esac
 
-    [ -z "$NEW_VERSION" ] && { log "  No new version found"; continue; }
+    [ -z "$NEW_VERSION" ] && {
+        log "  No new version found"
+        continue
+    }
 
     CURRENT_VERSION_CLEAN="${CURRENT_VERSION#v}"
     NEW_VERSION_CLEAN="${NEW_VERSION#v}"
 
-    [ "$NEW_VERSION_CLEAN" = "$CURRENT_VERSION_CLEAN" ] && { log "  Already up to date"; continue; }
+    [ "$NEW_VERSION_CLEAN" = "$CURRENT_VERSION_CLEAN" ] && {
+        log "  Already up to date"
+        continue
+    }
 
     echo "Updating $SLUG from ${CURRENT_VERSION:-none} to $NEW_VERSION"
 
@@ -228,7 +240,7 @@ for addon_dir in */; do
     fi
 done
 
-if [ "$DRY_RUN" != "true" ] && [ "$(git log --oneline origin/master..HEAD 2>/dev/null | wc -l)" -gt 0 ]; then
+if [ "$DRY_RUN" != "true" ] && [ "$(git log --oneline origin/master..HEAD 2> /dev/null | wc -l)" -gt 0 ]; then
     log "Pushing updates to master..."
     git push origin HEAD:master
     CHANGES_PUSHED=true
