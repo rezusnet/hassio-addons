@@ -23,7 +23,7 @@ jobs:
         id: find_addons
         run: |
           set -euo pipefail
-          git fetch origin master || true
+          git fetch origin refs/heads/master:refs/remotes/origin/master || true
           BASE="origin/master"
           if [ -n "${{ github.event.before }}" ] && git rev-parse --verify "${{ github.event.before }}" >/dev/null 2>&1; then
             BASE="${{ github.event.before }}"
@@ -38,7 +38,7 @@ jobs:
         id: changed-files
         run: |
           set -euo pipefail
-          git fetch origin master || true
+          git fetch origin refs/heads/master:refs/remotes/origin/master || true
           BASE="origin/master"
           if [ -n "${{ github.event.before }}" ] && git rev-parse --verify "${{ github.event.before }}" >/dev/null 2>&1; then
             BASE="${{ github.event.before }}"
