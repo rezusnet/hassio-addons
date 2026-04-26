@@ -18,7 +18,7 @@ jobs:
           while IFS= read -r -d '' file; do
             if grep -Plq '\r\n' "$file"; then
               echo "Fixing CRLF in $file"
-              perl -i -pe 's/\r\n/\n/g' "$file"
+              sed -i 's/\r$//' "$file"
               FOUND=1
             fi
           done < <(find . -type f ! -path "./.git/*" ! -name "*.png" ! -name "*.jpg" ! -name "*.bin" -print0)
