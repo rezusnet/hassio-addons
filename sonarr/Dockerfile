@@ -17,9 +17,9 @@ RUN chmod 744 /ha_lsio.sh && if grep -qr "lsio" /etc; then /ha_lsio.sh "$CONFIGL
 
 RUN \
     sed -i "s|contenv bash|contenv bashio|g" /etc/s6-overlay/s6-rc.d/svc-sonarr/run && \
+    sed -i "s|/config|\$LOCATION|g" /etc/s6-overlay/s6-rc.d/svc-sonarr/run && \
     sed -i "1a if [[ \"\$LOCATION\" = \"null\" || -z \"\$LOCATION\" ]]; then LOCATION=/config; fi" /etc/s6-overlay/s6-rc.d/svc-sonarr/run && \
     sed -i "1a LOCATION=\$(bashio::config 'data_location')" /etc/s6-overlay/s6-rc.d/svc-sonarr/run && \
-    sed -i "s|/config|\$LOCATION|g" /etc/s6-overlay/s6-rc.d/svc-sonarr/run && \
     sed -i "1a set +u" /etc/s6-overlay/s6-rc.d/svc-sonarr/run
 
 COPY rootfs/ /
