@@ -1,3 +1,7 @@
+
+## 10.11.11 (27-04-2026)
+
+- Rebuild with fixed 00-banner.sh
 ## 10.11.10 (27-04-2026)
 
 - Fix init hang: 00-banner.sh bashio::supervisor.ping blocked forever in

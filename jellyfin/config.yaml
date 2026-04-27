@@ -100,5 +100,5 @@ schema:
 slug: jellyfin
 udev: true
 url: https://jellyfin.org
-version: "10.11.10"
+version: "10.11.11"
 video: true
