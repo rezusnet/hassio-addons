@@ -1,3 +1,5 @@
+## 10.11.13 (27-04-2026)
+- Minor bugs fixed
 ## 10.11.8ubu2404-ls29 (2026-04-27)
 - Update to latest version from linuxserver/docker-jellyfin
 
