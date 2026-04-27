@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-26",
+  "last_update": "2026-04-27",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "jellyfin",
   "source": "github",
   "upstream_repo": "linuxserver/docker-jellyfin",
-  "upstream_version": "v10.11.8"
+  "upstream_version": "10.11.8ubu2404-ls29"
 }
