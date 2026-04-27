@@ -1,0 +1,49 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+set -euo pipefail
+
+bashio::log.info "Setting up fail2ban HA integration"
+
+if bashio::config.has_value "VERBOSITY"; then
+    VERBOSITY="$(bashio::config 'VERBOSITY')"
+    export VERBOSITY
+    bashio::log.info "Verbosity set to: ${VERBOSITY}"
+fi
+
+mkdir -p /remotelogs
+
+LOG_PATHS_JSON="$(bashio::config 'log_paths')"
+LOG_COUNT=0
+
+while IFS= read -r entry; do
+    [ -z "${entry}" ] && continue
+    NAME="$(echo "${entry}" | jq -r '.name // empty')"
+    PATH_VAL="$(echo "${entry}" | jq -r '.path // empty')"
+    [ -z "${NAME}" ] || [ -z "${PATH_VAL}" ] && continue
+
+    TARGET="/remotelogs/${NAME}"
+    mkdir -p "${TARGET}"
+
+    if [ -d "${PATH_VAL}" ]; then
+        mount --bind "${PATH_VAL}" "${TARGET}" 2>/dev/null && \
+            mount -o remount,ro,bind "${TARGET}" 2>/dev/null && \
+            bashio::log.info "Mounted ${PATH_VAL} -> ${TARGET} (ro)" && \
+            LOG_COUNT=$((LOG_COUNT + 1)) || \
+            bashio::log.warning "Failed to mount ${PATH_VAL} -> ${TARGET}"
+    else
+        bashio::log.warning "Log path ${PATH_VAL} does not exist, skipping"
+    fi
+done < <(echo "${LOG_PATHS_JSON}" | jq -c '.[] // empty' 2>/dev/null)
+
+if [ -d "/homeassistant" ]; then
+    HA_LOG="/homeassistant/home-assistant.log"
+    if [ -f "${HA_LOG}" ]; then
+        mkdir -p /remotelogs/homeassistant
+        mount --bind "$(dirname "${HA_LOG}")" /remotelogs/homeassistant 2>/dev/null && \
+            mount -o remount,ro,bind /remotelogs/homeassistant 2>/dev/null && \
+            bashio::log.info "Mounted HA logs -> /remotelogs/homeassistant (ro)" || \
+            bashio::log.warning "Failed to mount HA logs"
+    fi
+fi
+
+bashio::log.info "Log mount setup complete (${LOG_COUNT} custom paths configured)"

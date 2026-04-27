@@ -1,0 +1,8 @@
+{
+  "slug": "fail2ban",
+  "upstream_repo": "linuxserver/docker-fail2ban",
+  "docker_image": "lscr.io/linuxserver/fail2ban",
+  "docker_tag": "latest",
+  "upstream_version": "",
+  "paused": false
+}
