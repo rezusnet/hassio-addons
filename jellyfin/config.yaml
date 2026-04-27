@@ -47,7 +47,7 @@ host_network: true
 icon: icon.png
 image: ghcr.io/rezusnet/jellyfin-{arch}
 ingress: true
-ingress_port: 0
+ingress_port: 8096
 ingress_stream: true
 init: false
 map:
@@ -100,5 +100,5 @@ schema:
 slug: jellyfin
 udev: true
 url: https://jellyfin.org
-version: "10.11.8ubu2404-ls29"
+version: "10.11.13"
 video: true
