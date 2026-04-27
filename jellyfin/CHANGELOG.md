@@ -1,4 +1,10 @@
 
+## 10.11.12 (27-04-2026)
+
+- Force rebuild to pick up fixed 00-banner.sh (Docker layer caching prevented
+  the banner fix from being included in 10.11.10/10.11.11)
+- Add cache-bust ARG to prevent stale module downloads
+
 ## 10.11.11 (27-04-2026)
 
 - Rebuild with fixed 00-banner.sh
