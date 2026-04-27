@@ -1,0 +1,35 @@
+homeassistant: "2024.1.0"
+name: "phpMyAdmin"
+description: "Web interface for MySQL/MariaDB database management"
+url: "https://github.com/linuxserver/docker-phpmyadmin"
+arch:
+  - aarch64
+  - amd64
+slug: "phpmyadmin"
+version: "1.0.0"
+webui: "http://[HOST]:[PORT:80]"
+ingress: true
+ingress_port: 80
+panel_icon: "mdi:database"
+panel_title: "phpMyAdmin"
+startup: "application"
+boot: "auto"
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  PMA_ARBITRARY: true
+  PMA_ABSOLUTE_URI: ""
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  PMA_ARBITRARY: bool
+  PMA_ABSOLUTE_URI: str?
+ports:
+  80/tcp: 80
+ports_description:
+  80/tcp: "phpMyAdmin web frontend"
+

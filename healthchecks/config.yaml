@@ -1,0 +1,85 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Healthchecks is a cron job monitoring service. It listens for pings from
+  your cron jobs and alerts when they don't arrive on schedule. Supports
+  email, Slack, webhook, and Pushover notifications.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/healthchecks-{arch}
+ingress: true
+ingress_port: 8000
+ingress_stream: true
+map:
+  - addon_config:rw
+icon: icon.png
+name: Healthchecks
+options:
+  env_vars: []
+  TZ: ""
+  SECRET_KEY: ""
+  SITE_ROOT: ""
+  SITE_NAME: Healthchecks
+  SUPERUSER_EMAIL: admin@example.com
+  SUPERUSER_PASSWORD: ""
+  APPRISE_ENABLED: false
+  PING_EMAIL_DOMAIN: ""
+  EMAIL_HOST: ""
+  EMAIL_PORT: 25
+  EMAIL_HOST_USER: ""
+  EMAIL_HOST_PASSWORD: ""
+  EMAIL_USE_TLS: false
+  DEFAULT_FROM_EMAIL: ""
+  ALLOWED_HOSTS: ""
+  CSRF_TRUSTED_ORIGINS: ""
+  INTEGRATIONS_ALLOW_PRIVATE_IPS: false
+  RP_ID: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  panel_icon: mdi:heart-pulse
+ports:
+  8000/tcp: 8000
+  2525/tcp: null
+ports_description:
+  8000/tcp: Web UI (ingress enabled)
+  2525/tcp: Inbound SMTP pings (optional)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  TZ: str?
+  SECRET_KEY: password
+  SITE_ROOT: str?
+  SITE_NAME: str?
+  SUPERUSER_EMAIL: email
+  SUPERUSER_PASSWORD: password
+  APPRISE_ENABLED: bool?
+  PING_EMAIL_DOMAIN: str?
+  EMAIL_HOST: str?
+  EMAIL_PORT: int?
+  EMAIL_HOST_USER: str?
+  EMAIL_HOST_PASSWORD: password?
+  EMAIL_USE_TLS: bool?
+  DEFAULT_FROM_EMAIL: str?
+  ALLOWED_HOSTS: str?
+  CSRF_TRUSTED_ORIGINS: str?
+  INTEGRATIONS_ALLOW_PRIVATE_IPS: bool?
+  RP_ID: str?
+  DEBUG: bool?
+  SITE_LOGO_URL: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  panel_icon: str
+slug: healthchecks
+url: https://github.com/healthchecks/healthchecks
+version: "1.0.0"
+

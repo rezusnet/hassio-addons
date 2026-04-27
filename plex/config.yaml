@@ -1,0 +1,79 @@
+homeassistant: "2024.1.0"
+name: Plex
+description: >
+  Plex Media Server — organizes video, music and photos from personal
+  media libraries and streams them to smart TVs, streaming boxes and
+  mobile devices.
+slug: plex
+url: https://github.com/linuxserver/docker-plex
+arch:
+  - amd64
+  - aarch64
+image: ghcr.io/rezusnet/plex-{arch}
+version: "1.0.0"
+init: false
+
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: Etc/UTC
+  VERSION: docker
+  PLEX_CLAIM: ""
+  env_vars: []
+
+schema:
+  PUID: int
+  PGID: int
+  TZ: str?
+  VERSION: str?
+  PLEX_CLAIM: str?
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+
+host_network: true
+
+ports:
+  32400/tcp: 32400
+  1900/udp: 1900
+  5353/udp: 5353
+  8324/tcp: 8324
+  32410/udp: 32410
+  32412/udp: 32412
+  32413/udp: 32413
+  32414/udp: 32414
+  32469/tcp: 32469
+
+ports_description:
+  32400/tcp: "Plex Media Server Web Interface"
+  1900/udp: "Plex DLNA Server"
+  5353/udp: "mDNS discovery"
+  8324/tcp: "Plex for Roku via Plex Companion"
+  32410/udp: "GDM network discovery"
+  32412/udp: "GDM network discovery"
+  32413/udp: "GDM network discovery"
+  32414/udp: "GDM network discovery"
+  32469/tcp: "Plex DLNA Server HTTP"
+
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+
+environment:
+  VERSION: docker
+  HOME: /config
+
+webui: "http://[HOST]:[PORT:32400]/web"
+ingress: false
+panel_icon: mdi:plex
+panel_admin: false
+
+backup_exclude:
+  - "**/Cache/**"
+  - "**/Plug-in Support/Caches/**"
+  - "**/Logs/**"
+  - "**/Crash Reports/**"
+  - "**/Diagnostics/**"
+

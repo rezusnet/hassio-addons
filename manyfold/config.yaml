@@ -1,0 +1,57 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+description:
+  Self-hosted 3D model file manager for STL/OBJ/3MF files. Organizes, tags,
+  and previews 3D printing models. Based on the linuxserver.io image.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/manyfold-{arch}
+ingress: true
+ingress_port: 3214
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+  - media:rw
+name: Manyfold
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  database_url: "sqlite3:/config/manyfold.sqlite3"
+  redis_url: ""
+  secret_key_base: ""
+  library_path: /share/manyfold/models
+panel_admin: false
+panel_icon: mdi:cube-outline
+ports:
+  3214/tcp: 3214
+ports_description:
+  3214/tcp: Web Interface
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  TZ: str?
+  database_url: str?
+  redis_url: str?
+  secret_key_base: password?
+  library_path: str
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+slug: manyfold
+url: https://manyfold.app
+version: "1.0.0"
+

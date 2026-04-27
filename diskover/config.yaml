@@ -1,0 +1,71 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description: >
+  Diskover is an open source file system indexer that uses Elasticsearch
+  to index and manage data across heterogeneous storage systems. Visualize
+  disk usage, find duplicates, and manage storage on your HA setup.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/diskover-{arch}
+ingress: true
+ingress_port: 80
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+name: Diskover
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/diskover
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  ES_HOST: elasticsearch
+  ES_PORT: 9200
+  DOCKER_MODS: []
+panel_icon: mdi:harddisk
+ports:
+  80/tcp: 80
+ports_description:
+  80/tcp: Web UI
+privileged:
+  - SYS_ADMIN
+  - DAC_READ_SEARCH
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  ES_HOST: str
+  ES_PORT: int
+  DOCKER_MODS:
+    - match(^linuxserver/mods:diskover-[a-z0-9-]+$)?
+slug: diskover
+udev: true
+url: https://github.com/diskoverdata/diskover-community
+version: "1.0.0"
+

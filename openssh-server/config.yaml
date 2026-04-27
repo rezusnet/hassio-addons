@@ -1,0 +1,39 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "OpenSSH Server"
+description: "Sandboxed SSH server for secure remote access"
+url: "https://github.com/linuxserver/docker-openssh-server"
+arch:
+  - aarch64
+  - amd64
+slug: "openssh-server"
+version: "1.0.0"
+startup: "application"
+boot: "auto"
+map:
+  - config:rw
+  - share:rw
+  - media:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  USER_NAME: "linuxserver.io"
+  PUBLIC_KEY: ""
+  PASSWORD_ACCESS: false
+  USER_PASSWORD: ""
+  SUDO_ACCESS: false
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  USER_NAME: str
+  PUBLIC_KEY: str
+  PASSWORD_ACCESS: bool
+  USER_PASSWORD: password
+  SUDO_ACCESS: bool
+ports:
+  2222/tcp: 2222
+ports_description:
+  2222/tcp: "SSH server port"
+

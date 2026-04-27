@@ -1,0 +1,15 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:tautulli-[a-z0-9-]+$)?
+
+slug: tautulli
+version: "1.0.0"

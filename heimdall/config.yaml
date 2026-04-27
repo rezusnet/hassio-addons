@@ -1,0 +1,58 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Heimdall Application Dashboard — organise all your links to web applications
+  in a single place. Use it as your browser start page with integrated search.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/heimdall-{arch}
+ingress: true
+ingress_port: 8080
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+  - ssl
+name: Heimdall
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /config/heimdall
+  TZ: ""
+  ALLOW_INTERNAL_REQUESTS: false
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_icon: mdi:view-dashboard-outline
+ports:
+  80/tcp: null
+  443/tcp: null
+ports_description:
+  80/tcp: HTTP web interface (optional, not required for Ingress)
+  443/tcp: HTTPS web interface (optional, not required for Ingress)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  ALLOW_INTERNAL_REQUESTS: bool
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+slug: heimdall
+udev: true
+url: https://heimdall.site
+version: "1.0.0"
+

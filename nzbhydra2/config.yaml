@@ -1,0 +1,31 @@
+homeassistant: "2024.1.0"
+name: NZBHydra2
+description: NZB meta search engine — unified search across multiple NZB indexers
+version: "1.0.0"
+slug: nzbhydra2
+url: https://github.com/linuxserver/docker-nzbhydra2
+arch:
+  - amd64
+  - aarch64
+image: ghcr.io/rezusnet/nzbhydra2-{arch}
+ports:
+  5076/tcp: 5076
+ports_description:
+  5076/tcp: NZBHydra2 WebUI
+map:
+  - addon_config:rw
+  - share:rw
+environment:
+  PUID: "0"
+  PGID: "0"
+options:
+  PUID: 0
+  PGID: 0
+  TZ: "Etc/UTC"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str?
+ingress: false
+panel_icon: mdi:search-web
+

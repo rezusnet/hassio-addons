@@ -1,0 +1,34 @@
+homeassistant: "2024.1.0"
+name: "OSCam"
+description: "Open Source Conditional Access Module for TV card descrambling"
+url: "https://github.com/linuxserver/docker-oscam"
+arch:
+  - aarch64
+  - amd64
+slug: "oscam"
+version: "1.0.0"
+webui: "http://[HOST]:[PORT:8888]"
+ingress: true
+ingress_port: 8888
+panel_icon: "mdi:television-classic"
+panel_title: "OSCam"
+startup: "application"
+boot: "auto"
+map:
+  - config:rw
+devices:
+  - /dev/ttyUSB0
+  - /dev/bus/usb
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+ports:
+  8888/tcp: 8888
+ports_description:
+  8888/tcp: "OSCam Web UI"
+

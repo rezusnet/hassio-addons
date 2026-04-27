@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-27",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "nginx",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-nginx",
+  "upstream_version": "0.0.0"
+}

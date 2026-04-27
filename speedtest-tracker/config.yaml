@@ -1,0 +1,66 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Speedtest Tracker runs regular internet speed tests against Ookla's Speedtest
+  service and graphs results over time. Track download/upload speeds and latency
+  to verify ISP performance.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/speedtest-tracker-{arch}
+ingress: true
+ingress_port: 80
+ingress_stream: true
+map:
+  - addon_config:rw
+icon: icon.png
+name: Speedtest Tracker
+options:
+  env_vars: []
+  TZ: ""
+  APP_KEY: ""
+  APP_URL: ""
+  DB_CONNECTION: sqlite
+  SPEEDTEST_SCHEDULE: "0 */6 * * *"
+  SPEEDTEST_SERVERS: ""
+  DISPLAY_TIMEZONE: ""
+  PRUNE_RESULTS_OLDER_THAN: 0
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  panel_icon: mdi:speedometer
+ports:
+  80/tcp: 80
+ports_description:
+  80/tcp: Web UI (ingress enabled)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  TZ: str?
+  APP_KEY: password
+  APP_URL: str?
+  DB_CONNECTION: list(sqlite|pgsql|mysql)
+  SPEEDTEST_SCHEDULE: str?
+  SPEEDTEST_SERVERS: str?
+  DISPLAY_TIMEZONE: str?
+  PRUNE_RESULTS_OLDER_THAN: int?
+  DB_HOST: str?
+  DB_PORT: int?
+  DB_DATABASE: str?
+  DB_USERNAME: str?
+  DB_PASSWORD: password?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  panel_icon: str
+slug: speedtest-tracker
+url: https://github.com/alexjustesen/speedtest-tracker
+version: "1.0.0"
+

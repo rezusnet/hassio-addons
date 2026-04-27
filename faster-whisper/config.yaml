@@ -1,0 +1,45 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Fast AI-powered speech transcription using OpenAI's Whisper model with
+  CTranslate2 optimization. Provides a Wyoming protocol server for Home
+  Assistant Assist voice integration.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/faster-whisper-{arch}
+map:
+  - addon_config:rw
+name: Faster Whisper
+options:
+  env_vars: []
+  TZ: ""
+  WHISPER_MODEL: "auto"        # tiny, tiny.en, base, base.en, small, small.en,
+                               # medium, medium.en, large-v1, large-v2, large-v3,
+                               # large, distil-large-v2, distil-large-v3,
+                               # distil-medium.en, distil-small.en, auto
+  WHISPER_LANG: "auto"         # 2-char language code or "auto"
+  WHISPER_BEAM: 1              # Number of candidates for transcription
+  DEBUG: false
+  LOCAL_ONLY: false
+panel_icon: mdi:microphone-message
+ports:
+  10300/tcp: 10300
+ports_description:
+  10300/tcp: Wyoming protocol port
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  TZ: str?
+  WHISPER_MODEL: str
+  WHISPER_LANG: str
+  WHISPER_BEAM: int
+  DEBUG: bool
+  LOCAL_ONLY: bool
+slug: faster-whisper
+url: https://github.com/SYSTRAN/faster-whisper
+version: "1.0.0"
+

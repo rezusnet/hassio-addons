@@ -1,0 +1,29 @@
+homeassistant: "2024.1.0"
+name: LibreSpeed
+description: Self-hosted speed test server — lightweight HTML5/JS speed test
+slug: librespeed
+url: https://github.com/linuxserver/docker-librespeed
+arch:
+  - amd64
+  - aarch64
+image: ghcr.io/rezusnet/librespeed-{arch}
+version: "1.0.0"
+map:
+  - addon_config:rw
+ports:
+  80/tcp: 8089
+ports_description:
+  80/tcp: LibreSpeed web interface (not required for Ingress)
+ingress: true
+ingress_port: 80
+ingress_stream: true
+panel_admin: false
+panel_icon: mdi:speedometer
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  PASSWORD: "PASSWORD"
+  CUSTOM_RESULTS: false
+  DB_TYPE: "sqlite"
+

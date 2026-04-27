@@ -1,0 +1,48 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  DokuWiki is a simple-to-use, standards-compliant wiki that doesn't require
+  a database. All data is stored in plain text files. Features a clean syntax,
+  built-in access controls, LDAP authentication support, and extensive plugins.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/dokuwiki-{arch}
+ingress: true
+ingress_port: 80
+ingress_stream: true
+map:
+  - addon_config:rw
+name: DokuWiki
+options:
+  env_vars: []
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  DOCKER_MODS: []
+panel_icon: mdi:notebook
+ports:
+  80/tcp: 8082
+ports_description:
+  80/tcp: Web interface (optional if using Ingress)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:dokuwiki-[a-z0-9-]+$)?
+slug: dokuwiki
+url: https://www.dokuwiki.org/dokuwiki/
+version: "1.0.0"
+

@@ -1,0 +1,34 @@
+homeassistant: "2024.1.0"
+name: "Mylar3"
+description: "Automated Comic Book downloader (cbr/cbz) for NZB & torrents"
+url: "https://github.com/linuxserver/docker-mylar3"
+arch:
+  - aarch64
+  - amd64
+slug: "mylar3"
+version: "1.0.0"
+webui: "http://[HOST]:[PORT:8090]"
+ingress: true
+ingress_port: 8090
+ingress_stream: true
+panel_icon: "mdi:book-open-page-variant"
+panel_title: "Mylar3"
+startup: "application"
+boot: "auto"
+map:
+  - config:rw
+  - media:rw
+  - share:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+ports:
+  8090/tcp: 8090
+ports_description:
+  8090/tcp: "Mylar3 Web UI"
+

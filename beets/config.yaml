@@ -1,0 +1,67 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description: >
+  Beets is a music library manager with automatic metadata tagging via
+  MusicBrainz. Includes a web-based player plugin and supports powerful
+  plugins for organization, transcoding, and more.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/beets-{arch}
+ingress: true
+ingress_port: 8337
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+name: Beets
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/beets
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  DOCKER_MODS: []
+panel_icon: mdi:music-note
+ports:
+  8337/tcp: 8337
+ports_description:
+  8337/tcp: Web UI (Beets web plugin)
+privileged:
+  - SYS_ADMIN
+  - DAC_READ_SEARCH
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:beets-[a-z0-9-]+$)?
+slug: beets
+udev: true
+url: http://beets.io/
+version: "1.0.0"
+

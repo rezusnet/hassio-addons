@@ -1,0 +1,38 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "Your Spotify"
+description: "Self-hosted Spotify listening history dashboard with statistics"
+url: "https://github.com/linuxserver/docker-your_spotify"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/your-spotify-{arch}
+ports:
+  80/tcp: 8080
+  443/tcp: 8443
+ports_description:
+  80/tcp: "Your Spotify web UI (HTTP)"
+  443/tcp: "Your Spotify web UI (HTTPS)"
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  APP_URL: "http://localhost"
+  SPOTIFY_PUBLIC: ""
+  SPOTIFY_SECRET: ""
+  CORS: "http://localhost:80,https://localhost:443"
+  MONGO_ENDPOINT: "mongodb://mongo:27017/your_spotify"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  APP_URL: str
+  SPOTIFY_PUBLIC: str
+  SPOTIFY_SECRET: password
+  CORS: str
+  MONGO_ENDPOINT: str
+
+slug: your-spotify
+version: "1.0.0"

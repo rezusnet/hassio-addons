@@ -1,0 +1,27 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "Home Assistant (LSIO)"
+description: "Home Assistant Core packaged by LinuxServer.io — for secondary instances or Docker-native setups"
+url: "https://github.com/linuxserver/docker-homeassistant"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/home-assistant-(lsio)-{arch}
+webui: "http://[HOST]:[PORT:8123]"
+ports:
+  8123/tcp: 8123
+ports_description:
+  8123/tcp: "Home Assistant WebUI"
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+
+slug: home-assistant-(lsio)
+version: "1.0.0"

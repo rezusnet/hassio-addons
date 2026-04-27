@@ -1,0 +1,30 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: WireGuard
+description: Fast, modern VPN server using the WireGuard protocol
+slug: wireguard
+url: https://github.com/linuxserver/docker-wireguard
+arch:
+  - amd64
+  - aarch64
+image: ghcr.io/rezusnet/wireguard-{arch}
+version: "1.0.0"
+map:
+  - addon_config:rw
+ports:
+  51820/udp: 51820
+ports_description:
+  51820/udp: WireGuard VPN port
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  SERVERURL: "auto"
+  SERVERPORT: 51820
+  PEERS: 1
+  PEERDNS: "auto"
+  INTERNAL_SUBNET: "10.13.13.0"
+  ALLOWEDIPS: "0.0.0.0/0"
+  PERSISTENTKEEPALIVE_PEERS: ""
+  LOG_CONFS: true
+

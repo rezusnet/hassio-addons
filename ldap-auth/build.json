@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "lscr.io/linuxserver/ldap-auth:arm64v8-latest",
+    "amd64": "lscr.io/linuxserver/ldap-auth:amd64-latest"
+  }
+}

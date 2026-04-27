@@ -1,0 +1,50 @@
+arch:
+  - aarch64
+  - amd64
+description:
+  SAT>IP server for TV tuner cards (DVB-S/S2/T/T2/C/C2/ATSC/ISDB-T).
+  Shares tuners over the network for use with tvheadend, VLC, and other SAT>IP clients.
+  Based on the linuxserver.io image.
+devices:
+  - /dev/dvb
+  - /dev/dvb/adapter0
+  - /dev/dvb/adapter1
+  - /dev/dvb/adapter2
+  - /dev/dvb/adapter3
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/minisatip-{arch}
+init: false
+map:
+  - addon_config:rw
+name: Minisatip
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  run_opts: ""
+panel_admin: false
+panel_icon: mdi:satellite-variant
+ports:
+  8875/tcp: 8875
+  554/tcp: 554
+  1900/udp: 1900
+ports_description:
+  8875/tcp: Status Page WebUI
+  554/tcp: RTSP Streaming Port
+  1900/udp: SSDP Device Discovery
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  TZ: str?
+  run_opts: str?
+slug: minisatip
+url: https://github.com/catalinii/minisatip
+version: "1.0.0"
+

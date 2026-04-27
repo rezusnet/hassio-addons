@@ -1,0 +1,27 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "HTPC Manager"
+description: "Combines all your media server web interfaces into one unified dashboard"
+url: "https://github.com/linuxserver/docker-htpcmanager"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/htpc-manager-{arch}
+webui: "http://[HOST]:[PORT:8085]"
+ports:
+  8085/tcp: 8085
+ports_description:
+  8085/tcp: "HTPC Manager WebUI"
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+
+slug: htpc-manager
+version: "1.0.0"

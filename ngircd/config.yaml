@@ -1,0 +1,27 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "ngIRCd"
+description: "Lightweight Internet Relay Chat server for small/private networks"
+url: "https://github.com/linuxserver/docker-ngircd"
+arch:
+  - aarch64
+  - amd64
+slug: "ngircd"
+version: "1.0.0"
+startup: "application"
+boot: "auto"
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+ports:
+  6667/tcp: 6667
+ports_description:
+  6667/tcp: "IRC server port"
+

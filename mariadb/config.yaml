@@ -1,0 +1,33 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "MariaDB"
+description: "MySQL-compatible database server for Home Assistant add-ons"
+version: "1.0.0"
+slug: "mariadb"
+url: "https://github.com/linuxserver/docker-mariadb"
+arch:
+  - amd64
+  - aarch64
+startup: "system"
+boot: "auto"
+map:
+  - config:rw
+options:
+  TZ: "Etc/UTC"
+  mysql_root_password: ""
+  mysql_database: ""
+  mysql_user: ""
+  mysql_password: ""
+  remote_sql: ""
+  cli_opts: ""
+  custom_cnf: ""
+schema:
+  TZ: str
+  mysql_root_password: password
+  mysql_database: str?
+  mysql_user: str?
+  mysql_password: password?
+  remote_sql: str?
+  cli_opts: str?
+  custom_cnf: str?
+

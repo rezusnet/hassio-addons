@@ -1,0 +1,64 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Ubiquiti UniFi Network Application. Manages UniFi networking equipment
+  (access points, switches, gateways). Requires an external MongoDB database.
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/unifi-network-application-{arch}
+ingress: true
+ingress_port: 8443
+ingress_ssl: true
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+name: UniFi Network Application
+options:
+  PUID: 0
+  PGID: 0
+  TZ: ""
+  MONGO_USER: unifi
+  MONGO_PASS: ""
+  MONGO_HOST: ""
+  MONGO_PORT: 27017
+  MONGO_DBNAME: unifi
+  MONGO_AUTHSOURCE: admin
+  MEM_LIMIT: 1024
+  MEM_STARTUP: 1024
+  env_vars: []
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+schema:
+  PUID: int
+  PGID: int
+  TZ: str?
+  MONGO_USER: str
+  MONGO_PASS: password
+  MONGO_HOST: str
+  MONGO_PORT: int
+  MONGO_DBNAME: str
+  MONGO_AUTHSOURCE: str
+  MEM_LIMIT: int?
+  MEM_STARTUP: int?
+  MONGO_TLS: bool?
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: password?
+  cifsdomain: str?
+slug: unifi-network-application
+startup: application
+boot: auto
+url: https://github.com/rezusnet/hassio-addons
+version: "1.0.0"
+

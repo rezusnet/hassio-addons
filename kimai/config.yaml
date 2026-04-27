@@ -1,0 +1,55 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+description:
+  Professional-grade time-tracking application for freelancers and agencies.
+  Based on the linuxserver.io image.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/kimai-{arch}
+ingress: true
+ingress_port: 80
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+name: Kimai
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  database: MariaDB_addon
+panel_admin: false
+panel_icon: mdi:timer-outline
+ports:
+  80/tcp: 8090
+  443/tcp: null
+ports_description:
+  80/tcp: HTTP Web Interface
+  443/tcp: HTTPS Web Interface (disabled by default)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  TZ: str?
+  database: list(MariaDB_addon|Mysql_external)
+  DATABASE_URL: str?
+  TRUSTED_PROXIES: str?
+  DB_HOST: str?
+  DB_PORT: int?
+  DB_USERNAME: str?
+  DB_PASSWORD: password?
+  DB_DATABASE: str?
+services:
+  - mysql:want
+slug: kimai
+url: https://kimai.org
+version: "1.0.0"
+

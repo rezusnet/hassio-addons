@@ -1,0 +1,23 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "AdGuard Home Sync"
+description: "Synchronize AdGuard Home config to replica instances"
+version: "1.0.0"
+slug: "adguardhome-sync"
+url: "https://github.com/linuxserver/docker-adguardhome-sync"
+arch:
+  - amd64
+  - aarch64
+startup: "application"
+boot: "auto"
+map:
+  - config:rw
+options:
+  TZ: "Etc/UTC"
+  config_yaml: ""
+  api_port: 8080
+schema:
+  TZ: str
+  config_yaml: str
+  api_port: port
+

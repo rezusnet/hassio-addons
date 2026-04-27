@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-27",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "netbox",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-netbox",
+  "upstream_version": "0.0.0"
+}

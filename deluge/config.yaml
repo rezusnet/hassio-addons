@@ -1,0 +1,105 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description:
+  Lightweight, free, cross-platform BitTorrent client with plugin-based
+  architecture. Supports thin client mode, full encryption, WebUI, and more.
+devices:
+  - /dev/dri
+  - /dev/dri/card0
+  - /dev/dri/card1
+  - /dev/dri/renderD128
+  - /dev/vchiq
+  - /dev/video10
+  - /dev/video11
+  - /dev/video12
+  - /dev/video13
+  - /dev/video14
+  - /dev/video15
+  - /dev/video16
+  - /dev/ttyUSB0
+  - /dev/sda
+  - /dev/sdb
+  - /dev/sdc
+  - /dev/sdd
+  - /dev/sde
+  - /dev/sdf
+  - /dev/sdg
+  - /dev/nvme0n1
+  - /dev/nvme0n1p1
+  - /dev/nvme0n1p2
+  - /dev/nvme0n1p3
+  - /dev/nvme1n1
+  - /dev/nvme1n1p1
+  - /dev/nvme1n1p2
+  - /dev/nvme1n1p3
+  - /dev/mmcblk
+  - /dev/fuse
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/deluge-{arch}
+ingress: true
+ingress_port: 8112
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+name: Deluge
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/deluge
+  TZ: ""
+  DELUGE_LOGLEVEL: info
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_admin: false
+panel_icon: mdi:download
+ports:
+  6881/tcp: 6881
+  6881/udp: 6881
+  8112/tcp: 8112
+  58846/tcp: 58846
+ports_description:
+  6881/tcp: Torrent peer port (TCP)
+  6881/udp: Torrent peer port (UDP)
+  8112/tcp: Web UI (not required for Ingress)
+  58846/tcp: Thin client daemon port (optional)
+privileged:
+  - SYS_ADMIN
+  - DAC_READ_SEARCH
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  DELUGE_LOGLEVEL: list(error|warning|info|debug|trace)?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: password?
+  cifsdomain: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:[a-z0-9-]+$)?
+slug: deluge
+udev: true
+url: https://deluge-torrent.org
+version: "1.0.0"
+

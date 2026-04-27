@@ -1,0 +1,22 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: DuckDNS
+description: Free dynamic DNS client — updates DuckDNS entries when your IP changes
+slug: duckdns
+url: https://github.com/linuxserver/docker-duckdns
+arch:
+  - amd64
+  - aarch64
+image: ghcr.io/rezusnet/duckdns-{arch}
+version: "1.0.0"
+map:
+  - addon_config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  SUBDOMAINS: "mysubdomain"
+  TOKEN: ""
+  UPDATE_IP: "ipv4"
+  LOG_FILE: false
+

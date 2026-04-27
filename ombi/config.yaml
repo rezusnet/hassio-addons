@@ -1,0 +1,63 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description: Media request management system. Allows users to request movies/TV shows for Plex/Emby with user management and notifications.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/ombi-{arch}
+ingress: true
+ingress_port: 3579
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+name: Ombi
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/ombi
+  TZ: ""
+  BASE_URL: "/"
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  DOCKER_MODS: []
+  panel_icon: mdi:movie-open-plus
+ports:
+  3579/tcp: 3579
+ports_description:
+  3579/tcp: Web interface
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  BASE_URL: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:ombi-[a-z0-9-]+$)?
+slug: ombi
+url: https://ombi.io
+version: "1.0.0"
+webui: http://[HOST]:[PORT:3579]
+

@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "lscr.io/linuxserver/your_spotify:arm64v8-latest",
+    "amd64": "lscr.io/linuxserver/your_spotify:amd64-latest"
+  }
+}

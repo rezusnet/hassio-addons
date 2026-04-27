@@ -1,0 +1,32 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "Wireshark"
+description: "Network protocol analyzer via web-based desktop interface (Selkies)"
+url: "https://github.com/linuxserver/docker-wireshark"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/wireshark-{arch}
+ports:
+  3000/tcp: 3000
+  3001/tcp: 3001
+ports_description:
+  3000/tcp: "Wireshark desktop GUI (HTTP, proxied only)"
+  3001/tcp: "Wireshark desktop GUI (HTTPS)"
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  CUSTOM_USER: ""
+  PASSWORD: ""
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  CUSTOM_USER: str?
+  PASSWORD: password?
+
+slug: wireshark
+version: "1.0.0"

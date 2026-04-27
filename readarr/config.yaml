@@ -1,0 +1,103 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description:
+  Book manager and automation (Sonarr for Ebooks). Monitors RSS feeds for new
+  releases, grabs, sorts, renames, and auto-upgrades book quality.
+devices:
+  - /dev/dri
+  - /dev/dri/card0
+  - /dev/dri/card1
+  - /dev/dri/renderD128
+  - /dev/vchiq
+  - /dev/video10
+  - /dev/video11
+  - /dev/video12
+  - /dev/video13
+  - /dev/video14
+  - /dev/video15
+  - /dev/video16
+  - /dev/ttyUSB0
+  - /dev/sda
+  - /dev/sdb
+  - /dev/sdc
+  - /dev/sdd
+  - /dev/sde
+  - /dev/sdf
+  - /dev/sdg
+  - /dev/nvme0n1
+  - /dev/nvme0n1p1
+  - /dev/nvme0n1p2
+  - /dev/nvme0n1p3
+  - /dev/nvme1n1
+  - /dev/nvme1n1p1
+  - /dev/nvme1n1p2
+  - /dev/nvme1n1p3
+  - /dev/nvme2n1
+  - /dev/nvme2n1p1
+  - /dev/nvme2n1p2
+  - /dev/nvme2n3p3
+  - /dev/mmcblk
+  - /dev/fuse
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+host_dbus: true
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/readarr-{arch}
+ingress: true
+ingress_port: 8787
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+name: Readarr
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/readarr
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  DOCKER_MODS: []
+panel_icon: mdi:book-open-page-variant
+ports:
+  8787/tcp: 8787
+ports_description:
+  8787/tcp: Web interface
+privileged:
+  - SYS_ADMIN
+  - DAC_READ_SEARCH
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:readarr-[a-z0-9-]+$)?
+slug: readarr
+udev: true
+url: https://github.com/Readarr/Readarr
+version: "1.0.0"
+video: true
+

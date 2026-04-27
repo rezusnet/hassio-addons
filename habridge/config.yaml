@@ -1,0 +1,55 @@
+arch:
+  - aarch64
+  - amd64
+description:
+  HaBridge emulates a Philips Hue bridge to control Home Assistant devices via
+  Amazon Echo, Google Home, and other Hue-compatible voice assistants and systems.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/habridge-{arch}
+ingress: true
+ingress_port: 8080
+ingress_stream: false
+map:
+  - addon_config:rw
+icon: icon.png
+name: HaBridge
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  SEC_KEY: ""
+  data_location: /config
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_icon: mdi:bridge
+ports:
+  8080/tcp: 8080
+  50000/tcp: 50000
+ports_description:
+  8080/tcp: HaBridge Web UI
+  50000/tcp: HaBridge UPnP/communication port
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  TZ: str?
+  SEC_KEY: password?
+  data_location: str
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+slug: habridge
+url: https://github.com/bwssytems/ha-bridge
+version: "1.0.0"
+

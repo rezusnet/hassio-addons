@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-27",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "manyfold",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-manyfold",
+  "upstream_version": "0.0.0"
+}

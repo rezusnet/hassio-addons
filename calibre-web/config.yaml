@@ -1,0 +1,52 @@
+homeassistant: "2024.1.0"
+name: Calibre-Web
+description: Web UI for browsing, reading and downloading eBooks from a Calibre library
+slug: calibre-web
+url: https://github.com/linuxserver/docker-calibre-web
+arch:
+  - amd64
+  - aarch64
+image: ghcr.io/rezusnet/calibre-web-{arch}
+version: "1.0.0"
+init: false
+
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: Etc/UTC
+  DOCKER_MODS: ""
+  OAUTHLIB_RELAX_TOKEN_SCOPE: ""
+  env_vars: []
+
+schema:
+  PUID: int
+  PGID: int
+  TZ: str?
+  DOCKER_MODS: str?
+  OAUTHLIB_RELAX_TOKEN_SCOPE: str?
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+
+ports:
+  8083/tcp: 8083
+
+ports_description:
+  8083/tcp: "Calibre-Web WebUI"
+
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+
+environment:
+  HOME: /config
+  FM_HOME: /config
+
+webui: "http://[HOST]:[PORT:8083]"
+ingress: true
+ingress_port: 8083
+ingress_stream: false
+panel_icon: mdi:book-open-page-variant
+panel_admin: false
+

@@ -1,0 +1,60 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "Doplarr"
+description: "Discord bot for requesting media on Sonarr/Radarr via Overseerr or direct *arr integration"
+url: "https://github.com/linuxserver/docker-doplarr"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/doplarr-{arch}
+ports: {}
+ports_description: {}
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  DISCORD_TOKEN: ""
+  OVERSEERR_API: ""
+  OVERSEERR_URL: "http://localhost:5055"
+  RADARR_API: ""
+  RADARR_URL: "http://localhost:7878"
+  SONARR_API: ""
+  SONARR_URL: "http://localhost:8989"
+  DISCORD_MAX_RESULTS: 25
+  DISCORD_REQUESTED_MSG_STYLE: ":plain"
+  SONARR_QUALITY_PROFILE: ""
+  RADARR_QUALITY_PROFILE: ""
+  SONARR_ROOTFOLDER: ""
+  RADARR_ROOTFOLDER: ""
+  SONARR_LANGUAGE_PROFILE: ""
+  OVERSEERR_DEFAULT_ID: ""
+  PARTIAL_SEASONS: true
+  LOG_LEVEL: ":info"
+  JAVA_OPTS: ""
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  DISCORD_TOKEN: str
+  OVERSEERR_API: str?
+  OVERSEERR_URL: str?
+  RADARR_API: str?
+  RADARR_URL: str?
+  SONARR_API: str?
+  SONARR_URL: str?
+  DISCORD_MAX_RESULTS: int?
+  DISCORD_REQUESTED_MSG_STYLE: list(:plain|:embed|:none)?
+  SONARR_QUALITY_PROFILE: str?
+  RADARR_QUALITY_PROFILE: str?
+  SONARR_ROOTFOLDER: str?
+  RADARR_ROOTFOLDER: str?
+  SONARR_LANGUAGE_PROFILE: str?
+  OVERSEERR_DEFAULT_ID: str?
+  PARTIAL_SEASONS: bool?
+  LOG_LEVEL: list(:debug|:info|:warn|:error|:fatal|:report)?
+  JAVA_OPTS: str?
+
+slug: doplarr
+version: "1.0.0"

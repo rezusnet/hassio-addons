@@ -1,0 +1,98 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description:
+  Self-hosted productivity platform providing file sync, calendar, contacts,
+  and collaborative document editing. Based on the linuxserver.io image.
+devices:
+  - /dev/dri
+  - /dev/dri/card0
+  - /dev/dri/card1
+  - /dev/dri/renderD128
+  - /dev/vchiq
+  - /dev/fuse
+environment:
+  PGID: "0"
+  PUID: "0"
+  NEXTCLOUD_PATH: /data/config/www/nextcloud
+  SKIP_DATA_DIRECTORY_PERMISSION_CHECK: "yes"
+  TRUSTED_PROXIES: "**"
+homeassistant: 2024.1.0
+host_dbus: true
+image: ghcr.io/rezusnet/nextcloud-{arch}
+ingress: true
+ingress_port: 443
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - homeassistant_config:rw
+  - share:rw
+  - media:rw
+  - ssl:rw
+  - backup:rw
+name: Nextcloud
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/nextcloud
+  trusted_domains: ""
+  certfile: fullchain.pem
+  keyfile: privkey.pem
+  use_own_certs: false
+  enable_thumbnails: true
+  Full_Text_Search: false
+  additional_apps: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_admin: false
+panel_icon: mdi:cloud
+ports:
+  443/tcp: 8099
+  80/tcp: null
+ports_description:
+  443/tcp: HTTPS Web Interface
+  80/tcp: HTTP Web Interface (disabled by default)
+privileged:
+  - SYS_ADMIN
+  - DAC_READ_SEARCH
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  trusted_domains: str?
+  certfile: str
+  keyfile: str
+  use_own_certs: bool
+  enable_thumbnails: bool
+  Full_Text_Search: bool?
+  additional_apps: str?
+  default_phone_region: match(^[A-Z]{2}$)?
+  elasticsearch_server: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  skip_permissions_check: bool?
+  disable_updates: bool?
+services:
+  - mysql:want
+slug: nextcloud
+uart: true
+udev: true
+url: https://nextcloud.com
+version: "1.0.0"
+

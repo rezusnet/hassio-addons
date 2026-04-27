@@ -1,0 +1,29 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "hiSHtory Server"
+description: "Server component for hiSHtory — a better shell history with end-to-end encrypted syncing"
+url: "https://github.com/linuxserver/docker-hishtory-server"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/hishtory-server-{arch}
+ports:
+  8080/tcp: 8080
+ports_description:
+  8080/tcp: "hiSHtory API server"
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  HISHTORY_SQLITE_DB: "/config/hishtory.db"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  HISHTORY_SQLITE_DB: str?
+  HISHTORY_POSTGRES_DB: str?
+
+slug: hishtory-server
+version: "1.0.0"

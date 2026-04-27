@@ -1,0 +1,66 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description: Photo gallery software for the web with powerful publishing and management features
+environment:
+  ATTACHED_DEVICES_PERMS: "/dev/dri /dev/vchiq /dev/vc-mem /dev/video1? -type c -o -type f"
+homeassistant: 2024.1.0
+icon: icon.png
+image: ghcr.io/rezusnet/piwigo-{arch}
+init: false
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+name: Piwigo
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/piwigo
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  DOCKER_MODS: []
+  gallery_path: /gallery
+  db_host: ""
+  db_port: "3306"
+  db_username: ""
+  db_password: ""
+  db_database: piwigo
+ports:
+  80/tcp: 8780
+ports_description:
+  80/tcp: Web interface
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:universal-[a-z0-9-]+$)?
+  gallery_path: str
+  db_host: str?
+  db_port: str?
+  db_username: str?
+  db_password: password?
+  db_database: str?
+slug: piwigo
+url: http://piwigo.org
+version: "1.0.0"
+

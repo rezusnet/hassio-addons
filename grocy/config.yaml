@@ -1,0 +1,54 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Grocy is an ERP system for your kitchen. Manage groceries, household chores,
+  batteries, meal planning and track your food waste.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/grocy-{arch}
+ingress: true
+ingress_port: 9283
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+  - ssl
+name: Grocy
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /config/grocy
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_icon: mdi:fridge-outline
+ports:
+  9283/tcp: 9283
+ports_description:
+  9283/tcp: Web interface (not required for Ingress)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+slug: grocy
+udev: true
+url: https://github.com/grocy/grocy
+version: "1.0.0"
+

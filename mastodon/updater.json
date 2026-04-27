@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-27",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "mastodon",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-mastodon",
+  "upstream_version": "0.0.0"
+}

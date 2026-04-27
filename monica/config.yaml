@@ -1,0 +1,67 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+description:
+  Personal CRM and relationship management tool. Organize contacts,
+  interactions, reminders, and notes about people in your life.
+  Based on the linuxserver.io image.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/monica-{arch}
+ingress: true
+ingress_port: 80
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+name: Monica
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  database: MariaDB_addon
+  app_url: "http://localhost"
+  app_disable_signup: true
+panel_admin: false
+panel_icon: mdi:account-heart
+ports:
+  80/tcp: 8091
+  443/tcp: null
+ports_description:
+  80/tcp: HTTP Web Interface
+  443/tcp: HTTPS Web Interface (disabled by default)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  TZ: str?
+  database: list(MariaDB_addon|Mysql_external)
+  DB_HOST: str?
+  DB_PORT: int?
+  DB_USERNAME: str?
+  DB_PASSWORD: password?
+  DB_DATABASE: str?
+  app_url: str?
+  TRUSTED_PROXIES: str?
+  app_disable_signup: bool
+  APP_ENV: list(local|production)?
+  certfile: str?
+  keyfile: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+services:
+  - mysql:want
+slug: monica
+url: https://github.com/monicahq/monica
+version: "1.0.0"
+

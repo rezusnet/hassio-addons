@@ -1,0 +1,31 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "SealSkin"
+description: "Self-hosted platform for streaming containerized desktop apps to browser"
+url: "https://github.com/linuxserver/docker-sealskin"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/sealskin-{arch}
+ports:
+  8443/tcp: 8443
+  8000/tcp: 8000
+ports_description:
+  8443/tcp: "HTTPS Sessions and API communication"
+  8000/tcp: "HTTP Fallback API communication (optional)"
+map:
+  - config:rw
+  - share:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  HOST_URL: ""
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  HOST_URL: str?
+
+slug: sealskin
+version: "1.0.0"

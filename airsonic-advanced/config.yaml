@@ -1,0 +1,74 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description: >
+  Airsonic Advanced is a free, web-based media streamer providing ubiquitous
+  access to your music. Stream to multiple players simultaneously, manage
+  playlists, podcasts, and share your library.
+devices:
+  - /dev/snd
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/airsonic-advanced-{arch}
+ingress: true
+ingress_port: 4040
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+name: Airsonic Advanced
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/airsonic-advanced
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  CONTEXT_PATH: ""
+  JAVA_OPTS: ""
+  DOCKER_MODS: []
+panel_icon: mdi:music-circle
+ports:
+  4040/tcp: 4040
+ports_description:
+  4040/tcp: Web UI
+privileged:
+  - SYS_ADMIN
+  - DAC_READ_SEARCH
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  CONTEXT_PATH: str?
+  JAVA_OPTS: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:airsonic-advanced-[a-z0-9-]+$)?
+slug: airsonic-advanced
+udev: true
+url: https://github.com/kagemomiji/airsonic-advanced
+version: "1.0.0"
+video: false
+

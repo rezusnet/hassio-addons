@@ -1,0 +1,41 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: Mastodon
+description: Self-hosted social network server based on ActivityPub
+slug: mastodon
+url: https://github.com/linuxserver/docker-mastodon
+arch:
+  - amd64
+  - aarch64
+image: ghcr.io/rezusnet/mastodon-{arch}
+version: "1.0.0"
+map:
+  - addon_config:rw
+ports:
+  80/tcp: 8080
+  443/tcp: 8443
+ports_description:
+  80/tcp: Mastodon web UI (HTTP)
+  443/tcp: Mastodon web UI (HTTPS)
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  LOCAL_DOMAIN: "example.com"
+  SECRET_KEY_BASE: ""
+  OTP_SECRET: ""
+  VAPID_PRIVATE_KEY: ""
+  VAPID_PUBLIC_KEY: ""
+  DB_HOST: "homeassistant"
+  DB_USER: "mastodon"
+  DB_NAME: "mastodon"
+  DB_PASS: ""
+  DB_PORT: 5432
+  REDIS_HOST: "homeassistant"
+  REDIS_PORT: 6379
+  SMTP_SERVER: "mail.example.com"
+  SMTP_PORT: 25
+  SMTP_LOGIN: ""
+  SMTP_PASSWORD: ""
+  SMTP_FROM_ADDRESS: "notifications@example.com"
+

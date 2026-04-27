@@ -1,0 +1,59 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Changedetection.io — website change detection and notification service.
+  Monitor web pages for changes and get notified via email, Slack, Discord,
+  Telegram and many more. Supports Playwright/Chrome for JS-rendered pages.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/changedetection-{arch}
+ingress: true
+ingress_port: 5000
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+  - ssl
+name: Changedetection.io
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /config/changedetection
+  TZ: ""
+  BASE_URL: ""
+  PLAYWRIGHT_DRIVER_URL: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_icon: mdi:vector-difference
+ports:
+  5000/tcp: 5000
+ports_description:
+  5000/tcp: Web UI (not required for Ingress)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  BASE_URL: str?
+  PLAYWRIGHT_DRIVER_URL: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+slug: changedetection
+udev: true
+url: https://github.com/dgtlmoon/changedetection.io
+version: "1.0.0"
+

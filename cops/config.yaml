@@ -1,0 +1,69 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description: >
+  COPS (Calibre OPDS and HTML Php Server) — lightweight web interface and
+  OPDS feed for your Calibre library. Browse, download, and read ebooks
+  directly from your browser. Supports epub in-browser viewing.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/cops-{arch}
+ingress: true
+ingress_port: 80
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+name: COPS
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/cops
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  DOCKER_MODS: []
+panel_icon: mdi:bookshelf
+ports:
+  80/tcp: 80
+  443/tcp: null
+ports_description:
+  80/tcp: Web UI (HTTP)
+  443/tcp: Web UI (HTTPS, optional)
+privileged:
+  - SYS_ADMIN
+  - DAC_READ_SEARCH
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:cops-[a-z0-9-]+$)?
+slug: cops
+udev: true
+url: https://github.com/mikespub-org/seblucas-cops
+version: "1.0.0"
+

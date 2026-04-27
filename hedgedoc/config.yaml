@@ -1,0 +1,35 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "HedgeDoc"
+description: "Real-time collaborative markdown notes — self-hosted, like Google Docs for markdown"
+version: "1.0.0"
+slug: "hedgedoc"
+url: "https://github.com/rezusnet/hassio-addons/tree/master/hedgedoc"
+arch:
+  - amd64
+  - arm64
+startup: "application"
+boot: "auto"
+map:
+  - config:rw
+  - ssl
+ports:
+  3000/tcp: 3000
+options:
+  db_type: "sqlite"
+  cmd_domain: "localhost"
+  tz: "Etc/UTC"
+schema:
+  db_type: "list(sqlite|mariadb|mysql|postgres)"
+  db_host: "str?"
+  db_port: "int?"
+  db_user: "str?"
+  db_pass: "password?"
+  db_name: "str?"
+  cmd_domain: "str"
+  cmd_url_addport: "bool?"
+  cmd_protocol_usessl: "bool?"
+  cmd_port: "int?"
+  cmd_allow_origin: "str?"
+  tz: "str"
+

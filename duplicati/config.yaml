@@ -1,0 +1,66 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+description:
+  Backup client that stores encrypted, incremental, compressed backups on
+  cloud storage services and remote file servers. Supports S3, B2, Google
+  Drive, OneDrive, FTP, SSH, WebDAV, and many more.
+devices:
+  - /dev/fuse
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/duplicati-{arch}
+ingress: true
+ingress_port: 8200
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+  - homeassistant_config:rw
+  - backup:rw
+name: Duplicati
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  SETTINGS_ENCRYPTION_KEY: ""
+  DUPLICATI__WEBSERVICE_PASSWORD: ""
+  CLI_ARGS: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_icon: mdi:backup-restore
+ports:
+  8200/tcp: 8200
+ports_description:
+  8200/tcp: WebUI (HTTP)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  TZ: str?
+  SETTINGS_ENCRYPTION_KEY: str?
+  DUPLICATI__WEBSERVICE_PASSWORD: str?
+  CLI_ARGS: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+slug: duplicati
+udev: true
+url: https://www.duplicati.com
+version: "1.0.0"
+

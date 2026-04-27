@@ -1,0 +1,32 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "Telegram"
+description: "Telegram messaging desktop app accessible via web browser (Selkies/KasmVNC)"
+url: "https://github.com/linuxserver/docker-telegram"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/telegram-{arch}
+ports:
+  3000/tcp: 3000
+  3001/tcp: 3001
+ports_description:
+  3000/tcp: "Telegram desktop GUI (HTTP, must be proxied)"
+  3001/tcp: "Telegram desktop GUI (HTTPS)"
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  CUSTOM_USER: ""
+  PASSWORD: ""
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  CUSTOM_USER: str?
+  PASSWORD: str?
+
+slug: telegram
+version: "1.0.0"

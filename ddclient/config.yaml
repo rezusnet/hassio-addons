@@ -1,0 +1,21 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "ddclient"
+description: "Dynamic DNS updater — keeps your DNS records synced when your IP changes"
+version: "1.0.0"
+slug: "ddclient"
+url: "https://github.com/linuxserver/docker-ddclient"
+arch:
+  - amd64
+  - aarch64
+startup: "application"
+boot: "auto"
+map:
+  - config:rw
+options:
+  TZ: "Etc/UTC"
+  ddclient_conf: ""
+schema:
+  TZ: str
+  ddclient_conf: str
+

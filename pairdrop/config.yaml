@@ -1,0 +1,28 @@
+homeassistant: "2024.1.0"
+name: PairDrop
+description: Local file sharing in the browser — an AirDrop alternative
+slug: pairdrop
+url: https://github.com/linuxserver/docker-pairdrop
+arch:
+  - amd64
+  - aarch64
+image: ghcr.io/rezusnet/pairdrop-{arch}
+version: "1.0.0"
+map:
+  - addon_config:rw
+ports:
+  3000/tcp: 3000
+ports_description:
+  3000/tcp: PairDrop web interface
+ingress: true
+ingress_port: 3000
+panel_admin: false
+panel_icon: mdi:share-variant
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  RATE_LIMIT: false
+  WS_FALLBACK: false
+  DEBUG_MODE: false
+

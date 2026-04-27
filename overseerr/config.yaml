@@ -1,0 +1,61 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description: Request management and media discovery platform for Plex/Jellyfin with a beautiful web UI.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/overseerr-{arch}
+ingress: true
+ingress_port: 5055
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - media:rw
+  - share:rw
+  - ssl
+name: Overseerr
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/overseerr
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  DOCKER_MODS: []
+  panel_icon: mdi:movie-search
+ports:
+  5055/tcp: 5055
+ports_description:
+  5055/tcp: Web interface
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:overseerr-[a-z0-9-]+$)?
+slug: overseerr
+url: https://overseerr.dev
+version: "1.0.0"
+webui: http://[HOST]:[PORT:5055]
+

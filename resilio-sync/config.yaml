@@ -1,0 +1,57 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Resilio Sync — fast P2P file synchronization using BitTorrent protocol.
+  Sync files and folders between all your devices without cloud services.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/resilio-sync-{arch}
+ingress: true
+ingress_port: 55555
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+  - media:rw
+  - backup:rw
+name: Resilio Sync
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /config/resilio-sync
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_icon: mdi:sync-circle
+ports:
+  8888/tcp: null
+  55555/tcp: 55555
+ports_description:
+  8888/tcp: WebUI for configuration (optional, not required for Ingress)
+  55555/tcp: Sync listening port (required for P2P connections)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+slug: resilio-sync
+udev: true
+url: https://www.resilio.com/individuals/
+version: "1.0.0"
+

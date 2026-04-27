@@ -1,0 +1,65 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Fast, local neural text-to-speech engine via Wyoming protocol.
+  Provides Piper TTS for Home Assistant Assist voice pipelines.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/piper-{arch}
+ingress: false
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+name: Piper TTS
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /config/piper
+  TZ: ""
+  PIPER_VOICE: "en_US-lessac-medium"
+  PIPER_LENGTH: 1.0
+  PIPER_NOISE: 0.667
+  PIPER_NOISEW: 0.333
+  PIPER_SPEAKER: 0
+  LOCAL_ONLY: false
+  NO_STREAMING: false
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_icon: mdi:speaker-message
+ports:
+  10200/tcp: 10200
+ports_description:
+  10200/tcp: Wyoming protocol connection port
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  PIPER_VOICE: str
+  PIPER_LENGTH: float
+  PIPER_NOISE: float
+  PIPER_NOISEW: float
+  PIPER_SPEAKER: int
+  LOCAL_ONLY: bool
+  NO_STREAMING: bool
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+slug: piper
+udev: true
+url: https://github.com/rhasspy/wyoming-piper
+version: "1.0.0"
+

@@ -1,0 +1,71 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Planka — open source Trello-like kanban board for project tracking.
+  Features real-time updates, card assignments, labels, due dates, and more.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/planka-{arch}
+ingress: true
+ingress_port: 8080
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+name: Planka
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /config/planka
+  TZ: ""
+  BASE_URL: ""
+  DATABASE_URL: ""
+  DEFAULT_ADMIN_EMAIL: ""
+  DEFAULT_ADMIN_USERNAME: ""
+  DEFAULT_ADMIN_PASSWORD: ""
+  DEFAULT_ADMIN_NAME: ""
+  SECRET_KEY: ""
+  TRUST_PROXY: false
+  DEFAULT_LANGUAGE: "en-US"
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_icon: mdi:view-dashboard-variant-outline
+ports:
+  1337/tcp: null
+ports_description:
+  1337/tcp: Planka web UI (optional, not required for Ingress)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  BASE_URL: str
+  DATABASE_URL: str
+  DEFAULT_ADMIN_EMAIL: str
+  DEFAULT_ADMIN_USERNAME: str
+  DEFAULT_ADMIN_PASSWORD: password
+  DEFAULT_ADMIN_NAME: str
+  SECRET_KEY: password
+  TRUST_PROXY: bool
+  DEFAULT_LANGUAGE: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+slug: planka
+udev: true
+url: https://github.com/plankanban/planka
+version: "1.0.0"
+

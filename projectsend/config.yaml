@@ -1,0 +1,54 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  ProjectSend — self-hosted file sharing with client upload/download.
+  Upload files and assign them to specific clients securely and privately.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: 2024.1.0
+image: ghcr.io/rezusnet/projectsend-{arch}
+ingress: true
+ingress_port: 8080
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+  - ssl
+name: ProjectSend
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /config/projectsend
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+panel_icon: mdi:file-upload-outline
+ports:
+  80/tcp: null
+ports_description:
+  80/tcp: HTTP web interface (optional, not required for Ingress)
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+slug: projectsend
+udev: true
+url: http://www.projectsend.org
+version: "1.0.0"
+

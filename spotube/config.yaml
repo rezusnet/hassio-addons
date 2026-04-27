@@ -1,0 +1,32 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "Spotube"
+description: "Lightweight open-source Spotify client via web browser (Selkies/KasmVNC)"
+url: "https://github.com/linuxserver/docker-spotube"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/spotube-{arch}
+ports:
+  3000/tcp: 3000
+  3001/tcp: 3001
+ports_description:
+  3000/tcp: "Spotube desktop GUI (HTTP, must be proxied)"
+  3001/tcp: "Spotube desktop GUI (HTTPS)"
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  CUSTOM_USER: ""
+  PASSWORD: ""
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  CUSTOM_USER: str?
+  PASSWORD: str?
+
+slug: spotube
+version: "1.0.0"

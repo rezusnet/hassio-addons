@@ -1,0 +1,33 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "Nginx"
+description: "Nginx web server and reverse proxy with PHP support"
+url: "https://github.com/linuxserver/docker-nginx"
+arch:
+  - aarch64
+  - amd64
+slug: "nginx"
+version: "1.0.0"
+webui: "http://[HOST]:[PORT:80]"
+startup: "application"
+boot: "auto"
+map:
+  - config:rw
+  - share:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  NGINX_AUTORELOAD: false
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  NGINX_AUTORELOAD: bool
+ports:
+  80/tcp: 80
+  443/tcp: 443
+ports_description:
+  80/tcp: "HTTP web server"
+  443/tcp: "HTTPS web server"
+

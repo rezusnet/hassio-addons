@@ -1,0 +1,28 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "Fail2ban"
+description: "Intrusion prevention framework that bans IPs with too many failed logins"
+url: "https://github.com/linuxserver/docker-fail2ban"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/fail2ban-{arch}
+host_network: true
+ports: {}
+ports_description: {}
+map:
+  - config:rw
+  - share:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  VERBOSITY: "-vv"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  VERBOSITY: list(|-v|-vv|-vvv|-vvvv)?
+
+slug: fail2ban
+version: "1.0.0"

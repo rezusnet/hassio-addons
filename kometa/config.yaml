@@ -1,0 +1,19 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  KOMETA_CONFIG: str
+  KOMETA_TIMES: str?
+  KOMETA_RUN: bool?
+  KOMETA_TESTS: bool?
+  KOMETA_NO_MISSING: bool?
+  TZ: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:kometa-[a-z0-9-]+$)?
+
+slug: kometa
+version: "1.0.0"

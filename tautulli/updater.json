@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-27",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "tautulli",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-tautulli",
+  "upstream_version": "0.0.0"
+}

@@ -1,0 +1,32 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "syslog-ng"
+description: "Centralized syslog server for log aggregation and routing"
+url: "https://github.com/linuxserver/docker-syslog-ng"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/syslog-ng-{arch}
+ports:
+  514/udp: 5514
+  601/tcp: 6601
+  6514/tcp: 6514
+ports_description:
+  514/udp: "Syslog UDP input"
+  601/tcp: "Syslog TCP input"
+  6514/tcp: "Syslog TLS input"
+map:
+  - config:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  LOG_TO_STDOUT: false
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  LOG_TO_STDOUT: bool?
+
+slug: syslog-ng
+version: "1.0.0"

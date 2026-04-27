@@ -1,0 +1,54 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: SWAG
+description: Secure Web Application Gateway - Nginx reverse proxy with built-in certbot, fail2ban, and geoip2
+slug: swag
+url: https://github.com/linuxserver/docker-swag
+arch:
+  - amd64
+  - aarch64
+image: ghcr.io/rezusnet/swag-{arch}
+version: "1.0.0"
+map:
+  - addon_config:rw
+ports:
+  443/tcp: 443
+  80/tcp: 80
+ports_description:
+  443/tcp: HTTPS port
+  80/tcp: HTTP port (required for HTTP validation and HTTP->HTTPS redirect)
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+  URL: "example.com"
+  VALIDATION: "http"
+  SUBDOMAINS: "www"
+  CERTPROVIDER: ""
+  DNSPLUGIN: "cloudflare"
+  PROPAGATION: ""
+  EMAIL: ""
+  ONLY_SUBDOMAINS: false
+  EXTRA_DOMAINS: ""
+  STAGING: false
+  DISABLE_F2B: false
+  SWAG_AUTORELOAD: false
+  SWAG_AUTORELOAD_WATCHLIST: ""
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  URL: str
+  VALIDATION: list(http|dns)
+  SUBDOMAINS: str?
+  CERTPROVIDER: str?
+  DNSPLUGIN: list(|acmedns|aliyun|azure|bunny|cloudflare|cpanel|desec|digitalocean|directadmin|dnsimple|dnsmadeeasy|dnspod|do|domeneshop|dreamhost|duckdns|dynu|freedns|gandi|gehirn|glesys|godaddy|google|he|hetzner|hetzner-cloud|infomaniak|inwx|ionos|linode|loopia|luadns|namecheap|netcup|njalla|nsone|ovh|porkbun|rfc2136|route53|sakuracloud|standalone|transip|vultr)?
+  PROPAGATION: str?
+  EMAIL: str?
+  ONLY_SUBDOMAINS: bool
+  EXTRA_DOMAINS: str?
+  STAGING: bool
+  DISABLE_F2B: bool
+  SWAG_AUTORELOAD: bool
+  SWAG_AUTORELOAD_WATCHLIST: str?
+

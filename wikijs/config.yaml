@@ -1,0 +1,29 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "Wiki.js"
+description: "Modern, powerful wiki app built on Node.js with Git support"
+version: "1.0.0"
+slug: "wikijs"
+url: "https://github.com/rezusnet/hassio-addons/tree/master/wikijs"
+arch:
+  - amd64
+  - arm64
+startup: "application"
+boot: "auto"
+map:
+  - config:rw
+  - ssl
+ports:
+  3000/tcp: 3000
+options:
+  db_type: "sqlite"
+  tz: "Etc/UTC"
+schema:
+  db_type: "list(sqlite|postgres)"
+  db_host: "str?"
+  db_port: "int?"
+  db_name: "str?"
+  db_user: "str?"
+  db_pass: "password?"
+  tz: "str"
+

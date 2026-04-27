@@ -1,0 +1,25 @@
+icon: icon.png
+homeassistant: "2024.1.0"
+name: "WebGrab+Plus"
+description: "Multi-site incremental XMLTV EPG grabber for TV guides"
+url: "https://github.com/linuxserver/docker-webgrabplus"
+arch:
+  - aarch64
+  - amd64
+image: ghcr.io/rezusnet/webgrab+plus-{arch}
+ports: {}
+ports_description: {}
+map:
+  - config:rw
+  - share:rw
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+
+slug: webgrab+plus
+version: "1.0.0"
