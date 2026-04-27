@@ -1,0 +1,52 @@
+arch:
+  - aarch64
+  - amd64
+description: >
+  Intrusion prevention framework that monitors log files and bans IPs
+  showing malicious signs such as brute-force attacks. Based on the
+  LinuxServer.io fail2ban image with pre-configured jails for many
+  popular services.
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/fail2ban-{arch}
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+name: Fail2ban
+options:
+  PUID: 0
+  PGID: 0
+  TZ: ""
+  VERBOSITY: "-vv"
+  env_vars: []
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  log_paths: []
+panel_icon: mdi:shield-lock
+privileged:
+  - NET_ADMIN
+  - NET_RAW
+schema:
+  PUID: int
+  PGID: int
+  TZ: str?
+  VERBOSITY: list(|-v|-vv|-vvv|-vvvv)?
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  log_paths:
+    - name: match(^[a-zA-Z0-9_-]+$)
+      path: match(^/.+$)
+slug: fail2ban
+url: https://github.com/linuxserver/docker-fail2ban
+version: "1.0.0"
