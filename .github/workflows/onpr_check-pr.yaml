@@ -7,6 +7,8 @@ on:
     branches:
       - master
 
+permissions: read-all
+
 jobs:
   check-addon-changes:
     if: ${{ github.repository_owner == 'rezusnet' && !github.event.pull_request.draft && !contains(github.event.head_commit.message, 'nobuild') }}
@@ -16,7 +18,7 @@ jobs:
       changedChangelogFiles: ${{ steps.changed-files.outputs.changelogs_files }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0
       - name: Find changed addon directories
@@ -75,7 +77,7 @@ jobs:
         addon: ${{ fromJSON(needs.check-addon-changes.outputs.changedAddons) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - name: Install PyYAML
         run: |
           if python3 -c "import yaml" 2>/dev/null; then
@@ -144,7 +146,7 @@ jobs:
         addon: ${{ fromJSON(needs.check-addon-changes.outputs.changedAddons) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Install PyYAML
         run: |
@@ -267,7 +269,7 @@ jobs:
           echo "arch=$ARCH" >> "$GITHUB_OUTPUT"
 
       - name: Build addon image (native arch)
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7
         with:
           context: ${{ matrix.addon }}
           push: false

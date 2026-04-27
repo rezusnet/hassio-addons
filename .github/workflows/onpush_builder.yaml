@@ -23,6 +23,8 @@ on:
     paths:
       - "**/config.*"
 
+permissions: read-all
+
 jobs:
   detect-changed-addons:
     if: >-
@@ -35,7 +37,7 @@ jobs:
       changedAddons: ${{ steps.find_addons.outputs.changed_addons }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0
 
@@ -133,7 +135,7 @@ jobs:
 
       - name: Commit sanitize changes
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        uses: EndBug/add-and-commit@v10
+        uses: EndBug/add-and-commit@290ea2c423ad77ca9c62ae0f5b224379612c0321 # v10
         with:
           commit: -u
           message: "GitHub bot: sanitize (spaces + LF endings) & chmod [nobuild]"
@@ -418,10 +420,10 @@ jobs:
           fi
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v4
+        uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -506,7 +508,7 @@ jobs:
             runner: ["self-hosted", "linux", "arm64"]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Install PyYAML
         run: |
@@ -589,7 +591,7 @@ jobs:
           PY
 
       - name: Login to GHCR
-        uses: docker/login-action@v4
+        uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -877,7 +879,7 @@ jobs:
           done
 
       - name: Commit changelog changes
-        uses: EndBug/add-and-commit@v10
+        uses: EndBug/add-and-commit@290ea2c423ad77ca9c62ae0f5b224379612c0321 # v10
         with:
           commit: -u
           message: "GitHub bot: changelog [nobuild]"
@@ -907,7 +909,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0
 
