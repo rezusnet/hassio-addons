@@ -1,3 +1,6 @@
+## 1.14.28 (2026-04-27)
+- Update to latest version from anomalyco/opencode
+
 ## 1.14.25 (2026-04-25)
 - Update to latest version from anomalyco/opencode
 
