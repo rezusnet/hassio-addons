@@ -118,7 +118,7 @@ for tag in data.get('results', []):
 
     local version="$full_tag"
     if [ -n "$tag_filter" ]; then
-        version="${full_tag%%${tag_filter}*}"
+        version="${full_tag%%"${tag_filter}"*}"
     fi
     version="${version#v}"
 
@@ -210,33 +210,39 @@ for addon_dir in */; do
     echo "Updating $SLUG from ${CURRENT_VERSION:-none} to $NEW_VERSION"
 
     if [ "$DRY_RUN" != "true" ]; then
-        if [ -f "$addon_dir/config.yaml" ]; then
-            sed -i "s/^version:.*/version: \"${NEW_VERSION_CLEAN}\"/" "$addon_dir/config.yaml"
-        elif [ -f "$addon_dir/config.json" ]; then
-            jq --arg v "$NEW_VERSION_CLEAN" '.version = $v' "$addon_dir/config.json" > tmp.json && mv tmp.json "$addon_dir/config.json"
-        fi
-
         DATE=$(date '+%Y-%m-%d')
         jq --arg d "$DATE" --arg v "$NEW_VERSION" '.last_update = $d | .upstream_version = $v' "$UPDATER_FILE" > tmp.json && mv tmp.json "$UPDATER_FILE"
 
         if [ -f "$addon_dir/CHANGELOG.md" ]; then
-            sed -i "1i\\## ${NEW_VERSION_CLEAN} (${DATE})\n- Update to latest version from ${UPSTREAM_REPO}\n" "$addon_dir/CHANGELOG.md"
+            sed -i "1i\\## ${NEW_VERSION_CLEAN} (${DATE})\n- Update to upstream ${NEW_VERSION}\n" "$addon_dir/CHANGELOG.md"
         fi
 
         git add -A
-        git commit -m "Update ${SLUG} to ${NEW_VERSION_CLEAN}" || true
+        git commit -m "Update ${SLUG} upstream to ${NEW_VERSION}" || true
     fi
 done
 
 if [ "$DRY_RUN" != "true" ] && [ "$(git log --oneline origin/master..HEAD 2>/dev/null | wc -l)" -gt 0 ]; then
-    log "Pushing updates to master..."
-    git push origin HEAD:master
-    CHANGES_PUSHED=true
-fi
+    log "Pushing updates via PR..."
+    BRANCH="updater/bump-$(date +%Y%m%d-%H%M%S)"
+    git checkout -b "$BRANCH"
+    git push origin "$BRANCH"
 
-if [ "$CHANGES_PUSHED" = "true" ]; then
-    log "Triggering builder workflow..."
-    trigger_workflow "onpush_builder.yaml" || warn "Could not trigger builder workflow"
+    if [ -n "$GH_TOKEN" ]; then
+        BODY=""
+        while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            BODY="${BODY}- ${line}"$'\n'
+        done < <(git log --oneline origin/master..HEAD)
+
+        gh pr create \
+            --title "chore: update upstream versions $(date +%Y-%m-%d)" \
+            --body "$BODY" \
+            --base master \
+            --head "$BRANCH" 2>/dev/null || warn "Failed to create PR"
+        log "PR created"
+    fi
+    CHANGES_PUSHED=true
 fi
 
 rm -rf "$WORKDIR"
