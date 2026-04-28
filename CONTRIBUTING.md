@@ -128,6 +128,7 @@ The manifest, scripts, and docs must agree:
 - every option referenced by startup scripts must exist in both `options` and `schema`
 - `url` should point to the upstream project or official site, not this repository
 - set `ingress_port` to the actual internal port the ingress proxy should target; never use `0`
+- `panel_icon` and `panel_admin` are **top-level** keys (same indent as `name`, `options`), not nested inside `options`
 - non-LSIO add-ons should set `init: true` explicitly when using `ha_entrypoint.sh`
 - set `homeassistant` explicitly to the minimum supported Home Assistant version
 
@@ -155,14 +156,18 @@ Optional fields:
 
 ### build.json
 
+Pin image tags to a specific version to avoid surprise breakages:
+
 ```json
 {
   "build_from": {
-    "aarch64": "lscr.io/linuxserver/<name>:arm64v8-latest",
-    "amd64": "lscr.io/linuxserver/<name>:amd64-latest"
+    "aarch64": "lscr.io/linuxserver/<name>:arm64v8-<version>",
+    "amd64": "lscr.io/linuxserver/<name>:amd64-<version>"
   }
 }
 ```
+
+For LSIO images, check `https://hub.docker.com/r/linuxserver/<name>/tags` for available versioned tags.
 
 ### Dockerfile — 6 Sections
 
@@ -202,9 +207,8 @@ ARG MODULES="00-banner.sh 01-custom_script.sh 00-local_mounts.sh 00-smb_mounts.s
 COPY ha_automodules.sh /ha_automodules.sh
 RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
 
-ENV PACKAGES="nginx"
 COPY ha_autoapps.sh /ha_autoapps.sh
-RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh
+RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "" && rm /ha_autoapps.sh
 
 # --- Section 4: Entrypoint ---
 ENV S6_STAGE2_HOOK=/ha_entrypoint.sh
@@ -254,17 +258,20 @@ HEALTHCHECK \
 
 ### config.yaml — Key Fields
 
-| Field            | Value                                           | Notes                                            |
-| ---------------- | ----------------------------------------------- | ------------------------------------------------ |
-| `arch`           | `[aarch64, amd64]`                              | LSIO supports both                               |
-| `init`           | `false` for LSIO, `true` for standalone add-ons | Match the actual process model                   |
-| `host_network`   | `true`                                          | For apps that need LAN discovery                 |
-| `ingress`        | `true`                                          | Web UI apps get sidebar entry                    |
-| `ingress_port`   | actual listen port                              | Must match the internal web port used by ingress |
-| `ingress_stream` | `true`                                          | TCP proxy, no nginx overlay needed               |
-| `image`          | `ghcr.io/rezusnet/<name>-{arch}`                | GHCR image path                                  |
-| `map`            | `[addon_config:rw, media:rw, share:rw, ssl]`    | Standard HA folder mappings                      |
-| `privileged`     | `[SYS_ADMIN, DAC_READ_SEARCH]`                  | For mount/device access                          |
+| Field            | Value                                           | Notes                                               |
+| ---------------- | ----------------------------------------------- | --------------------------------------------------- |
+| `arch`           | `[aarch64, amd64]`                              | LSIO supports both                                  |
+| `homeassistant`  | `2024.1.0` (or newer)                           | Minimum supported HA version                        |
+| `init`           | `false` for LSIO, `true` for standalone add-ons | Match the actual process model                      |
+| `host_network`   | `true`                                          | For apps that need LAN discovery                    |
+| `ingress`        | `true`                                          | Web UI apps get sidebar entry                       |
+| `ingress_port`   | actual listen port                              | Must match the internal web port used by ingress    |
+| `ingress_stream` | `true` when a proxy layer needs TCP streaming   | Omit if the app handles ingress directly (no nginx) |
+| `image`          | `ghcr.io/rezusnet/<name>-{arch}`                | GHCR image path                                     |
+| `map`            | `[addon_config:rw, media:rw, share:rw, ssl]`    | Standard HA folder mappings                         |
+| `panel_icon`     | `mdi:<icon-name>`                               | Top-level key for sidebar icon (ingress add-ons)    |
+| `panel_admin`    | `true`                                          | Top-level key: restrict panel to admin users        |
+| `privileged`     | `[SYS_ADMIN, DAC_READ_SEARCH]`                  | For mount/device access                             |
 
 ### 99-run.sh Template
 
