@@ -11,8 +11,9 @@ environment:
 homeassistant: 2025.5.0
 image: ghcr.io/rezusnet/opencode-{arch}
 ingress: true
-ingress_port: 8080
+ingress_port: 8081
 ingress_stream: true
+init: true
 map:
   - addon_config:rw
   - media:rw
@@ -33,6 +34,7 @@ options:
   git_token: ""
   repositories: []
   server_password: ""
+  TZ: ""
   workspace: /homeassistant
 panel_admin: true
 panel_icon: mdi:robot-outline
@@ -54,7 +56,8 @@ schema:
       branch: str?
       path: str
   server_password: password
+  TZ: str?
   workspace: str
 slug: opencode
-url: https://github.com/rezusnet/hassio-addons
+url: https://github.com/anomalyco/opencode
 version: "1.14.28"

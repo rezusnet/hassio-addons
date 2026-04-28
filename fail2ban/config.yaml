@@ -48,5 +48,5 @@ schema:
     - name: match(^[a-zA-Z0-9_-]+$)
       path: match(^/.+$)
 slug: fail2ban
-url: https://github.com/linuxserver/docker-fail2ban
+url: https://www.fail2ban.org/
 version: "1.0.0"

@@ -7,6 +7,7 @@ description: >-
   while forwarding everything else to NPM.
 host_network: true
 image: ghcr.io/rezusnet/haproxy-{arch}
+init: true
 icon: icon.png
 name: HAProxy SNI Router
 options:
@@ -28,5 +29,5 @@ schema:
 slug: haproxy
 startup: application
 boot: auto
-url: https://github.com/rezusnet/hassio-addons
+url: https://www.haproxy.org/
 version: "3.3.7"

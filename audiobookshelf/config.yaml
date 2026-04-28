@@ -1,72 +1,73 @@
 arch:
-    - aarch64
-    - amd64
+  - aarch64
+  - amd64
 description: >-
-    Self-hosted audiobook and podcast server. Stream audiobooks and podcasts
-    to any device, manage your library with a web UI, track progress across
-    devices. Supports all audio formats, ebooks (epub, pdf, cbr, cbz), and
-    automatic library scanning.
+  Self-hosted audiobook and podcast server. Stream audiobooks and podcasts
+  to any device, manage your library with a web UI, track progress across
+  devices. Supports all audio formats, ebooks (epub, pdf, cbr, cbz), and
+  automatic library scanning.
 environment:
-    PGID: "0"
-    PUID: "0"
+  PGID: "0"
+  PUID: "0"
 homeassistant: 2025.5.0
 image: ghcr.io/rezusnet/audiobookshelf-{arch}
+init: true
 map:
-    - addon_config:rw
-    - media:rw
-    - share:rw
+  - addon_config:rw
+  - media:rw
+  - share:rw
 icon: icon.png
 name: Audiobookshelf
 options:
-    audiobooks_path: /media/audiobooks
-    podcasts_path: /media/podcasts
-    backup_path: ""
-    podcast_download_timeout: 30
-    max_failed_episode_checks: 24
-    allow_cors: false
-    allow_iframe: true
-    disable_ssrf_filter: false
-    ssrf_whitelist: ""
-    rate_limit_auth_window: 600000
-    rate_limit_auth_max: 40
-    access_token_expiry: 3600
-    refresh_token_expiry: 2592000
-    router_base_path: /audiobookshelf
-    exp_proxy_support: false
-    use_x_accel: false
-    skip_binaries_check: false
-    query_logging: ""
-    env_vars: []
+  audiobooks_path: /media/audiobooks
+  podcasts_path: /media/podcasts
+  backup_path: ""
+  podcast_download_timeout: 30
+  max_failed_episode_checks: 24
+  allow_cors: false
+  allow_iframe: true
+  disable_ssrf_filter: false
+  ssrf_whitelist: ""
+  rate_limit_auth_window: 600000
+  rate_limit_auth_max: 40
+  access_token_expiry: 3600
+  refresh_token_expiry: 2592000
+  router_base_path: /audiobookshelf
+  exp_proxy_support: false
+  use_x_accel: false
+  skip_binaries_check: false
+  query_logging: ""
+  env_vars: []
 panel_icon: mdi:book-open-page-variant
 ports:
-    8133/tcp: 8133
+  8133/tcp: 8133
 ports_description:
-    8133/tcp: Audiobookshelf Web UI
+  8133/tcp: Audiobookshelf Web UI
 schema:
-    audiobooks_path: str
-    podcasts_path: str
-    backup_path: str?
-    podcast_download_timeout: int(1,300)
-    max_failed_episode_checks: int?
-    allow_cors: bool
-    allow_iframe: bool
-    disable_ssrf_filter: bool
-    ssrf_whitelist: str?
-    rate_limit_auth_window: int?
-    rate_limit_auth_max: int?
-    access_token_expiry: int?
-    refresh_token_expiry: int?
-    router_base_path: str
-    exp_proxy_support: bool
-    use_x_accel: bool
-    skip_binaries_check: bool
-    query_logging: str?
-    sqlite_cache_size: int?
-    sqlite_mmap_size: int?
-    sqlite_temp_store: int(0,3)?
-    env_vars:
-        - name: match(^[A-Za-z0-9_]+$)
-          value: str?
+  audiobooks_path: str
+  podcasts_path: str
+  backup_path: str?
+  podcast_download_timeout: int(1,300)
+  max_failed_episode_checks: int?
+  allow_cors: bool
+  allow_iframe: bool
+  disable_ssrf_filter: bool
+  ssrf_whitelist: str?
+  rate_limit_auth_window: int?
+  rate_limit_auth_max: int?
+  access_token_expiry: int?
+  refresh_token_expiry: int?
+  router_base_path: str
+  exp_proxy_support: bool
+  use_x_accel: bool
+  skip_binaries_check: bool
+  query_logging: str?
+  sqlite_cache_size: int?
+  sqlite_mmap_size: int?
+  sqlite_temp_store: int(0,3)?
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
 slug: audiobookshelf
-url: https://github.com/advplyr/audiobookshelf
+url: https://www.audiobookshelf.org/
 version: "2.33.2"

@@ -29,7 +29,7 @@ host_network: true
 icon: icon.png
 image: ghcr.io/rezusnet/bazarr-{arch}
 ingress: true
-ingress_port: 0
+ingress_port: 6767
 ingress_stream: true
 init: false
 map:

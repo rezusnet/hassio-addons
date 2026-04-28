@@ -1,5 +1,5 @@
 {
-  "github_beta": "false",
+  "github_beta": true,
   "last_update": "2026-04-27",
   "paused": false,
   "repository": "rezusnet/hassio-addons",

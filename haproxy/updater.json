@@ -1,9 +1,10 @@
 {
-    "dockerhub_tag_filter": "-alpine",
-    "paused": false,
-    "repository": "rezusnet/hassio-addons",
-    "slug": "haproxy",
-    "source": "dockerhub",
-    "upstream_repo": "library/haproxy",
-    "upstream_version": "v3.3.7"
+  "dockerhub_tag_filter": "-alpine",
+  "last_update": "2026-04-25",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "haproxy",
+  "source": "dockerhub",
+  "upstream_repo": "library/haproxy",
+  "upstream_version": "v3.3.7"
 }
