@@ -111,6 +111,16 @@ Keep `DOCS.md` as the full operational reference shown in the Home Assistant **D
 
 `README.md` and `DOCS.md` should complement each other: the README explains what the app is, while `DOCS.md` explains how to run it in Home Assistant.
 
+### icon.png
+
+Every add-on **must** include an `icon.png` in its directory. This icon appears in the Home Assistant Add-on Store and must be:
+
+- A valid PNG image, **128x128** pixels
+- Sourced from the upstream project's official repository (e.g., `Logo/128.png` for \*arr apps)
+- Committed to the repo alongside `config.yaml` (referenced as `icon: icon.png`)
+
+Do not use placeholder or generic icons. Download the upstream branded logo at 128x128 and commit it directly.
+
 ### config.yaml Consistency
 
 The manifest, scripts, and docs must agree:
