@@ -59,7 +59,8 @@ jobs:
           VALIDATE_COFFEESCRIPT: false
           VALIDATE_PERL: false
           VALIDATE_SWIFT: false
-          FILTER_REGEX_EXCLUDE: '.*[.]github/(workflows|scripts)/.*'
+          VALIDATE_SHELL_SHFMT: false
+          FILTER_REGEX_EXCLUDE: ".*[.]github/(workflows|scripts)/.*"
 
   lint-changes:
     if: github.event_name == 'push' || github.event_name == 'pull_request'

@@ -62,9 +62,7 @@ workspace: /homeassistant/repos/hassio-addons
 dev_profile:
   - full
 git_ssh_key: |
-  -----BEGIN OPENSSH PRIVATE KEY-----
-  ...
-  -----END OPENSSH PRIVATE KEY-----
+  <paste your OpenSSH private key here>
 repositories:
   - url: git@github.com:rezusnet/hassio-addons.git
     branch: master

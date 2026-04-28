@@ -133,7 +133,7 @@ Go to **Dashboard > Playback > Transcoding**:
 
 If you plan to experiment with HEVC hardware decode via a custom FFmpeg build, increase the CMA pool:
 
-```
+```ini
 dtoverlay=vc4-kms-v3d-pi5,cma-256
 ```
 
