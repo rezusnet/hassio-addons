@@ -7,7 +7,8 @@ backup_exclude:
   - "**/transcode/"
 description:
   The Free Software Media System. Stream media to any device from your own
-  server. Supports hardware transcoding on Intel, AMD, and Raspberry Pi GPUs.
+  server. Supports hardware transcoding on Intel and AMD GPUs. Software
+  transcoding on Raspberry Pi 5 (no hardware encoder available).
 devices:
   - /dev/dri
   - /dev/dri/card0
@@ -21,6 +22,13 @@ devices:
   - /dev/video14
   - /dev/video15
   - /dev/video16
+  - /dev/video19
+  - /dev/media0
+  - /dev/media1
+  - /dev/media2
+  - /dev/media3
+  - /dev/media4
+  - /dev/media5
   - /dev/ttyUSB0
   - /dev/sda
   - /dev/sdb
@@ -40,7 +48,7 @@ devices:
   - /dev/mmcblk
   - /dev/fuse
 environment:
-  ATTACHED_DEVICES_PERMS: "/dev/dri /dev/dvb /dev/vchiq /dev/vc-mem /dev/video1? -type c -o -type f"
+  ATTACHED_DEVICES_PERMS: "/dev/dri /dev/dvb /dev/vchiq /dev/vc-mem /dev/video1? /dev/video19 /dev/media? -type c -o -type f"
 homeassistant: 2024.1.0
 host_dbus: true
 host_network: true
@@ -100,5 +108,5 @@ schema:
 slug: jellyfin
 udev: true
 url: https://jellyfin.org
-version: "10.11.13"
+version: "10.11.14"
 video: true

@@ -1,23 +1,27 @@
 # Home Assistant add-on: Jellyfin
 
 [![Version](https://img.shields.io/badge/dynamic/yaml?label=Version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fjellyfin%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/jellyfin)
+[![Ingress](https://img.shields.io/badge/dynamic/yaml?color=blueviolet&label=Ingress&query=%24.ingress&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fjellyfin%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/jellyfin)
 [![Arch](https://img.shields.io/badge/dynamic/yaml?color=success&label=Arch&query=%24.arch&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fjellyfin%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/jellyfin)
 [![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
+
+![Jellyfin banner](banner.svg)
 
 ## About
 
 [Jellyfin](https://jellyfin.org/) is the Free Software Media System. It lets you organize video, music, live TV, and photos from personal media libraries and stream them to smart TVs, streaming boxes, and mobile devices.
 
-This add-on is based on the [linuxserver/docker-jellyfin](https://github.com/linuxserver/docker-jellyfin) Docker image with hardware acceleration support for **Intel (VAAPI)**, **AMD**, and **Raspberry Pi (V4L2, MMAL/OpenMAX)** GPUs.
+This add-on is based on the [linuxserver/docker-jellyfin](https://github.com/linuxserver/docker-jellyfin) Docker image.
 
 **Key features:**
 
-- Stream movies, TV shows, music, and photos to any device
-- Hardware-accelerated transcoding (Intel Quick Sync, AMD, Raspberry Pi)
+- Stream movies, TV shows, music, live TV, and photos to any device
+- Hardware-accelerated transcoding on Intel and AMD GPUs
+- Software transcoding on Raspberry Pi 5 where no hardware encoder is available
 - Live TV and DVR support
 - DLNA server
-- Apps for Android, iOS, Roku, Fire TV, Android TV, and more
+- Official clients for Android, iOS, Roku, Fire TV, Android TV, browsers, and more
 - HA ingress sidebar support
 - SMB/CIFS network share mounting
 - Local USB/SATA/NVMe disk mounting

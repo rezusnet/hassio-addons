@@ -66,7 +66,7 @@ The add-on maps the following HA directories:
 | `/share/`         | `/share/`                        | Read/Write |
 | Add-on config     | `/addon_configs/*/`              | Read/Write |
 
-Media placed under `/media/` (e.g., via the HA Files add-on or Samba add-on) is directly accessible. For example, if your media is at `/media/IliadMedia/Video/Movies`, add a Jellyfin library pointing to `/media/IliadMedia/Video/Movies`.
+Media placed under `/media/` (e.g., via the HA Files add-on or Samba add-on) is directly accessible.
 
 ## Mounting Drives
 
@@ -101,19 +101,62 @@ Works out of the box if `/dev/dri` is present on the host. The add-on exposes GP
 
 In Jellyfin: **Dashboard > Playback > Transcoding > Hardware Acceleration** select **Video Acceleration API (VAAPI)**.
 
-### Raspberry Pi
+### Raspberry Pi 5
 
-The add-on exposes `/dev/dri`, `/dev/vchiq`, and `/dev/video10-16` for hardware acceleration.
+The Pi 5's BCM2712 SoC has **no hardware video encoder**. It has an HEVC/H.265 hardware decoder (`rpivid`), but `jellyfin-ffmpeg` does not include the V4L2 request API needed to use it. Jellyfin has officially [deprecated V4L2 support for Raspberry Pi](https://jellyfin.org/docs/general/post-install/transcoding/hardware-acceleration/).
 
-**Pi 4**: Enable `dtoverlay=vc4-fkms-v3d` in `/boot/usercfg.txt` for `/dev/dri` support.
+**All transcoding on Pi 5 is software-only** (CPU). The Cortex-A76 quad-core CPU can handle 1080p software transcoding at approximately 1x realtime speed.
 
-**Pi 5**: V4L2 M2M and VAAPI should work with the exposed `/dev/dri` device.
+#### Recommended Dashboard Settings for Pi 5
 
-In Jellyfin: **Dashboard > Playback > Transcoding > Hardware Acceleration** select:
+Go to **Dashboard > Playback > Transcoding**:
 
-- **Video Acceleration API (VAAPI)** if `/dev/dri/renderD128` is available
-- **OpenMAX** if `/dev/vchiq` is available
-- **Video4Linux2 (V4L2)** if `/dev/video10-12` are available
+| Setting                  | Value       | Why                                    |
+| ------------------------ | ----------- | -------------------------------------- |
+| Hardware acceleration    | **None**    | No working HW accel on Pi 5            |
+| Enable hardware decoding | **Uncheck** | No supported hardware decoder          |
+| Enable hardware encoding | **Uncheck** | No hardware encoder exists             |
+| Transcoding thread count | **4**       | Match Pi 5's 4 cores                   |
+| Allow encoding in HEVC   | **Disable** | HEVC encoding is very slow in software |
+| Max streaming bitrate    | **20 Mbps** | Limits transcode load                  |
+
+#### Performance Tips
+
+- **Use Direct Play** whenever possible -- no transcoding needed. Configure clients to prefer original quality.
+- **Put `data_location` on fast storage** -- use a USB SSD or NVMe drive for the transcode cache. SD cards are too slow and will cause buffering.
+- **Use H.264/AAC media** -- most clients can direct-play H.264. Avoid HEVC unless your clients support it natively.
+- **Ensure active cooling** -- the Pi 5 thermal throttles at 80C, which halves transcoding speed.
+- **Limit to 1 simultaneous transcode** -- the Pi 5 lacks CPU headroom for multiple streams.
+- **Avoid 4K transcoding** -- the CPU cannot transcode 4K in realtime. Use 4K only with Direct Play clients.
+
+#### Increasing CMA for 4K HEVC (Experimental)
+
+If you plan to experiment with HEVC hardware decode via a custom FFmpeg build, increase the CMA pool:
+
+```
+dtoverlay=vc4-kms-v3d-pi5,cma-256
+```
+
+Add this to `/boot/firmware/config.txt` (or `/boot/config.txt`) on the host. Available sizes: 64 (default), 96, 128, 192, 256, 320, 384, 448, 512 MB.
+
+### Raspberry Pi 4
+
+The Pi 4 has limited hardware acceleration via V4L2 M2M and OpenMAX. This support is deprecated in Jellyfin and may break in future releases.
+
+1. Enable `dtoverlay=vc4-fkms-v3d` in `/boot/usercfg.txt` for `/dev/dri` support
+2. In Jellyfin: **Dashboard > Playback > Transcoding > Hardware Acceleration** select **Video4Linux2 (V4L2)**
+3. Available devices: `/dev/video10-12` (V4L2 M2M), `/dev/vchiq` (OpenMAX)
+
+| Capability    | Pi 4 | Pi 5                                         |
+| ------------- | ---- | -------------------------------------------- |
+| HEVC decode   | Yes  | HW exists but unsupported by jellyfin-ffmpeg |
+| H.264 decode  | Yes  | No hardware decoder                          |
+| H.264 encode  | Yes  | No hardware encoder                          |
+| HEVC encode   | No   | No hardware encoder                          |
+| VAAPI         | No   | No                                           |
+| OpenMAX (OMX) | Yes  | No (no `/dev/vchiq`)                         |
+| V4L2 M2M      | Yes  | Deprecated                                   |
+| Best accel    | V4L2 | **None (software only)**                     |
 
 ### Docker Mods for Hardware Acceleration
 
@@ -123,7 +166,7 @@ Additional hardware acceleration can be enabled via Docker Mods:
 | ---------------------------------------- | ---------------------------------------------- |
 | `linuxserver/mods:jellyfin-opencl-intel` | Intel OpenCL for tone-mapping (DV, HDR10, HLG) |
 | `linuxserver/mods:jellyfin-amd`          | AMD hardware acceleration                      |
-| `linuxserver/mods:jellyfin-rffmpeg`      | Custom FFmpeg build with additional codecs     |
+| `linuxserver/mods:jellyfin-rffmpeg`      | Remote FFmpeg distributed transcoding          |
 
 ```yaml
 DOCKER_MODS:
@@ -153,7 +196,7 @@ To enable HTTPS on port 8920:
    ```
 
 2. Place the `.pfx` file in your SSL directory (accessible via the `ssl` mapping)
-3. In Jellyfin: **Dashboard > Networking > HTTPS Settings** — set the certificate path and enable HTTPS
+3. In Jellyfin: **Dashboard > Networking > HTTPS Settings** -- set the certificate path and enable HTTPS
 
 ## Adding to HA Sidebar
 
@@ -176,9 +219,9 @@ You can also access Jellyfin directly at `http://<your-ha-ip>:8096` without the 
 ### No hardware transcoding
 
 - Check that GPU devices exist: `ls -la /dev/dri/` on the host
+- For Pi 5: hardware transcoding is not supported -- use software transcoding
 - For Pi 4: ensure `dtoverlay=vc4-fkms-v3d` is enabled
 - Check Jellyfin transcoding logs for errors
-- Try different acceleration methods (VAAPI, V4L2, OpenMAX)
 
 ### Media files not visible
 
@@ -186,15 +229,27 @@ You can also access Jellyfin directly at `http://<your-ha-ip>:8096` without the 
 - Check file permissions (PGID/PUID)
 - Jellyfin needs read access to all media directories
 
-### Performance on Raspberry Pi
+### Playback buffering or stuttering
 
-- Use **direct play** when possible (no transcoding)
-- Set transcoding to a lower resolution if needed
-- Use V4L2 hardware acceleration for supported codecs
-- Transcode cache writes to `data_location/transcode` — ensure fast storage
+- **Use Direct Play** -- configure clients to prefer original quality, not lower bitrates that require transcoding
+- Check network speed between client and server (use Ethernet, not Wi-Fi)
+- On Pi 5: the CPU can only handle ~1x realtime for 1080p software transcoding
+- Move `data_location` to a USB SSD if currently on SD card
+- Ensure active cooling on Pi 5 to prevent thermal throttling
+- Check the add-on log for platform diagnostics (device enumeration, memory, disk space)
+
+### FFmpeg crashes or exit code 254
+
+- This typically indicates the CPU ran out of resources during software transcoding
+- Disable HEVC encoding in Dashboard > Playback
+- Lower the maximum streaming bitrate to reduce transcode resolution
+- Limit to 1 simultaneous transcode
+- Check available memory in the add-on log
+- Ensure the transcode directory has sufficient free space
 
 ## Upstream Documentation
 
 - [Jellyfin Documentation](https://jellyfin.org/docs/)
+- [Jellyfin Hardware Acceleration](https://jellyfin.org/docs/general/post-install/transcoding/hardware-acceleration/)
 - [Jellyfin Clients](https://jellyfin.org/clients/)
 - [LinuxServer Docker Image](https://github.com/linuxserver/docker-jellyfin)

@@ -1,8 +1,23 @@
-## 10.11.13 (27-04-2026)
-- Minor bugs fixed
-## 10.11.8ubu2404-ls29 (2026-04-27)
-- Update to latest version from linuxserver/docker-jellyfin
+## 10.11.14 (28-04-2026)
 
+- Optimize for Raspberry Pi 5: accurate Pi hardware acceleration documentation
+- Add Pi 5 device exposure (/dev/video19 rpivid, /dev/media0-5 media controller)
+- Add platform diagnostics at startup: Pi model detection, video/media/DRI device
+  enumeration, memory and disk space logging, Pi 5-specific warnings
+- Fix ATTACHED_DEVICES_PERMS to include Pi 5 devices
+- Document that jellyfin-ffmpeg has no V4L2 support (only Rockchip rkmpp and NVIDIA)
+- Document recommended Jellyfin Dashboard settings for Pi 5 software transcoding
+- Document Pi 4 vs Pi 5 hardware capabilities comparison table
+- Add FFmpeg crash (exit 254) troubleshooting section
+- Update add-on description to reflect Pi 5 software-only transcoding
+
+## 10.11.13 (27-04-2026)
+
+- Minor bugs fixed
+
+## 10.11.8ubu2404-ls29 (2026-04-27)
+
+- Update to latest version from linuxserver/docker-jellyfin
 
 ## 10.11.12 (27-04-2026)
 
@@ -13,6 +28,7 @@
 ## 10.11.11 (27-04-2026)
 
 - Rebuild with fixed 00-banner.sh
+
 ## 10.11.10 (27-04-2026)
 
 - Fix init hang: 00-banner.sh bashio::supervisor.ping blocked forever in
