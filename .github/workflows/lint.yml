@@ -18,7 +18,7 @@ permissions:
 jobs:
   super-lint:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -59,7 +59,7 @@ jobs:
           VALIDATE_COFFEESCRIPT: false
           VALIDATE_PERL: false
           VALIDATE_SWIFT: false
-          FILTER_REGEX_EXCLUDE: '.*[.]github/workflows/.*'
+          FILTER_REGEX_EXCLUDE: '.*[.]github/(workflows|scripts)/.*'
 
   lint-changes:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
