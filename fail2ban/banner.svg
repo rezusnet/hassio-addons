@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280" role="img" aria-labelledby="title desc">
+  <title id="title">Fail2ban banner</title>
+  <desc id="desc">Fail2ban Home Assistant add-on banner</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f2937" />
+      <stop offset="100%" stop-color="#b91c1c" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="280" fill="url(#bg)" />
+  <circle cx="1070" cy="62" r="168" fill="#ffffff" opacity="0.05" />
+  <circle cx="945" cy="220" r="124" fill="#fca5a5" opacity="0.14" />
+  <rect x="42" y="42" width="1116" height="196" rx="24" fill="#ffffff" opacity="0.06" />
+  <text x="78" y="104" fill="#fee2e2" font-size="22" font-family="Arial, Helvetica, sans-serif" letter-spacing="3">HOME ASSISTANT ADD-ON</text>
+  <text x="78" y="170" fill="#ffffff" font-size="66" font-weight="700" font-family="Arial, Helvetica, sans-serif">Fail2ban</text>
+  <text x="78" y="214" fill="#fef2f2" font-size="29" font-family="Arial, Helvetica, sans-serif">Log-based intrusion prevention and automatic bans</text>
+</svg>

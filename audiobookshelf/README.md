@@ -5,16 +5,20 @@
 [![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
 
+![Audiobookshelf banner](banner.svg)
+
 ## About
 
 [Audiobookshelf](https://github.com/advplyr/audiobookshelf) is a self-hosted audiobook and podcast server. Stream audiobooks and podcasts to any device, manage your library through a web UI, and track progress across devices.
 
+This add-on is based on the official [ghcr.io/advplyr/audiobookshelf](https://github.com/advplyr/audiobookshelf/pkgs/container/audiobookshelf) Docker image.
+
 **Key features:**
 
-- Stream audiobooks and podcasts to any device
+- Stream audiobooks and podcasts with progress sync across devices
 - Multi-user support with per-user progress tracking
-- Supports all audio formats and ebooks (epub, pdf, cbr, cbz)
-- Automatic library scanning and metadata fetching
+- Supports audiobooks, podcasts, and ebooks (epub, pdf, cbr, cbz)
+- Chapter-aware playback, automatic library scanning, and metadata matching
 - Podcast episode auto-download
 - OpenID Connect (SSO) support
 - Companion mobile apps for [Android](https://play.google.com/store/apps/details?id=com.audiobookshelf.app) and [iOS](https://apps.apple.com/us/app/audiobookshelf/id1578137973)

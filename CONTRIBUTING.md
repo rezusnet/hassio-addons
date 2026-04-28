@@ -32,7 +32,7 @@ Follow the jellyfin add-on as the canonical LSIO reference.
 Commit and push. The lint workflow runs on all PRs and is much faster than the build:
 
 - **shellcheck** — bash script analysis
-- **shfmt** — shell formatting (use **tabs**, not spaces)
+- **shfmt** — shell formatting (`shfmt -i 4 -ci -bn -sr`, use 4-space indentation)
 - **hadolint** — Dockerfile linting
 - **prettier** — JSON (2-space indent), YAML (2-space), Markdown (padded tables)
 - **gitleaks** — secret detection
@@ -75,16 +75,73 @@ S6 service name, health check endpoint, and config options.
 ├── build.json           # Arch → LSIO image mapping
 ├── Dockerfile           # 6-section build (see below)
 ├── updater.json         # Upstream version tracking
-├── apparmor.txt         # Security profile
+├── apparmor.txt         # Security profile (when the add-on needs a custom profile)
 ├── icon.png             # Addon icon (from upstream)
+├── banner.svg           # README hero banner (required unless a committed upstream banner asset is reused)
 ├── rootfs/
 │   └── etc/
 │       └── cont-init.d/
 │           └── 99-run.sh   # Startup: dirs, env vars, data_location
 ├── DOCS.md              # Full documentation (Configuration tab)
-├── README.md            # Description + badges (Info tab)
+├── README.md            # Badges + banner + upstream features (Info tab)
 └── CHANGELOG.md         # Version history (Changelog tab)
 ```
+
+### README.md Guidance
+
+Keep `README.md` short, product-facing, and consistent across add-ons. Include:
+
+- status badges: `Version`, `Ingress` when applicable, `Arch`, `Builder`, `Lint`
+- a visual banner near the top (`banner.svg` is the default; reuse a committed upstream banner asset only when it is stable and redistributable)
+- a one-paragraph description that names both the upstream project and the upstream Docker image
+- a **Key features** list that leads with upstream app capabilities, then HA-specific wrapper features
+- short installation/access steps plus a pointer to the **Documentation** tab for full configuration details
+
+Avoid README feature lists that only describe the HA wrapper. Users should be able to understand what the upstream application itself does from the README alone.
+
+### DOCS.md Guidance
+
+Keep `DOCS.md` as the full operational reference shown in the Home Assistant **Documentation** tab. Include, when applicable:
+
+- `## Getting Started` with first-launch steps
+- `## Configuration` with a full options table and examples
+- `## File Access`, `## Ports`, and app-specific setup sections
+- `## Troubleshooting`
+- `## Upstream Documentation`
+
+`README.md` and `DOCS.md` should complement each other: the README explains what the app is, while `DOCS.md` explains how to run it in Home Assistant.
+
+### config.yaml Consistency
+
+The manifest, scripts, and docs must agree:
+
+- every option referenced by startup scripts must exist in both `options` and `schema`
+- `url` should point to the upstream project or official site, not this repository
+- set `ingress_port` to the actual internal port the ingress proxy should target; never use `0`
+- non-LSIO add-ons should set `init: true` explicitly when using `ha_entrypoint.sh`
+- set `homeassistant` explicitly to the minimum supported Home Assistant version
+
+### updater.json Contract
+
+Use a consistent updater file shape:
+
+```json
+{
+  "last_update": "2026-04-26",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "<name>",
+  "source": "github",
+  "upstream_repo": "owner/repo",
+  "upstream_version": "v1.2.3"
+}
+```
+
+Optional fields:
+
+- `github_beta: true` for repositories where prereleases should be tracked
+- `dockerhub_tag_filter` when using `source: dockerhub`
+- use JSON booleans (`true` / `false`), not quoted strings
 
 ### build.json
 
@@ -187,17 +244,17 @@ HEALTHCHECK \
 
 ### config.yaml — Key Fields
 
-| Field            | Value                                        | Notes                              |
-| ---------------- | -------------------------------------------- | ---------------------------------- |
-| `arch`           | `[aarch64, amd64]`                           | LSIO supports both                 |
-| `init`           | `false`                                      | Use S6 from LSIO base image        |
-| `host_network`   | `true`                                       | For apps that need LAN discovery   |
-| `ingress`        | `true`                                       | Web UI apps get sidebar entry      |
-| `ingress_port`   | `0`                                          | 0 = auto                           |
-| `ingress_stream` | `true`                                       | TCP proxy, no nginx overlay needed |
-| `image`          | `ghcr.io/rezusnet/<name>-{arch}`             | GHCR image path                    |
-| `map`            | `[addon_config:rw, media:rw, share:rw, ssl]` | Standard HA folder mappings        |
-| `privileged`     | `[SYS_ADMIN, DAC_READ_SEARCH]`               | For mount/device access            |
+| Field            | Value                                           | Notes                                            |
+| ---------------- | ----------------------------------------------- | ------------------------------------------------ |
+| `arch`           | `[aarch64, amd64]`                              | LSIO supports both                               |
+| `init`           | `false` for LSIO, `true` for standalone add-ons | Match the actual process model                   |
+| `host_network`   | `true`                                          | For apps that need LAN discovery                 |
+| `ingress`        | `true`                                          | Web UI apps get sidebar entry                    |
+| `ingress_port`   | actual listen port                              | Must match the internal web port used by ingress |
+| `ingress_stream` | `true`                                          | TCP proxy, no nginx overlay needed               |
+| `image`          | `ghcr.io/rezusnet/<name>-{arch}`                | GHCR image path                                  |
+| `map`            | `[addon_config:rw, media:rw, share:rw, ssl]`    | Standard HA folder mappings                      |
+| `privileged`     | `[SYS_ADMIN, DAC_READ_SEARCH]`                  | For mount/device access                          |
 
 ### 99-run.sh Template
 
@@ -255,7 +312,7 @@ instead of the LSIO S6 init. Key differences:
 | Tool       | Rules                                                       |
 | ---------- | ----------------------------------------------------------- |
 | shellcheck | All bash scripts                                            |
-| shfmt      | Tab indentation (not spaces)                                |
+| shfmt      | 4-space indentation via `shfmt -i 4 -ci -bn -sr`            |
 | hadolint   | Dockerfile best practices                                   |
 | prettier   | JSON: 2-space indent, Markdown: padded tables, 2-space code |
 | gitleaks   | No secrets in code                                          |

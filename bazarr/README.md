@@ -1,13 +1,16 @@
 # Home Assistant add-on: Bazarr
 
 [![Version](https://img.shields.io/badge/dynamic/yaml?label=Version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fbazarr%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/bazarr)
+[![Ingress](https://img.shields.io/badge/dynamic/yaml?color=blueviolet&label=Ingress&query=%24.ingress&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fbazarr%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/bazarr)
 [![Arch](https://img.shields.io/badge/dynamic/yaml?color=success&label=Arch&query=%24.arch&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fbazarr%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/bazarr)
 [![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
 
+![Bazarr banner](banner.svg)
+
 ## About
 
-[Bazarr](https://www.bazarr.media/) is a subtitle manager for Sonarr and Radarr. It automatically downloads and manages subtitles for your TV series and movies.
+[Bazarr](https://www.bazarr.media/) is a subtitle manager for Sonarr and Radarr. It follows the series and movies already indexed by those apps, then downloads and manages subtitles according to your language and quality preferences.
 
 This add-on is based on the [linuxserver/docker-bazarr](https://github.com/linuxserver/docker-bazarr) Docker image.
 
@@ -15,9 +18,15 @@ This add-on is based on the [linuxserver/docker-bazarr](https://github.com/linux
 
 - Automatic subtitle downloading for TV series and movies
 - Integration with Sonarr and Radarr
-- Multiple subtitle provider support
+- Per-series and per-movie language preferences
+- Scan existing libraries for internal and external subtitles, then fill in missing ones
+- Manual subtitle search and on-demand downloads
+- Automatic subtitle upgrades when better matches appear
+- Detection and cleanup of external subtitles on disk
+- Wide provider and language support, including embedded subtitle workflows
 - HA ingress sidebar support
 - SMB/CIFS network share mounting
+- Local USB/SATA/NVMe disk mounting
 
 ## Installation
 
@@ -27,3 +36,5 @@ This add-on is based on the [linuxserver/docker-bazarr](https://github.com/linux
 3. Configure options (see Documentation tab).
 4. Start the add-on.
 5. Access via the **HA sidebar** (Ingress) or directly at `http://<your-ha-ip>:6767`.
+
+For full configuration details, Sonarr/Radarr integration, and troubleshooting, see the **Documentation** tab.

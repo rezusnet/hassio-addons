@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280" role="img" aria-labelledby="title desc">
+  <title id="title">Sonarr banner</title>
+  <desc id="desc">Sonarr Home Assistant add-on banner</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="280" fill="url(#bg)" />
+  <circle cx="1060" cy="60" r="170" fill="#ffffff" opacity="0.06" />
+  <circle cx="960" cy="225" r="120" fill="#7dd3fc" opacity="0.12" />
+  <rect x="42" y="42" width="1116" height="196" rx="24" fill="#ffffff" opacity="0.06" />
+  <text x="78" y="104" fill="#dbeafe" font-size="22" font-family="Arial, Helvetica, sans-serif" letter-spacing="3">HOME ASSISTANT ADD-ON</text>
+  <text x="78" y="170" fill="#ffffff" font-size="66" font-weight="700" font-family="Arial, Helvetica, sans-serif">Sonarr</text>
+  <text x="78" y="214" fill="#e0f2fe" font-size="29" font-family="Arial, Helvetica, sans-serif">TV series automation for Usenet and BitTorrent</text>
+</svg>
