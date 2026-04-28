@@ -19,8 +19,7 @@ ARG MODULES="00-banner.sh 01-custom_script.sh 00-local_mounts.sh 00-smb_mounts.s
 COPY ha_automodules.sh /ha_automodules.sh
 RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
 
-ENV PACKAGES="bind-tools \
-    nginx"
+ENV PACKAGES="bind-tools"
 
 COPY ha_autoapps.sh /ha_autoapps.sh
 RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh

@@ -6,6 +6,7 @@ description: >-
   Proxy Manager to route specific domains to external backends (e.g. Traefik)
   while forwarding everything else to NPM.
 host_network: true
+homeassistant: 2024.1.0
 image: ghcr.io/rezusnet/haproxy-{arch}
 init: true
 icon: icon.png

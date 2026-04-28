@@ -24,19 +24,6 @@ fi
 FB_BASE_URL=$(bashio::addon.ingress_entry)
 export FB_BASE_URL
 
-declare ADDON_PROTOCOL=http
-if bashio::config.true 'ssl'; then
-    ADDON_PROTOCOL=https
-fi
-
-ingress_port=$(bashio::addon.ingress_port)
-ingress_interface=$(bashio::addon.ip_address)
-sed -i "s|%%protocol%%|${ADDON_PROTOCOL}|g" /etc/nginx/servers/ingress.conf
-sed -i "s|%%port%%|${ingress_port}|g" /etc/nginx/servers/ingress.conf
-sed -i "s|%%interface%%|${ingress_interface}|g" /etc/nginx/servers/ingress.conf
-sed -i "s|%%subpath%%|${FB_BASE_URL}/|g" /etc/nginx/servers/ingress.conf
-mkdir -p /var/log/nginx && touch /var/log/nginx/error.log
-
 NOAUTH=""
 
 for folders in /etc/services.d /etc/s6-overlay; do
@@ -79,4 +66,3 @@ bashio::log.info "Starting..."
 /./bin/filebrowser --disablePreviewResize --disableTypeDetectionByHeader --cacheDir="/cache" $CERTFILE $KEYFILE --root="$BASE_FOLDER" --address=0.0.0.0 --port=8080 --database=/config/filebrowser.dB "$NOAUTH" "$DISABLE_THUMBNAILS" &
 bashio::net.wait_for 8080 localhost 900 || true
 bashio::log.info "Started!"
-nginx || bashio::log.fatal "Nginx failed"

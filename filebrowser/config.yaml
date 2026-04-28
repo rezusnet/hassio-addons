@@ -18,14 +18,12 @@ devices:
   - /dev/mmcblk
   - /dev/fuse
 environment:
-  FB_BASEURL: /filebrowser
   PGID: "0"
   PUID: "0"
 homeassistant: 2025.5.0
 image: ghcr.io/rezusnet/filebrowser-{arch}
 ingress: true
 ingress_port: 8080
-ingress_stream: true
 init: true
 map:
   - addon_config:rw

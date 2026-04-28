@@ -31,10 +31,8 @@ ARG CACHEBUST=1
 COPY ha_automodules.sh /ha_automodules.sh
 RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
 
-ENV PACKAGES="nginx"
-
 COPY ha_autoapps.sh /ha_autoapps.sh
-RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh
+RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "" && rm /ha_autoapps.sh
 
 ENV S6_STAGE2_HOOK=/ha_entrypoint.sh
 COPY ha_entrypoint.sh /ha_entrypoint.sh
