@@ -1,3 +1,6 @@
+## 6.1.1.10360-ls300 (2026-04-29)
+- Update to upstream 6.1.1.10360-ls300
+
 ## 6.1.1.10360 (26-04-2026)
 
 - Initial release based on Radarr 6.1.1.10360
