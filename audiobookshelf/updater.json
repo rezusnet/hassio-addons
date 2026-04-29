@@ -1,10 +1,10 @@
 {
   "github_beta": false,
-  "last_update": "2026-04-25",
+  "last_update": "2026-04-29",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "audiobookshelf",
   "source": "github",
   "upstream_repo": "advplyr/audiobookshelf",
-  "upstream_version": "v2.33.2"
+  "upstream_version": "v2.34.0"
 }

@@ -1,3 +1,6 @@
+## 2.34.0 (2026-04-29)
+- Update to upstream v2.34.0
+
 ## 2.33.2 (25-04-2026)
 
 - Fix version to match actual upstream audiobookshelf release
