@@ -1,3 +1,6 @@
+## 2.3.5.5327-ls143 (2026-04-29)
+- Update to upstream 2.3.5.5327-ls143
+
 ## 2.3.5.5327 (26-04-2026)
 
 - Initial release based on Prowlarr 2.3.5.5327
