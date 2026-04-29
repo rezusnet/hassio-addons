@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-26",
+  "last_update": "2026-04-29",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "transmission",
   "source": "github",
   "upstream_repo": "linuxserver/docker-transmission",
-  "upstream_version": "4.1.1"
+  "upstream_version": "4.1.1-r1-ls341"
 }
