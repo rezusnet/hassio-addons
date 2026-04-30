@@ -1,0 +1,33 @@
+arch:
+  - aarch64
+  - amd64
+description: "Diskover - based on linuxserver/docker-diskover"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/diskover-{arch}
+init: false
+name: Diskover
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/diskover
+  env_vars: []
+ports:
+  8080/tcp: 8080
+ports_description:
+  8080/tcp: "Web interface"
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+ingress: true
+ingress_port: 8080
+panel_icon: mdi:server
+slug: diskover
+url: https://github.com/linuxserver/docker-diskover
+version: 1.0.0
