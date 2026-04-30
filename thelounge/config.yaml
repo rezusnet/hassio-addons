@@ -1,0 +1,60 @@
+---
+name: TheLounge
+description: TheLounge - IRC web client for group chat
+version: '1.0.0'
+slug: thelounge
+url: https://thelounge.chat/
+init: false
+arch:
+  - amd64
+  - aarch64
+homeassistant:
+  api: true
+  init: false
+panel_icon: mdi:chat-processing
+panel_title: TheLounge
+panel_admin: true
+ports:
+  9000/tcp: 9000
+ingress: true
+ingress_port: 9000
+ingress_protocol: http
+options:
+  puid: 1000
+  pgid: 1000
+  tz: UTC
+  data_location: /share/thelounge
+  env_vars:
+    - name: LOG_LEVEL
+      value: info
+schema:
+  puid:
+    type: integer
+    default: 1000
+    description: User ID for permission delegation
+  pgid:
+    type: integer
+    default: 1000
+    description: Group ID for permission delegation
+  tz:
+    type: string
+    default: UTC
+    description: Timezone (e.g. America/New_York)
+  data_location:
+    type: string
+    default: /share/thelounge
+    description: TheLounge data location
+  env_vars:
+    type: object
+    schema:
+      name:
+        type: string
+        description: Environment variable name
+      value:
+        type: string
+        description: Environment variable value
+volumes:
+  - name: TheLounge Data
+    target_path: /share/thelounge
+    default_permissions: rwx
+devices: []

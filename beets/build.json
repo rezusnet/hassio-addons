@@ -1,0 +1,4 @@
+{
+  "aarch64": "lscr.io/linuxserver/beets:arm64v8-latest",
+  "amd64": "lscr.io/linuxserver/beets:amd64-latest"
+}

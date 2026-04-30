@@ -1,0 +1,82 @@
+#include <tunables/global>
+
+profile beets flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # System libraries and configurations
+  /sys/kernel/mm/transparent_hugepage/hpage_pmd_size r,
+  /sys/kernel/mm/transparent_hugepage/enabled r,
+  /sys/fs/cgroup/ r,
+  /sys/fs/cgroup/** r,
+  /proc/sys/kernel/panic r,
+  /proc/sys/kernel/panic_on_oops r,
+  /proc/stat r,
+  /proc/*/stat r,
+  /proc/*/io r,
+  /proc/*/status r,
+  /proc/*/attr/current r,
+  /sys/kernel/security/apparmor/ns_level r,
+  /sys/kernel/security/apparmor/ns_name r,
+
+  # Home Assistant addon paths
+  /share/ r,
+  /share/** rw,
+  /config/ r,
+  /config/** rw,
+  /media/ r,
+  /media/** rw,
+  /tmp/ r,
+  /tmp/** rw,
+
+  # Runtime and cache
+  /run/s6/ rw,
+  /run/s6/** rw,
+  /var/run/ rw,
+  /var/run/** rw,
+  /var/cache/ rw,
+  /var/cache/** rw,
+
+  # Network access
+  network inet dgram,
+  network inet stream,
+  network unix stream,
+  network unix dgram,
+  @{PROC}/@{pid}/net/route r,
+  @{PROC}/@{pid}/net/if_inet6 r,
+  @{PROC}/@{pid}/net/ipv6_route r,
+
+  # Capabilities
+  capability chown,
+  capability dac_override,
+  capability setgid,
+  capability setuid,
+  capability setfcap,
+  capability sys_chroot,
+
+  # Application-specific paths
+  /bin/** r,
+  /usr/bin/** r,
+  /usr/local/bin/** r,
+  /lib/** r,
+  /usr/lib/** r,
+  /etc/passwd r,
+  /etc/group r,
+  /etc/nsswitch.conf r,
+  /etc/hostname r,
+  /etc/resolv.conf r,
+
+  # Music library access (important for Beets)
+  /media/Music/ r,
+  /media/Music/** rw,
+  /data/ r,
+  /data/** rw,
+
+  # Deny access to sensitive system areas
+  deny /sys/firmware/** r,
+  deny /sys/kernel/debug/** r,
+  deny /proc/sysrq-trigger rwklx,
+  deny /proc/mem rwklx,
+  deny /proc/kmem rwklx,
+  deny /proc/port rwklx,
+  deny /proc/kcore rwklx,
+}

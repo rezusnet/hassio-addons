@@ -1,0 +1,44 @@
+#include <tunables/global>
+
+profile ha_your_spotify flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+  
+  capability chown,
+  capability setuid,
+  capability setgid,
+  capability dac_override,
+  capability dac_read_search,
+  capability net_bind_service,
+  capability sys_chroot,
+  capability sys_ptrace,
+  
+  /config/** rw,
+  /share/** rw,
+  /run/user/** rw,
+  /tmp/** rw,
+  /var/run/** rw,
+  /var/cache/** rw,
+  /etc/hostname r,
+  /etc/hosts r,
+  /etc/resolv.conf r,
+  /sys/kernel/debug/tracing/trace_marker w,
+  /proc/sys/kernel/osrelease r,
+  /proc/sys/kernel/hostname r,
+  /dev/tty rw,
+  /dev/null rw,
+  /dev/zero rw,
+  /dev/full rw,
+  /dev/random r,
+  /dev/urandom r,
+  /dev/pts/* rw,
+  
+  # Network
+  network inet stream,
+  network inet dgram,
+  network inet raw,
+  network inet6 stream,
+  network inet6 dgram,
+  network inet6 raw,
+  network unix stream,
+  network unix dgram,
+}

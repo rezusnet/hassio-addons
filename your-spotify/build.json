@@ -1,0 +1,4 @@
+{
+  "amd64": "lscr.io/linuxserver/your_spotify:amd64-1.8.0",
+  "aarch64": "lscr.io/linuxserver/your_spotify:arm64v8-1.8.0"
+}

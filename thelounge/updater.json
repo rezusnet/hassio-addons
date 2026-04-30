@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-30",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "thelounge",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-thelounge",
+  "upstream_version": "latest"
+}

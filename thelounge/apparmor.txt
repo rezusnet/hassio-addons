@@ -1,0 +1,45 @@
+#include <tunables/global>
+
+profile thelounge flags=(record,attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # Capabilities
+  capability chown,
+  capability dac_override,
+  capability setgid,
+  capability setuid,
+  capability net_bind_service,
+
+  # System access
+  /sys/kernel/mm/transparent_hugepage/hpage_pmd_size r,
+  /proc/sys/net/core/somaxconn r,
+  /proc/sys/kernel/shm_rmid_forced r,
+
+  # Network
+  network inet stream,
+  network inet dgram,
+  network inet6 stream,
+  network inet6 dgram,
+  network unix stream,
+  network unix dgram,
+
+  # Application files
+  /data/ rwk,
+  /data/** rwk,
+
+  # Temp files
+  /tmp/ rwk,
+  /tmp/** rwk,
+
+  # Proc access
+  @{PROC}/@{pid}/fd/ r,
+  @{PROC}/@{pid}/stat r,
+  @{PROC}/@{pid}/status r,
+  @{PROC}/@{pid}/cmdline r,
+  @{PROC}/@{pid}/attr/current r,
+
+  # Node.js runtime
+  /usr/bin/node r,
+  /usr/bin/node.real r,
+  /usr/local/bin/node r,
+}

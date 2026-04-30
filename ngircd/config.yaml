@@ -1,0 +1,38 @@
+name: NGircd
+description: NGircd - Next Generation IRC daemon
+url: https://ngircd.barton.de
+version: "27.1"
+slug: ngircd
+init: false
+startup: system
+boot: auto
+map:
+  - config
+homeassistant: "2023.11.0"
+arch:
+  - aarch64
+  - amd64
+ports:
+  6667/tcp: IRC Server
+  6668/tcp: IRC Server (TLS)
+ports_description:
+  6667/tcp: IRC Server (standard)
+  6668/tcp: IRC Server (TLS/SSL)
+environment:
+  TZ: UTC
+options:
+  data_location: /share/ngircd
+  server_name: ngircd.localdomain
+  server_info: "NGircd IRC Server"
+  max_connections: 100
+  max_clients_per_host: 10
+  motd: ""
+  log_level: 2
+schema:
+  data_location: str
+  server_name: str?
+  server_info: str?
+  max_connections: int(1,10000)?
+  max_clients_per_host: int(1,1000)?
+  motd: str?
+  log_level: int(0,5)?

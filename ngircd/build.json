@@ -1,0 +1,4 @@
+{
+  "amd64": "lscr.io/linuxserver/ngircd:amd64-27.1",
+  "aarch64": "lscr.io/linuxserver/ngircd:arm64v8-27.1"
+}

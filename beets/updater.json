@@ -1,0 +1,9 @@
+{
+  "last_update": "2024-01-01",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "beets",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-beets",
+  "upstream_version": "latest"
+}

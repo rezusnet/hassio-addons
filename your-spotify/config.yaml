@@ -1,0 +1,40 @@
+name: Your-Spotify
+description: Your-Spotify - Spotify analytics and playlist management
+url: https://github.com/Yooooomi/your_spotify
+version: "1.8.0"
+slug: your-spotify
+init: false
+startup: system
+boot: auto
+map:
+  - config
+homeassistant: "2023.11.0"
+arch:
+  - aarch64
+  - amd64
+ports:
+  3000/tcp: Your-Spotify Web Interface
+ports_description:
+  3000/tcp: Web interface for Your-Spotify
+ingress: true
+ingress_port: 3000
+ingress_path: /
+panel_title: Your-Spotify
+panel_icon: mdi:spotify
+panel_admin: false
+environment:
+  TZ: UTC
+options:
+  data_location: /share/your-spotify
+  spotify_client_id: ""
+  spotify_client_secret: ""
+  jwt_secret: ""
+  mongo_db_uri: ""
+  log_level: info
+schema:
+  data_location: str
+  spotify_client_id: str?
+  spotify_client_secret: str?
+  jwt_secret: str?
+  mongo_db_uri: str?
+  log_level: list(debug|info|warn|error)?
