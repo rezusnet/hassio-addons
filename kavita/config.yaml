@@ -1,0 +1,33 @@
+arch:
+  - aarch64
+  - amd64
+description: "Kavita - based on linuxserver/docker-kavita"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/kavita-{arch}
+init: false
+name: Kavita
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/kavita
+  env_vars: []
+ports:
+  5000/tcp: 5000
+ports_description:
+  5000/tcp: "Web interface"
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+ingress: true
+ingress_port: 5000
+panel_icon: mdi:server
+slug: kavita
+url: https://github.com/linuxserver/docker-kavita
+version: 1.0.0
