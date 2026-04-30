@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-30",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "raneto",
+  "source": "docker",
+  "upstream_repo": "linuxserver/raneto",
+  "upstream_version": "0.18.1-ls199"
+}
