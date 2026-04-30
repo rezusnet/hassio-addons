@@ -1,0 +1,42 @@
+arch:
+  - aarch64
+  - amd64
+description:
+  LDAP authentication server for nginx reverse proxy. Provides user authentication
+  and cookie-based session management for LDAP/Active Directory users.
+homeassistant: 2024.1.0
+icon: icon.png
+image: ghcr.io/rezusnet/ldap-auth-{arch}
+init: false
+map:
+  - addon_config:rw
+  - ssl
+name: LDAP Auth
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  FERNETKEY: ""
+  CERTFILE: ""
+  KEYFILE: ""
+panel_icon: mdi:lock
+ports:
+  8888/tcp: 8888
+  9000/tcp: 9000
+ports_description:
+  8888/tcp: LDAP Auth Daemon
+  9000/tcp: LDAP Login Page
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  TZ: str?
+  FERNETKEY: str?
+  CERTFILE: str?
+  KEYFILE: str?
+slug: ldap-auth
+url: https://github.com/nginxinc/nginx-ldap-auth
+version: "3.4.5"
