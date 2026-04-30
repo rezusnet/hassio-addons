@@ -1,6 +1,6 @@
 #include <tunables/global>
 
-profile jellyfin flags=(attach_disconnected,mediate_deleted) {
+profile darktable flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
 
     capability chown,
