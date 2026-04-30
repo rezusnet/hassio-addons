@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "ubuntu:22.04",
+    "amd64": "ubuntu:22.04"
+  }
+}

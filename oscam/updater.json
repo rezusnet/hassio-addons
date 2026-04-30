@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-05-01",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "oscam",
+  "source": "github",
+  "upstream_repo": "E2OpenPlugins/e2openplugin-OpenCam",
+  "upstream_version": "master"
+}

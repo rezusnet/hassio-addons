@@ -1,0 +1,36 @@
+arch:
+  - aarch64
+  - amd64
+description: >-
+  Oscam is an open source CAM (Conditional Access Module) emulator. Emulate
+  DVB scrambling systems for satellite and cable TV. Features include support
+  for multiple card readers, protocols, and conditional access modules.
+environment:
+  PUID: "0"
+  PGID: "0"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/oscam-{arch}
+init: false
+name: Oscam
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/oscam
+  env_vars: []
+ports:
+  9000/tcp: 9000
+ports_description:
+  9000/tcp: "Oscam Server"
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+slug: oscam
+url: https://github.com/E2OpenPlugins/e2openplugin-OpenCam
+version: 11810
