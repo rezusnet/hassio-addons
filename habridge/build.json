@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "lscr.io/linuxserver/habridge:arm64v8-latest",
+    "amd64": "lscr.io/linuxserver/habridge:amd64-latest"
+  }
+}
