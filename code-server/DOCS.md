@@ -107,10 +107,11 @@ Your home directory is `/root`, but you typically want to work in `/config` (you
 - Generate SSH keys in Code Server's integrated terminal
 - Store them in `/root/.ssh` (mapped to your data_location)
 - Set up git config:
-  ```bash
-  git config --global user.name "Your Name"
-  git config --global user.email "your@email.com"
-  ```
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+```
 
 ## Upstream Documentation
 
