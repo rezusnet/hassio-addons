@@ -1,3 +1,6 @@
+## 1.5.6-ls346 (2026-04-30)
+- Update to upstream v1.5.6-ls346
+
 ## 1.5.6 (26-04-2026)
 
 - Initial release based on Bazarr 1.5.6
