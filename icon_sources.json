@@ -1,0 +1,599 @@
+{
+  "airsonic-advanced": {
+    "type": "github",
+    "repo": "airsonic-advanced/airsonic-advanced",
+    "paths": [
+      "airsonic-ui/src/assets/Airsonic_thumbnail.png",
+      "README.md"
+    ]
+  },
+  "apprise-api": {
+    "type": "github",
+    "repo": "caronc/apprise-api",
+    "paths": [
+      "apprise_api/static/images/logo.png",
+      "apprise_api/static/images/apprise-logo-128.png"
+    ]
+  },
+  "babybuddy": {
+    "type": "github",
+    "repo": "babybuddy/babybuddy",
+    "paths": [
+      "babybuddy/static/babybuddy/images/icon.png",
+      "babybuddy/static/babybuddy/images/favicon.png",
+      "README.md"
+    ]
+  },
+  "bookstack": {
+    "type": "github",
+    "repo": "BookStackApp/BookStack",
+    "paths": [
+      "public/images/logo.png",
+      "resources/assets/images/logo.png",
+      "README.md"
+    ]
+  },
+  "deluge": {
+    "type": "github",
+    "repo": "deluge-torrent/deluge",
+    "paths": [
+      "deluge/ui/web/images/logo.png",
+      "deluge/ui/gtk3/glade/images/deluge.png",
+      "README.md"
+    ]
+  },
+  "diskover": {
+    "type": "github",
+    "repo": "MrRobotjs/diskover",
+    "paths": [
+      "src/diskover/static/images/diskover_logo_300px.png",
+      "README.md"
+    ]
+  },
+  "dokuwiki": {
+    "type": "github",
+    "repo": "dokuwiki/dokuwiki",
+    "paths": [
+      "_test/acceptance/fixtures/dokuwiki-icon.png",
+      "_icon/dokuwiki-128.png",
+      "README.md"
+    ]
+  },
+  "doplarr": {
+    "type": "github",
+    "repo": "MauriceNino/doplarr",
+    "paths": [
+      "doplarr-banner.png",
+      "README.md"
+    ]
+  },
+  "duckdns": {
+    "type": "github",
+    "repo": "linuxserver/docker-duckdns",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "duplicati": {
+    "type": "github",
+    "repo": "duplicati/duplicati",
+    "paths": [
+      "Duplicati/GUI/Duplicati.GUI.TrayIcon/Images/Duplicati.ico",
+      "README.md"
+    ]
+  },
+  "ferdium": {
+    "type": "github",
+    "repo": "ferdium/ferdium-app",
+    "paths": [
+      "src/assets/logo.svg",
+      "src/assets/icon.png",
+      "README.md"
+    ]
+  },
+  "freshrss": {
+    "type": "github",
+    "repo": "FreshRSS/FreshRSS",
+    "paths": [
+      "src/assets/logo.svg",
+      "README.md"
+    ]
+  },
+  "healthchecks": {
+    "type": "github",
+    "repo": "healthchecks/healthchecks",
+    "paths": [
+      "staticfiles/img/logo-260x260.png",
+      "hc/static/img/logo.png",
+      "README.md"
+    ]
+  },
+  "hedgedoc": {
+    "type": "github",
+    "repo": "hedgedoc/hedgedoc",
+    "paths": [
+      "public/icons/favicon/favicon-128.png",
+      "public/images/hedgedoc-icon.svg",
+      "README.md"
+    ]
+  },
+  "heimdall": {
+    "type": "github",
+    "repo": "linuxserver/Heimdall",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "homeassistant": {
+    "type": "github",
+    "repo": "home-assistant/core",
+    "paths": [
+      "homeassistant/components/http/static/icons/favicon-192x192.png",
+      "README.md"
+    ]
+  },
+  "kavita": {
+    "type": "github",
+    "repo": "Kareadita/Kavita",
+    "paths": [
+      "UI/Web/src/assets/icons/logo-light.png",
+      "UI/Web/public/assets/logo.png",
+      "README.md"
+    ]
+  },
+  "lychee": {
+    "type": "github",
+    "repo": "LycheeOrg/Lychee",
+    "paths": [
+      "resources/dist/images/logo.svg",
+      "resources/views/assets/logo.svg",
+      "README.md"
+    ]
+  },
+  "mastodon": {
+    "type": "github",
+    "repo": "mastodon/mastodon",
+    "paths": [
+      "public/images/logo.svg",
+      "public/images/mastodon.svg",
+      "README.md"
+    ]
+  },
+  "medusa": {
+    "type": "github",
+    "repo": "pymedusa/Medusa",
+    "paths": [
+      "medusa/static/images/medusa.png",
+      "README.md"
+    ]
+  },
+  "mstream": {
+    "type": "github",
+    "repo": "IrosTheBeggar/mStream",
+    "paths": [
+      "public/images/logo.png",
+      "README.md"
+    ]
+  },
+  "netbox": {
+    "type": "github",
+    "repo": "netbox-community/netbox",
+    "paths": [
+      "netbox/static/netbox/img/netbox_logo.png",
+      "README.md"
+    ]
+  },
+  "nzbhydra2": {
+    "type": "github",
+    "repo": "theotherp/nzbhydra2",
+    "paths": [
+      "core/src/main/resources/logonzbhydra.png",
+      "README.md"
+    ]
+  },
+  "obsidian": {
+    "type": "github",
+    "repo": "obsidianmd/obsidian-releases",
+    "paths": [
+      "Obsidian.ico",
+      "README.md"
+    ]
+  },
+  "pairdrop": {
+    "type": "github",
+    "repo": "schlagmichdoch/PairDrop",
+    "paths": [
+      "public/images/pairdrop_logo_512x512.png",
+      "public/logo.png",
+      "README.md"
+    ]
+  },
+  "planka": {
+    "type": "github",
+    "repo": "plankanban/planka",
+    "paths": [
+      "client/src/logo.svg",
+      "README.md"
+    ]
+  },
+  "pydio-cells": {
+    "type": "github",
+    "repo": "pydio/pydio-core",
+    "paths": [
+      "common/logos/pydio128.png",
+      "README.md"
+    ]
+  },
+  "sealskin": {
+    "type": "github",
+    "repo": "linuxserver/sealskin",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "sickgear": {
+    "type": "github",
+    "repo": "SickGear/SickGear",
+    "paths": [
+      "gui/slick/images/sickgear-icon.png",
+      "README.md"
+    ]
+  },
+  "speedtest-tracker": {
+    "type": "github",
+    "repo": "alexjustesen/speedtest-tracker",
+    "paths": [
+      "public/icons/favicon-192x192.png",
+      "public/logo.png",
+      "README.md"
+    ]
+  },
+  "spotube": {
+    "type": "github",
+    "repo": "KRTirtho/spotube",
+    "paths": [
+      "assets/icons/logo.svg",
+      "assets/logo.svg",
+      "README.md"
+    ]
+  },
+  "tautulli": {
+    "type": "github",
+    "repo": "Tautulli/Tautulli",
+    "paths": [
+      "plexpy/data/interfaces/default/images/tautulli.png",
+      "README.md"
+    ]
+  },
+  "thelounge": {
+    "type": "github",
+    "repo": "thelounge/thelounge",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "unifi-network-application": {
+    "type": "github",
+    "repo": "ubiquiti/ubiquiti-linux-release",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "webgrabplus": {
+    "type": "github",
+    "repo": "SuperSandro2000/WebGrabPlus",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "wikijs": {
+    "type": "github",
+    "repo": "Requarks/wiki",
+    "paths": [
+      "public/img/logo.png",
+      "README.md"
+    ]
+  },
+  "wireguard": {
+    "type": "github",
+    "repo": "WireGuard/wireguard-linux-compat",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "adguardhome-sync": {
+    "type": "github",
+    "repo": "AdguardTeam/AdGuardHome",
+    "paths": [
+      "client/src/components/Settings/Dns/Icons/adguard-logo.png",
+      "README.md"
+    ]
+  },
+  "audiobookshelf": {
+    "type": "github",
+    "repo": "advplyr/audiobookshelf",
+    "paths": [
+      "client/public/Logo.png"
+    ]
+  },
+  "beets": {
+    "type": "github",
+    "repo": "beetbox/beets",
+    "paths": [
+      "beetsplug/web/js/app.js"
+    ]
+  },
+  "code-server": {
+    "type": "github",
+    "repo": "coder/code-server",
+    "paths": [
+      "src/node/utils/assets.ts"
+    ]
+  },
+  "cops": {
+    "type": "github",
+    "repo": "mikespub-org/seblucas-cops",
+    "paths": [
+      "icon.png"
+    ]
+  },
+  "darktable": {
+    "type": "github",
+    "repo": "darktable-org/darktable",
+    "paths": [
+      "src/dtgtk/icons/logo.svg"
+    ]
+  },
+  "davos": {
+    "type": "github",
+    "repo": "linuxserver/davos",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "ddclient": {
+    "type": "github",
+    "repo": "ddclient/ddclient",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "fail2ban": {
+    "type": "github",
+    "repo": "fail2ban/fail2ban",
+    "paths": [
+      "doc/logo.png"
+    ]
+  },
+  "faster-whisper": {
+    "type": "github",
+    "repo": "SYSTRAN/faster-whisper",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "grocy": {
+    "type": "github",
+    "repo": "grocy/grocy",
+    "paths": [
+      "public/img/logo.svg"
+    ]
+  },
+  "habridge": {
+    "type": "github",
+    "repo": "bwssytems/ha-bridge",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "haproxy": {
+    "type": "github",
+    "repo": "haproxy/haproxy",
+    "paths": [
+      "README"
+    ]
+  },
+  "hisshtory-server": {
+    "type": "github",
+    "repo": "ddpom/hishtory",
+    "paths": [
+      "client/data/hishtory.png"
+    ]
+  },
+  "htpcmanager": {
+    "type": "github",
+    "repo": "styxit/HTPC-Manager",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "kimai": {
+    "type": "github",
+    "repo": "kimai/kimai2",
+    "paths": [
+      "public/images/logo.png"
+    ]
+  },
+  "lazylibrarian": {
+    "type": "github",
+    "repo": "lazylibrarian/LazyLibrarian",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "ldap-auth": {
+    "type": "website",
+    "url": "https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol"
+  },
+  "lightrag": {
+    "type": "github",
+    "repo": "HKUDS/LightRAG",
+    "paths": [
+      "lightrag.png"
+    ]
+  },
+  "mariadb": {
+    "type": "github",
+    "repo": "MariaDB/server",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "minisatip": {
+    "type": "github",
+    "repo": "catalinii/minisatip",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "nginx": {
+    "type": "website",
+    "url": "https://nginx.org/"
+  },
+  "ngircd": {
+    "type": "github",
+    "repo": "ngircd/ngircd",
+    "paths": [
+      "doc/logo.png"
+    ]
+  },
+  "ombi": {
+    "type": "github",
+    "repo": "Ombi-app/Ombi",
+    "paths": [
+      "src/Ombi/wwwroot/images/logo.png"
+    ]
+  },
+  "opencode": {
+    "type": "github",
+    "repo": "anomalyco/opencode",
+    "paths": [
+      "logo.png"
+    ]
+  },
+  "openssh-server": {
+    "type": "website",
+    "url": "https://www.openssh.com/"
+  },
+  "openvscode-server": {
+    "type": "github",
+    "repo": "gitpod-io/openvscode-server",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "oscam": {
+    "type": "github",
+    "repo": "E2OpenPlugins/e2openplugin-OpenCam",
+    "paths": [
+      "plugin/oscam.png"
+    ]
+  },
+  "phpmyadmin": {
+    "type": "website",
+    "url": "https://www.phpmyadmin.net/"
+  },
+  "piper": {
+    "type": "github",
+    "repo": "rhasspy/piper",
+    "paths": [
+      "piper.png"
+    ]
+  },
+  "projectsend": {
+    "type": "github",
+    "repo": "projectsend/projectsend",
+    "paths": [
+      "img/projectsend_logo_512.png"
+    ]
+  },
+  "pwndrop": {
+    "type": "github",
+    "repo": "kgretzky/pwndrop",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "pyload-ng": {
+    "type": "github",
+    "repo": "pyload/pyload",
+    "paths": [
+      "src/pyload/static/img/logo.svg"
+    ]
+  },
+  "raneto": {
+    "type": "github",
+    "repo": "gilbitron/Raneto",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "rsnapshot": {
+    "type": "github",
+    "repo": "rsnapshot/rsnapshot",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "smokeping": {
+    "type": "github",
+    "repo": "oetiker/SmokePing",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "swag": {
+    "type": "github",
+    "repo": "linuxserver/docker-swag",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "syncthing": {
+    "type": "github",
+    "repo": "syncthing/syncthing",
+    "paths": [
+      "assets/logo-horizontal.svg"
+    ]
+  },
+  "syslog-ng": {
+    "type": "github",
+    "repo": "syslog-ng/syslog-ng",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "telegram": {
+    "type": "website",
+    "url": "https://telegram.org/"
+  },
+  "tvheadend": {
+    "type": "github",
+    "repo": "tvheadend/tvheadend",
+    "paths": [
+      "README.md"
+    ]
+  },
+  "wireshark": {
+    "type": "github",
+    "repo": "wireshark/wireshark",
+    "paths": [
+      "packaging/macosx/wireshark.icns",
+      "image/wsicon256.png"
+    ]
+  },
+  "xbackbone": {
+    "type": "github",
+    "repo": "SergiX44/XBackBone",
+    "paths": [
+      "public/images/favicon.png"
+    ]
+  },
+  "your-spotify": {
+    "type": "github",
+    "repo": "Spotlistr/your-spotify",
+    "paths": [
+      "public/favicon.ico"
+    ]
+  }
+}
