@@ -65,7 +65,7 @@ You can access Medusa's configuration files at:
 
 ## Ports Description
 
-- **8081/tcp**: Medusa web interface (http://localhost:8081)
+- **8081/tcp**: Medusa web interface (<http://localhost:8081>)
 
 ## Troubleshooting
 
@@ -86,7 +86,7 @@ You can access Medusa's configuration files at:
 
 1. Verify the add-on is running (check logs)
 2. Check that port 8081 is not blocked by your firewall
-3. Try accessing via `http://localhost:8081` if in Home Assistant
+3. Try accessing via <http://localhost:8081> if in Home Assistant
 
 ## Upstream Documentation
 
