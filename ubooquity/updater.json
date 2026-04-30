@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-30",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "ubooquity",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-ubooquity",
+  "upstream_version": "3.1.0-ls84"
+}
