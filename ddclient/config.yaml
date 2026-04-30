@@ -1,0 +1,30 @@
+arch:
+  - aarch64
+  - amd64
+description: "ddclient - based on linuxserver/docker-ddclient"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/ddclient-{arch}
+init: false
+name: ddclient
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/ddclient
+  env_vars: []
+ports:
+  # No ports
+ports_description:
+  # No ports
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+slug: ddclient
+url: https://github.com/linuxserver/docker-ddclient
+version: 1.0.0
