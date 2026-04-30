@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-30",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "pwndrop",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-pwndrop",
+  "upstream_version": "1.0.1-ls154"
+}
