@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "lscr.io/linuxserver/pyload-ng:arm64v8-0.5.0b3",
+    "amd64": "lscr.io/linuxserver/pyload-ng:amd64-0.5.0b3"
+  }
+}
