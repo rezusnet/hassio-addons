@@ -18,50 +18,30 @@ Darktable is an open-source photography workflow application and raw developer. 
 ### Initial Setup
 
 On first launch, Darktable will:
-
-- Create necessary database files in the configured data location
-- Initialize the library structure
-- Prepare the web interface
+- Initialize the application
+- Prepare the web interface for access
+- Load any existing configuration
 
 ## Configuration
 
 ### Options
 
-| Option            | Type   | Default            | Description                                                 |
-| ----------------- | ------ | ------------------ | ----------------------------------------------------------- |
-| **data_location** | string | `/share/darktable` | Location to store Darktable configuration and library files |
-| **TZ**            | string | `(empty)`          | Timezone (e.g., `America/New_York`, `Europe/London`)        |
-| **PUID**          | int    | `0`                | User ID for file permissions                                |
-| **PGID**          | int    | `0`                | Group ID for file permissions                               |
-| **localdisks**    | string | `(empty)`          | Local disk/path mappings                                    |
-| **networkdisks**  | string | `(empty)`          | Network disk mount points                                   |
-| **cifsusername**  | string | `(empty)`          | Username for CIFS/SMB shares                                |
-| **cifspassword**  | string | `(empty)`          | Password for CIFS/SMB shares                                |
-| **cifsdomain**    | string | `(empty)`          | Domain for CIFS/SMB authentication                          |
-
-### Example Configuration
-
-```yaml
-data_location: /share/darktable
-TZ: America/New_York
-PUID: 1000
-PGID: 1000
-```
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| **TZ** | string | `(empty)` | Timezone (e.g., `America/New_York`, `Europe/London`) |
 
 ## File Access
 
 The add-on provides access to:
 
-- **addon_config** (`/addon_config`): Add-on configuration files
 - **share** (`/share`): Home Assistant share directory (for media access)
 - **ssl** (`/ssl`): Home Assistant SSL certificates (read-only)
 
-Configure additional mounts in the add-on settings if needed.
-
 ## Network Ports
 
-- **3000/tcp**: Desktop GUI interface (optional, for VNC access)
 - **3001/tcp**: HTTPS web interface (main interface)
+
+The web interface is accessible at `https://your-home-assistant-ip:3001/`
 
 ## Reverse Proxy Setup
 
@@ -85,34 +65,14 @@ If you're using a reverse proxy (SWAG, Traefik, etc.):
 ### HTTPS Certificate Warning
 
 This is normal! Darktable uses a self-signed certificate by default:
-
 - Click "Advanced" and proceed (varies by browser)
 - Or configure a trusted certificate through a reverse proxy
-
-### Database Issues
-
-If you experience database corruption:
-
-1. Stop the add-on
-2. Backup your `/share/darktable` directory
-3. Delete the database file (usually `library.db`)
-4. Restart the add-on to regenerate
-
-### Memory/Performance Issues
-
-On resource-constrained systems (Raspberry Pi):
-
-- Reduce the number of concurrent operations
-- Consider limiting library size initially
-- Use local storage when possible (faster than network storage)
 
 ## Upstream Documentation
 
 For detailed usage information, visit:
-
 - [Darktable Official Documentation](https://docs.darktable.org/)
 - [Darktable Website](https://www.darktable.org/)
-- [LinuxServer.io Darktable Documentation](https://docs.linuxserver.io/images/docker-darktable/)
 
 ## Support and Issues
 
