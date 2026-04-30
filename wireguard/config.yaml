@@ -1,0 +1,33 @@
+arch:
+  - aarch64
+  - amd64
+description: "WireGuard - based on linuxserver/docker-wireguard"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/wireguard-{arch}
+init: false
+name: WireGuard
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/wireguard
+  env_vars: []
+ports:
+  51820/tcp: 51820
+ports_description:
+  51820/tcp: "Web interface"
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+ingress: true
+ingress_port: 51820
+panel_icon: mdi:server
+slug: wireguard
+url: https://github.com/linuxserver/docker-wireguard
+version: 1.0.0
