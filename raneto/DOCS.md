@@ -1,41 +1,54 @@
-# Raneto Add-on Documentation
-
 ## Getting Started
 
-After installation and starting the Raneto add-on:
+After installing and starting the add-on:
 
-1. Access via Home Assistant Ingress (recommended)
-2. Default login: `admin` / `password`
-3. Configuration files stored at your configured `data_location`
+1. Configure the options below as needed
+2. Start the add-on
+3. Access the application
+
+For detailed setup instructions, see the upstream documentation links below.
 
 ## Configuration
 
-### `data_location`
-Where Raneto stores configuration and markdown files. Default: `/config/raneto`
+### Options
 
-### `TZ`
-Timezone for the container. Examples: `UTC`, `America/New_York`, `Europe/London`
+| Option | Type | Default | Description |
+| ------ | ---- | ------- | ----------- |
+| `PGID` | int | `0` | Pgid |
+| `PUID` | int | `0` | Puid |
+| `TZ` | string | `""` | Tz |
+| `cifsdomain` | string | `""` | Cifsdomain |
+| `cifspassword` | string | `""` | Cifspassword |
+| `cifsusername` | string | `""` | Cifsusername |
+| `data_location` | string | `"/config/raneto"` | Data Location |
+| `env_vars` | list | `[]` | Env Vars |
+| `localdisks` | string | `""` | Localdisks |
+| `networkdisks` | string | `""` | Networkdisks |
 
-### `PUID` / `PGID`
-User and group IDs for file permissions. Default: `0` (root)
+## File Access
 
-## File Structure
+The add-on maps the following HA directories:
 
-Inside your data location:
-- `config/config.js` - Main configuration file
-- `content/` - Markdown files for your knowledge base
-- `images/` - Images served at `/images/`
+| HA Path | Container Path | Access |
+| ------- | -------------- | ------ |
+| `/addon_config` | `/addon_config` | RW |
+| `/share` | `/share` | RW |
 
 ## Ports
 
-- `3000/tcp` - HTTP web interface (optional, not required if using Ingress)
+| Port | Protocol | Default | Description |
+| ---- | -------- | ------- | ----------- |
+| `3000` | TCP | `None` | HTTP web interface (optional, not required for Ingress) |
 
 ## Troubleshooting
 
-Check the Home Assistant logs for any errors from the Raneto add-on.
+### Add-on won't start
 
-## References
+- Check logs: **Settings > Add-ons > Raneto > Logs**
+- Verify all required options are configured
+- Check that required ports are available
 
-- [Raneto Website](http://raneto.com)
-- [Raneto Docs](http://docs.raneto.com)
-- [LinuxServer Raneto](https://github.com/linuxserver/docker-raneto)
+## Upstream Documentation
+
+- [Project Homepage](http://raneto.com)
+- [GitHub Repository](https://github.com/linuxserver/docker-raneto)

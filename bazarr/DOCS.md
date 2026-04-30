@@ -2,55 +2,55 @@
 
 After installing and starting the add-on:
 
-1. Open Bazarr via the **HA sidebar** (Ingress) or at `http://<your-ha-ip>:6767`
-2. Configure Sonarr and Radarr connection in Settings
-3. Set up your subtitle providers
-4. Configure languages and quality profiles
+1. Configure the options below as needed
+2. Start the add-on
+3. Access the application
+
+For detailed setup instructions, see the upstream documentation links below.
 
 ## Configuration
 
 ### Options
 
-| Option          | Type | Default         | Description                                     |
-| --------------- | ---- | --------------- | ----------------------------------------------- |
-| `env_vars`      | list | `[]`            | Custom environment variables (name/value pairs) |
-| `PGID`          | int  | `0`             | Group ID for file permissions                   |
-| `PUID`          | int  | `0`             | User ID for file permissions                    |
-| `data_location` | str  | `/share/bazarr` | Path where Bazarr stores config and data        |
-| `TZ`            | str  | `""`            | Timezone (e.g., `Europe/Bucharest`)             |
-| `localdisks`    | str  | `""`            | Local drives to mount (e.g., `sda1,sdb1`)       |
-| `networkdisks`  | str  | `""`            | SMB shares to mount (e.g., `//SERVER/SHARE`)    |
-| `cifsusername`  | str  | `""`            | SMB username for network shares                 |
-| `cifspassword`  | str  | `""`            | SMB password for network shares                 |
-| `cifsdomain`    | str  | `""`            | SMB domain for network shares                   |
-
-### Example Configuration
-
-```yaml
-PGID: 0
-PUID: 0
-TZ: "Europe/Bucharest"
-data_location: "/share/bazarr"
-```
+| Option | Type | Default | Description |
+| ------ | ---- | ------- | ----------- |
+| `PGID` | int | `0` | Pgid |
+| `PUID` | int | `0` | Puid |
+| `TZ` | string | `""` | Tz |
+| `cifsdomain` | string | `""` | Cifsdomain |
+| `cifspassword` | string | `""` | Cifspassword |
+| `cifsusername` | string | `""` | Cifsusername |
+| `data_location` | string | `"/share/bazarr"` | Data Location |
+| `env_vars` | list | `[]` | Env Vars |
+| `localdisks` | string | `""` | Localdisks |
+| `networkdisks` | string | `""` | Networkdisks |
 
 ## File Access
 
 The add-on maps the following HA directories:
 
-| HA Path         | Container Path                   | Access     |
-| --------------- | -------------------------------- | ---------- |
-| `/share/bazarr` | Configurable via `data_location` | Read/Write |
-| `/media/`       | `/media/`                        | Read/Write |
-| `/share/`       | `/share/`                        | Read/Write |
-| Add-on config   | `/addon_configs/*/`              | Read/Write |
+| HA Path | Container Path | Access |
+| ------- | -------------- | ------ |
+| `/addon_config` | `/addon_config` | RW |
+| `/media` | `/media` | RW |
+| `/share` | `/share` | RW |
+| `/ssl` | `/ssl` | RO |
 
 ## Ports
 
-| Port   | Protocol | Default | Description   |
-| ------ | -------- | ------- | ------------- |
-| `6767` | TCP      | `6767`  | Web interface |
+| Port | Protocol | Default | Description |
+| ---- | -------- | ------- | ----------- |
+| `6767` | TCP | `6767` | Web interface |
+
+## Troubleshooting
+
+### Add-on won't start
+
+- Check logs: **Settings > Add-ons > Bazarr > Logs**
+- Verify all required options are configured
+- Check that required ports are available
 
 ## Upstream Documentation
 
-- [Bazarr Wiki](https://www.bazarr.media/)
-- [LinuxServer Docker Image](https://github.com/linuxserver/docker-bazarr)
+- [Project Homepage](https://www.bazarr.media)
+- [GitHub Repository](https://github.com/linuxserver/docker-bazarr)

@@ -1,0 +1,1734 @@
+[
+  {
+    "addon": "adguardhome-sync",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "airsonic-advanced",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "apprise-api",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "audiobookshelf",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 512x512",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 512x512 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "babybuddy",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "bazarr",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "bookstack",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "calibre",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "calibre-web",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "changedetection",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "code-server",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "cops",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "darktable",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "davos",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "ddclient",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "deluge",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "diskover",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "dokuwiki",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "doplarr",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "duckdns",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "duplicati",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "emby",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "fail2ban",
+    "status": "FAIL",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "MISSING"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": [
+      "Missing: rootfs/etc/cont-init.d/99-run.sh"
+    ]
+  },
+  {
+    "addon": "faster-whisper",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "ferdium",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "filebrowser",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 700x700",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 700x700 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "flexget",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "freshrss",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "grav",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "grocy",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "habridge",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "haproxy",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 512x512",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 512x512 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "healthchecks",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "hedgedoc",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "heimdall",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "homeassistant",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "htpcmanager",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "jackett",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "jellyfin",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "kavita",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "kometa",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "ldap-auth",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "librespeed",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "lidarr",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "lightrag",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 1887x1887",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 1887x1887 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "lychee",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "manyfold",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "mariadb",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "mastodon",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "medusa",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "minisatip",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "monica",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "mstream",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "mylar3",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "netbox",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "nextcloud",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "nginx",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "nzbget",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "nzbhydra2",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "obsidian",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "ombi",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "opencode",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 512x512",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 512x512 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "openssh-server",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "openvscode-server",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "overseerr",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "pairdrop",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "piwigo",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "planka",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "plex",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "projectsend",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "prowlarr",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "pwndrop",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "pydio-cells",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "pyload-ng",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "qbittorrent",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "radarr",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "raneto",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "readarr",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "resilio-sync",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "rsnapshot",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "sabnzbd",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "sealskin",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "sickgear",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "smokeping",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "sonarr",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "speedtest-tracker",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "spotube",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "swag",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "syncthing",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "tautulli",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "transmission",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "tvheadend",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "ubooquity",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK",
+    "config_yaml_valid": true,
+    "issues": []
+  },
+  {
+    "addon": "unifi-network-application",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "webgrabplus",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "wikijs",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "wireguard",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  },
+  {
+    "addon": "xbackbone",
+    "status": "PASS",
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "SIZE: 256x256",
+    "config_yaml_valid": true,
+    "issues": [
+      "Icon size: 256x256 (should be 128x128)"
+    ]
+  }
+]

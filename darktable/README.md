@@ -1,42 +1,33 @@
-# Darktable Home Assistant Add-on
+# Home Assistant add-on: Darktable
 
-[![GitHub Release](https://img.shields.io/github/release/rezusnet/hassio-addons.svg?style=flat-square)](https://github.com/rezusnet/hassio-addons/releases/tag/darktable-25.4.1)
-![Project Stage](https://img.shields.io/badge/project%20stage-experimental-yellow.svg?style=flat-square)
+[![Version](https://img.shields.io/badge/dynamic/yaml?label=Version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fdarktable%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/darktable)
+[![Arch](https://img.shields.io/badge/dynamic/yaml?color=success&label=Arch&query=%24.arch&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fdarktable%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/darktable)
+[![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
+[![Ingress](https://img.shields.io/badge/dynamic/yaml?color=blueviolet&label=Ingress&query=%24.ingress&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fdarktable%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/darktable)
 
-![Darktable Logo](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/darktable-logo.png)
+![Darktable banner](banner.svg)
 
-Darktable - An open-source photography workflow application and raw developer. A virtual lighttable and darkroom for photographers. It manages your digital negatives in a database, lets you view them through a zoomable lighttable and enables you to develop raw images and enhance them.
+## About
 
-## Key Features
+[Darktable](https://www.darktable.org) is an open source photography workflow application and raw developer. a virtual lighttable and darkroom for photographers. it manages your digital negatives in a database and enables you to develop raw images and enhance them..
 
-- Open-source photography workflow and raw image development
-- Virtual lighttable and darkroom interface
-- Digital negative database management
-- Raw image development and enhancement
-- Zoomable lighttable interface
-- Support for multiple image formats
-- Home Assistant ingress support
+This add-on is based on the [linuxserver/docker-darktable](https://github.com/linuxserver/docker-darktable) Docker image.
+
+**Key features:**
+
+- Containerized application
+- Easy configuration
+- Home Assistant integration
+- Multi-architecture support
 
 ## Installation
 
-1. Navigate to **Settings** > **Add-ons** in Home Assistant
-2. Add this repository URL: `https://github.com/rezusnet/hassio-addons`
-3. Click **Install** on the Darktable add-on
-4. Configure and start the add-on
-5. Click **Open Web UI** to access Darktable
+1. Add this repository to your Home Assistant instance:
+   [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https://github.com/rezusnet/hassio-addons)
+2. Install the **Darktable** add-on from the add-on store.
+3. Configure options as needed (see **Documentation** tab).
+4. Start the add-on.
+5. Access via the **HA sidebar** (Ingress).
 
-## Configuration
-
-See the **DOCS.md** file for detailed configuration options and usage instructions.
-
-## Support
-
-For issues or questions:
-
-- Check the [DOCS.md](./DOCS.md) for configuration help
-- Visit the [upstream Darktable documentation](https://docs.darktable.org/)
-- Open an issue on [GitHub](https://github.com/rezusnet/hassio-addons/issues)
-
-## License
-
-This add-on is licensed under the MIT License.
+For full configuration details and troubleshooting, see the **Documentation** tab.

@@ -1,37 +1,49 @@
-# Ombi Add-on Documentation
-
 ## Getting Started
 
-This add-on provides Ombi integration with Home Assistant.
+After installing and starting the add-on:
 
-### Installation
+1. Configure the options below as needed
+2. Start the add-on
+3. Access the application
 
-Follow the standard Home Assistant add-on installation process.
+For detailed setup instructions, see the upstream documentation links below.
 
-### Configuration
+## Configuration
 
-Configure the add-on through the Home Assistant UI or by editing the configuration options:
+### Options
 
-- **PUID**: User ID for file permissions (default: 0)
-- **PGID**: Group ID for file permissions (default: 0)  
-- **TZ**: Timezone (optional)
-- **data_location**: Where data is stored (default: /share/ombi)
+| Option | Type | Default | Description |
+| ------ | ---- | ------- | ----------- |
+| `PGID` | int | `0` | Pgid |
+| `PUID` | int | `0` | Puid |
+| `TZ` | string | `""` | Tz |
+| `data_location` | string | `"/share/ombi"` | Data Location |
+| `env_vars` | list | `[]` | Env Vars |
 
-### Usage
+## File Access
 
-Once started, access the application through:
-- Home Assistant Ingress (if enabled)
-- Direct URL: http://<your-ha-ip>:8080
+The add-on maps the following HA directories:
 
-### Troubleshooting
+| HA Path | Container Path | Access |
+| ------- | -------------- | ------ |
+| `/share` | `/share` | RO |
+| `/media` | `/media` | RW |
 
-Check the add-on logs for any error messages. Most issues are resolved by:
-1. Restarting the add-on
-2. Ensuring proper file permissions
-3. Checking network connectivity
+## Ports
 
-## Support
+| Port | Protocol | Default | Description |
+| ---- | -------- | ------- | ----------- |
+| `8080` | TCP | `8080` | Web interface |
 
-For help with this add-on, please refer to:
-- [LinuxServer.io Documentation](https://docs.linuxserver.io/images/docker-ombi/)
-- [GitHub Repository](https://github.com/rezusnet/hassio-addons)
+## Troubleshooting
+
+### Add-on won't start
+
+- Check logs: **Settings > Add-ons > Ombi > Logs**
+- Verify all required options are configured
+- Check that required ports are available
+
+## Upstream Documentation
+
+- [Project Homepage](https://github.com/linuxserver/docker-ombi)
+- [GitHub Repository](https://github.com/linuxserver/docker-ombi)

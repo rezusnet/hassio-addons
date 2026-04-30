@@ -5,30 +5,28 @@
 [![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
 
+![LDAP Auth banner](banner.svg)
+
 ## About
 
-[LDAP Auth](https://github.com/nginxinc/nginx-ldap-auth) is an authentication daemon for nginx that provides user authentication against LDAP/Active Directory servers. It handles cookie-based session management and integrates seamlessly with nginx reverse proxy configurations.
+[LDAP Auth](https://github.com/nginxinc/nginx-ldap-auth) is ldap authentication server for nginx reverse proxy. provides user authentication and cookie-based session management for ldap/active directory users..
 
 This add-on is based on the [linuxserver/docker-ldap-auth](https://github.com/linuxserver/docker-ldap-auth) Docker image.
 
 **Key features:**
 
-- LDAP and Active Directory authentication
-- Cookie-based session management with Fernet encryption
-- Nginx reverse proxy integration
-- Custom fernet keys for multi-instance deployments
-- Optional SSL/TLS support for the auth daemon
-- User and group-based access control
-- Supports OpenLDAP, Microsoft Active Directory, and compatible servers
+- Containerized application
+- Easy configuration
+- Home Assistant integration
+- Multi-architecture support
 
 ## Installation
 
 1. Add this repository to your Home Assistant instance:
    [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https://github.com/rezusnet/hassio-addons)
 2. Install the **LDAP Auth** add-on from the add-on store.
-3. Configure your LDAP server connection settings (see Documentation tab).
-4. Set up nginx location blocks with LDAP authentication.
-5. Start the add-on.
-6. Access the login page at `http://<your-ha-ip>:9000`.
+3. Configure options as needed (see **Documentation** tab).
+4. Start the add-on.
+5. Access at `http://<your-ha-ip>:8888`.
 
-For full configuration details, LDAP server setup, and troubleshooting, see the **Documentation** tab.
+For full configuration details and troubleshooting, see the **Documentation** tab.

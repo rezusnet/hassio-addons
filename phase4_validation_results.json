@@ -1,0 +1,1167 @@
+[
+  {
+    "addon": "adguardhome-sync",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "airsonic-advanced",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "apprise-api",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "audiobookshelf",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (512x512)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (512, 512)"
+    ]
+  },
+  {
+    "addon": "babybuddy",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "bazarr",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "code-server",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "cops",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "darktable",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "davos",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "diskover",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "doplarr",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "duckdns",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "fail2ban",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "MISSING"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Missing: rootfs/etc/cont-init.d/99-run.sh"
+    ]
+  },
+  {
+    "addon": "ferdium",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "filebrowser",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (700x700)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (700, 700)"
+    ]
+  },
+  {
+    "addon": "flexget",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "grav",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "habridge",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "haproxy",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (512x512)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (512, 512)"
+    ]
+  },
+  {
+    "addon": "healthchecks",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "homeassistant",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "htpcmanager",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "jellyfin",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "kometa",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "ldap-auth",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "lightrag",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (1887x1887)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (1887, 1887)"
+    ]
+  },
+  {
+    "addon": "manyfold",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "mariadb",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "medusa",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "minisatip",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "monica",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "obsidian",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "ombi",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "opencode",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (512x512)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (512, 512)"
+    ]
+  },
+  {
+    "addon": "openssh-server",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "openvscode-server",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "piwigo",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "planka",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "projectsend",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "prowlarr",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "pwndrop",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "pydio-cells",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "pyload-ng",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "qbittorrent",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "radarr",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "raneto",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "readarr",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "resilio-sync",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "rsnapshot",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "sabnzbd",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "sealskin",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "sickgear",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "sonarr",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "spotube",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "tautulli",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "transmission",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "tvheadend",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "ubooquity",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "OK (128x128)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": []
+  },
+  {
+    "addon": "unifi-network-application",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "webgrabplus",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "wikijs",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  },
+  {
+    "addon": "xbackbone",
+    "directory_exists": true,
+    "required_files": {
+      "config.yaml": "OK",
+      "icon.png": "OK",
+      "Dockerfile": "OK",
+      "README.md": "OK",
+      "DOCS.md": "OK",
+      "CHANGELOG.md": "OK",
+      "rootfs/etc/cont-init.d/99-run.sh": "OK"
+    },
+    "icon_check": "INVALID (256x256)",
+    "config_yaml_valid": true,
+    "dockerfile_exists": true,
+    "issues": [
+      "Icon must be 128x128, found (256, 256)"
+    ]
+  }
+]

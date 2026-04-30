@@ -1,40 +1,34 @@
 # Home Assistant add-on: Radarr
 
 [![Version](https://img.shields.io/badge/dynamic/yaml?label=Version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fradarr%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/radarr)
-[![Ingress](https://img.shields.io/badge/dynamic/yaml?color=blueviolet&label=Ingress&query=%24.ingress&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fradarr%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/radarr)
 [![Arch](https://img.shields.io/badge/dynamic/yaml?color=success&label=Arch&query=%24.arch&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fradarr%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/radarr)
 [![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
+[![Ingress](https://img.shields.io/badge/dynamic/yaml?color=blueviolet&label=Ingress&query=%24.ingress&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fradarr%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/radarr)
 
 ![Radarr banner](banner.svg)
 
 ## About
 
-[Radarr](https://radarr.video/) is a movie collection manager for Usenet and BitTorrent users. It watches your wanted list, searches indexers automatically, imports completed downloads, and keeps your movie library organized.
+[Radarr](https://radarr.video) is automatically manages your movie collection with downloads from newsgroups or BitTorrent.
 
 This add-on is based on the [linuxserver/docker-radarr](https://github.com/linuxserver/docker-radarr) Docker image.
 
 **Key features:**
 
-- Add new movies with metadata, ratings, and release monitoring
-- Monitor RSS feeds and search indexers automatically
-- Automatically import, rename, and organize completed downloads
-- Automatic quality upgrades when better versions are available
-- Failed download handling and manual interactive search
-- Recognize special editions, alternate titles, and hardcoded subtitles
-- Integrates with major Usenet and BitTorrent download clients
-- Integrates with Plex and Kodi notification/library refresh workflows
-- HA ingress sidebar support
-- SMB/CIFS network share mounting
-- Local USB/SATA/NVMe disk mounting
+- Automatic movie downloads from multiple sources
+- Multiple quality profiles and library management
+- Integration with Prowlarr indexers
+- Full collection organization and metadata
+- Post-processing and custom scripts
 
 ## Installation
 
 1. Add this repository to your Home Assistant instance:
    [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https://github.com/rezusnet/hassio-addons)
 2. Install the **Radarr** add-on from the add-on store.
-3. Configure media paths and options (see Documentation tab).
+3. Configure options as needed (see **Documentation** tab).
 4. Start the add-on.
 5. Access via the **HA sidebar** (Ingress) or directly at `http://<your-ha-ip>:7878`.
 
-For full configuration details, media path planning, and troubleshooting, see the **Documentation** tab.
+For full configuration details and troubleshooting, see the **Documentation** tab.
