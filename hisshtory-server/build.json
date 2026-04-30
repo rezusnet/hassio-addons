@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "golang:1.21-alpine",
+    "amd64": "golang:1.21-alpine"
+  }
+}

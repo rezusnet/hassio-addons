@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-05-01",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "hisshtory-server",
+  "source": "github",
+  "upstream_repo": "ddpom/hishtory",
+  "upstream_version": "v0.250"
+}
