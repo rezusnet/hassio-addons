@@ -30,4 +30,4 @@ ingress_port: 8080
 panel_icon: mdi:server
 slug: mastodon
 url: https://github.com/linuxserver/docker-mastodon
-version: 1.0.0
+version: "4.2.0"

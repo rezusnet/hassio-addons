@@ -5,5 +5,5 @@
   "slug": "unifi-network-application",
   "source": "github",
   "upstream_repo": "linuxserver/docker-unifi-network-application",
-  "upstream_version": "latest"
+  "upstream_version": "8.7.3"
 }

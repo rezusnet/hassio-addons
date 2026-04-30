@@ -27,4 +27,4 @@ schema:
       value: str?
 slug: ddclient
 url: https://github.com/linuxserver/docker-ddclient
-version: 1.0.0
+version: "3.12.0"

@@ -30,4 +30,4 @@ ingress_port: 80
 panel_icon: mdi:server
 slug: xbackbone
 url: https://github.com/linuxserver/docker-xbackbone
-version: 1.0.0
+version: "3.9.6"

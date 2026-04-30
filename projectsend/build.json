@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "lscr.io/linuxserver/projectsend:arm64v8-latest",
-    "amd64": "lscr.io/linuxserver/projectsend:amd64-latest"
+    "aarch64": "lscr.io/linuxserver/projectsend:arm64v8-r1100",
+    "amd64": "lscr.io/linuxserver/projectsend:amd64-r1100"
   }
 }

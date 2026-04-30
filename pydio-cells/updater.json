@@ -5,5 +5,5 @@
   "slug": "pydio-cells",
   "source": "github",
   "upstream_repo": "linuxserver/docker-pydio-cells",
-  "upstream_version": "latest"
+  "upstream_version": "4.4.2"
 }

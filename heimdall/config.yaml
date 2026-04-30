@@ -30,4 +30,4 @@ ingress_port: 80
 panel_icon: mdi:server
 slug: heimdall
 url: https://github.com/linuxserver/docker-heimdall
-version: 1.0.0
+version: "2.4.15"

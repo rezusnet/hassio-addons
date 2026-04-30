@@ -5,5 +5,5 @@
   "slug": "spotube",
   "source": "github",
   "upstream_repo": "linuxserver/docker-spotube",
-  "upstream_version": "latest"
+  "upstream_version": "3.10.0"
 }

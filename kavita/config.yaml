@@ -30,4 +30,4 @@ ingress_port: 5000
 panel_icon: mdi:server
 slug: kavita
 url: https://github.com/linuxserver/docker-kavita
-version: 1.0.0
+version: "0.8.2"

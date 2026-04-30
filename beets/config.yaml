@@ -1,6 +1,6 @@
 name: Beets
 description: Beets - Music library organizer and tagger
-version: 1.0.0
+version: "2.10.0"
 slug: beets
 image: ghcr.io/rezusnet/beets-{arch}
 homeassistant: "2024.1.0"

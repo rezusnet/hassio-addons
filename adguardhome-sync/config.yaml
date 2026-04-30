@@ -27,4 +27,4 @@ schema:
       value: str?
 slug: adguardhome-sync
 url: https://github.com/linuxserver/docker-adguardhome-sync
-version: 1.0.0
+version: "0.6.7"

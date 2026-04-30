@@ -5,5 +5,5 @@
   "slug": "obsidian",
   "source": "github",
   "upstream_repo": "linuxserver/docker-obsidian",
-  "upstream_version": "latest"
+  "upstream_version": "1.12.7"
 }

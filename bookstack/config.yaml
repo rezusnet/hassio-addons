@@ -30,4 +30,4 @@ ingress_port: 80
 panel_icon: mdi:server
 slug: bookstack
 url: https://github.com/linuxserver/docker-bookstack
-version: 1.0.0
+version: "24.05.3"

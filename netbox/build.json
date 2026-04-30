@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "lscr.io/linuxserver/netbox:arm64v8-latest",
-    "amd64": "lscr.io/linuxserver/netbox:amd64-latest"
+    "aarch64": "lscr.io/linuxserver/netbox:arm64v8-4.1.4",
+    "amd64": "lscr.io/linuxserver/netbox:amd64-4.1.4"
   }
 }

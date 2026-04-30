@@ -5,5 +5,5 @@
   "slug": "netbox",
   "source": "github",
   "upstream_repo": "linuxserver/docker-netbox",
-  "upstream_version": "latest"
+  "upstream_version": "4.1.4"
 }

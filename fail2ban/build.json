@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "lscr.io/linuxserver/fail2ban:arm64v8-latest",
-    "amd64": "lscr.io/linuxserver/fail2ban:amd64-latest"
+    "aarch64": "lscr.io/linuxserver/fail2ban:arm64v8-1.1.0",
+    "amd64": "lscr.io/linuxserver/fail2ban:amd64-1.1.0"
   }
 }

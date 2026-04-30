@@ -5,5 +5,5 @@
   "slug": "openvscode-server",
   "source": "github",
   "upstream_repo": "linuxserver/docker-openvscode-server",
-  "upstream_version": "latest"
+  "upstream_version": "3.0.0"
 }

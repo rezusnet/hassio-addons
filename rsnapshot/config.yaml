@@ -27,4 +27,4 @@ schema:
       value: str?
 slug: rsnapshot
 url: https://github.com/linuxserver/docker-rsnapshot
-version: 1.0.0
+version: "1.4.5"

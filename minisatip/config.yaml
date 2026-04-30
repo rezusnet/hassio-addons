@@ -30,4 +30,4 @@ ingress_port: 8080
 panel_icon: mdi:server
 slug: minisatip
 url: https://github.com/linuxserver/docker-minisatip
-version: 1.0.0
+version: "0.2.70"

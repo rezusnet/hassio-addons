@@ -30,4 +30,4 @@ ingress_port: 3000
 panel_icon: mdi:server
 slug: ferdium
 url: https://github.com/linuxserver/docker-ferdium
-version: 1.0.0
+version: "6.7.8"

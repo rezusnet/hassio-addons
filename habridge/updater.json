@@ -5,5 +5,5 @@
   "slug": "habridge",
   "source": "github",
   "upstream_repo": "linuxserver/docker-habridge",
-  "upstream_version": "latest"
+  "upstream_version": "5.5.5"
 }

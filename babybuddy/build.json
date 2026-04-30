@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "lscr.io/linuxserver/babybuddy:arm64v8-latest",
-    "amd64": "lscr.io/linuxserver/babybuddy:amd64-latest"
+    "aarch64": "lscr.io/linuxserver/babybuddy:arm64v8-0.18.3",
+    "amd64": "lscr.io/linuxserver/babybuddy:amd64-0.18.3"
   }
 }

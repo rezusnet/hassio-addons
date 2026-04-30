@@ -30,4 +30,4 @@ ingress_port: 3000
 panel_icon: mdi:server
 slug: planka
 url: https://github.com/linuxserver/docker-planka
-version: 1.0.0
+version: "1.75.5"

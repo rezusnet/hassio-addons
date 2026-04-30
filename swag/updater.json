@@ -5,5 +5,5 @@
   "slug": "swag",
   "source": "github",
   "upstream_repo": "linuxserver/docker-swag",
-  "upstream_version": "latest"
+  "upstream_version": "2.10.6"
 }

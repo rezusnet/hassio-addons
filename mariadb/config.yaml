@@ -30,4 +30,4 @@ ingress_port: 3306
 panel_icon: mdi:server
 slug: mariadb
 url: https://github.com/linuxserver/docker-mariadb
-version: 1.0.0
+version: "11.7.0"

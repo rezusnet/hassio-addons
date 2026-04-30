@@ -30,4 +30,4 @@ ingress_port: 8080
 panel_icon: mdi:server
 slug: wikijs
 url: https://github.com/linuxserver/docker-wikijs
-version: 1.0.0
+version: "3.0.0"

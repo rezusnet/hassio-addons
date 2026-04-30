@@ -30,4 +30,4 @@ ingress_port: 8000
 panel_icon: mdi:server
 slug: faster-whisper
 url: https://github.com/linuxserver/docker-faster-whisper
-version: 1.0.0
+version: "1.0.3"

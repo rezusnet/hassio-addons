@@ -5,5 +5,5 @@
   "slug": "speedtest-tracker",
   "source": "github",
   "upstream_repo": "linuxserver/docker-speedtest-tracker",
-  "upstream_version": "latest"
+  "upstream_version": "1.23.0"
 }

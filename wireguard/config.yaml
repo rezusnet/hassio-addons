@@ -30,4 +30,4 @@ ingress_port: 51820
 panel_icon: mdi:server
 slug: wireguard
 url: https://github.com/linuxserver/docker-wireguard
-version: 1.0.0
+version: "1.0.20220627"

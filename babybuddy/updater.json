@@ -5,5 +5,5 @@
   "slug": "babybuddy",
   "source": "github",
   "upstream_repo": "linuxserver/docker-babybuddy",
-  "upstream_version": "latest"
+  "upstream_version": "0.18.3"
 }

@@ -30,4 +30,4 @@ ingress_port: 8200
 panel_icon: mdi:server
 slug: duplicati
 url: https://github.com/linuxserver/docker-duplicati
-version: 1.0.0
+version: "2.0.8.7"

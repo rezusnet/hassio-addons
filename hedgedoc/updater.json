@@ -5,5 +5,5 @@
   "slug": "hedgedoc",
   "source": "github",
   "upstream_repo": "linuxserver/docker-hedgedoc",
-  "upstream_version": "latest"
+  "upstream_version": "1.9.10"
 }

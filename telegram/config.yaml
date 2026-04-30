@@ -41,4 +41,4 @@ schema:
       value: str?
 slug: telegram
 url: https://github.com/tdlib/telegram-bot-api
-version: 1.0.15
+version: "19.0"

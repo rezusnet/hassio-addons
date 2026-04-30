@@ -30,4 +30,4 @@ ingress_port: 8080
 panel_icon: mdi:server
 slug: pairdrop
 url: https://github.com/linuxserver/docker-pairdrop
-version: 1.0.0
+version: "1.10.2"

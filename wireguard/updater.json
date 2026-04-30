@@ -5,5 +5,5 @@
   "slug": "wireguard",
   "source": "github",
   "upstream_repo": "linuxserver/docker-wireguard",
-  "upstream_version": "latest"
+  "upstream_version": "1.0.20220627"
 }

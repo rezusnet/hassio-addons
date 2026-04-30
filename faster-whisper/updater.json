@@ -5,5 +5,5 @@
   "slug": "faster-whisper",
   "source": "github",
   "upstream_repo": "linuxserver/docker-faster-whisper",
-  "upstream_version": "latest"
+  "upstream_version": "1.0.3"
 }

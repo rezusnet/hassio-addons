@@ -5,5 +5,5 @@
   "slug": "freshrss",
   "source": "github",
   "upstream_repo": "linuxserver/docker-freshrss",
-  "upstream_version": "latest"
+  "upstream_version": "1.28.1"
 }

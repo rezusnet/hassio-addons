@@ -5,5 +5,5 @@
   "slug": "grocy",
   "source": "github",
   "upstream_repo": "linuxserver/docker-grocy",
-  "upstream_version": "latest"
+  "upstream_version": "4.5.2"
 }

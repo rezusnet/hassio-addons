@@ -30,4 +30,4 @@ ingress_port: 80
 panel_icon: mdi:server
 slug: lychee
 url: https://github.com/linuxserver/docker-lychee
-version: 1.0.0
+version: "4.7.0"

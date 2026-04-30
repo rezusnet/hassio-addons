@@ -30,4 +30,4 @@ ingress_port: 8384
 panel_icon: mdi:server
 slug: syncthing
 url: https://github.com/linuxserver/docker-syncthing
-version: 1.0.0
+version: "1.27.11"

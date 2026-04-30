@@ -30,4 +30,4 @@ ingress_port: 9981
 panel_icon: mdi:server
 slug: tvheadend
 url: https://github.com/linuxserver/docker-tvheadend
-version: 1.0.0
+version: "4.3-1747"

@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "lscr.io/linuxserver/adguardhome-sync:arm64v8-latest",
-    "amd64": "lscr.io/linuxserver/adguardhome-sync:amd64-latest"
+    "aarch64": "lscr.io/linuxserver/adguardhome-sync:arm64v8-0.6.7",
+    "amd64": "lscr.io/linuxserver/adguardhome-sync:amd64-0.6.7"
   }
 }

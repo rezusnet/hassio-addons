@@ -27,4 +27,4 @@ schema:
       value: str?
 slug: sealskin
 url: https://github.com/linuxserver/docker-sealskin
-version: 1.0.0
+version: "3.0"

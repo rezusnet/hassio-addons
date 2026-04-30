@@ -30,4 +30,4 @@ ingress_port: 8443
 panel_icon: mdi:server
 slug: unifi-network-application
 url: https://github.com/linuxserver/docker-unifi-network-application
-version: 1.0.0
+version: "8.7.3"

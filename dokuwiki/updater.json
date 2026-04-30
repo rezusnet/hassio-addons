@@ -5,5 +5,5 @@
   "slug": "dokuwiki",
   "source": "github",
   "upstream_repo": "linuxserver/docker-dokuwiki",
-  "upstream_version": "latest"
+  "upstream_version": "2024-03-28"
 }

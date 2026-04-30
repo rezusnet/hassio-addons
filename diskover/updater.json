@@ -5,5 +5,5 @@
   "slug": "diskover",
   "source": "github",
   "upstream_repo": "linuxserver/docker-diskover",
-  "upstream_version": "latest"
+  "upstream_version": "2.2.15"
 }

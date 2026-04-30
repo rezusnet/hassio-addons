@@ -37,4 +37,4 @@ schema:
       value: str?
 slug: syslog-ng
 url: https://www.syslog-ng.com/
-version: 4.8.0
+version: "4.8.0"

@@ -30,4 +30,4 @@ ingress_port: 80
 panel_icon: mdi:database
 slug: phpmyadmin
 url: https://github.com/linuxserver/docker-phpmyadmin
-version: 1.0.0
+version: "5.2.3"

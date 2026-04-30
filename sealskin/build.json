@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "lscr.io/linuxserver/sealskin:arm64v8-latest",
-    "amd64": "lscr.io/linuxserver/sealskin:amd64-latest"
+    "aarch64": "lscr.io/linuxserver/sealskin:arm64v8-3.0",
+    "amd64": "lscr.io/linuxserver/sealskin:amd64-3.0"
   }
 }

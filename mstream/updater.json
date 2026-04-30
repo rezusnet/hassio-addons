@@ -5,5 +5,5 @@
   "slug": "mstream",
   "source": "github",
   "upstream_repo": "linuxserver/docker-mstream",
-  "upstream_version": "latest"
+  "upstream_version": "5.11.32"
 }

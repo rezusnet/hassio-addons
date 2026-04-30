@@ -5,5 +5,5 @@
   "slug": "phpmyadmin",
   "source": "github",
   "upstream_repo": "linuxserver/docker-phpmyadmin",
-  "upstream_version": "latest"
+  "upstream_version": "5.2.3"
 }

@@ -30,4 +30,4 @@ ingress_port: 2222
 panel_icon: mdi:server
 slug: openssh-server
 url: https://github.com/linuxserver/docker-openssh-server
-version: 1.0.0
+version: "9.9.P2"

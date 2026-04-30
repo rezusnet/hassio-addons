@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "lscr.io/linuxserver/kavita:arm64v8-latest",
-    "amd64": "lscr.io/linuxserver/kavita:amd64-latest"
+    "aarch64": "lscr.io/linuxserver/kavita:arm64v8-0.8.2",
+    "amd64": "lscr.io/linuxserver/kavita:amd64-0.8.2"
   }
 }

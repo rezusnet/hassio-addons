@@ -5,5 +5,5 @@
   "slug": "syncthing",
   "source": "github",
   "upstream_repo": "linuxserver/docker-syncthing",
-  "upstream_version": "latest"
+  "upstream_version": "1.27.11"
 }

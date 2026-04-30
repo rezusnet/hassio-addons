@@ -30,4 +30,4 @@ ingress_port: 80
 panel_icon: mdi:server
 slug: speedtest-tracker
 url: https://github.com/linuxserver/docker-speedtest-tracker
-version: 1.0.0
+version: "1.23.0"

@@ -5,6 +5,6 @@
   "slug": "telegram",
   "source": "docker",
   "upstream_repo": "telegram",
-  "upstream_version": "latest",
+  "upstream_version": "19.0",
   "dockerhub_tag_filter": "bot-api"
 }

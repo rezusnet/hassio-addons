@@ -30,4 +30,4 @@ ingress_port: 8000
 panel_icon: mdi:server
 slug: babybuddy
 url: https://github.com/linuxserver/docker-babybuddy
-version: 1.0.0
+version: "0.18.3"

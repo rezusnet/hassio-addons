@@ -36,4 +36,4 @@ ingress_port: 80
 panel_icon: mdi:clock-outline
 slug: kimai
 url: https://www.kimai.org/
-version: 2.26.0
+version: "2.23.2"

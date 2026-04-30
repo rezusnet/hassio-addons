@@ -30,4 +30,4 @@ ingress_port: 3000
 panel_icon: mdi:server
 slug: openvscode-server
 url: https://github.com/linuxserver/docker-openvscode-server
-version: 1.0.0
+version: "3.0.0"

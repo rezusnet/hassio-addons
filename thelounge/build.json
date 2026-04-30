@@ -1,4 +1,4 @@
 {
-  "aarch64": "lscr.io/linuxserver/thelounge:arm64v8-latest",
-  "amd64": "lscr.io/linuxserver/thelounge:amd64-latest"
+  "aarch64": "lscr.io/linuxserver/thelounge:arm64v8-4.4.3",
+  "amd64": "lscr.io/linuxserver/thelounge:amd64-4.4.3"
 }

@@ -30,4 +30,4 @@ ingress_port: 8080
 panel_icon: mdi:server
 slug: swag
 url: https://github.com/linuxserver/docker-swag
-version: 1.0.0
+version: "2.10.6"

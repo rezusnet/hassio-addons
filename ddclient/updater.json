@@ -5,5 +5,5 @@
   "slug": "ddclient",
   "source": "github",
   "upstream_repo": "linuxserver/docker-ddclient",
-  "upstream_version": "latest"
+  "upstream_version": "3.12.0"
 }

@@ -5,5 +5,5 @@
   "slug": "beets",
   "source": "github",
   "upstream_repo": "linuxserver/docker-beets",
-  "upstream_version": "latest"
+  "upstream_version": "2.10.0"
 }

@@ -30,4 +30,4 @@ ingress_port: 8000
 panel_icon: mdi:server
 slug: apprise-api
 url: https://github.com/linuxserver/docker-apprise-api
-version: 1.0.0
+version: "1.4.6"

@@ -5,5 +5,5 @@
   "slug": "ferdium",
   "source": "github",
   "upstream_repo": "linuxserver/docker-ferdium",
-  "upstream_version": "latest"
+  "upstream_version": "6.7.8"
 }

@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "lscr.io/linuxserver/webgrabplus:arm64v8-latest",
-    "amd64": "lscr.io/linuxserver/webgrabplus:amd64-latest"
+    "aarch64": "lscr.io/linuxserver/webgrabplus:arm64v8-3.9.1",
+    "amd64": "lscr.io/linuxserver/webgrabplus:amd64-3.9.1"
   }
 }

@@ -30,4 +30,4 @@ ingress_port: 80
 panel_icon: mdi:server
 slug: freshrss
 url: https://github.com/linuxserver/docker-freshrss
-version: 1.0.0
+version: "1.28.1"

@@ -30,4 +30,4 @@ ingress_port: 8085
 panel_icon: mdi:server
 slug: htpcmanager
 url: https://github.com/linuxserver/docker-htpcmanager
-version: 1.0.0
+version: "1.4.1"

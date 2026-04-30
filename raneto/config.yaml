@@ -2,7 +2,7 @@ name: Raneto
 description: >
   Raneto — markdown-powered knowledge base and wiki platform.
   Create searchable documentation and FAQs using static Markdown files.
-version: "1.0.0"
+version: "0.17.3"
 slug: raneto
 url: http://raneto.com
 panel_icon: mdi:book-open-page-variant-outline

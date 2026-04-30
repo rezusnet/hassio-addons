@@ -30,4 +30,4 @@ ingress_port: 8080
 panel_icon: mdi:server
 slug: habridge
 url: https://github.com/linuxserver/docker-habridge
-version: 1.0.0
+version: "5.5.5"
