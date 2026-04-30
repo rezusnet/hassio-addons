@@ -1,9 +1,0 @@
-{
-  "last_update": "2026-04-30",
-  "paused": false,
-  "repository": "rezusnet/hassio-addons",
-  "slug": "mylar3",
-  "source": "github",
-  "upstream_repo": "linuxserver/docker-mylar3",
-  "upstream_version": "latest"
-}
