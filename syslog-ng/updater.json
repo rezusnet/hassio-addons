@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-05-01",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "syslog-ng",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-syslog-ng",
+  "upstream_version": "latest"
+}

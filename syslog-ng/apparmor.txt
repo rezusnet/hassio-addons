@@ -1,0 +1,9 @@
+#include <tunables/global>
+
+profile ha_syslog_ng flags=attach_disconnected,mediate_deleted {
+  #include <abstractions/base>
+
+  capability,
+  file,
+  network,
+}
