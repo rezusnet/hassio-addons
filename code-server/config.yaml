@@ -1,0 +1,48 @@
+arch:
+  - aarch64
+  - amd64
+description: VS Code running on a remote server, accessible through the browser.
+homeassistant: 2024.1.0
+icon: icon.png
+image: ghcr.io/rezusnet/code-server-{arch}
+ingress: true
+ingress_port: 8443
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+  - ssl
+name: Code Server
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/code-server
+  TZ: ""
+  DOCKER_MODS: []
+  PASSWORD: ""
+  HASHED_PASSWORD: ""
+  SUDO_PASSWORD: ""
+  SUDO_PASSWORD_HASH: ""
+panel_icon: mdi:code-braces
+ports:
+  8443/tcp: 8443
+ports_description:
+  8443/tcp: Web interface
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:code-server-[a-z0-9-]+$)?
+  PASSWORD: str?
+  HASHED_PASSWORD: str?
+  SUDO_PASSWORD: str?
+  SUDO_PASSWORD_HASH: str?
+slug: code-server
+url: https://coder.com
+version: "4.117.0"
