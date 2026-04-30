@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "lscr.io/linuxserver/freshrss:arm64v8-latest",
+    "amd64": "lscr.io/linuxserver/freshrss:amd64-latest"
+  }
+}
