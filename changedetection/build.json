@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "lscr.io/linuxserver/changedetection:arm64v8-latest",
+    "amd64": "lscr.io/linuxserver/changedetection:amd64-latest"
+  }
+}
