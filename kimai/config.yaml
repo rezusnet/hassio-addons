@@ -1,0 +1,39 @@
+arch:
+  - aarch64
+  - amd64
+description: >-
+  Kimai is an open source time tracking application. Track time spent on tasks
+  and projects with ease. Features include time tracking, project management,
+  customer management, export to PDF, and multi-user support.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/kimai-{arch}
+init: false
+name: Kimai
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/kimai
+  env_vars: []
+ports:
+  80/tcp: 80
+ports_description:
+  80/tcp: "Kimai Web UI"
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+ingress: true
+ingress_port: 80
+panel_icon: mdi:clock-outline
+slug: kimai
+url: https://www.kimai.org/
+version: 2.26.0
