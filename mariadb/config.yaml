@@ -1,0 +1,33 @@
+arch:
+  - aarch64
+  - amd64
+description: "MariaDB - based on linuxserver/docker-mariadb"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/mariadb-{arch}
+init: false
+name: MariaDB
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/mariadb
+  env_vars: []
+ports:
+  3306/tcp: 3306
+ports_description:
+  3306/tcp: "Web interface"
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+ingress: true
+ingress_port: 3306
+panel_icon: mdi:server
+slug: mariadb
+url: https://github.com/linuxserver/docker-mariadb
+version: 1.0.0
