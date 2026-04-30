@@ -1,0 +1,30 @@
+arch:
+  - aarch64
+  - amd64
+description: "DuckDNS - based on linuxserver/docker-duckdns"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/duckdns-{arch}
+init: false
+name: DuckDNS
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/duckdns
+  env_vars: []
+ports:
+  # No ports
+ports_description:
+  # No ports
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+slug: duckdns
+url: https://github.com/linuxserver/docker-duckdns
+version: 1.0.0
