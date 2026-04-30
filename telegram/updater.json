@@ -1,0 +1,10 @@
+{
+  "last_update": "2026-05-01",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "telegram",
+  "source": "docker",
+  "upstream_repo": "telegram",
+  "upstream_version": "latest",
+  "dockerhub_tag_filter": "bot-api"
+}

@@ -1,0 +1,44 @@
+arch:
+  - aarch64
+  - amd64
+description: >-
+  Telegram Bot API is a local Bot API server. Run your own Telegram Bot API
+  server for complete control over your bot infrastructure. Allows building
+  bots without official API rate limits or external dependencies.
+environment:
+  PUID: "0"
+  PGID: "0"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/telegram-{arch}
+init: true
+name: Telegram Bot API
+options:
+  PUID: 0
+  PGID: 0
+  TZ: ""
+  data_location: /share/telegram
+  api_port: 8081
+  api_id: ""
+  api_hash: ""
+  phone_number: ""
+  env_vars: []
+ports:
+  8081/tcp: 8081
+ports_description:
+  8081/tcp: "Telegram Bot API Server"
+schema:
+  PUID: int
+  PGID: int
+  TZ: str?
+  data_location: str
+  api_port: int(1, 65535)
+  api_id: str?
+  api_hash: password?
+  phone_number: str?
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+slug: telegram
+url: https://github.com/tdlib/telegram-bot-api
+version: 1.0.15

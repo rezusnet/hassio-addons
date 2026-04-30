@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "telegram/bot-api:latest",
+    "amd64": "telegram/bot-api:latest"
+  }
+}
