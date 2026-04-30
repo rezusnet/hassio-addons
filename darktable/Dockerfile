@@ -8,23 +8,7 @@ ARG BUILD_VERSION
 USER root
 
 COPY rootfs/ /
-RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
-
-ARG MODULES="00-banner.sh 01-custom_script.sh 00-local_mounts.sh 00-smb_mounts.sh"
-ARG CACHEBUST=1
-
-COPY ha_automodules.sh /ha_automodules.sh
-RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
-
-COPY ha_autoapps.sh /ha_autoapps.sh
-RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "" && rm /ha_autoapps.sh
-
-ENV S6_STAGE2_HOOK=/ha_entrypoint.sh
-COPY ha_entrypoint.sh /ha_entrypoint.sh
-RUN chmod 777 /ha_entrypoint.sh
-
-COPY bashio-standalone.sh /usr/local/lib/bashio-standalone.sh
-RUN chmod 0755 /usr/local/lib/bashio-standalone.sh
+RUN find rootfs -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \; 2>/dev/null || true
 
 ARG BUILD_ARCH
 ARG BUILD_DATE
