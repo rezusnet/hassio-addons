@@ -15,11 +15,11 @@ This add-on is based on the [linuxserver/docker-spotube](https://github.com/linu
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Spotify music streaming
+- No premium required
+- Cross-platform
+- Local playback
+- Offline mode
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

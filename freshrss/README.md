@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-freshrss](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- RSS feed aggregator
+- Article sharing to social media
+- Automatic article categorization
+- Import/export support
+- Multiple feed sources
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

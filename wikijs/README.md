@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-wikijs](https://github.com/linux
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Wiki platform
+- Markdown support
+- Multiple authentication
+- Multi-language support
+- Asset management
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

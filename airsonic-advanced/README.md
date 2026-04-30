@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-airsonic-advanced](https://githu
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Personal music streaming server
+- Web-based audio player
+- Full music library management
+- Podcast streaming support
+- Mobile app compatibility
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

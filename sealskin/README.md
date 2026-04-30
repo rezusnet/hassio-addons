@@ -15,11 +15,11 @@ This add-on is based on the [linuxserver/docker-sealskin](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Browser downloads
+- Download management
+- History tracking
+- Torrent support
+- Streaming support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

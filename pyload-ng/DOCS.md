@@ -50,5 +50,5 @@ The add-on maps the following HA directories:
 
 ## Upstream Documentation
 
-- [Project Homepage](https://pyload.net)
+- [Project Homepage](https://github.com/linuxserver/docker-pyload-ng)
 - [GitHub Repository](https://github.com/linuxserver/docker-pyload-ng)

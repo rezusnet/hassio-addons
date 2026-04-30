@@ -15,11 +15,11 @@ This add-on is based on the [linuxserver/docker-ldap-auth](https://github.com/li
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- LDAP authentication
+- User directory integration
+- Single sign-on support
+- Group based access control
+- Web application compatibility
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -50,5 +50,5 @@ No ports configured.
 
 ## Upstream Documentation
 
-- [Project Homepage](https://www.fail2ban.org/)
+- [Project Homepage](https://github.com/linuxserver/docker-fail2ban)
 - [GitHub Repository](https://github.com/linuxserver/docker-fail2ban)

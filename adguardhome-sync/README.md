@@ -15,11 +15,11 @@ This add-on is based on the [linuxserver/docker-adguardhome-sync](https://github
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Sync AdGuard Home configs
+- Centralized configuration management
+- Backup and restore capabilities
+- Filter list synchronization
+- Multi-instance support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

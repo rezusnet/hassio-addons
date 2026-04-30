@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-doplarr](https://github.com/linu
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Discord media request bot
+- Radarr and Sonarr integration
+- User-friendly requests
+- Reaction-based voting
+- Admin moderation tools
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

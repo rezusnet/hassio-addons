@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-wireguard](https://github.com/li
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- VPN server
+- Modern cryptography
+- High performance
+- Multi-device support
+- Configuration management
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

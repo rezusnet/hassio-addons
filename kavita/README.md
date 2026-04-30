@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-kavita](https://github.com/linux
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Manga and comic server
+- E-book management
+- Webtoon support
+- Series management
+- Reading progress tracking
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-grocy](https://github.com/linuxs
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Grocery inventory management
+- Price tracking
+- Meal planning
+- Barcode scanning
+- Expiry date notifications
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

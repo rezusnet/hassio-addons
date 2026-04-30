@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-habridge](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Smart home device bridging
+- Hue bridge emulation
+- Device grouping
+- Scene management
+- Alexa integration
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -50,5 +50,5 @@ The add-on maps the following HA directories:
 
 ## Upstream Documentation
 
-- [Project Homepage](http://raneto.com)
+- [Project Homepage](https://github.com/linuxserver/docker-raneto)
 - [GitHub Repository](https://github.com/linuxserver/docker-raneto)

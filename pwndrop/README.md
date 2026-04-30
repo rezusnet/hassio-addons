@@ -17,11 +17,11 @@ This add-on is based on the [linuxserver/docker-pwndrop](https://github.com/linu
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- File hosting service
+- Share management
+- Download tracking
+- Expiration support
+- Admin dashboard
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

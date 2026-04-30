@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-ombi](https://github.com/linuxse
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Media request system
+- Plex integration
+- Emby integration
+- User management
+- Approval workflows
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-pyload-ng](https://github.com/li
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Download manager
+- Multiple host support
+- Queue management
+- Bandwidth limiting
+- Web interface
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

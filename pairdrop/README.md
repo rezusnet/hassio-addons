@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-pairdrop](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- File sharing
+- Cross-platform support
+- No registration required
+- Direct peer transfer
+- Privacy focused
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

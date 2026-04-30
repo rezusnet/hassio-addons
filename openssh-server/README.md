@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-openssh-server](https://github.c
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Secure shell access
+- Key-based authentication
+- Port forwarding
+- SFTP support
+- User management
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

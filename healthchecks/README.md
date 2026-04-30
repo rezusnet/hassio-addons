@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-healthchecks](https://github.com
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Cron job monitoring
+- Ping endpoint support
+- Alert notifications
+- Check history and logs
+- Multiple integrations
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-lightrag](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- RAG implementation
+- Document retrieval
+- AI-powered search
+- Efficient processing
+- Integration support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

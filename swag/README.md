@@ -16,12 +16,11 @@ This add-on is based on the [linuxserver/docker-swag](https://github.com/linuxse
 
 **Key features:**
 
-- Automated Let's Encrypt certificates
-- PHP support for dynamic content
-- Multiple authentication types
-- Fail2ban integration
-- ModSecurity WAF support
-
+- Web application firewall
+- Reverse proxy
+- SSL/TLS termination
+- ModSecurity
+- OWASP protection
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

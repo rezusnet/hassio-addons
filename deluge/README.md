@@ -16,12 +16,11 @@ This add-on is based on the [linuxserver/docker-deluge](https://github.com/linux
 
 **Key features:**
 
-- Plugin system for extended functionality
-- Web UI and console UI
-- IP filtering and blocking
-- Bandwidth management
-- Per-torrent speed limits
-
+- Torrent client with web UI
+- Protocol encryption support
+- Bandwidth throttling
+- Plugin support system
+- Mobile-friendly interface
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

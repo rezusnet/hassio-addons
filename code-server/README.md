@@ -16,13 +16,11 @@ This add-on is based on the [linuxserver/docker-code-server](https://github.com/
 
 **Key features:**
 
-- Full VS Code IDE in your browser
-- Code formatting and linting
-- Debugging support
-- Built-in terminal
-- Extension support
+- Full VS Code IDE in browser
+- Extension marketplace support
+- Built-in terminal and debugging
 - Secure authentication
-
+- Multi-user capable
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

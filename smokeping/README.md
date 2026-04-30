@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-smokeping](https://github.com/li
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Latency monitoring
+- Network diagnostics
+- Historical data
+- Visual reports
+- Alert notifications
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

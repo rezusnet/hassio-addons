@@ -45,5 +45,5 @@ The add-on maps the following HA directories:
 
 ## Upstream Documentation
 
-- [Project Homepage](https://github.com/linuxserver/docker-apprise-api)
-- [GitHub Repository](https://github.com/linuxserver/docker-apprise-api)
+- [Project Homepage](https://github.com/linuxserver/docker-apprise)
+- [GitHub Repository](https://github.com/linuxserver/docker-apprise)

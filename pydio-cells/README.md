@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-pydio-cells](https://github.com/
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- File sync and share
+- Enterprise security
+- Team collaboration
+- Workspace management
+- Advanced permissions
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -52,5 +52,5 @@ The add-on maps the following HA directories:
 
 ## Upstream Documentation
 
-- [Project Homepage](https://pymedusa.com/)
+- [Project Homepage](https://github.com/linuxserver/docker-medusa)
 - [GitHub Repository](https://github.com/linuxserver/docker-medusa)

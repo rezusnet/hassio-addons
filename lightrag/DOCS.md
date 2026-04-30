@@ -54,5 +54,5 @@ The add-on maps the following HA directories:
 
 ## Upstream Documentation
 
-- [Project Homepage](https://github.com/HKUDS/LightRAG)
+- [Project Homepage](https://github.com/linuxserver/docker-lightrag)
 - [GitHub Repository](https://github.com/linuxserver/docker-lightrag)

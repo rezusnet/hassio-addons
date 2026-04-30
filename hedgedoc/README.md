@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-hedgedoc](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Real-time markdown editing
+- Collaborative document editing
+- Presentation mode
+- Multiple storage backends
+- Account synchronization
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

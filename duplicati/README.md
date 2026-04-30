@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-duplicati](https://github.com/li
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Encrypted automated backups
+- Cloud storage integration
+- Incremental and differential backups
+- Web-based interface
+- Multi-cloud support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -16,12 +16,11 @@ This add-on is based on the [linuxserver/docker-openvscode-server](https://githu
 
 **Key features:**
 
-- Web-based VS Code environment
-- Extension marketplace
-- Remote development
-- Built-in terminal
-- Secure access
-
+- VS Code remote server
+- Web browser access
+- Extension support
+- Terminal access
+- File editing
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

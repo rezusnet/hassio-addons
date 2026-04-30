@@ -15,11 +15,11 @@ This add-on is based on the [linuxserver/docker-haproxy](https://github.com/linu
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- TCP/HTTP load balancing
+- SSL/TLS termination
+- High availability
+- Connection limiting
+- Backend health checks
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

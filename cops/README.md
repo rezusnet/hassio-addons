@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-cops](https://github.com/linuxse
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- E-book library server
+- OPDS feed for e-readers
+- Calibre database integration
+- Web-based book browser
+- Multiple output format support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

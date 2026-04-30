@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-projectsend](https://github.com/
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- File sharing for clients
+- Project organization
+- User management
+- Download tracking
+- Automatic cleanup
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

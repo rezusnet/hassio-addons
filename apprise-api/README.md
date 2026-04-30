@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-apprise-api](https://github.com/
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- 80+ notification services integration
+- RESTful API for notifications
+- Scheduled notification delivery
+- Notification tagging and grouping
+- Webhook support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

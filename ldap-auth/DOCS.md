@@ -48,5 +48,5 @@ The add-on maps the following HA directories:
 
 ## Upstream Documentation
 
-- [Project Homepage](https://github.com/nginxinc/nginx-ldap-auth)
+- [Project Homepage](https://github.com/linuxserver/docker-ldap-auth)
 - [GitHub Repository](https://github.com/linuxserver/docker-ldap-auth)

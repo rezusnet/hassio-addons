@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-planka](https://github.com/linux
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Kanban board
+- Task management
+- Team collaboration
+- Real-time updates
+- Multiple boards
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

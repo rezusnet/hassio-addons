@@ -16,12 +16,11 @@ This add-on is based on the [linuxserver/docker-mariadb](https://github.com/linu
 
 **Key features:**
 
-- SQL database engine
-- High MySQL compatibility
-- Performance optimization
+- MySQL compatible database
+- ACID compliance
 - Replication support
-- Backup and recovery
-
+- Full text search
+- JSON support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

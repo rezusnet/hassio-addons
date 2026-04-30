@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-sickgear](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- TV show management
+- Multiple source support
+- Auto-download
+- Library management
+- Quality preferences
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

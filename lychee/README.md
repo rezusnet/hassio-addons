@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-lychee](https://github.com/linux
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Photo management system
+- Album organization
+- Photo sharing
+- Tagging and search
+- Batch operations
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

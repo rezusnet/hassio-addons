@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-tvheadend](https://github.com/li
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- TV streaming server
+- DVR capabilities
+- IPTV support
+- Channel management
+- Electronic program guide
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

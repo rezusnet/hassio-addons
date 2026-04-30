@@ -15,11 +15,11 @@ This add-on is based on the [linuxserver/docker-audiobookshelf](https://github.c
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Audiobook and podcast streaming
+- Web-based library management
+- Cross-device progress tracking
+- Support for all audio formats
+- E-book support (EPUB, PDF, CBR, CBZ)
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

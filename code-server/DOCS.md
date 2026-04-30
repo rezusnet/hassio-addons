@@ -51,5 +51,5 @@ The add-on maps the following HA directories:
 
 ## Upstream Documentation
 
-- [Project Homepage](https://coder.com)
+- [Project Homepage](https://github.com/linuxserver/docker-code-server)
 - [GitHub Repository](https://github.com/linuxserver/docker-code-server)

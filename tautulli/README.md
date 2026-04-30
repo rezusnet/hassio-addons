@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-tautulli](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Plex server monitoring
+- Usage analytics
+- User tracking
+- Library statistics
+- Notification support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

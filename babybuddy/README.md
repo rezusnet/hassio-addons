@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-babybuddy](https://github.com/li
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Track feeding, sleep, diaper changes
+- Visual reports and analytics
+- Multi-user support
+- Private infant records
+- Timeline view
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

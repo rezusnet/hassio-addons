@@ -60,5 +60,5 @@ The add-on maps the following HA directories:
 
 ## Upstream Documentation
 
-- [Project Homepage](https://www.audiobookshelf.org/)
-- [GitHub Repository](https://github.com/linuxserver/docker-audiobookshelf)
+- [Project Homepage](https://github.com/advplyr/audiobookshelf)
+- [GitHub Repository](https://github.com/advplyr/audiobookshelf)

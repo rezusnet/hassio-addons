@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-netbox](https://github.com/linux
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Network resource tracking
+- Device inventory
+- IP address management
+- Cable documentation
+- Rack management
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

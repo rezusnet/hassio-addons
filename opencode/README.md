@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-opencode](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- AI-powered code editing
+- Multiple LLM provider support
+- Code analysis
+- Development assistance
+- Browser interface
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

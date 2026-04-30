@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-syncthing](https://github.com/li
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- File synchronization
+- Decentralized sync
+- End-to-end encryption
+- Multiple device support
+- Version control
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -40,5 +40,5 @@ No ports configured.
 
 ## Upstream Documentation
 
-- [Project Homepage](https://www.darktable.org)
+- [Project Homepage](https://github.com/linuxserver/docker-darktable)
 - [GitHub Repository](https://github.com/linuxserver/docker-darktable)

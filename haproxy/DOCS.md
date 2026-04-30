@@ -42,5 +42,5 @@ No ports configured.
 
 ## Upstream Documentation
 
-- [Project Homepage](https://www.haproxy.org/)
+- [Project Homepage](https://github.com/linuxserver/docker-haproxy)
 - [GitHub Repository](https://github.com/linuxserver/docker-haproxy)

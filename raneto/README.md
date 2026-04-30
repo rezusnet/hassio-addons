@@ -17,11 +17,11 @@ This add-on is based on the [linuxserver/docker-raneto](https://github.com/linux
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Markdown documentation
+- Knowledge base
+- File-based storage
+- Search functionality
+- Simple publishing
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

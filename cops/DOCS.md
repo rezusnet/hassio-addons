@@ -50,5 +50,5 @@ The add-on maps the following HA directories:
 
 ## Upstream Documentation
 
-- [Project Homepage](https://github.com/mikespub-org/seblucas-cops)
+- [Project Homepage](https://github.com/linuxserver/docker-cops)
 - [GitHub Repository](https://github.com/linuxserver/docker-cops)

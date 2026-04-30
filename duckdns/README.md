@@ -15,12 +15,11 @@ This add-on is based on the [linuxserver/docker-duckdns](https://github.com/linu
 
 **Key features:**
 
-- Automatic dynamic DNS updates
-- IPv6 support
-- Wildcard domain support
-- Low resource usage
-- Simple configuration
-
+- Free dynamic DNS service
+- Automatic IP updates
+- Let's Encrypt integration
+- Multi-subdomain support
+- Zero-cost SSL certificates
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

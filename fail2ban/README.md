@@ -15,12 +15,11 @@ This add-on is based on the [linuxserver/docker-fail2ban](https://github.com/lin
 
 **Key features:**
 
-- Brute-force attack prevention
-- Automatic IP blocking
-- Multiple filter support
-- Email notifications
-- Custom action scripts
-
+- Automated IP blocking
+- Log file monitoring
+- Configurable ban duration
+- Multiple backend support
+- Rate limiting
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

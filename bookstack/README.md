@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-bookstack](https://github.com/li
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Hierarchical content organization
+- Rich text editing with markdown support
+- User role-based access control
+- Built-in full-text search
+- WYSIWYG editor
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

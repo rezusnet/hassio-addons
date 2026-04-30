@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-heimdall](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Application dashboard
+- Customizable layout
+- Application launcher
+- Fast service access
+- Multi-user support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -16,12 +16,11 @@ This add-on is based on the [linuxserver/docker-nginx](https://github.com/linuxs
 
 **Key features:**
 
-- Reverse proxy and load balancing
-- SSL/TLS termination
-- Gzip compression
-- URL rewriting
-- WebSocket support
-
+- Web server
+- Reverse proxy
+- Load balancing
+- SSL/TLS support
+- High performance
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

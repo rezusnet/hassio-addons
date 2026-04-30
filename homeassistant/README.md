@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-homeassistant](https://github.co
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Home automation hub
+- Local control and privacy
+- Extensive integrations
+- Automations and scripts
+- Voice assistant support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -1,0 +1,404 @@
+{
+  "adguardhome-sync": {
+    "name": "AdGuard Home Sync",
+    "description": "Sync AdGuard Home configs across multiple instances",
+    "features": ["Sync AdGuard Home configs", "Centralized configuration management", "Backup and restore capabilities", "Filter list synchronization", "Multi-instance support"],
+    "upstream_url": "https://github.com/linuxserver/docker-adguardhome-sync"
+  },
+  "airsonic-advanced": {
+    "name": "Airsonic Advanced",
+    "description": "Personal music streaming server with advanced features",
+    "features": ["Personal music streaming server", "Web-based audio player", "Full music library management", "Podcast streaming support", "Mobile app compatibility"],
+    "upstream_url": "https://github.com/linuxserver/docker-airsonic-advanced"
+  },
+  "apprise-api": {
+    "name": "Apprise API",
+    "description": "Unified multi-notification platform via REST API",
+    "features": ["80+ notification services integration", "RESTful API for notifications", "Scheduled notification delivery", "Notification tagging and grouping", "Webhook support"],
+    "upstream_url": "https://github.com/linuxserver/docker-apprise"
+  },
+  "audiobookshelf": {
+    "name": "Audiobookshelf",
+    "description": "Self-hosted audiobook and podcast server",
+    "features": ["Audiobook and podcast streaming", "Web-based library management", "Cross-device progress tracking", "Support for all audio formats", "E-book support (EPUB, PDF, CBR, CBZ)"],
+    "upstream_url": "https://github.com/advplyr/audiobookshelf"
+  },
+  "babybuddy": {
+    "name": "Baby Buddy",
+    "description": "Baby activity tracking system for parents",
+    "features": ["Track feeding, sleep, diaper changes", "Visual reports and analytics", "Multi-user support", "Private infant records", "Timeline view"],
+    "upstream_url": "https://github.com/linuxserver/docker-babybuddy"
+  },
+  "bookstack": {
+    "name": "BookStack",
+    "description": "Self-hosted wiki and documentation platform",
+    "features": ["Hierarchical content organization", "Rich text editing with markdown support", "User role-based access control", "Built-in full-text search", "WYSIWYG editor"],
+    "upstream_url": "https://github.com/linuxserver/docker-bookstack"
+  },
+  "code-server": {
+    "name": "Code Server",
+    "description": "VS Code running on a remote server, accessible through the browser",
+    "features": ["Full VS Code IDE in browser", "Extension marketplace support", "Built-in terminal and debugging", "Secure authentication", "Multi-user capable"],
+    "upstream_url": "https://github.com/linuxserver/docker-code-server"
+  },
+  "cops": {
+    "name": "Calibre OPDS/Content Server",
+    "description": "E-book library server with OPDS feed support",
+    "features": ["E-book library server", "OPDS feed for e-readers", "Calibre database integration", "Web-based book browser", "Multiple output format support"],
+    "upstream_url": "https://github.com/linuxserver/docker-cops"
+  },
+  "darktable": {
+    "name": "Darktable",
+    "description": "Professional photo editing and RAW image processor",
+    "features": ["Professional photo editing", "RAW image processing", "Non-destructive editing", "Virtual lighttable and darkroom", "Advanced color management"],
+    "upstream_url": "https://github.com/linuxserver/docker-darktable"
+  },
+  "davos": {
+    "name": "Davos",
+    "description": "File server with drag-and-drop upload capability",
+    "features": ["Drag-and-drop file uploads", "Web-based file management", "Direct uploads without FTP", "Bandwidth limiting", "File archiving support"],
+    "upstream_url": "https://github.com/linuxserver/docker-davos"
+  },
+  "ddclient": {
+    "name": "DDClient",
+    "description": "Dynamic DNS client service for updating DNS records",
+    "features": ["Multiple DDNS provider support", "Automatic IP change detection", "IPv4 and IPv6 support", "Scheduled updates", "Flexible configuration"],
+    "upstream_url": "https://github.com/linuxserver/docker-ddclient"
+  },
+  "deluge": {
+    "name": "Deluge",
+    "description": "Torrent client with web interface and plugin support",
+    "features": ["Torrent client with web UI", "Protocol encryption support", "Bandwidth throttling", "Plugin support system", "Mobile-friendly interface"],
+    "upstream_url": "https://github.com/linuxserver/docker-deluge"
+  },
+  "diskover": {
+    "name": "Diskover",
+    "description": "File system search engine and storage analytics",
+    "features": ["Fast file system crawling", "Large file identification", "Directory usage analysis", "Storage analytics dashboard", "Quick file discovery"],
+    "upstream_url": "https://github.com/linuxserver/docker-diskover"
+  },
+  "dokuwiki": {
+    "name": "DokuWiki",
+    "description": "Simple yet powerful wiki software",
+    "features": ["Simple wiki software", "No database required", "Built-in access control lists", "File-based storage", "Active community support"],
+    "upstream_url": "https://github.com/linuxserver/docker-dokuwiki"
+  },
+  "doplarr": {
+    "name": "Doplarr",
+    "description": "Discord bot for media requests integrated with Radarr and Sonarr",
+    "features": ["Discord media request bot", "Radarr and Sonarr integration", "User-friendly requests", "Reaction-based voting", "Admin moderation tools"],
+    "upstream_url": "https://github.com/linuxserver/docker-doplarr"
+  },
+  "duckdns": {
+    "name": "Duck DNS",
+    "description": "Free dynamic DNS service with Let's Encrypt integration",
+    "features": ["Free dynamic DNS service", "Automatic IP updates", "Let's Encrypt integration", "Multi-subdomain support", "Zero-cost SSL certificates"],
+    "upstream_url": "https://github.com/linuxserver/docker-duckdns"
+  },
+  "duplicati": {
+    "name": "Duplicati",
+    "description": "Encrypted automated backups with cloud storage support",
+    "features": ["Encrypted automated backups", "Cloud storage integration", "Incremental and differential backups", "Web-based interface", "Multi-cloud support"],
+    "upstream_url": "https://github.com/linuxserver/docker-duplicati"
+  },
+  "fail2ban": {
+    "name": "Fail2ban",
+    "description": "Intrusion prevention software that bans hosts after multiple failed attempts",
+    "features": ["Automated IP blocking", "Log file monitoring", "Configurable ban duration", "Multiple backend support", "Rate limiting"],
+    "upstream_url": "https://github.com/linuxserver/docker-fail2ban"
+  },
+  "faster-whisper": {
+    "name": "Faster Whisper",
+    "description": "Optimized speech-to-text AI model for automatic speech recognition",
+    "features": ["Speech-to-text AI model", "Multiple language support", "GPU acceleration support", "Reduced model size", "Fast inference speed"],
+    "upstream_url": "https://github.com/linuxserver/docker-faster-whisper"
+  },
+  "ferdium": {
+    "name": "Ferdium",
+    "description": "All-in-one messaging platform bringing all services together",
+    "features": ["All-in-one messaging platform", "Unified communication interface", "Service integration support", "Desktop notifications", "Multi-account management"],
+    "upstream_url": "https://github.com/linuxserver/docker-ferdium"
+  },
+  "freshrss": {
+    "name": "FreshRSS",
+    "description": "Self-hosted RSS feed aggregator",
+    "features": ["RSS feed aggregator", "Article sharing to social media", "Automatic article categorization", "Import/export support", "Multiple feed sources"],
+    "upstream_url": "https://github.com/linuxserver/docker-freshrss"
+  },
+  "grocy": {
+    "name": "Grocy",
+    "description": "ERP system for your groceries - manage food inventories at home",
+    "features": ["Grocery inventory management", "Price tracking", "Meal planning", "Barcode scanning", "Expiry date notifications"],
+    "upstream_url": "https://github.com/linuxserver/docker-grocy"
+  },
+  "habridge": {
+    "name": "HABridge",
+    "description": "HTTP API to bridge smart home devices with other systems",
+    "features": ["Smart home device bridging", "Hue bridge emulation", "Device grouping", "Scene management", "Alexa integration"],
+    "upstream_url": "https://github.com/linuxserver/docker-habridge"
+  },
+  "haproxy": {
+    "name": "HAProxy",
+    "description": "Reliable high-performance TCP/HTTP load balancer",
+    "features": ["TCP/HTTP load balancing", "SSL/TLS termination", "High availability", "Connection limiting", "Backend health checks"],
+    "upstream_url": "https://github.com/linuxserver/docker-haproxy"
+  },
+  "healthchecks": {
+    "name": "Healthchecks",
+    "description": "Simple and effective dead man's switch monitoring",
+    "features": ["Cron job monitoring", "Ping endpoint support", "Alert notifications", "Check history and logs", "Multiple integrations"],
+    "upstream_url": "https://github.com/linuxserver/docker-healthchecks"
+  },
+  "hedgedoc": {
+    "name": "HedgeDoc",
+    "description": "Real-time collaborative markdown editor",
+    "features": ["Real-time markdown editing", "Collaborative document editing", "Presentation mode", "Multiple storage backends", "Account synchronization"],
+    "upstream_url": "https://github.com/linuxserver/docker-hedgedoc"
+  },
+  "heimdall": {
+    "name": "Heimdall",
+    "description": "Unified front-end for accessing your lab services",
+    "features": ["Application dashboard", "Customizable layout", "Application launcher", "Fast service access", "Multi-user support"],
+    "upstream_url": "https://github.com/linuxserver/docker-heimdall"
+  },
+  "homeassistant": {
+    "name": "Home Assistant",
+    "description": "Open source home automation that puts local control and privacy first",
+    "features": ["Home automation hub", "Local control and privacy", "Extensive integrations", "Automations and scripts", "Voice assistant support"],
+    "upstream_url": "https://github.com/linuxserver/docker-homeassistant"
+  },
+  "htpcmanager": {
+    "name": "HTPC Manager",
+    "description": "Web interface for popular home theater PC management tools",
+    "features": ["HTPC application launcher", "Remote control interface", "System monitoring", "Application aggregation", "Customizable layout"],
+    "upstream_url": "https://github.com/linuxserver/docker-htpcmanager"
+  },
+  "kavita": {
+    "name": "Kavita",
+    "description": "Manga, Comic, and eBook server with user management",
+    "features": ["Manga and comic server", "E-book management", "Webtoon support", "Series management", "Reading progress tracking"],
+    "upstream_url": "https://github.com/linuxserver/docker-kavita"
+  },
+  "ldap-auth": {
+    "name": "LDAP Auth",
+    "description": "LDAP authentication for web applications",
+    "features": ["LDAP authentication", "User directory integration", "Single sign-on support", "Group based access control", "Web application compatibility"],
+    "upstream_url": "https://github.com/linuxserver/docker-ldap-auth"
+  },
+  "lightrag": {
+    "name": "LightRAG",
+    "description": "Light-weight Retrieval-Augmented Generation framework",
+    "features": ["RAG implementation", "Document retrieval", "AI-powered search", "Efficient processing", "Integration support"],
+    "upstream_url": "https://github.com/linuxserver/docker-lightrag"
+  },
+  "lychee": {
+    "name": "Lychee",
+    "description": "Self-hosted photo management system",
+    "features": ["Photo management system", "Album organization", "Photo sharing", "Tagging and search", "Batch operations"],
+    "upstream_url": "https://github.com/linuxserver/docker-lychee"
+  },
+  "mariadb": {
+    "name": "MariaDB",
+    "description": "Open source relational database compatible with MySQL",
+    "features": ["MySQL compatible database", "ACID compliance", "Replication support", "Full text search", "JSON support"],
+    "upstream_url": "https://github.com/linuxserver/docker-mariadb"
+  },
+  "mastodon": {
+    "name": "Mastodon",
+    "description": "Self-hosted social media platform compatible with ActivityPub",
+    "features": ["Social media platform", "ActivityPub federation", "Decentralized network", "Full-text search", "Rich media support"],
+    "upstream_url": "https://github.com/linuxserver/docker-mastodon"
+  },
+  "medusa": {
+    "name": "Medusa",
+    "description": "Automatic TV show management system",
+    "features": ["TV show tracking", "Episode management", "Auto-download support", "Library organization", "Banner and artwork"],
+    "upstream_url": "https://github.com/linuxserver/docker-medusa"
+  },
+  "minisatip": {
+    "name": "Minisatip",
+    "description": "SAT>IP multicast proxy server",
+    "features": ["SAT>IP proxy", "Multicast support", "IPTV streaming", "Channel mapping", "Device emulation"],
+    "upstream_url": "https://github.com/linuxserver/docker-minisatip"
+  },
+  "mstream": {
+    "name": "Mstream",
+    "description": "Personal music streaming server",
+    "features": ["Music streaming server", "Playlist support", "Album organization", "Search functionality", "Mobile friendly"],
+    "upstream_url": "https://github.com/linuxserver/docker-mstream"
+  },
+  "netbox": {
+    "name": "NetBox",
+    "description": "Infrastructure resource modeling application for network operations",
+    "features": ["Network resource tracking", "Device inventory", "IP address management", "Cable documentation", "Rack management"],
+    "upstream_url": "https://github.com/linuxserver/docker-netbox"
+  },
+  "nginx": {
+    "name": "Nginx",
+    "description": "Lightweight web server and reverse proxy",
+    "features": ["Web server", "Reverse proxy", "Load balancing", "SSL/TLS support", "High performance"],
+    "upstream_url": "https://github.com/linuxserver/docker-nginx"
+  },
+  "nzbhydra2": {
+    "name": "NZBHydra2",
+    "description": "Meta search tool for NZB indexers",
+    "features": ["NZB meta search", "Multiple indexer support", "Search history", "Duplicate detection", "API support"],
+    "upstream_url": "https://github.com/linuxserver/docker-nzbhydra2"
+  },
+  "obsidian": {
+    "name": "Obsidian",
+    "description": "A powerful knowledge base on top of a local folder of plain text Markdown files",
+    "features": ["Markdown note-taking", "Knowledge graph visualization", "Plugin ecosystem", "Sync capabilities", "Local first storage"],
+    "upstream_url": "https://github.com/linuxserver/docker-obsidian"
+  },
+  "ombi": {
+    "name": "Ombi",
+    "description": "Plex and Emby media request system",
+    "features": ["Media request system", "Plex integration", "Emby integration", "User management", "Approval workflows"],
+    "upstream_url": "https://github.com/linuxserver/docker-ombi"
+  },
+  "opencode": {
+    "name": "OpenCode",
+    "description": "Open source AI coding agent for browser-based code editing",
+    "features": ["AI-powered code editing", "Multiple LLM provider support", "Code analysis", "Development assistance", "Browser interface"],
+    "upstream_url": "https://github.com/linuxserver/docker-opencode"
+  },
+  "openssh-server": {
+    "name": "OpenSSH Server",
+    "description": "SSH server providing secure shell access",
+    "features": ["Secure shell access", "Key-based authentication", "Port forwarding", "SFTP support", "User management"],
+    "upstream_url": "https://github.com/linuxserver/docker-openssh-server"
+  },
+  "openvscode-server": {
+    "name": "OpenVSCode Server",
+    "description": "VS Code running on a remote server with web interface",
+    "features": ["VS Code remote server", "Web browser access", "Extension support", "Terminal access", "File editing"],
+    "upstream_url": "https://github.com/linuxserver/docker-openvscode-server"
+  },
+  "pairdrop": {
+    "name": "PairDrop",
+    "description": "Local file sharing application like AirDrop for all platforms",
+    "features": ["File sharing", "Cross-platform support", "No registration required", "Direct peer transfer", "Privacy focused"],
+    "upstream_url": "https://github.com/linuxserver/docker-pairdrop"
+  },
+  "planka": {
+    "name": "Planka",
+    "description": "Kanban board for project management and organization",
+    "features": ["Kanban board", "Task management", "Team collaboration", "Real-time updates", "Multiple boards"],
+    "upstream_url": "https://github.com/linuxserver/docker-planka"
+  },
+  "projectsend": {
+    "name": "ProjectSend",
+    "description": "File sharing application designed for creative professionals",
+    "features": ["File sharing for clients", "Project organization", "User management", "Download tracking", "Automatic cleanup"],
+    "upstream_url": "https://github.com/linuxserver/docker-projectsend"
+  },
+  "pwndrop": {
+    "name": "PwnDrop",
+    "description": "Self-hosted file hosting service for penetration testing",
+    "features": ["File hosting service", "Share management", "Download tracking", "Expiration support", "Admin dashboard"],
+    "upstream_url": "https://github.com/linuxserver/docker-pwndrop"
+  },
+  "pydio-cells": {
+    "name": "Pydio Cells",
+    "description": "File sync and share for business with enterprise features",
+    "features": ["File sync and share", "Enterprise security", "Team collaboration", "Workspace management", "Advanced permissions"],
+    "upstream_url": "https://github.com/linuxserver/docker-pydio-cells"
+  },
+  "pyload-ng": {
+    "name": "Pyload-ng",
+    "description": "Download manager for rapid file hosting platforms",
+    "features": ["Download manager", "Multiple host support", "Queue management", "Bandwidth limiting", "Web interface"],
+    "upstream_url": "https://github.com/linuxserver/docker-pyload-ng"
+  },
+  "raneto": {
+    "name": "Raneto",
+    "description": "Markdown-powered knowledge base and documentation platform",
+    "features": ["Markdown documentation", "Knowledge base", "File-based storage", "Search functionality", "Simple publishing"],
+    "upstream_url": "https://github.com/linuxserver/docker-raneto"
+  },
+  "rsnapshot": {
+    "name": "Rsnapshot",
+    "description": "Backup software using rsync for efficient storage",
+    "features": ["Snapshot backups", "rsync based", "Hard link storage", "Incremental backups", "Multiple storage backends"],
+    "upstream_url": "https://github.com/linuxserver/docker-rsnapshot"
+  },
+  "sealskin": {
+    "name": "Sealskin",
+    "description": "Web-based downloader for Seamonkey browser",
+    "features": ["Browser downloads", "Download management", "History tracking", "Torrent support", "Streaming support"],
+    "upstream_url": "https://github.com/linuxserver/docker-sealskin"
+  },
+  "sickgear": {
+    "name": "SickGear",
+    "description": "PVR for newsgroups, torrents, and streaming services",
+    "features": ["TV show management", "Multiple source support", "Auto-download", "Library management", "Quality preferences"],
+    "upstream_url": "https://github.com/linuxserver/docker-sickgear"
+  },
+  "smokeping": {
+    "name": "Smokeping",
+    "description": "Network latency monitoring tool",
+    "features": ["Latency monitoring", "Network diagnostics", "Historical data", "Visual reports", "Alert notifications"],
+    "upstream_url": "https://github.com/linuxserver/docker-smokeping"
+  },
+  "speedtest-tracker": {
+    "name": "Speedtest Tracker",
+    "description": "Graphical frontend for monitoring internet speed over time",
+    "features": ["Speed test tracking", "Historical graphs", "Network monitoring", "Alert thresholds", "API support"],
+    "upstream_url": "https://github.com/linuxserver/docker-speedtest-tracker"
+  },
+  "spotube": {
+    "name": "Spotube",
+    "description": "Spotify client for all platforms without premium requirement",
+    "features": ["Spotify music streaming", "No premium required", "Cross-platform", "Local playback", "Offline mode"],
+    "upstream_url": "https://github.com/linuxserver/docker-spotube"
+  },
+  "swag": {
+    "name": "SWAG",
+    "description": "All-in-one web application firewall and reverse proxy",
+    "features": ["Web application firewall", "Reverse proxy", "SSL/TLS termination", "ModSecurity", "OWASP protection"],
+    "upstream_url": "https://github.com/linuxserver/docker-swag"
+  },
+  "syncthing": {
+    "name": "Syncthing",
+    "description": "Open source continuous file synchronization tool",
+    "features": ["File synchronization", "Decentralized sync", "End-to-end encryption", "Multiple device support", "Version control"],
+    "upstream_url": "https://github.com/linuxserver/docker-syncthing"
+  },
+  "tautulli": {
+    "name": "Tautulli",
+    "description": "Monitoring and analytics for Plex media server",
+    "features": ["Plex server monitoring", "Usage analytics", "User tracking", "Library statistics", "Notification support"],
+    "upstream_url": "https://github.com/linuxserver/docker-tautulli"
+  },
+  "tvheadend": {
+    "name": "Tvheadend",
+    "description": "TV streaming server and DVR for Linux/Unix",
+    "features": ["TV streaming server", "DVR capabilities", "IPTV support", "Channel management", "Electronic program guide"],
+    "upstream_url": "https://github.com/linuxserver/docker-tvheadend"
+  },
+  "webgrabplus": {
+    "name": "WebGrab+Plus",
+    "description": "XMLTV EPG grabber for TV guide data",
+    "features": ["EPG grabbing", "XML output", "Channel configuration", "Multiple sources", "Schedule support"],
+    "upstream_url": "https://github.com/linuxserver/docker-webgrabplus"
+  },
+  "wikijs": {
+    "name": "Wiki.js",
+    "description": "Modern and powerful wiki software platform",
+    "features": ["Wiki platform", "Markdown support", "Multiple authentication", "Multi-language support", "Asset management"],
+    "upstream_url": "https://github.com/linuxserver/docker-wikijs"
+  },
+  "wireguard": {
+    "name": "Wireguard",
+    "description": "Modern VPN implementation with state-of-the-art cryptography",
+    "features": ["VPN server", "Modern cryptography", "High performance", "Multi-device support", "Configuration management"],
+    "upstream_url": "https://github.com/linuxserver/docker-wireguard"
+  },
+  "xbackbone": {
+    "name": "XBackBone",
+    "description": "Screenshot hosting service and file sharing",
+    "features": ["Screenshot hosting", "File sharing", "URL shortening", "Webhook support", "Usage statistics"],
+    "upstream_url": "https://github.com/linuxserver/docker-xbackbone"
+  }
+}

@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-medusa](https://github.com/linux
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- TV show tracking
+- Episode management
+- Auto-download support
+- Library organization
+- Banner and artwork
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

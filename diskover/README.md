@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-diskover](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Fast file system crawling
+- Large file identification
+- Directory usage analysis
+- Storage analytics dashboard
+- Quick file discovery
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

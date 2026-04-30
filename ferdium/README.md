@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-ferdium](https://github.com/linu
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- All-in-one messaging platform
+- Unified communication interface
+- Service integration support
+- Desktop notifications
+- Multi-account management
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

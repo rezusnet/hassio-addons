@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-dokuwiki](https://github.com/lin
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Simple wiki software
+- No database required
+- Built-in access control lists
+- File-based storage
+- Active community support
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

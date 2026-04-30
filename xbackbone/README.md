@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-xbackbone](https://github.com/li
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Screenshot hosting
+- File sharing
+- URL shortening
+- Webhook support
+- Usage statistics
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

@@ -16,11 +16,11 @@ This add-on is based on the [linuxserver/docker-faster-whisper](https://github.c
 
 **Key features:**
 
-- Containerized application
-- Easy configuration
-- Home Assistant integration
-- Multi-architecture support
-
+- Speech-to-text AI model
+- Multiple language support
+- GPU acceleration support
+- Reduced model size
+- Fast inference speed
 ## Installation
 
 1. Add this repository to your Home Assistant instance:

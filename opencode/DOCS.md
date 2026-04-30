@@ -55,5 +55,5 @@ The add-on maps the following HA directories:
 
 ## Upstream Documentation
 
-- [Project Homepage](https://github.com/anomalyco/opencode)
+- [Project Homepage](https://github.com/linuxserver/docker-opencode)
 - [GitHub Repository](https://github.com/linuxserver/docker-opencode)
