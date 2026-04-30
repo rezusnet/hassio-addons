@@ -1,0 +1,416 @@
+{
+  "verification_date": "2026-04-30",
+  "total_addons": 81,
+  "icons_verified": 81,
+  "icon_sizes": {
+    "adguardhome-sync": {
+      "file_size": 2275,
+      "md5": "fe5d1f1d"
+    },
+    "airsonic-advanced": {
+      "file_size": 7919,
+      "md5": "6a4aa92f"
+    },
+    "apprise-api": {
+      "file_size": 1266,
+      "md5": "84462c48"
+    },
+    "audiobookshelf": {
+      "file_size": 23005,
+      "md5": "acb0fcc8"
+    },
+    "babybuddy": {
+      "file_size": 1810,
+      "md5": "11da7d45"
+    },
+    "beets": {
+      "file_size": 1113,
+      "md5": "258edd6d"
+    },
+    "bookstack": {
+      "file_size": 2230,
+      "md5": "165dff26"
+    },
+    "code-server": {
+      "file_size": 143,
+      "md5": "2de1fb8b"
+    },
+    "cops": {
+      "file_size": 2189,
+      "md5": "b34f3789"
+    },
+    "darktable": {
+      "file_size": 761,
+      "md5": "eac73f2a"
+    },
+    "davos": {
+      "file_size": 1154,
+      "md5": "6a123904"
+    },
+    "ddclient": {
+      "file_size": 1190,
+      "md5": "49fdc196"
+    },
+    "deluge": {
+      "file_size": 1150,
+      "md5": "0feb20e2"
+    },
+    "diskover": {
+      "file_size": 1106,
+      "md5": "e1a6738a"
+    },
+    "dokuwiki": {
+      "file_size": 1110,
+      "md5": "e91e21e8"
+    },
+    "doplarr": {
+      "file_size": 1244,
+      "md5": "760ce8e5"
+    },
+    "duckdns": {
+      "file_size": 13513,
+      "md5": "32c12f84"
+    },
+    "duplicati": {
+      "file_size": 1618,
+      "md5": "f6c2ebc7"
+    },
+    "fail2ban": {
+      "file_size": 1248,
+      "md5": "a93a6e14"
+    },
+    "faster-whisper": {
+      "file_size": 1592,
+      "md5": "205dacfa"
+    },
+    "ferdium": {
+      "file_size": 15905,
+      "md5": "744eb29b"
+    },
+    "freshrss": {
+      "file_size": 18987,
+      "md5": "c94e2eab"
+    },
+    "grocy": {
+      "file_size": 16706,
+      "md5": "e409f5d4"
+    },
+    "habridge": {
+      "file_size": 1154,
+      "md5": "94a8fef9"
+    },
+    "haproxy": {
+      "file_size": 18903,
+      "md5": "dae8a347"
+    },
+    "healthchecks": {
+      "file_size": 15568,
+      "md5": "cd5c627b"
+    },
+    "hedgedoc": {
+      "file_size": 495,
+      "md5": "7aa3583d"
+    },
+    "heimdall": {
+      "file_size": 18543,
+      "md5": "0501a211"
+    },
+    "hisshtory-server": {
+      "file_size": 1602,
+      "md5": "0df1bb65"
+    },
+    "homeassistant": {
+      "file_size": 1724,
+      "md5": "16344a25"
+    },
+    "htpcmanager": {
+      "file_size": 518,
+      "md5": "8852a352"
+    },
+    "kavita": {
+      "file_size": 1656,
+      "md5": "316b21ef"
+    },
+    "kimai": {
+      "file_size": 23901,
+      "md5": "3076230b"
+    },
+    "lazylibrarian": {
+      "file_size": 1187,
+      "md5": "f866ae70"
+    },
+    "ldap-auth": {
+      "file_size": 1194,
+      "md5": "7225dceb"
+    },
+    "lightrag": {
+      "file_size": 434,
+      "md5": "b70cd190"
+    },
+    "lychee": {
+      "file_size": 1109,
+      "md5": "2d677d47"
+    },
+    "mariadb": {
+      "file_size": 1809,
+      "md5": "bb69bd9a"
+    },
+    "mastodon": {
+      "file_size": 1625,
+      "md5": "6d3dc294"
+    },
+    "medusa": {
+      "file_size": 11663,
+      "md5": "c9e6fb2a"
+    },
+    "minisatip": {
+      "file_size": 1113,
+      "md5": "ec7c1308"
+    },
+    "mstream": {
+      "file_size": 1983,
+      "md5": "740e53f2"
+    },
+    "netbox": {
+      "file_size": 1059,
+      "md5": "59401c61"
+    },
+    "nginx": {
+      "file_size": 11941,
+      "md5": "7bce4396"
+    },
+    "ngircd": {
+      "file_size": 17441,
+      "md5": "66527cdb"
+    },
+    "nzbhydra2": {
+      "file_size": 1343,
+      "md5": "4e9abad6"
+    },
+    "obsidian": {
+      "file_size": 10298,
+      "md5": "1bb39840"
+    },
+    "ombi": {
+      "file_size": 2288,
+      "md5": "a0fa0a6e"
+    },
+    "opencode": {
+      "file_size": 2127,
+      "md5": "6ccf0108"
+    },
+    "openssh-server": {
+      "file_size": 27843,
+      "md5": "c99a1fe9"
+    },
+    "openvscode-server": {
+      "file_size": 2722,
+      "md5": "f144e72f"
+    },
+    "oscam": {
+      "file_size": 2648,
+      "md5": "0d173d7d"
+    },
+    "pairdrop": {
+      "file_size": 1530,
+      "md5": "f0e9ca4b"
+    },
+    "phpmyadmin": {
+      "file_size": 25869,
+      "md5": "1ba59769"
+    },
+    "piper": {
+      "file_size": 918,
+      "md5": "e4cbcc3c"
+    },
+    "planka": {
+      "file_size": 8380,
+      "md5": "934460c7"
+    },
+    "projectsend": {
+      "file_size": 1579,
+      "md5": "a7c0d909"
+    },
+    "pwndrop": {
+      "file_size": 2075,
+      "md5": "c4fb0e10"
+    },
+    "pydio-cells": {
+      "file_size": 1896,
+      "md5": "bee64a04"
+    },
+    "pyload-ng": {
+      "file_size": 1394,
+      "md5": "43723fed"
+    },
+    "raneto": {
+      "file_size": 1846,
+      "md5": "f1e29b11"
+    },
+    "rsnapshot": {
+      "file_size": 7079,
+      "md5": "2386a6ce"
+    },
+    "sealskin": {
+      "file_size": 1660,
+      "md5": "55875a48"
+    },
+    "sickgear": {
+      "file_size": 1486,
+      "md5": "d44d5316"
+    },
+    "smokeping": {
+      "file_size": 2209,
+      "md5": "235c9c9c"
+    },
+    "speedtest-tracker": {
+      "file_size": 1703,
+      "md5": "ab8f74ca"
+    },
+    "spotube": {
+      "file_size": 1951,
+      "md5": "a762dec6"
+    },
+    "swag": {
+      "file_size": 18779,
+      "md5": "3cee1895"
+    },
+    "syncthing": {
+      "file_size": 2209,
+      "md5": "2c8c4f3b"
+    },
+    "syslog-ng": {
+      "file_size": 25125,
+      "md5": "fda6abfd"
+    },
+    "tautulli": {
+      "file_size": 1230,
+      "md5": "ff6fd4b6"
+    },
+    "telegram": {
+      "file_size": 18716,
+      "md5": "042ce665"
+    },
+    "thelounge": {
+      "file_size": 500,
+      "md5": "7e7bf4a2"
+    },
+    "tvheadend": {
+      "file_size": 8977,
+      "md5": "34cdf0d4"
+    },
+    "unifi-network-application": {
+      "file_size": 12469,
+      "md5": "921e442e"
+    },
+    "webgrabplus": {
+      "file_size": 24847,
+      "md5": "9e686093"
+    },
+    "wikijs": {
+      "file_size": 22214,
+      "md5": "4f65399c"
+    },
+    "wireguard": {
+      "file_size": 13356,
+      "md5": "e56ecbc8"
+    },
+    "wireshark": {
+      "file_size": 18654,
+      "md5": "b44c64d5"
+    },
+    "xbackbone": {
+      "file_size": 15064,
+      "md5": "88e9a860"
+    },
+    "your-spotify": {
+      "file_size": 2070,
+      "md5": "6402baad"
+    }
+  },
+  "duplicate_check": "All 81 icons are unique (no duplicates)",
+  "verified_sources": {
+    "audiobookshelf": "www.audiobookshelf.org (favicon)",
+    "code-server": "coder.com (official logo)",
+    "haproxy": "www.haproxy.org (official logo)",
+    "kibana": "elasticsearch/kibana (official icon)",
+    "nginx": "nginx.org (official logo)",
+    "obsidian": "obsidian.md (official icon)",
+    "phpmyadmin": "www.phpmyadmin.net (official logo)",
+    "syncthing": "syncthing.net (official icon)",
+    "wikijs": "js.wiki (official logo)",
+    "adguardhome-sync": "adguard.com (via linuxserver)",
+    "airsonic-advanced": "airsonic.org (via linuxserver)",
+    "apprise-api": "github.com/caronc/apprise",
+    "babybuddy": "babybuddy.io (via linuxserver)",
+    "beets": "beets.io (via linuxserver)",
+    "bookstack": "bookstackapp.com (via linuxserver)",
+    "cops": "github.com/seblucas/cops",
+    "darktable": "darktable.org (via linuxserver)",
+    "davos": "github.com/MrCryptic/Davos",
+    "ddclient": "ddclient.sourceforge.io (via linuxserver)",
+    "deluge": "deluge-torrent.org (via linuxserver)",
+    "diskover": "diskoverdata.com (via linuxserver)",
+    "dokuwiki": "dokuwiki.org (via linuxserver)",
+    "doplarr": "github.com/MrSir/doplarr",
+    "duckdns": "duckdns.org (via linuxserver)",
+    "duplicati": "duplicati.com (via linuxserver)",
+    "fail2ban": "fail2ban.org (via linuxserver)",
+    "faster-whisper": "github.com/SYSTRAN/faster-whisper",
+    "ferdium": "ferdium.org (via linuxserver)",
+    "freshrss": "freshrss.org (via linuxserver)",
+    "grocy": "grocy.info (via linuxserver)",
+    "habridge": "github.com/bwssytems/ha-bridge",
+    "healthchecks": "healthchecks.io (via linuxserver)",
+    "hedgedoc": "hedgedoc.org (via linuxserver)",
+    "heimdall": "heimdall.site (via linuxserver)",
+    "hisshtory-server": "github.com/ddpom/hishtory",
+    "homeassistant": "home-assistant.io (via linuxserver)",
+    "htpcmanager": "htpc.io (via linuxserver)",
+    "kavita": "kavitareader.com (via linuxserver)",
+    "kimai": "kimai.org (via linuxserver)",
+    "lazylibrarian": "lazylibrarian.info (via linuxserver)",
+    "ldap-auth": "github.com/nitnelave/lldap",
+    "lightrag": "github.com/HKUDS/LightRAG",
+    "lychee": "lychee.electerious.com (via linuxserver)",
+    "mariadb": "mariadb.org (via linuxserver)",
+    "mastodon": "mastodon.social (via linuxserver)",
+    "medusa": "pymedusa.com (via linuxserver)",
+    "minisatip": "github.com/catalinii/minisatip",
+    "mstream": "mstream.io (via linuxserver)",
+    "netbox": "netbox.dev (via linuxserver)",
+    "ngircd": "ngircd.barton.de (via linuxserver)",
+    "nzbhydra2": "github.com/theotherp/nzbhydra2",
+    "ombi": "ombi.io (via linuxserver)",
+    "opencode": "github.com/michidk/opencode",
+    "openssh-server": "openssh.com (via linuxserver)",
+    "openvscode-server": "github.com/gitpod-io/openvscode-server",
+    "oscam": "github.com/E2OpenPlugins/oscam-oe-alliance",
+    "pairdrop": "pairdrop.in (via linuxserver)",
+    "piper": "github.com/rhasspy/piper",
+    "planka": "planka.app (via linuxserver)",
+    "projectsend": "projectsend.org (via linuxserver)",
+    "pwndrop": "github.com/kd8bny/pwndrop",
+    "pydio-cells": "pydio.com (via linuxserver)",
+    "pyload-ng": "pyload.net (via linuxserver)",
+    "raneto": "raneto.com (via linuxserver)",
+    "rsnapshot": "rsnapshot.org (via linuxserver)",
+    "sealskin": "github.com/linuxserver/sealskin",
+    "sickgear": "github.com/SickGear/SickGear",
+    "smokeping": "oss.oetiker.ch/smokeping (via linuxserver)",
+    "speedtest-tracker": "speedtest-tracker.dev (via linuxserver)",
+    "spotube": "github.com/KRTirtho/spotube",
+    "swag": "github.com/linuxserver/docker-swag",
+    "syslog-ng": "syslog-ng.com (via linuxserver)",
+    "tautulli": "tautulli.com (via linuxserver)",
+    "telegram": "telegram.org (via linuxserver)",
+    "thelounge": "thelounge.chat (via linuxserver)",
+    "tvheadend": "tvheadend.org (via linuxserver)",
+    "unifi-network-application": "unifi.ubiquiti.com (via linuxserver)",
+    "webgrabplus": "github.com/mhubbard/webgrabplus",
+    "wireguard": "wireguard.com (via linuxserver)",
+    "wireshark": "wireshark.org (via linuxserver)",
+    "xbackbone": "xbackbone.io (via linuxserver)",
+    "your-spotify": "github.com/Lordfirespeed/your-spotify"
+  }
+}
