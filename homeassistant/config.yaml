@@ -1,0 +1,33 @@
+arch:
+  - aarch64
+  - amd64
+description: "Home Assistant (LSIO) - based on linuxserver/docker-homeassistant"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/homeassistant-{arch}
+init: false
+name: Home Assistant (LSIO)
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/homeassistant
+  env_vars: []
+ports:
+  8123/tcp: 8123
+ports_description:
+  8123/tcp: "Web interface"
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+ingress: true
+ingress_port: 8123
+panel_icon: mdi:server
+slug: homeassistant
+url: https://github.com/linuxserver/docker-homeassistant
+version: 1.0.0
