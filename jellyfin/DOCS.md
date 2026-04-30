@@ -99,7 +99,7 @@ Multiple shares can be separated by commas. Shares are mounted under `/mnt/` (e.
 
 Works out of the box if `/dev/dri` is present on the host. The add-on exposes GPU devices automatically.
 
-In Jellyfin: **Dashboard > Playback > Transcoding > Hardware Acceleration** select **Video Acceleration API (VAAPI)**.
+In Jellyfin: Open the web UI → click your **user avatar** (top right) → **Administration** → **Playback** → find **Hardware Acceleration** → select **Video Acceleration API (VAAPI)**.
 
 ### Raspberry Pi 5
 
@@ -107,9 +107,9 @@ The Pi 5's BCM2712 SoC has **no hardware video encoder**. It has an HEVC/H.265 h
 
 **All transcoding on Pi 5 is software-only** (CPU). The Cortex-A76 quad-core CPU can handle 1080p software transcoding at approximately 1x realtime speed.
 
-#### Recommended Dashboard Settings for Pi 5
+#### Recommended Settings for Pi 5
 
-Go to **Dashboard > Playback > Transcoding**:
+Open Jellyfin: **User Avatar (top right)** → **Administration** → **Playback** and set:
 
 | Setting                  | Value       | Why                                    |
 | ------------------------ | ----------- | -------------------------------------- |
@@ -144,7 +144,7 @@ Add this to `/boot/firmware/config.txt` (or `/boot/config.txt`) on the host. Ava
 The Pi 4 has limited hardware acceleration via V4L2 M2M and OpenMAX. This support is deprecated in Jellyfin and may break in future releases.
 
 1. Enable `dtoverlay=vc4-fkms-v3d` in `/boot/usercfg.txt` for `/dev/dri` support
-2. In Jellyfin: **Dashboard > Playback > Transcoding > Hardware Acceleration** select **Video4Linux2 (V4L2)**
+2. In Jellyfin: **User Avatar** → **Administration** → **Playback** → **Hardware Acceleration** → select **Video4Linux2 (V4L2)**
 3. Available devices: `/dev/video10-12` (V4L2 M2M), `/dev/vchiq` (OpenMAX)
 
 | Capability    | Pi 4 | Pi 5                                         |
@@ -241,7 +241,7 @@ You can also access Jellyfin directly at `http://<your-ha-ip>:8096` without the 
 ### FFmpeg crashes or exit code 254
 
 - This typically indicates the CPU ran out of resources during software transcoding
-- Disable HEVC encoding in Dashboard > Playback
+- Disable HEVC encoding: Open Jellyfin → **User Avatar** → **Administration** → **Playback** → Uncheck **"Allow encoding in HEVC"**
 - Lower the maximum streaming bitrate to reduce transcode resolution
 - Limit to 1 simultaneous transcode
 - Check available memory in the add-on log
