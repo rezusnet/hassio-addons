@@ -16,11 +16,17 @@ ARG CONFIGLOCATION="/config"
 RUN chmod 744 /ha_lsio.sh && if grep -qr "lsio" /etc; then /ha_lsio.sh "$CONFIGLOCATION"; fi && rm /ha_lsio.sh
 
 RUN \
-    sed -i "s|contenv bash|contenv bashio|g" /etc/s6-overlay/s6-rc.d/svc-cops/run && \
-    sed -i "s|/config|\$LOCATION|g" /etc/s6-overlay/s6-rc.d/svc-cops/run && \
-    sed -i "1a if [[ \"\$LOCATION\" = \"null\" || -z \"\$LOCATION\" ]]; then LOCATION=/config; fi" /etc/s6-overlay/s6-rc.d/svc-cops/run && \
-    sed -i "1a LOCATION=\$(bashio::config 'data_location')" /etc/s6-overlay/s6-rc.d/svc-cops/run && \
-    sed -i "1a set +u" /etc/s6-overlay/s6-rc.d/svc-cops/run
+    if [ -f /etc/s6-overlay/s6-rc.d/svc-apache2/run ] || [ -f /etc/s6-overlay/s6-rc.d/svc-nginx/run ] || [ -f /etc/s6-overlay/s6-rc.d/svc-apache/run ]; then \
+        for svc in svc-apache2 svc-nginx svc-apache; do \
+            if [ -f "/etc/s6-overlay/s6-rc.d/$svc/run" ]; then \
+                sed -i "s|contenv bash|contenv bashio|g" "/etc/s6-overlay/s6-rc.d/$svc/run" || true; \
+                sed -i "s|/config|\$LOCATION|g" "/etc/s6-overlay/s6-rc.d/$svc/run" || true; \
+                sed -i "1a if [[ \"\$LOCATION\" = \"null\" || -z \"\$LOCATION\" ]]; then LOCATION=/config; fi" "/etc/s6-overlay/s6-rc.d/$svc/run" || true; \
+                sed -i "1a LOCATION=\$(bashio::config 'data_location')" "/etc/s6-overlay/s6-rc.d/$svc/run" || true; \
+                sed -i "1a set +u" "/etc/s6-overlay/s6-rc.d/$svc/run" || true; \
+            fi; \
+        done; \
+    fi
 
 COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
