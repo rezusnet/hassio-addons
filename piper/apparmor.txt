@@ -1,0 +1,9 @@
+#include <tunables/global>
+
+profile ha_piper flags=attach_disconnected,mediate_deleted {
+  #include <abstractions/base>
+
+  capability,
+  file,
+  network,
+}
