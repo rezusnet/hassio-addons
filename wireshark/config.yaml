@@ -1,0 +1,39 @@
+arch:
+  - aarch64
+  - amd64
+description: >-
+  Wireshark is a network protocol analyzer. Capture and analyze network
+  traffic in real-time. Features include deep packet inspection, protocol
+  decoding, and comprehensive traffic analysis through a user-friendly GUI.
+environment:
+  PGID: "0"
+  PUID: "0"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/wireshark-{arch}
+init: false
+name: Wireshark
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/wireshark
+  env_vars: []
+ports:
+  3000/tcp: 3000
+ports_description:
+  3000/tcp: "Wireshark Web GUI (KASMVNC)"
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+ingress: true
+ingress_port: 3000
+panel_icon: mdi:wifi-alert
+slug: wireshark
+url: https://www.wireshark.org/
+version: 4.2.0
