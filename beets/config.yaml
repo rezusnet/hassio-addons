@@ -1,0 +1,30 @@
+arch:
+  - aarch64
+  - amd64
+description: "Beets - based on linuxserver/docker-beets"
+homeassistant: "2024.1.0"
+icon: icon.png
+image: ghcr.io/rezusnet/beets-{arch}
+init: false
+name: Beets
+options:
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  data_location: /share/beets
+  env_vars: []
+ports:
+  # No ports
+ports_description:
+  # No ports
+schema:
+  PGID: int
+  PUID: int
+  TZ: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+slug: beets
+url: https://github.com/linuxserver/docker-beets
+version: 1.0.0
