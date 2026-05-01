@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "swag",
   "source": "github",
   "upstream_repo": "linuxserver/docker-swag",
-  "upstream_version": "2.10.6"
+  "upstream_version": "5.5.0-ls453"
 }
