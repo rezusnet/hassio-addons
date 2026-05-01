@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "sealskin",
   "source": "github",
   "upstream_repo": "linuxserver/docker-sealskin",
-  "upstream_version": "3.0"
+  "upstream_version": "0.1.37-ls36"
 }

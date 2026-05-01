@@ -1,3 +1,6 @@
+## 0.1.37-ls36 (2026-05-01)
+- Update to upstream 0.1.37-ls36
+
 # Changelog
 
 ## 1.0.0
