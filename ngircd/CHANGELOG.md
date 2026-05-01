@@ -1,3 +1,6 @@
+## 27-r1-ls165 (2026-05-01)
+- Update to upstream 27-r1-ls165
+
 # Changelog
 
 All notable changes to the NGircd Home Assistant add-on will be documented in this file.

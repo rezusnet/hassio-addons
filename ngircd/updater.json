@@ -1,9 +1,9 @@
 {
-  "last_update": "2025-01-27",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "ngircd",
   "source": "github",
   "upstream_repo": "linuxserver/docker-ngircd",
-  "upstream_version": "27.1"
+  "upstream_version": "27-r1-ls165"
 }
