@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "wireguard",
   "source": "github",
   "upstream_repo": "linuxserver/docker-wireguard",
-  "upstream_version": "1.0.20220627"
+  "upstream_version": "1.0.20250521-r1-ls110"
 }
