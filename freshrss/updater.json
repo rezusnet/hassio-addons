@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "freshrss",
   "source": "github",
   "upstream_repo": "linuxserver/docker-freshrss",
-  "upstream_version": "1.28.1"
+  "upstream_version": "1.28.1-ls302"
 }
