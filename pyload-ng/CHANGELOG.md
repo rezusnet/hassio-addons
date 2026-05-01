@@ -1,3 +1,6 @@
+## develop-ae7080ce-ls8 (2026-05-01)
+- Update to upstream develop-ae7080ce-ls8
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "pyload-ng",
   "source": "github",
   "upstream_repo": "linuxserver/docker-pyload-ng",
-  "upstream_version": "0.5.13"
+  "upstream_version": "develop-ae7080ce-ls8"
 }
