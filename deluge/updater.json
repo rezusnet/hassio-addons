@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "deluge",
   "source": "github",
   "upstream_repo": "linuxserver/docker-deluge",
-  "upstream_version": "2.1.1"
+  "upstream_version": "2.2.0-ls374"
 }
