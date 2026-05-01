@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "minisatip",
   "source": "github",
   "upstream_repo": "linuxserver/docker-minisatip",
-  "upstream_version": "0.2.70"
+  "upstream_version": "v2.0.79-ls647"
 }
