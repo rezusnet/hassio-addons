@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "faster-whisper",
   "source": "github",
   "upstream_repo": "linuxserver/docker-faster-whisper",
-  "upstream_version": "1.0.3"
+  "upstream_version": "v3.1.0-ls135"
 }
