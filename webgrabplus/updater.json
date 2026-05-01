@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "webgrabplus",
   "source": "github",
   "upstream_repo": "linuxserver/docker-webgrabplus",
-  "upstream_version": "3.9.1"
+  "upstream_version": "5.5.3-ls292"
 }

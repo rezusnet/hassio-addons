@@ -1,3 +1,6 @@
+## 5.5.3-ls292 (2026-05-01)
+- Update to upstream 5.5.3-ls292
+
 # Changelog
 
 ## 1.0.0
