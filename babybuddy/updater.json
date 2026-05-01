@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "babybuddy",
   "source": "github",
   "upstream_repo": "linuxserver/docker-babybuddy",
-  "upstream_version": "0.18.3"
+  "upstream_version": "v2.8.0-ls229"
 }
