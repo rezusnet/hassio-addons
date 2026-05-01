@@ -1,3 +1,6 @@
+## 0.18.1-ls200 (2026-05-01)
+- Update to upstream 0.18.1-ls200
+
 # Raneto Add-on Changelog
 
 ## Version 1.0.0 - Initial Release
