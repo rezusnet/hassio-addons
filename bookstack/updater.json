@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "bookstack",
   "source": "github",
   "upstream_repo": "linuxserver/docker-bookstack",
-  "upstream_version": "24.05.3"
+  "upstream_version": "v26.03.4-ls259"
 }
