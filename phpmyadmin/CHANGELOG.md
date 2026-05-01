@@ -1,3 +1,6 @@
+## 5.2.3-ls233 (2026-05-01)
+- Update to upstream 5.2.3-ls233
+
 # Changelog
 
 ## 1.0.0
