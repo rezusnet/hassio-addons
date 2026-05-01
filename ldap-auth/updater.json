@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "ldap-auth",
   "source": "github",
   "upstream_repo": "linuxserver/docker-ldap-auth",
-  "upstream_version": "3.4.5"
+  "upstream_version": "3.4.5-ls289"
 }
