@@ -1,3 +1,6 @@
+## 2.1.1-ls52 (2026-05-01)
+- Update to upstream 2.1.1-ls52
+
 # Changelog
 
 ## 1.0.0
