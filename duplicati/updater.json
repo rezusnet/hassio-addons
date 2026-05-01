@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "duplicati",
   "source": "github",
   "upstream_repo": "linuxserver/docker-duplicati",
-  "upstream_version": "2.0.8.7"
+  "upstream_version": "development-v2.2.1.0_beta_2026-03-05-ls256"
 }
