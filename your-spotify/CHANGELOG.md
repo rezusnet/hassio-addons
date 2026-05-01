@@ -1,3 +1,6 @@
+## 1.19.0-ls152 (2026-05-01)
+- Update to upstream 1.19.0-ls152
+
 # Changelog
 
 All notable changes to the Your-Spotify Home Assistant add-on will be documented in this file.
