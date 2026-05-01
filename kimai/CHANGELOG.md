@@ -1,3 +1,6 @@
+## 2.56.0-ls174 (2026-05-01)
+- Update to upstream 2.56.0-ls174
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
