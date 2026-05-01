@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "apprise-api",
   "source": "github",
   "upstream_repo": "linuxserver/docker-apprise-api",
-  "upstream_version": "1.4.6"
+  "upstream_version": "v1.4.0-ls237"
 }

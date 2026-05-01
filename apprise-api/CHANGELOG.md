@@ -1,3 +1,6 @@
+## 1.4.0-ls237 (2026-05-01)
+- Update to upstream v1.4.0-ls237
+
 # Changelog
 
 ## 1.0.0
