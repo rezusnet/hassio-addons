@@ -1,3 +1,6 @@
+## 26a641bf-ls278 (2026-05-01)
+- Update to upstream 26a641bf-ls278
+
 # Changelog
 
 ## 1.0.0
