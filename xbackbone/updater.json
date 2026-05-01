@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "xbackbone",
   "source": "github",
   "upstream_repo": "linuxserver/docker-xbackbone",
-  "upstream_version": "3.9.6"
+  "upstream_version": "3.8.1-ls222"
 }
