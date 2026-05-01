@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "mariadb",
   "source": "github",
   "upstream_repo": "linuxserver/docker-mariadb",
-  "upstream_version": "11.7.0"
+  "upstream_version": "11.4.10-r0-ls214"
 }
