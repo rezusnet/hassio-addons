@@ -4,6 +4,7 @@
   "repository": "rezusnet/hassio-addons",
   "slug": "bazarr",
   "source": "github",
+  "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-bazarr",
   "upstream_version": "v1.5.6"
 }

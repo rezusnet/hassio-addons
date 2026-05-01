@@ -5,6 +5,9 @@
   "repository": "rezusnet/hassio-addons",
   "slug": "haproxy",
   "source": "dockerhub",
+  "tag_keep_v": false,
+  "tag_strategy": "suffix",
+  "tag_suffix": "-alpine",
   "upstream_repo": "library/haproxy",
   "upstream_version": "v3.3.7"
 }

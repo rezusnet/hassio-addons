@@ -3,13 +3,11 @@
 set -euo pipefail
 
 REPOSITORY="${GITHUB_REPOSITORY:-rezusnet/hassio-addons}"
-GITUSER="${GITUSER:-github-actions[bot]}"
-GITMAIL="${GITMAIL:-${GITUSER}@users.noreply.github.com}"
 DRY_RUN="${DRY_RUN:-false}"
 VERBOSE="${VERBOSE:-true}"
 GH_TOKEN="${GH_TOKEN:-}"
-
-WORKDIR="/tmp/updater-repo"
+GITHUB_OUTPUT="${GITHUB_OUTPUT:-/dev/null}"
+GITHUB_WORKSPACE="${GITHUB_WORKSPACE:-.}"
 
 log() {
     if [ "$VERBOSE" = "true" ]; then
@@ -54,6 +52,7 @@ fetch_github_release_version() {
         while IFS= read -r tag; do
             [ -z "$tag" ] && continue
             [[ "$tag" =~ -(rc|beta|alpha|dev|pre) ]] && continue
+            [[ "$tag" =~ ^nightly ]] && continue
             echo "$tag"
             return 0
         done <<< "$releases"
@@ -79,6 +78,7 @@ fetch_github_tags_version() {
     while IFS= read -r tag; do
         [ -z "$tag" ] && continue
         [[ "$tag" =~ -(rc|beta|alpha|dev|pre) ]] && continue
+        [[ "$tag" =~ ^nightly ]] && continue
         echo "$tag"
         return 0
     done <<< "$tags"
@@ -125,36 +125,182 @@ for tag in data.get('results', []):
     echo "v${version}"
 }
 
-trigger_workflow() {
-    local workflow="$1"
-    if [ -n "$GH_TOKEN" ]; then
-        local http_code
-        http_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
-            -H "Authorization: token ${GH_TOKEN}" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${REPOSITORY}/actions/workflows/${workflow}/dispatches" \
-            -d '{"ref":"master"}' 2>/dev/null) || true
-        if [ "$http_code" = "204" ]; then
-            log "  Builder workflow triggered successfully"
-        else
-            warn "Could not trigger builder workflow (HTTP $http_code)"
-        fi
+compute_config_version() {
+    local upstream_version="$1"
+    local config_extract="$2"
+
+    local ver="${upstream_version#v}"
+
+    if [ "$config_extract" = "semver" ]; then
+        ver=$(echo "$ver" | grep -oP '^\d+\.\d+\.\d+' || echo "$ver")
+    fi
+
+    echo "$ver"
+}
+
+compute_tag_version() {
+    local upstream_version="$1"
+    local tag_keep_v="$2"
+
+    if [ "$tag_keep_v" = "true" ]; then
+        echo "$upstream_version"
+    else
+        echo "${upstream_version#v}"
     fi
 }
 
-git config --global user.name "$GITUSER"
-git config --global user.email "$GITMAIL"
+verify_tag_exists() {
+    local image_tag="$1"
 
-rm -rf "$WORKDIR"
-log "Cloning ${REPOSITORY}..."
-if [ -n "$GH_TOKEN" ]; then
-    git clone "https://x-access-token:${GH_TOKEN}@github.com/${REPOSITORY}.git" "$WORKDIR" 2>&1 | tail -1
-else
-    git clone "https://github.com/${REPOSITORY}.git" "$WORKDIR" 2>&1 | tail -1
-fi
-cd "$WORKDIR"
+    if command -v skopeo >/dev/null 2>&1; then
+        skopeo inspect "docker://${image_tag}" >/dev/null 2>&1
+        return $?
+    fi
 
-CHANGES_PUSHED=false
+    local repo="${image_tag%%:*}"
+    local tag="${image_tag##*:}"
+    local domain="${repo%%/*}"
+
+    if [[ "$domain" == *"ghcr.io"* ]]; then
+        local path="${repo#ghcr.io/}"
+        local token
+        token=$(curl -sf "https://ghcr.io/token?scope=repository:${path}:pull" 2>/dev/null | jq -r '.token' 2>/dev/null) || return 1
+        [ -z "$token" ] && return 1
+        local http_code
+        http_code=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer ${token}" \
+            -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+            "https://ghcr.io/v2/${path}/manifests/${tag}" 2>/dev/null) || return 1
+        [ "$http_code" = "200" ]
+        return $?
+    fi
+
+    if [[ "$domain" == *"docker.io"* ]] || [[ "$image_tag" != *"/"* ]] || [[ "$domain" == *"lscr.io"* ]]; then
+        local normalized_repo="${repo}"
+        [[ "$normalized_repo" != *"/"* ]] && normalized_repo="library/${normalized_repo}"
+        local http_code
+        http_code=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://hub.docker.com/v2/repositories/${normalized_repo}/tags/${tag}" 2>/dev/null) || return 1
+        [ "$http_code" = "200" ]
+        return $?
+    fi
+
+    curl -sf -o /dev/null "https://registry-1.docker.io/v2/${repo}/manifests/${tag}" 2>/dev/null
+    return $?
+}
+
+update_build_json() {
+    local addon_dir="$1"
+    local strategy="$2"
+    local image_prefix="$3"
+    local tag_ver="$4"
+    local tag_suffix="$5"
+
+    local build_file="${addon_dir}/build.json"
+    [ -f "$build_file" ] || return 0
+
+    case "$strategy" in
+        lsio-latest | dockerfile)
+            return 0
+            ;;
+        lsio-pinned)
+            local new_json
+            new_json=$(jq -n \
+                --arg aarch64 "${image_prefix}:arm64v8-${tag_ver}" \
+                --arg amd64 "${image_prefix}:amd64-${tag_ver}" \
+                '{"build_from":{"aarch64":$aarch64,"amd64":$amd64}}')
+            echo "$new_json" > "$build_file"
+            ;;
+        direct)
+            local new_json
+            new_json=$(jq -n \
+                --arg tag "${image_prefix}:${tag_ver}" \
+                '{"build_from":{"aarch64":$tag,"amd64":$tag}}')
+            echo "$new_json" > "$build_file"
+            ;;
+        suffix)
+            local new_json
+            new_json=$(jq -n \
+                --arg tag "${image_prefix}:${tag_ver}${tag_suffix}" \
+                '{"build_from":{"aarch64":$tag,"amd64":$tag}}')
+            echo "$new_json" > "$build_file"
+            ;;
+        *)
+            warn "  Unknown tag_strategy '$strategy' for build.json update"
+            ;;
+    esac
+}
+
+get_image_prefix() {
+    local addon_dir="$1"
+    local strategy="$2"
+
+    local build_file="${addon_dir}/build.json"
+    if [ -f "$build_file" ]; then
+        local first_tag
+        first_tag=$(jq -r '.build_from | to_entries | .[0].value' "$build_file" 2>/dev/null || echo "")
+        if [ -n "$first_tag" ]; then
+            echo "${first_tag%%:*}"
+            return 0
+        fi
+    fi
+
+    echo ""
+}
+
+update_config_version() {
+    local addon_dir="$1"
+    local new_version="$2"
+
+    local config_file=""
+    for f in config.yaml config.yml config.json; do
+        if [ -f "${addon_dir}/${f}" ]; then
+            config_file="${addon_dir}/${f}"
+            break
+        fi
+    done
+    [ -z "$config_file" ] && return 1
+
+    case "$config_file" in
+        *.yaml | *.yml)
+            sed -i "s|^version:.*|version: \"${new_version}\"|" "$config_file"
+            ;;
+        *.json)
+            local tmp
+            tmp=$(jq --arg v "$new_version" '.version = $v' "$config_file") && echo "$tmp" > "$config_file"
+            ;;
+    esac
+}
+
+get_sample_tag() {
+    local strategy="$1"
+    local image_prefix="$2"
+    local tag_ver="$3"
+    local tag_suffix="$4"
+
+    case "$strategy" in
+        lsio-latest | dockerfile)
+            echo ""
+            ;;
+        lsio-pinned)
+            echo "${image_prefix}:amd64-${tag_ver}"
+            ;;
+        direct)
+            echo "${image_prefix}:${tag_ver}"
+            ;;
+        suffix)
+            echo "${image_prefix}:${tag_ver}${tag_suffix}"
+            ;;
+        *)
+            echo ""
+            ;;
+    esac
+}
+
+CHANGES=""
+CHANGES_COUNT=0
+
+cd "$GITHUB_WORKSPACE"
 
 for addon_dir in */; do
     [ -f "$addon_dir/updater.json" ] || continue
@@ -167,10 +313,15 @@ for addon_dir in */; do
     UPSTREAM_REPO=$(jq -r '.upstream_repo // ""' "$UPDATER_FILE")
     SOURCE=$(jq -r '.source // "github"' "$UPDATER_FILE")
     CURRENT_VERSION=$(jq -r '.upstream_version // ""' "$UPDATER_FILE")
+    TAG_STRATEGY=$(jq -r '.tag_strategy // ""' "$UPDATER_FILE")
+    TAG_SUFFIX=$(jq -r '.tag_suffix // ""' "$UPDATER_FILE")
+    TAG_KEEP_V=$(jq -r '.tag_keep_v // false' "$UPDATER_FILE")
+    CONFIG_EXTRACT=$(jq -r '.config_extract // ""' "$UPDATER_FILE")
 
     [ -z "$UPSTREAM_REPO" ] && { log "Skipping $addon_dir (no upstream_repo)"; continue; }
+    [ -z "$TAG_STRATEGY" ] && { log "Skipping $addon_dir (no tag_strategy)"; continue; }
 
-    log "Checking $SLUG ($UPSTREAM_REPO, source=$SOURCE) — current: ${CURRENT_VERSION:-none}"
+    log "Checking $SLUG ($UPSTREAM_REPO, source=$SOURCE, strategy=$TAG_STRATEGY) — current: ${CURRENT_VERSION:-none}"
 
     NEW_VERSION=""
 
@@ -207,43 +358,53 @@ for addon_dir in */; do
 
     [ "$NEW_VERSION_CLEAN" = "$CURRENT_VERSION_CLEAN" ] && { log "  Already up to date"; continue; }
 
-    echo "Updating $SLUG from ${CURRENT_VERSION:-none} to $NEW_VERSION"
+    CONFIG_VERSION=$(compute_config_version "$NEW_VERSION" "$CONFIG_EXTRACT")
+    TAG_VERSION=$(compute_tag_version "$NEW_VERSION" "$TAG_KEEP_V")
+
+    IMAGE_PREFIX=$(get_image_prefix "$addon_dir" "$TAG_STRATEGY")
+
+    SAMPLE_TAG=$(get_sample_tag "$TAG_STRATEGY" "$IMAGE_PREFIX" "$TAG_VERSION" "$TAG_SUFFIX")
+    if [ -n "$SAMPLE_TAG" ]; then
+        log "  Verifying tag: $SAMPLE_TAG"
+        if ! verify_tag_exists "$SAMPLE_TAG"; then
+            warn "  Tag $SAMPLE_TAG does not exist on registry, skipping $SLUG"
+            continue
+        fi
+        log "  Tag verified"
+    fi
+
+    echo "Updating $SLUG: ${CURRENT_VERSION:-none} → $NEW_VERSION (config: $CONFIG_VERSION)"
 
     if [ "$DRY_RUN" != "true" ]; then
         DATE=$(date '+%Y-%m-%d')
         jq --arg d "$DATE" --arg v "$NEW_VERSION" '.last_update = $d | .upstream_version = $v' "$UPDATER_FILE" > tmp.json && mv tmp.json "$UPDATER_FILE"
 
-        if [ -f "$addon_dir/CHANGELOG.md" ]; then
-            sed -i "1i\\## ${NEW_VERSION_CLEAN} (${DATE})\n- Update to upstream ${NEW_VERSION}\n" "$addon_dir/CHANGELOG.md"
-        fi
+        update_build_json "$addon_dir" "$TAG_STRATEGY" "$IMAGE_PREFIX" "$TAG_VERSION" "$TAG_SUFFIX"
 
-        git add -A
-        git commit -m "Update ${SLUG} upstream to ${NEW_VERSION}" || true
+        update_config_version "$addon_dir" "$CONFIG_VERSION"
+
+        if [ -f "$addon_dir/CHANGELOG.md" ]; then
+            sed -i "1i\\## ${CONFIG_VERSION} (${DATE})\n- Update to upstream ${NEW_VERSION}\n" "$addon_dir/CHANGELOG.md"
+        fi
     fi
+
+    CHANGES="${CHANGES}- **${SLUG}**: \`${CURRENT_VERSION:-none}\` → \`${NEW_VERSION}\`\n"
+    CHANGES_COUNT=$((CHANGES_COUNT + 1))
 done
 
-if [ "$DRY_RUN" != "true" ] && [ "$(git log --oneline origin/master..HEAD 2>/dev/null | wc -l)" -gt 0 ]; then
-    log "Pushing updates via PR..."
-    BRANCH="updater/bump-$(date +%Y%m%d-%H%M%S)"
-    git checkout -b "$BRANCH"
-    git push origin "$BRANCH"
-
-    if [ -n "$GH_TOKEN" ]; then
-        BODY=""
-        while IFS= read -r line; do
-            [ -z "$line" ] && continue
-            BODY="${BODY}- ${line}"$'\n'
-        done < <(git log --oneline origin/master..HEAD)
-
-        gh pr create \
-            --title "chore: update upstream versions $(date +%Y-%m-%d)" \
-            --body "$BODY" \
-            --base master \
-            --head "$BRANCH" 2>/dev/null || warn "Failed to create PR"
-        log "PR created"
-    fi
-    CHANGES_PUSHED=true
+if [ -n "$CHANGES" ]; then
+    echo ""
+    echo "=== Summary: ${CHANGES_COUNT} addon(s) updated ==="
+    echo -e "$CHANGES"
+else
+    log "No updates found"
 fi
 
-rm -rf "$WORKDIR"
-log "Done."
+if [ "$GITHUB_OUTPUT" != "/dev/null" ]; then
+    {
+        echo "has_updates=${CHANGES_COUNT}"
+        echo "changes<<__UPDATER_EOF__"
+        echo -e "$CHANGES"
+        echo "__UPDATER_EOF__"
+    } >> "$GITHUB_OUTPUT"
+fi

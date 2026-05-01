@@ -4,6 +4,7 @@
   "repository": "rezusnet/hassio-addons",
   "slug": "sonarr",
   "source": "github",
+  "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-sonarr",
   "upstream_version": "4.0.17.2952"
 }

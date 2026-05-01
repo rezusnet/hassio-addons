@@ -5,6 +5,8 @@
   "repository": "rezusnet/hassio-addons",
   "slug": "audiobookshelf",
   "source": "github",
+  "tag_keep_v": false,
+  "tag_strategy": "direct",
   "upstream_repo": "advplyr/audiobookshelf",
   "upstream_version": "v2.33.2"
 }

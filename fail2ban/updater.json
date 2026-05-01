@@ -4,6 +4,7 @@
   "repository": "rezusnet/hassio-addons",
   "slug": "fail2ban",
   "source": "github",
+  "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-fail2ban",
   "upstream_version": "1.1.0-r2-ls34"
 }
