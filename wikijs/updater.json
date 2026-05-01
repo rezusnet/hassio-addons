@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "wikijs",
   "source": "github",
   "upstream_repo": "linuxserver/docker-wikijs",
-  "upstream_version": "3.0.0"
+  "upstream_version": "v2.5.313-ls212"
 }

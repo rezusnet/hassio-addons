@@ -1,3 +1,6 @@
+## 2.5.313-ls212 (2026-05-01)
+- Update to upstream v2.5.313-ls212
+
 # Changelog
 
 ## 1.0.0
