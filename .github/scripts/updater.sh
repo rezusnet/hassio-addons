@@ -392,6 +392,14 @@ for addon_dir in */; do
     CHANGES_COUNT=$((CHANGES_COUNT + 1))
 done
 
+if [ "$GITHUB_OUTPUT" != "/dev/null" ]; then
+    DATE_STAMP=$(date '+%Y-%m-%d')
+    DATE_STAMP_COMPACT=$(date '+%Y%m%d')
+    echo "date_stamp=${DATE_STAMP}" >> "$GITHUB_OUTPUT"
+    echo "date_stamp_compact=${DATE_STAMP_COMPACT}" >> "$GITHUB_OUTPUT"
+    echo "has_updates=${CHANGES_COUNT}" >> "$GITHUB_OUTPUT"
+fi
+
 if [ -n "$CHANGES" ]; then
     echo ""
     echo "=== Summary: ${CHANGES_COUNT} addon(s) updated ==="
@@ -402,7 +410,6 @@ fi
 
 if [ "$GITHUB_OUTPUT" != "/dev/null" ]; then
     {
-        echo "has_updates=${CHANGES_COUNT}"
         echo "changes<<__UPDATER_EOF__"
         echo -e "$CHANGES"
         echo "__UPDATER_EOF__"
