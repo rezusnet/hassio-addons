@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "airsonic-advanced",
   "source": "github",
   "upstream_repo": "linuxserver/docker-airsonic-advanced",
-  "upstream_version": "11.5.0"
+  "upstream_version": "11.1.4-ls180"
 }
