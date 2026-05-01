@@ -1,3 +1,6 @@
+## 2025-05-14b-ls302 (2026-05-01)
+- Update to upstream 2025-05-14b-ls302
+
 # Changelog
 
 ## 1.0.0

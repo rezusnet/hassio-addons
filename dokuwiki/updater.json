@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "dokuwiki",
   "source": "github",
   "upstream_repo": "linuxserver/docker-dokuwiki",
-  "upstream_version": "2024-03-28"
+  "upstream_version": "2025-05-14b-ls302"
 }
