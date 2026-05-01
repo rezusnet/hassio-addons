@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "healthchecks",
   "source": "github",
   "upstream_repo": "linuxserver/docker-healthchecks",
-  "upstream_version": "3.3.0"
+  "upstream_version": "v4.2-ls343"
 }
