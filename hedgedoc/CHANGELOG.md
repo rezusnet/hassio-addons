@@ -1,3 +1,6 @@
+## 1.10.8-ls188 (2026-05-01)
+- Update to upstream 1.10.8-ls188
+
 # Changelog
 
 ## 1.0.0

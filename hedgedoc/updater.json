@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "hedgedoc",
   "source": "github",
   "upstream_repo": "linuxserver/docker-hedgedoc",
-  "upstream_version": "1.9.10"
+  "upstream_version": "1.10.8-ls188"
 }
