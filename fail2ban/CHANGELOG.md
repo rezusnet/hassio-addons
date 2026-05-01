@@ -1,3 +1,8 @@
+## 1.1.0-r2-ls34 (01-05-2026)
+
+- Update to upstream 1.1.0-r2-ls34
+- Fix version mismatch with upstream tracking
+
 ## 1.0.0 (27-04-2026)
 
 - Initial release based on linuxserver/docker-fail2ban
