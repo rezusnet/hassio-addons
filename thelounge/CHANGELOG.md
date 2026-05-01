@@ -1,3 +1,6 @@
+## nightly-5f9bde5b-ls203 (2026-05-01)
+- Update to upstream nightly-5f9bde5b-ls203
+
 # Changelog
 
 All notable changes to the TheLounge add-on will be documented in this file.
