@@ -4,6 +4,7 @@
   "repository": "rezusnet/hassio-addons",
   "slug": "qbittorrent",
   "source": "github",
+  "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-qbittorrent",
   "upstream_version": "5.1.4"
 }

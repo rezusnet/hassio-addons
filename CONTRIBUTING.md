@@ -132,27 +132,148 @@ The manifest, scripts, and docs must agree:
 - non-LSIO add-ons should set `init: true` explicitly when using `ha_entrypoint.sh`
 - set `homeassistant` explicitly to the minimum supported Home Assistant version
 
-### updater.json Contract
+### updater.json — Autoupdate Configuration
 
-Use a consistent updater file shape:
+Every add-on with an `updater.json` is checked daily by the CI updater (`.github/workflows/addons_updater.yaml`).
+When a new upstream version is detected, the updater creates a PR that updates `updater.json`, `config.yaml`,
+`build.json`, and `CHANGELOG.md` automatically.
+
+#### Full schema
 
 ```json
 {
-  "last_update": "2026-04-26",
-  "paused": false,
-  "repository": "rezusnet/hassio-addons",
   "slug": "<name>",
   "source": "github",
   "upstream_repo": "owner/repo",
-  "upstream_version": "v1.2.3"
+  "upstream_version": "v1.2.3",
+  "last_update": "2026-04-26",
+  "paused": false,
+  "tag_strategy": "direct",
+  "tag_keep_v": false,
+  "tag_suffix": "",
+  "config_extract": null,
+  "github_beta": false,
+  "dockerhub_tag_filter": ""
 }
 ```
 
-Optional fields:
+#### Required fields
 
-- `github_beta: true` for repositories where prereleases should be tracked
-- `dockerhub_tag_filter` when using `source: dockerhub`
-- use JSON booleans (`true` / `false`), not quoted strings
+| Field              | Description                                                 |
+| ------------------ | ----------------------------------------------------------- |
+| `slug`             | Add-on directory name                                       |
+| `source`           | `github`, `github_tags`, or `dockerhub`                     |
+| `upstream_repo`    | Upstream `owner/repo` (GitHub) or `library/xx` (Docker Hub) |
+| `upstream_version` | Currently tracked upstream version                          |
+| `last_update`      | Date of last check/update (ISO format)                      |
+| `paused`           | Set `true` to skip this add-on in the updater               |
+| `tag_strategy`     | How the updater handles `build.json` (see below)            |
+
+#### Optional fields
+
+| Field                  | Default | Description                                          |
+| ---------------------- | ------- | ---------------------------------------------------- |
+| `github_beta`          | `false` | Track GitHub pre-releases instead of stable releases |
+| `dockerhub_tag_filter` | `""`    | Required suffix filter when `source: dockerhub`      |
+| `tag_keep_v`           | `false` | Keep `v` prefix in the Docker image tag              |
+| `tag_suffix`           | `""`    | Suffix appended to the version in the Docker tag     |
+| `config_extract`       | `null`  | Set `"semver"` to extract `X.Y.Z` from compound tags |
+
+#### Tag strategies
+
+| Strategy      | `build.json` behavior                                | Use for                                      |
+| ------------- | ---------------------------------------------------- | -------------------------------------------- |
+| `lsio-latest` | No change (always `{arch}-latest`)                   | LSIO add-ons with floating tags              |
+| `lsio-pinned` | Update to `{prefix}:{arch}-{ver}`                    | LSIO add-ons with pinned version tags        |
+| `direct`      | Update to `{prefix}:{ver}` (same tag for both archs) | Non-LSIO multi-arch images                   |
+| `suffix`      | Update to `{prefix}:{ver}{suffix}`                   | Images needing a tag suffix                  |
+| `dockerfile`  | No change (version injected via `BUILD_VERSION` arg) | Add-ons that download binaries in Dockerfile |
+
+#### Examples by strategy
+
+**LSIO with latest tag** (sonarr, radarr, etc.):
+
+```json
+{
+  "slug": "sonarr",
+  "source": "github",
+  "tag_strategy": "lsio-latest",
+  "upstream_repo": "linuxserver/docker-sonarr",
+  "upstream_version": "4.0.17.2952",
+  "last_update": "2026-04-26",
+  "paused": false
+}
+```
+
+**LSIO with pinned tag** (jellyfin — needs `config_extract` to strip compound suffix):
+
+```json
+{
+  "slug": "jellyfin",
+  "source": "github",
+  "tag_strategy": "lsio-pinned",
+  "config_extract": "semver",
+  "upstream_repo": "linuxserver/docker-jellyfin",
+  "upstream_version": "10.11.8ubu2404-ls30",
+  "last_update": "2026-04-27",
+  "paused": false
+}
+```
+
+**Direct multi-arch image** (audiobookshelf):
+
+```json
+{
+  "slug": "audiobookshelf",
+  "source": "github",
+  "tag_strategy": "direct",
+  "upstream_repo": "advplyr/audiobookshelf",
+  "upstream_version": "v2.33.2",
+  "last_update": "2026-04-25",
+  "paused": false,
+  "github_beta": false
+}
+```
+
+**With tag suffix** (filebrowser `v2.63.2-s6`):
+
+```json
+{
+  "slug": "filebrowser",
+  "source": "github",
+  "tag_strategy": "suffix",
+  "tag_keep_v": true,
+  "tag_suffix": "-s6",
+  "upstream_repo": "filebrowser/filebrowser",
+  "upstream_version": "v2.63.2",
+  "last_update": "2026-04-25",
+  "paused": false
+}
+```
+
+**Dockerfile-installed binary** (opencode — version via `BUILD_VERSION`):
+
+```json
+{
+  "slug": "opencode",
+  "source": "github",
+  "tag_strategy": "dockerfile",
+  "upstream_repo": "anomalyco/opencode",
+  "upstream_version": "v1.14.28",
+  "last_update": "2026-04-27",
+  "paused": false
+}
+```
+
+#### RC versioning for local changes
+
+When you make a local change to an add-on (not triggered by an upstream update), use an RC version:
+
+1. Set `config.yaml` version to `{upstream_version}-rc{n}` (e.g., `2.34.0-rc1`)
+2. Commit and push — the builder will build and push the RC version
+3. When the next upstream version is released, the updater will overwrite the RC with the clean upstream version
+
+Do **not** modify `upstream_version` in `updater.json` for RC releases — only change `config.yaml` version.
 
 ### build.json
 
@@ -167,7 +288,8 @@ Pin image tags to a specific version to avoid surprise breakages:
 }
 ```
 
-For LSIO images, check `https://hub.docker.com/r/linuxserver/<name>/tags` for available versioned tags.
+For LSIO add-ons using `tag_strategy: lsio-latest`, the tags stay as `{arch}-latest` and are never modified by the updater.
+For other strategies, the updater automatically updates the tags when a new upstream version is detected.
 
 ### Dockerfile — 6 Sections
 
@@ -298,17 +420,21 @@ bashio::log.info "<Name> initialization complete"
 
 ### updater.json Template
 
+For an LSIO-based add-on:
+
 ```json
 {
   "last_update": "2026-04-26",
   "paused": false,
-  "repository": "rezusnet/hassio-addons",
   "slug": "<name>",
   "source": "github",
+  "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-<name>",
   "upstream_version": "<version>"
 }
 ```
+
+See the [updater.json — Autoupdate Configuration](#updaterjson--autoupdate-configuration) section above for the full schema and all strategy options.
 
 ### apparmor.txt Template
 

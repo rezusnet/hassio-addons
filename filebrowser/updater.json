@@ -5,6 +5,9 @@
   "repository": "rezusnet/hassio-addons",
   "slug": "filebrowser",
   "source": "github",
+  "tag_keep_v": true,
+  "tag_strategy": "suffix",
+  "tag_suffix": "-s6",
   "upstream_repo": "filebrowser/filebrowser",
   "upstream_version": "v2.63.2"
 }

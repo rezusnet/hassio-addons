@@ -4,6 +4,7 @@
   "repository": "rezusnet/hassio-addons",
   "slug": "radarr",
   "source": "github",
+  "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-radarr",
   "upstream_version": "6.1.1.10360"
 }

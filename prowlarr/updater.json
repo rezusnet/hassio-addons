@@ -4,6 +4,7 @@
   "repository": "rezusnet/hassio-addons",
   "slug": "prowlarr",
   "source": "github",
+  "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-prowlarr",
   "upstream_version": "2.3.5.5327"
 }

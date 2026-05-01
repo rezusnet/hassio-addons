@@ -1,9 +1,11 @@
 {
+  "config_extract": "semver",
   "last_update": "2026-04-27",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "jellyfin",
   "source": "github",
+  "tag_strategy": "lsio-pinned",
   "upstream_repo": "linuxserver/docker-jellyfin",
   "upstream_version": "10.11.8ubu2404-ls30"
 }
