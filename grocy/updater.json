@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "grocy",
   "source": "github",
   "upstream_repo": "linuxserver/docker-grocy",
-  "upstream_version": "4.5.2"
+  "upstream_version": "v4.6.0-ls323"
 }
