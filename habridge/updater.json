@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "habridge",
   "source": "github",
   "upstream_repo": "linuxserver/docker-habridge",
-  "upstream_version": "5.5.5"
+  "upstream_version": "v5.4.1-ls227"
 }
