@@ -1,3 +1,6 @@
+## 3.0.21 (2026-05-01)
+- Update to upstream v3.0.21
+
 ## 3.3.7 (2026-04-25)
 
 - Switch to official HAProxy Docker image as base
