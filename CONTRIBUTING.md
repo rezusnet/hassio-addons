@@ -465,3 +465,138 @@ instead of the LSIO S6 init. Key differences:
 - Descriptive commit messages
 - `[nobuild]` prefix skips CI builds (reserved for CI bot)
 - One add-on per commit preferred
+
+## Autoupdate Pipeline
+
+Add-ons with an `updater.json` are automatically checked for upstream version changes every day.
+The pipeline detects new versions, updates all relevant files, opens a PR, and auto-merges it.
+The builder then picks up the merged changes and publishes new images.
+
+### Pipeline overview
+
+```
+Daily cron 03:00 UTC (or manual workflow_dispatch)
+  │
+  ▼
+addons_updater.yaml ─ runs updater.sh
+  │
+  ├─ For each addon with updater.json:
+  │   ├─ Fetch latest upstream version (GitHub API / Docker Hub API)
+  │   ├─ Compare with current upstream_version
+  │   ├─ Skip if unchanged
+  │   ├─ Compute config_version and tag_version from tag_strategy
+  │   ├─ Verify Docker tag exists on registry (skopeo / curl fallback)
+  │   ├─ Skip addon if tag not yet published
+  │   └─ Update updater.json, config.yaml, build.json, CHANGELOG.md
+  │
+  ▼
+peter-evans/create-pull-request@v7
+  │
+  ├─ Detects uncommitted changes from updater.sh
+  ├─ Creates branch: updater/bump-YYYYMMDD
+  ├─ Commits and pushes
+  └─ Opens PR with markdown summary of all version changes
+  │
+  ▼
+Auto-merge step
+  │
+  ├─ Enables squash auto-merge on the PR
+  └─ PR merges once required CI checks pass
+  │
+  ▼
+onpush_builder.yaml (triggered by config.* change on master)
+  │
+  ├─ Builds amd64 + aarch64 images
+  ├─ Pushes to ghcr.io/rezusnet/<addon>-{arch}
+  ├─ Runs integration tests
+  └─ Updates changelog
+```
+
+### Files updated per add-on
+
+| File           | Fields changed                    | When                                              |
+| -------------- | --------------------------------- | ------------------------------------------------- |
+| `updater.json` | `upstream_version`, `last_update` | Every version change                              |
+| `config.yaml`  | `version`                         | Every version change                              |
+| `build.json`   | `build_from` tags                 | `lsio-pinned`, `direct`, `suffix` strategies only |
+| `CHANGELOG.md` | New `## version (date)` heading   | Every version change                              |
+
+### Tag verification
+
+Before committing an update, the updater verifies the Docker image tag exists on the registry:
+
+| Registry   | Method                                                  |
+| ---------- | ------------------------------------------------------- |
+| Any        | `skopeo inspect docker://<image>:<tag>` (preferred)     |
+| GHCR       | Token-based manifest API (`/v2/<repo>/manifests/<tag>`) |
+| Docker Hub | Tag list API (`/v2/repositories/<repo>/tags/<tag>`)     |
+
+If a tag does not exist yet (upstream released source but image not published), the add-on is **skipped**
+and retried the next day. This prevents build failures from missing base images.
+
+### Pre-release filtering
+
+The GitHub release fetcher excludes tags matching:
+
+- Suffixes: `-rc`, `-beta`, `-alpha`, `-dev`, `-pre`
+- Prefixes: `nightly-`
+
+Override with `github_beta: true` in `updater.json` to accept the latest release regardless (used by `lightrag`).
+
+### Version computation by strategy
+
+For each `tag_strategy`, the updater derives two values from `upstream_version`:
+
+| Strategy      | config.yaml version    | build.json tag                              | Example                                       |
+| ------------- | ---------------------- | ------------------------------------------- | --------------------------------------------- |
+| `lsio-latest` | Strip `v` prefix       | No change (`{arch}-latest`)                 | `4.0.17.2952` → config `4.0.17.2952`          |
+| `lsio-pinned` | Extract semver `X.Y.Z` | `{prefix}:{arch}-{semver}`                  | `10.11.8ubu2404-ls30` → config `10.11.8`      |
+| `direct`      | Strip `v` prefix       | `{prefix}:{tag_version}`                    | `v2.33.2` → config `2.33.2`, tag `2.33.2`     |
+| `suffix`      | Strip `v` prefix       | `{prefix}:{tag_version}{tag_suffix}`        | `v2.63.2` → config `2.63.2`, tag `v2.63.2-s6` |
+| `dockerfile`  | Strip `v` prefix       | No change (version via `BUILD_VERSION` arg) | `v1.14.28` → config `1.14.28`                 |
+
+### RC versioning for local changes
+
+When you need to ship a fix that is not tied to an upstream version bump:
+
+1. Edit `config.yaml` version: change `"2.34.0"` to `"2.34.0-rc1"`
+2. Do **not** modify `updater.json`
+3. Commit, push, and merge — the builder publishes the RC version
+4. When the next upstream version lands, the updater overwrites the RC automatically
+
+The updater only acts when `upstream_version` changes, so RC versions persist until the next upstream release.
+
+### Troubleshooting
+
+| Symptom                                         | Cause                                        | Fix                                                          |
+| ----------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------ |
+| Add-on not updated despite new upstream release | Docker tag not published yet                 | Will be retried next day; verify tag on registry             |
+| Add-on not updated                              | `paused: true` in updater.json               | Set `paused: false`                                          |
+| Add-on not updated                              | Missing `tag_strategy` in updater.json       | Add the required field (see schema above)                    |
+| PR not created                                  | No version changes detected (all up to date) | Check `upstream_version` matches the latest upstream tag     |
+| PR not created                                  | Workflow ran with `dry_run: true`            | Re-run without dry run                                       |
+| Build not triggered after PR merge              | Commit message contains `[nobuild]`          | Remove `[nobuild]` prefix                                    |
+| Build not triggered after PR merge              | Only non-config files changed                | Builder triggers on `config.*` path changes only             |
+| Audiobookshelf update skipped                   | GHCR image tag not available yet             | Upstream publishes source before Docker image; retried daily |
+| Nightly/RC build picked up for LSIO add-on      | Upstream repo tagged a pre-release           | Filter already excludes nightly/rc/beta/alpha/dev/pre        |
+
+### Manual invocation
+
+Trigger the updater manually with verbose logging and no changes pushed:
+
+```bash
+gh workflow run addons_updater.yaml -f dry_run=true -f verbose=true
+```
+
+Run for real (creates PR if changes found):
+
+```bash
+gh workflow run addons_updater.yaml -f dry_run=false -f verbose=true
+```
+
+Run the updater script locally (no GitHub Actions required):
+
+```bash
+DRY_RUN=true VERBOSE=true GITHUB_WORKSPACE=. GITHUB_OUTPUT=/dev/null \
+    bash .github/scripts/updater.sh
+```
