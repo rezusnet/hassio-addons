@@ -1,3 +1,6 @@
+## 1.14.0-ls147 (2026-05-01)
+- Update to upstream v1.14.0-ls147
+
 # Changelog
 
 ## 1.0.0
