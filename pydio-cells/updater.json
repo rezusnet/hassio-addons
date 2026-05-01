@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "pydio-cells",
   "source": "github",
   "upstream_repo": "linuxserver/docker-pydio-cells",
-  "upstream_version": "4.4.2"
+  "upstream_version": "v4.4.17-ls200"
 }
