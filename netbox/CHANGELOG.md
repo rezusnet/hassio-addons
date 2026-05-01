@@ -1,3 +1,6 @@
+## 4.5.9-ls348 (2026-05-01)
+- Update to upstream v4.5.9-ls348
+
 # Changelog
 
 ## 1.0.0
