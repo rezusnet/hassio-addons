@@ -1,3 +1,6 @@
+## 4.6.4-r0-ls305 (2026-05-01)
+- Update to upstream 4.6.4-r0-ls305
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
