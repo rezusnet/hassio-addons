@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "obsidian",
   "source": "github",
   "upstream_repo": "linuxserver/docker-obsidian",
-  "upstream_version": "1.12.7"
+  "upstream_version": "v1.12.7-ls125"
 }

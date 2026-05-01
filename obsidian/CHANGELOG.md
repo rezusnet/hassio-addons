@@ -1,3 +1,6 @@
+## 1.12.7-ls125 (2026-05-01)
+- Update to upstream v1.12.7-ls125
+
 # Changelog
 
 ## 1.0.0
