@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "mstream",
   "source": "github",
   "upstream_repo": "linuxserver/docker-mstream",
-  "upstream_version": "5.11.32"
+  "upstream_version": "v6.6.0-ls240"
 }
