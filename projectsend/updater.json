@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "projectsend",
   "source": "github",
   "upstream_repo": "linuxserver/docker-projectsend",
-  "upstream_version": "r1100"
+  "upstream_version": "r2029-ls267"
 }

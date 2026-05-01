@@ -1,3 +1,6 @@
+## r2029-ls267 (2026-05-01)
+- Update to upstream r2029-ls267
+
 # Changelog
 
 ## 1.0.0
