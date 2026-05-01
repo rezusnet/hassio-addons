@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "tvheadend",
   "source": "github",
   "upstream_repo": "linuxserver/docker-tvheadend",
-  "upstream_version": "4.3-1747"
+  "upstream_version": "37453bc3-ls279"
 }
