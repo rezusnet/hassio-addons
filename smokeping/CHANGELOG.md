@@ -1,3 +1,6 @@
+## 2.9.0-r0-ls169 (2026-05-01)
+- Update to upstream 2.9.0-r0-ls169
+
 # Changelog
 
 ## 1.0.0
