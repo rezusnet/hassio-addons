@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "duckdns",
   "source": "github",
   "upstream_repo": "linuxserver/docker-duckdns",
-  "upstream_version": "2.46.0"
+  "upstream_version": "36a2e3a3-ls78"
 }
