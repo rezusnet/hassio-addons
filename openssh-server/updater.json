@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "openssh-server",
   "source": "github",
   "upstream_repo": "linuxserver/docker-openssh-server",
-  "upstream_version": "9.9.P2"
+  "upstream_version": "10.2_p1-r0-ls223"
 }

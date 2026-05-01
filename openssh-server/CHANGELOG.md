@@ -1,3 +1,6 @@
+## 10.2_p1-r0-ls223 (2026-05-01)
+- Update to upstream 10.2_p1-r0-ls223
+
 # Changelog
 
 ## 1.0.0
