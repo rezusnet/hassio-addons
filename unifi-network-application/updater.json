@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "unifi-network-application",
   "source": "github",
   "upstream_repo": "linuxserver/docker-unifi-network-application",
-  "upstream_version": "8.7.3"
+  "upstream_version": "10.3.58-ls127"
 }

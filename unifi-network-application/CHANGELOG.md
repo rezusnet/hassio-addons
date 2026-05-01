@@ -1,3 +1,6 @@
+## 10.3.58-ls127 (2026-05-01)
+- Update to upstream 10.3.58-ls127
+
 # Changelog
 
 ## 1.0.0
