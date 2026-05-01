@@ -1,3 +1,6 @@
+## 25.4.1-2-ls224 (2026-05-01)
+- Update to upstream 25.4.1-2-ls224
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
