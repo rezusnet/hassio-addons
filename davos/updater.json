@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "davos",
   "source": "github",
   "upstream_repo": "linuxserver/docker-davos",
-  "upstream_version": "2.16.0"
+  "upstream_version": "2.2.2-ls220"
 }
