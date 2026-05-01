@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "nzbhydra2",
   "source": "github",
   "upstream_repo": "linuxserver/docker-nzbhydra2",
-  "upstream_version": "7.5.1"
+  "upstream_version": "v8.8.0-ls88"
 }
