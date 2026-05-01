@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "diskover",
   "source": "github",
   "upstream_repo": "linuxserver/docker-diskover",
-  "upstream_version": "2.2.15"
+  "upstream_version": "v2.3.5-ls232"
 }
