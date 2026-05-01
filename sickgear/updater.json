@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-04-30",
+  "last_update": "2026-05-01",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "sickgear",
   "source": "github",
   "upstream_repo": "linuxserver/docker-sickgear",
-  "upstream_version": "2024.12.19"
+  "upstream_version": "release_3.35.4-ls318"
 }

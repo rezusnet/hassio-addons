@@ -1,3 +1,6 @@
+## release_3.35.4-ls318 (2026-05-01)
+- Update to upstream release_3.35.4-ls318
+
 # Changelog
 
 ## 1.0.0
