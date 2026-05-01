@@ -1,3 +1,6 @@
+## 4.10.2-r1-ls192 (2026-05-01)
+- Update to upstream 4.10.2-r1-ls192
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

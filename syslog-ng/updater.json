@@ -5,5 +5,5 @@
   "slug": "syslog-ng",
   "source": "github",
   "upstream_repo": "linuxserver/docker-syslog-ng",
-  "upstream_version": "4.8.0"
+  "upstream_version": "4.10.2-r1-ls192"
 }
