@@ -1,10 +1,10 @@
 {
-  "last_update": "2026-05-01",
+  "last_update": "2026-05-02",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "sonarr",
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-sonarr",
-  "upstream_version": "4.0.17.2952-ls309"
+  "upstream_version": "4.0.17.2952-ls310"
 }
