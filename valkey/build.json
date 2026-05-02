@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "valkey/valkey:9.0.3-alpine",
+    "amd64": "valkey/valkey:9.0.3-alpine"
+  }
+}
