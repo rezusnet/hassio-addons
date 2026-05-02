@@ -491,7 +491,7 @@ The builder then picks up the merged changes and publishes new images.
 
 ### Pipeline overview
 
-```
+```text
 Daily cron 03:00 UTC (or manual workflow_dispatch)
   │
   ▼
@@ -572,7 +572,7 @@ For each `tag_strategy`, the updater derives two values from `upstream_version`:
 | `suffix`      | Strip `v` prefix       | `{prefix}:{tag_version}{tag_suffix}`        | `v2.63.2` → config `2.63.2`, tag `v2.63.2-s6` |
 | `dockerfile`  | Strip `v` prefix       | No change (version via `BUILD_VERSION` arg) | `v1.14.28` → config `1.14.28`                 |
 
-### RC versioning for local changes
+### RC versioning workflow
 
 When you need to ship a fix that is not tied to an upstream version bump:
 
