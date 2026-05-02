@@ -25,16 +25,16 @@ CREATE DATABASE mastodon OWNER mastodon;
 
 Open the add-on Configuration tab and set:
 
-| Field | Description |
-|-------|-------------|
-| `LOCAL_DOMAIN` | Your Mastodon server domain (e.g., `social.example.com`). **Cannot be changed later.** |
-| `DB_HOST` | PostgreSQL hostname (e.g., `core-postgres` or an IP) |
-| `DB_PASS` | PostgreSQL password |
-| `REDIS_HOST` | Redis hostname |
-| `SMTP_SERVER` | SMTP server for email delivery (required for sign-ups and notifications) |
-| `SMTP_LOGIN` | SMTP username |
-| `SMTP_PASSWORD` | SMTP password |
-| `SMTP_FROM_ADDRESS` | Sender email address (e.g., `mastodon@example.com`) |
+| Field               | Description                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| `LOCAL_DOMAIN`      | Your Mastodon server domain (e.g., `social.example.com`). **Cannot be changed later.** |
+| `DB_HOST`           | PostgreSQL hostname (e.g., `core-postgres` or an IP)                                   |
+| `DB_PASS`           | PostgreSQL password                                                                    |
+| `REDIS_HOST`        | Redis hostname                                                                         |
+| `SMTP_SERVER`       | SMTP server for email delivery (required for sign-ups and notifications)               |
+| `SMTP_LOGIN`        | SMTP username                                                                          |
+| `SMTP_PASSWORD`     | SMTP password                                                                          |
+| `SMTP_FROM_ADDRESS` | Sender email address (e.g., `mastodon@example.com`)                                    |
 
 ### 3. Secrets (auto-generated)
 
@@ -79,34 +79,34 @@ RAILS_ENV=production tootctl accounts modify <username> --role Owner
 
 ### Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `env_vars` | list | `[]` | Custom environment variables |
-| `PGID` | int | `0` | Group ID for file permissions |
-| `PUID` | int | `0` | User ID for file permissions |
-| `data_location` | str | `/share/mastodon` | Persistent data path |
-| `TZ` | str | `""` | Timezone (e.g., `Europe/Bucharest`) |
-| `LOCAL_DOMAIN` | str | | Your server's public domain |
-| `DB_HOST` | str | | PostgreSQL hostname |
-| `DB_PORT` | port | `5432` | PostgreSQL port |
-| `DB_USER` | str | `mastodon` | PostgreSQL username |
-| `DB_NAME` | str | `mastodon` | PostgreSQL database name |
-| `DB_PASS` | password | | PostgreSQL password |
-| `REDIS_HOST` | str | | Redis hostname |
-| `REDIS_PORT` | port | `6379` | Redis port |
-| `SECRET_KEY_BASE` | password | | Browser session secret (auto-generated) |
-| `OTP_SECRET` | password | | MFA/2FA secret (auto-generated) |
-| `VAPID_PRIVATE_KEY` | password | | Push notification private key (auto-generated) |
-| `VAPID_PUBLIC_KEY` | str | | Push notification public key (auto-generated) |
-| `ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY` | password | | AR encryption key (auto-generated) |
-| `ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY` | password | | AR deterministic key (auto-generated) |
-| `ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT` | password | | AR derivation salt (auto-generated) |
-| `SMTP_SERVER` | str | | SMTP server hostname |
-| `SMTP_PORT` | port | `587` | SMTP port |
-| `SMTP_LOGIN` | str | | SMTP username |
-| `SMTP_PASSWORD` | password | | SMTP password |
-| `SMTP_FROM_ADDRESS` | str | `notifications@example.com` | Sender email |
-| `ES_ENABLED` | bool | `false` | Enable Elasticsearch full-text search |
+| Option                                         | Type     | Default                     | Description                                    |
+| ---------------------------------------------- | -------- | --------------------------- | ---------------------------------------------- |
+| `env_vars`                                     | list     | `[]`                        | Custom environment variables                   |
+| `PGID`                                         | int      | `0`                         | Group ID for file permissions                  |
+| `PUID`                                         | int      | `0`                         | User ID for file permissions                   |
+| `data_location`                                | str      | `/share/mastodon`           | Persistent data path                           |
+| `TZ`                                           | str      | `""`                        | Timezone (e.g., `Europe/Bucharest`)            |
+| `LOCAL_DOMAIN`                                 | str      |                             | Your server's public domain                    |
+| `DB_HOST`                                      | str      |                             | PostgreSQL hostname                            |
+| `DB_PORT`                                      | port     | `5432`                      | PostgreSQL port                                |
+| `DB_USER`                                      | str      | `mastodon`                  | PostgreSQL username                            |
+| `DB_NAME`                                      | str      | `mastodon`                  | PostgreSQL database name                       |
+| `DB_PASS`                                      | password |                             | PostgreSQL password                            |
+| `REDIS_HOST`                                   | str      |                             | Redis hostname                                 |
+| `REDIS_PORT`                                   | port     | `6379`                      | Redis port                                     |
+| `SECRET_KEY_BASE`                              | password |                             | Browser session secret (auto-generated)        |
+| `OTP_SECRET`                                   | password |                             | MFA/2FA secret (auto-generated)                |
+| `VAPID_PRIVATE_KEY`                            | password |                             | Push notification private key (auto-generated) |
+| `VAPID_PUBLIC_KEY`                             | str      |                             | Push notification public key (auto-generated)  |
+| `ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY`         | password |                             | AR encryption key (auto-generated)             |
+| `ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY`   | password |                             | AR deterministic key (auto-generated)          |
+| `ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT` | password |                             | AR derivation salt (auto-generated)            |
+| `SMTP_SERVER`                                  | str      |                             | SMTP server hostname                           |
+| `SMTP_PORT`                                    | port     | `587`                       | SMTP port                                      |
+| `SMTP_LOGIN`                                   | str      |                             | SMTP username                                  |
+| `SMTP_PASSWORD`                                | password |                             | SMTP password                                  |
+| `SMTP_FROM_ADDRESS`                            | str      | `notifications@example.com` | Sender email                                   |
+| `ES_ENABLED`                                   | bool     | `false`                     | Enable Elasticsearch full-text search          |
 
 ### Custom Environment Variables
 
@@ -137,9 +137,9 @@ The HA Ingress provides **admin and web UI access only**. Federation requires pr
 
 ## Ports
 
-| Port | Protocol | Default | Description |
-|------|----------|---------|-------------|
-| `443` | TCP | Disabled | HTTPS interface (enable for federation) |
+| Port  | Protocol | Default  | Description                             |
+| ----- | -------- | -------- | --------------------------------------- |
+| `443` | TCP      | Disabled | HTTPS interface (enable for federation) |
 
 ## File Structure
 

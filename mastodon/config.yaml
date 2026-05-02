@@ -22,7 +22,7 @@ map:
   - ssl
 name: Mastodon
 options:
-  env_vars: [ ]
+  env_vars: []
   PGID: 0
   PUID: 0
   data_location: /share/mastodon
