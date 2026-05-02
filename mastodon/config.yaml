@@ -1,0 +1,90 @@
+---
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description:
+  Self-hosted, federated microblogging platform. Decentralized social networking
+  powered by ActivityPub, part of the Fediverse.
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/mastodon-{arch}
+ingress: true
+ingress_port: 80
+ingress_stream: true
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+  - ssl
+name: Mastodon
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/mastodon
+  TZ: ""
+  LOCAL_DOMAIN: ""
+  DB_HOST: ""
+  DB_PORT: 5432
+  DB_USER: mastodon
+  DB_NAME: mastodon
+  DB_PASS: ""
+  REDIS_HOST: ""
+  REDIS_PORT: 6379
+  SECRET_KEY_BASE: ""
+  OTP_SECRET: ""
+  VAPID_PRIVATE_KEY: ""
+  VAPID_PUBLIC_KEY: ""
+  ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY: ""
+  ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY: ""
+  ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT: ""
+  SMTP_SERVER: ""
+  SMTP_PORT: 587
+  SMTP_LOGIN: ""
+  SMTP_PASSWORD: ""
+  SMTP_FROM_ADDRESS: "notifications@example.com"
+  ES_ENABLED: false
+panel_icon: mdi:mastodon
+ports:
+  443/tcp: null
+ports_description:
+  443/tcp: HTTPS interface for federation (optional)
+privileged:
+  - SYS_ADMIN
+  - DAC_READ_SEARCH
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  LOCAL_DOMAIN: str
+  DB_HOST: str
+  DB_PORT: port
+  DB_USER: str
+  DB_NAME: str
+  DB_PASS: password
+  REDIS_HOST: str
+  REDIS_PORT: port
+  SECRET_KEY_BASE: password
+  OTP_SECRET: password
+  VAPID_PRIVATE_KEY: password
+  VAPID_PUBLIC_KEY: str
+  ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY: password
+  ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY: password
+  ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT: password
+  SMTP_SERVER: str
+  SMTP_PORT: port
+  SMTP_LOGIN: str
+  SMTP_PASSWORD: password
+  SMTP_FROM_ADDRESS: str
+  ES_ENABLED: bool
+slug: mastodon
+url: https://joinmastodon.org
+version: "4.5.9"
