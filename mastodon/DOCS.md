@@ -6,6 +6,7 @@ Mastodon requires two external services that must be running before the add-on s
 2. **Redis** (version 6+) — for caching, queues, and real-time features
 
 You can use any compatible add-on or external server. Recommended:
+
 - PostgreSQL: `plesník/postgresql` or `musl/mariadb` community add-ons, or an external managed database
 - Redis: `eguenodi/redis` community add-on, or an external Redis instance
 
@@ -61,6 +62,7 @@ RAILS_ENV=production bundle exec rake mastodon:webpush
 ### 4. Start the add-on
 
 On first start, Mastodon will:
+
 1. Run database migrations (`db:prepare`)
 2. Generate secrets if not provided
 3. Start Rails (Puma), Streaming API, Sidekiq, and nginx
@@ -141,7 +143,7 @@ The HA Ingress provides **admin and web UI access only**. Federation requires pr
 
 ## File Structure
 
-```
+```text
 <data_location>/
   mastodon/          # Mastodon config and user uploads
   nginx/             # nginx site configuration
