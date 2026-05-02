@@ -32,6 +32,7 @@ github_api() {
 fetch_github_release_version() {
     local repo="$1"
     local include_prerelease="$2"
+    local major_version="${3:-}"
     local endpoint
 
     if [ "$include_prerelease" = "true" ]; then
@@ -53,6 +54,7 @@ fetch_github_release_version() {
             [ -z "$tag" ] && continue
             [[ "$tag" =~ -(rc|beta|alpha|dev|pre) ]] && continue
             [[ "$tag" =~ ^nightly ]] && continue
+            matches_major_version "$tag" "$major_version" || continue
             echo "$tag"
             return 0
         done <<< "$releases"
@@ -66,6 +68,7 @@ fetch_github_release_version() {
 
 fetch_github_tags_version() {
     local repo="$1"
+    local major_version="${2:-}"
 
     local response
     response=$(github_api "repos/${repo}/tags?per_page=100") || return 1
@@ -79,6 +82,7 @@ fetch_github_tags_version() {
         [ -z "$tag" ] && continue
         [[ "$tag" =~ -(rc|beta|alpha|dev|pre) ]] && continue
         [[ "$tag" =~ ^nightly ]] && continue
+        matches_major_version "$tag" "$major_version" || continue
         echo "$tag"
         return 0
     done <<< "$tags"
@@ -89,6 +93,7 @@ fetch_github_tags_version() {
 fetch_dockerhub_version() {
     local repo="$1"
     local tag_filter="$2"
+    local major_version="${3:-}"
 
     local api_url="https://hub.docker.com/v2/repositories/${repo}/tags?page_size=100&ordering=last_updated"
     local response
@@ -110,6 +115,11 @@ for tag in data.get('results', []):
     base = name.split(tag_filter)[0] if tag_filter else name
     if not re.match(r'^\d+\.\d+\.\d+', base):
         continue
+    major_version = '${major_version}'
+    if major_version:
+        m = re.match(r'v?(\d+)', name)
+        if m and m.group(1) != major_version:
+            continue
     print(name)
     break
 " 2>/dev/null) || return 1
@@ -123,6 +133,15 @@ for tag in data.get('results', []):
     version="${version#v}"
 
     echo "v${version}"
+}
+
+matches_major_version() {
+    local tag="$1"
+    local major="$2"
+    [ -z "$major" ] && return 0
+    local ver="${tag#v}"
+    local tag_major="${ver%%.*}"
+    [ "$tag_major" = "$major" ]
 }
 
 compute_config_version() {
@@ -317,6 +336,7 @@ for addon_dir in */; do
     TAG_SUFFIX=$(jq -r '.tag_suffix // ""' "$UPDATER_FILE")
     TAG_KEEP_V=$(jq -r '.tag_keep_v // false' "$UPDATER_FILE")
     CONFIG_EXTRACT=$(jq -r '.config_extract // ""' "$UPDATER_FILE")
+    MAJOR_VERSION=$(jq -r '.major_version // ""' "$UPDATER_FILE")
 
     [ -z "$UPSTREAM_REPO" ] && { log "Skipping $addon_dir (no upstream_repo)"; continue; }
     [ -z "$TAG_STRATEGY" ] && { log "Skipping $addon_dir (no tag_strategy)"; continue; }
@@ -328,20 +348,20 @@ for addon_dir in */; do
     case "$SOURCE" in
         github)
             GITHUB_BETA=$(jq -r '.github_beta // false' "$UPDATER_FILE")
-            NEW_VERSION=$(fetch_github_release_version "$UPSTREAM_REPO" "$GITHUB_BETA") || {
+            NEW_VERSION=$(fetch_github_release_version "$UPSTREAM_REPO" "$GITHUB_BETA" "$MAJOR_VERSION") || {
                 warn "  Failed to fetch GitHub releases for $UPSTREAM_REPO"
                 NEW_VERSION=""
             }
             ;;
         github_tags)
-            NEW_VERSION=$(fetch_github_tags_version "$UPSTREAM_REPO") || {
+            NEW_VERSION=$(fetch_github_tags_version "$UPSTREAM_REPO" "$MAJOR_VERSION") || {
                 warn "  Failed to fetch GitHub tags for $UPSTREAM_REPO"
                 NEW_VERSION=""
             }
             ;;
         dockerhub)
             DOCKERHUB_FILTER=$(jq -r '.dockerhub_tag_filter // ""' "$UPDATER_FILE")
-            NEW_VERSION=$(fetch_dockerhub_version "$UPSTREAM_REPO" "$DOCKERHUB_FILTER") || {
+            NEW_VERSION=$(fetch_dockerhub_version "$UPSTREAM_REPO" "$DOCKERHUB_FILTER" "$MAJOR_VERSION") || {
                 warn "  Failed to fetch Docker Hub tags for $UPSTREAM_REPO"
                 NEW_VERSION=""
             }

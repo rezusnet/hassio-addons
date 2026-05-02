@@ -1,0 +1,43 @@
+---
+arch:
+  - aarch64
+  - amd64
+description: >-
+  High-performance in-memory data store. Open source, Redis-compatible key-value
+  database (Valkey 9.x).
+homeassistant: 2024.1.0
+icon: icon.png
+image: ghcr.io/rezusnet/valkey-{arch}
+init: true
+map:
+  - addon_config:rw
+  - share:rw
+name: Valkey
+options:
+  TZ: ""
+  password: ""
+  port: 6379
+  databases: 16
+  save_enabled: true
+  maxmemory: ""
+  maxmemory_policy: allkeys-lru
+  env_vars: []
+panel_icon: mdi:database
+ports:
+  6379/tcp: 6379
+ports_description:
+  6379/tcp: Valkey/Redis compatible port
+schema:
+  TZ: str?
+  password: password
+  port: port
+  databases: int
+  save_enabled: bool
+  maxmemory: str?
+  maxmemory_policy: list(allkeys-lru|allkeys-random|volatile-lru|volatile-random|volatile-ttl|noeviction)
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+slug: valkey
+url: https://valkey.io
+version: "9.0.3"

@@ -171,13 +171,14 @@ When a new upstream version is detected, the updater creates a PR that updates `
 
 #### Optional fields
 
-| Field                  | Default | Description                                          |
-| ---------------------- | ------- | ---------------------------------------------------- |
-| `github_beta`          | `false` | Track GitHub pre-releases instead of stable releases |
-| `dockerhub_tag_filter` | `""`    | Required suffix filter when `source: dockerhub`      |
-| `tag_keep_v`           | `false` | Keep `v` prefix in the Docker image tag              |
-| `tag_suffix`           | `""`    | Suffix appended to the version in the Docker tag     |
-| `config_extract`       | `null`  | Set `"semver"` to extract `X.Y.Z` from compound tags |
+| Field                  | Default | Description                                                    |
+| ---------------------- | ------- | -------------------------------------------------------------- |
+| `github_beta`          | `false` | Track GitHub pre-releases instead of stable releases           |
+| `dockerhub_tag_filter` | `""`    | Required suffix filter when `source: dockerhub`                |
+| `tag_keep_v`           | `false` | Keep `v` prefix in the Docker image tag                        |
+| `tag_suffix`           | `""`    | Suffix appended to the version in the Docker tag               |
+| `config_extract`       | `null`  | Set `"semver"` to extract `X.Y.Z` from compound tags           |
+| `major_version`        | `""`    | Pin to a specific major version (e.g., `"8"` for `8.x.x` only) |
 
 #### Tag strategies
 
@@ -261,6 +262,22 @@ When a new upstream version is detected, the updater creates a PR that updates `
   "upstream_repo": "anomalyco/opencode",
   "upstream_version": "v1.14.28",
   "last_update": "2026-04-27",
+  "paused": false
+}
+```
+
+**With major version pinning** (valkey8 — only update within `8.x.x`):
+
+```json
+{
+  "slug": "valkey8",
+  "source": "github",
+  "tag_strategy": "suffix",
+  "tag_suffix": "-alpine",
+  "major_version": "8",
+  "upstream_repo": "valkey-io/valkey",
+  "upstream_version": "8.1.6",
+  "last_update": "2026-05-02",
   "paused": false
 }
 ```
@@ -474,7 +491,7 @@ The builder then picks up the merged changes and publishes new images.
 
 ### Pipeline overview
 
-```
+```text
 Daily cron 03:00 UTC (or manual workflow_dispatch)
   │
   ▼
@@ -555,7 +572,7 @@ For each `tag_strategy`, the updater derives two values from `upstream_version`:
 | `suffix`      | Strip `v` prefix       | `{prefix}:{tag_version}{tag_suffix}`        | `v2.63.2` → config `2.63.2`, tag `v2.63.2-s6` |
 | `dockerfile`  | Strip `v` prefix       | No change (version via `BUILD_VERSION` arg) | `v1.14.28` → config `1.14.28`                 |
 
-### RC versioning for local changes
+### RC versioning workflow
 
 When you need to ship a fix that is not tied to an upstream version bump:
 
