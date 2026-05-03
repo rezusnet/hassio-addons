@@ -1,3 +1,7 @@
+## 1.11.2-9 (2026-05-03)
+
+- Fix hadolint: use COPY for svc-pairdrop/run instead of heredoc
+
 ## 1.11.2-8 (2026-05-03)
 
 - Rewrite to pure LSIO pattern (init:false, S6 manages service lifecycle)
