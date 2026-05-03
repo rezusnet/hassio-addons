@@ -1,3 +1,8 @@
+## 1.11.2-3 (2026-05-03)
+
+- Switch to non-LSIO pattern: remove S6 overlay, run node directly via tini
+- Fixes EADDRINUSE crash loop caused by S6 compiled service database overriding custom run scripts
+
 ## 1.11.2-2 (2026-05-03)
 
 - Fix crash loop: exec directly into node instead of npm (npm forks and exits, confusing S6)
