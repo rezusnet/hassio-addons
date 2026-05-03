@@ -1,3 +1,7 @@
+## 1.11.2-2 (2026-05-03)
+
+- Fix crash loop: exec directly into node instead of npm (npm forks and exits, confusing S6)
+
 ## 1.11.2-1 (2026-05-03)
 
 - Fix EADDRINUSE crash loop by providing custom svc-pairdrop/run script
