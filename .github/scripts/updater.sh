@@ -23,9 +23,9 @@ github_api() {
     local endpoint="$1"
     local url="https://api.github.com/${endpoint}"
     if [ -n "$GH_TOKEN" ]; then
-        curl -sfH "Authorization: token ${GH_TOKEN}" -H "Accept: application/vnd.github+json" "$url" 2>/dev/null
+        curl -sfH "Authorization: token ${GH_TOKEN}" -H "Accept: application/vnd.github+json" "$url" 2> /dev/null
     else
-        curl -sfH "Accept: application/vnd.github+json" "$url" 2>/dev/null
+        curl -sfH "Accept: application/vnd.github+json" "$url" 2> /dev/null
     fi
 }
 
@@ -46,7 +46,7 @@ fetch_github_release_version() {
     [ -z "$response" ] && return 1
 
     local releases
-    releases=$(echo "$response" | jq -r '.[].tag_name' 2>/dev/null) || return 1
+    releases=$(echo "$response" | jq -r '.[].tag_name' 2> /dev/null) || return 1
     [ -z "$releases" ] && return 1
 
     if [ "$include_prerelease" != "true" ]; then
@@ -75,7 +75,7 @@ fetch_github_tags_version() {
     [ -z "$response" ] && return 1
 
     local tags
-    tags=$(echo "$response" | jq -r '.[].name' 2>/dev/null) || return 1
+    tags=$(echo "$response" | jq -r '.[].name' 2> /dev/null) || return 1
     [ -z "$tags" ] && return 1
 
     while IFS= read -r tag; do
@@ -97,7 +97,7 @@ fetch_dockerhub_version() {
 
     local api_url="https://hub.docker.com/v2/repositories/${repo}/tags?page_size=100&ordering=last_updated"
     local response
-    response=$(curl -sf "$api_url" 2>/dev/null) || return 1
+    response=$(curl -sf "$api_url" 2> /dev/null) || return 1
 
     local full_tag
     full_tag=$(echo "$response" | python3 -c "
@@ -122,7 +122,7 @@ for tag in data.get('results', []):
             continue
     print(name)
     break
-" 2>/dev/null) || return 1
+" 2> /dev/null) || return 1
 
     [ -z "$full_tag" ] && return 1
 
@@ -171,8 +171,8 @@ compute_tag_version() {
 verify_tag_exists() {
     local image_tag="$1"
 
-    if command -v skopeo >/dev/null 2>&1; then
-        skopeo inspect "docker://${image_tag}" >/dev/null 2>&1
+    if command -v skopeo > /dev/null 2>&1; then
+        skopeo inspect "docker://${image_tag}" > /dev/null 2>&1
         return $?
     fi
 
@@ -183,13 +183,13 @@ verify_tag_exists() {
     if [[ "$domain" == *"ghcr.io"* ]]; then
         local path="${repo#ghcr.io/}"
         local token
-        token=$(curl -sf "https://ghcr.io/token?scope=repository:${path}:pull" 2>/dev/null | jq -r '.token' 2>/dev/null) || return 1
+        token=$(curl -sf "https://ghcr.io/token?scope=repository:${path}:pull" 2> /dev/null | jq -r '.token' 2> /dev/null) || return 1
         [ -z "$token" ] && return 1
         local http_code
         http_code=$(curl -s -o /dev/null -w "%{http_code}" \
             -H "Authorization: Bearer ${token}" \
             -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
-            "https://ghcr.io/v2/${path}/manifests/${tag}" 2>/dev/null) || return 1
+            "https://ghcr.io/v2/${path}/manifests/${tag}" 2> /dev/null) || return 1
         [ "$http_code" = "200" ]
         return $?
     fi
@@ -199,12 +199,12 @@ verify_tag_exists() {
         [[ "$normalized_repo" != *"/"* ]] && normalized_repo="library/${normalized_repo}"
         local http_code
         http_code=$(curl -s -o /dev/null -w "%{http_code}" \
-            "https://hub.docker.com/v2/repositories/${normalized_repo}/tags/${tag}" 2>/dev/null) || return 1
+            "https://hub.docker.com/v2/repositories/${normalized_repo}/tags/${tag}" 2> /dev/null) || return 1
         [ "$http_code" = "200" ]
         return $?
     fi
 
-    curl -sf -o /dev/null "https://registry-1.docker.io/v2/${repo}/manifests/${tag}" 2>/dev/null
+    curl -sf -o /dev/null "https://registry-1.docker.io/v2/${repo}/manifests/${tag}" 2> /dev/null
     return $?
 }
 
@@ -257,7 +257,7 @@ get_image_prefix() {
     local build_file="${addon_dir}/build.json"
     if [ -f "$build_file" ]; then
         local first_tag
-        first_tag=$(jq -r '.build_from | to_entries | .[0].value' "$build_file" 2>/dev/null || echo "")
+        first_tag=$(jq -r '.build_from | to_entries | .[0].value' "$build_file" 2> /dev/null || echo "")
         if [ -n "$first_tag" ]; then
             echo "${first_tag%%:*}"
             return 0
@@ -326,7 +326,10 @@ for addon_dir in */; do
 
     UPDATER_FILE="$addon_dir/updater.json"
     PAUSED=$(jq -r '.paused // false' "$UPDATER_FILE")
-    [ "$PAUSED" = "true" ] && { log "Skipping $addon_dir (paused)"; continue; }
+    [ "$PAUSED" = "true" ] && {
+        log "Skipping $addon_dir (paused)"
+        continue
+    }
 
     SLUG=$(jq -r '.slug // ""' "$UPDATER_FILE")
     UPSTREAM_REPO=$(jq -r '.upstream_repo // ""' "$UPDATER_FILE")
@@ -338,8 +341,14 @@ for addon_dir in */; do
     CONFIG_EXTRACT=$(jq -r '.config_extract // ""' "$UPDATER_FILE")
     MAJOR_VERSION=$(jq -r '.major_version // ""' "$UPDATER_FILE")
 
-    [ -z "$UPSTREAM_REPO" ] && { log "Skipping $addon_dir (no upstream_repo)"; continue; }
-    [ -z "$TAG_STRATEGY" ] && { log "Skipping $addon_dir (no tag_strategy)"; continue; }
+    [ -z "$UPSTREAM_REPO" ] && {
+        log "Skipping $addon_dir (no upstream_repo)"
+        continue
+    }
+    [ -z "$TAG_STRATEGY" ] && {
+        log "Skipping $addon_dir (no tag_strategy)"
+        continue
+    }
 
     log "Checking $SLUG ($UPSTREAM_REPO, source=$SOURCE, strategy=$TAG_STRATEGY) — current: ${CURRENT_VERSION:-none}"
 
@@ -371,12 +380,18 @@ for addon_dir in */; do
             ;;
     esac
 
-    [ -z "$NEW_VERSION" ] && { log "  No new version found"; continue; }
+    [ -z "$NEW_VERSION" ] && {
+        log "  No new version found"
+        continue
+    }
 
     CURRENT_VERSION_CLEAN="${CURRENT_VERSION#v}"
     NEW_VERSION_CLEAN="${NEW_VERSION#v}"
 
-    [ "$NEW_VERSION_CLEAN" = "$CURRENT_VERSION_CLEAN" ] && { log "  Already up to date"; continue; }
+    [ "$NEW_VERSION_CLEAN" = "$CURRENT_VERSION_CLEAN" ] && {
+        log "  Already up to date"
+        continue
+    }
 
     CONFIG_VERSION=$(compute_config_version "$NEW_VERSION" "$CONFIG_EXTRACT")
     TAG_VERSION=$(compute_tag_version "$NEW_VERSION" "$TAG_KEEP_V")
