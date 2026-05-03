@@ -1,3 +1,8 @@
+## 1.11.2-1 (2026-05-03)
+
+- Fix EADDRINUSE crash loop by providing custom svc-pairdrop/run script
+- Properly handle S6 service lifecycle with cd before exec
+
 ## 1.11.2 (2026-05-03)
 
 - Initial release based on PairDrop 1.11.2
