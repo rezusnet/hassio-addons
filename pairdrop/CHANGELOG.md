@@ -1,3 +1,7 @@
+## 1.11.2-6 (2026-05-03)
+
+- Replace /init (S6 binary) with passthrough script to prevent S6 overlay extraction at runtime
+
 ## 1.11.2-5 (2026-05-03)
 
 - Same as 1.11.2-4: remove S6 overlay at build time, run node directly via tini

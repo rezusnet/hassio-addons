@@ -7,7 +7,8 @@ ARG BUILD_VERSION
 
 USER root
 
-RUN rm -rf /etc/services.d /etc/s6-overlay /etc/cont-init.d /etc/cont-finish.d /defaults
+RUN rm -rf /etc/services.d /etc/s6-overlay /etc/cont-init.d /etc/cont-finish.d /defaults && \
+    printf '#!/bin/sh\nexec "$@"\n' > /init && chmod +x /init
 
 COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
