@@ -16,16 +16,14 @@ ARG CONFIGLOCATION="/config"
 RUN chmod 744 /ha_lsio.sh && if grep -qr "lsio" /etc; then /ha_lsio.sh "$CONFIGLOCATION"; fi && rm /ha_lsio.sh
 
 RUN \
-    for svc in init-pairdrop-config svc-pairdrop; do \
-        runfile="/etc/s6-overlay/s6-rc.d/${svc}/run"; \
-        if [ -f "$runfile" ]; then \
-            sed -i "s|contenv bash|contenv bashio|g" "$runfile" && \
-            sed -i "s|/config|\$LOCATION|g" "$runfile" && \
-            sed -i "1a if [[ \"\$LOCATION\" = \"null\" || -z \"\$LOCATION\" ]]; then LOCATION=/config; fi" "$runfile" && \
-            sed -i "1a LOCATION=\$(bashio::config 'data_location')" "$runfile" && \
-            sed -i "1a set +u" "$runfile"; \
-        fi; \
-    done
+    runfile="/etc/s6-overlay/s6-rc.d/init-pairdrop-config/run"; \
+    if [ -f "$runfile" ]; then \
+        sed -i "s|contenv bash|contenv bashio|g" "$runfile" && \
+        sed -i "s|/config|\$LOCATION|g" "$runfile" && \
+        sed -i "1a if [[ \"\$LOCATION\" = \"null\" || -z \"\$LOCATION\" ]]; then LOCATION=/config; fi" "$runfile" && \
+        sed -i "1a LOCATION=\$(bashio::config 'data_location')" "$runfile" && \
+        sed -i "1a set +u" "$runfile"; \
+    fi
 
 COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
