@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280" role="img" aria-labelledby="title desc">
+  <title id="title">PairDrop banner</title>
+  <desc id="desc">PairDrop Home Assistant add-on banner</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4361ee;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7209b7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="280" fill="url(#bg)" rx="12" />
+  <rect y="260" width="1200" height="20" fill="url(#accent)" opacity="0.8" />
+  <circle cx="100" cy="140" r="50" fill="#4361ee" opacity="0.15" />
+  <circle cx="100" cy="140" r="30" fill="#4361ee" opacity="0.3" />
+  <path d="M90 130 Q100 110 110 130 M100 120 L100 155 M85 145 L100 160 L115 145" stroke="#4361ee" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="180" y="125" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="48" font-weight="700" fill="#ffffff">
+    PairDrop
+  </text>
+  <text x="180" y="165" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" fill="#a0a0c0">
+    Cross-platform local file sharing via browser
+  </text>
+  <text x="180" y="195" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" fill="#707090">
+    Peer-to-peer WebRTC transfers · No cloud upload required
+  </text>
+</svg>
