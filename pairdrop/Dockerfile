@@ -7,9 +7,7 @@ ARG BUILD_VERSION
 
 USER root
 
-ENV S6_CMD_WAIT_FOR_SERVICES=1 \
-    S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0 \
-    S6_SERVICES_GRACETIME=0
+RUN rm -rf /etc/services.d /etc/s6-overlay /etc/cont-init.d /etc/cont-finish.d /defaults
 
 COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;

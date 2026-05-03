@@ -1,3 +1,8 @@
+## 1.11.2-4 (2026-05-03)
+
+- Remove S6 overlay at build time (Dockerfile), not runtime
+- Run PairDrop directly via tini (no S6 service management)
+
 ## 1.11.2-3 (2026-05-03)
 
 - Switch to non-LSIO pattern: remove S6 overlay, run node directly via tini
