@@ -32,7 +32,7 @@ image: ghcr.io/rezusnet/pairdrop-{arch}
 ingress: true
 ingress_port: 3000
 ingress_stream: true
-init: true
+init: false
 map:
   - addon_config:rw
   - media:rw
@@ -80,4 +80,4 @@ schema:
 slug: pairdrop
 udev: true
 url: https://github.com/schlagmichdoch/PairDrop
-version: "1.11.2-6"
+version: "1.11.2-8"

@@ -1,3 +1,14 @@
+## 1.11.2-8 (2026-05-03)
+
+- Rewrite to pure LSIO pattern (init:false, S6 manages service lifecycle)
+- Root cause of EADDRINUSE: both 99-run.sh AND S6 svc-pairdrop were starting the app
+- Remove 99-run.sh, patch svc-pairdrop/run to read HA config via bashio
+- Match sonarr/radarr pattern exactly
+
+## 1.11.2-7 (2026-05-03)
+
+- Experimental: diagnostic checks for S6 overlay removal
+
 ## 1.11.2-6 (2026-05-03)
 
 - Replace /init (S6 binary) with passthrough script to prevent S6 overlay extraction at runtime

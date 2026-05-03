@@ -7,37 +7,62 @@ ARG BUILD_VERSION
 
 USER root
 
-RUN rm -rf /etc/services.d /etc/s6-overlay /etc/cont-init.d /etc/cont-finish.d /defaults && \
-    printf '#!/bin/sh\nexec "$@"\n' > /init && chmod +x /init
+ENV S6_CMD_WAIT_FOR_SERVICES=0 \
+    S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0 \
+    S6_SERVICES_GRACETIME=0
 
-COPY rootfs/ /
-RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
+COPY ha_lsio.sh /ha_lsio.sh
+ARG CONFIGLOCATION="/config"
+RUN chmod 744 /ha_lsio.sh && if grep -qr "lsio" /etc; then /ha_lsio.sh "$CONFIGLOCATION"; fi && rm /ha_lsio.sh
 
-# hadolint ignore=DL4005
-RUN if [ ! -f /bin/sh ] && [ -f /usr/bin/sh ]; then ln -s /usr/bin/sh /bin/sh; fi && \
-    if [ ! -f /bin/bash ] && [ -f /usr/bin/bash ]; then ln -s /usr/bin/bash /bin/bash; fi
+RUN cat > /etc/s6-overlay/s6-rc.d/svc-pairdrop/run << 'RUNEOF'
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+set +u
+
+LOCATION="$(bashio::config 'data_location')"
+if [[ "$LOCATION" = "null" || -z "$LOCATION" ]]; then LOCATION=/config; fi
+RATE_LIMIT="$(bashio::config 'rate_limit')"
+WS_FALLBACK="$(bashio::config 'ws_fallback')"
+DEBUG_MODE="$(bashio::config 'debug_mode')"
+export DEBUG_MODE
+
+mkdir -p "$LOCATION"
+
+if [[ ${RATE_LIMIT,,} = "true" ]]; then
+    OPT_RATE_LIMIT="--rate-limit"
+fi
+
+if [[ ${WS_FALLBACK,,} = "true" ]]; then
+    OPT_WS_FALLBACK="--include-ws-fallback"
+fi
+
+if [[ -z ${LSIO_NON_ROOT_USER} ]]; then
+    HOME=$LOCATION exec \
+        s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 3000" \
+        cd /app/pairdrop s6-setuidgid abc npm start -- "${OPT_RATE_LIMIT}" "${OPT_WS_FALLBACK}"
+else
+    HOME=$LOCATION exec \
+        s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 3000" \
+        cd /app/pairdrop npm start -- "${OPT_RATE_LIMIT}" "${OPT_WS_FALLBACK}"
+fi
+RUNEOF
+RUN chmod +x /etc/s6-overlay/s6-rc.d/svc-pairdrop/run
 
 ARG MODULES="00-banner.sh 01-custom_script.sh 00-local_mounts.sh 00-smb_mounts.sh"
 
 COPY ha_automodules.sh /ha_automodules.sh
 RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
 
-ENV PACKAGES=""
-
 COPY ha_autoapps.sh /ha_autoapps.sh
-RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh
+RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "" && rm /ha_autoapps.sh
 
+ENV S6_STAGE2_HOOK=/ha_entrypoint.sh
 COPY ha_entrypoint.sh /ha_entrypoint.sh
 RUN chmod 777 /ha_entrypoint.sh
 
 COPY bashio-standalone.sh /usr/local/lib/bashio-standalone.sh
 RUN chmod 0755 /usr/local/lib/bashio-standalone.sh
-
-VOLUME [ "/data" ]
-WORKDIR /
-
-ENTRYPOINT [ "/usr/bin/env" ]
-CMD [ "/ha_entrypoint.sh" ]
 
 ARG BUILD_ARCH
 ARG BUILD_DATE
