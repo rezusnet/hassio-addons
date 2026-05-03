@@ -36,10 +36,6 @@ else
     export DEBUG_MODE="false"
 fi
 
-for folders in /etc/services.d /etc/s6-overlay; do
-    [[ -d "$folders" ]] && rm -r "$folders"
-done
-
 cd /app/pairdrop || bashio::exit.nok "Cannot find /app/pairdrop"
 
 bashio::log.info "Starting PairDrop on port 3000..."
