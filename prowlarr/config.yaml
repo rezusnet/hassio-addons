@@ -72,4 +72,4 @@ schema:
 slug: prowlarr
 udev: true
 url: https://prowlarr.com
-version: "2.3.5.5327-ls144"
+version: "develop-2.3.7.5365-ls260"
