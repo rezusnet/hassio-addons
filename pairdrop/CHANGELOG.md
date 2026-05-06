@@ -1,3 +1,6 @@
+## 1.11.2-ls136 (2026-05-06)
+- Update to upstream v1.11.2-ls136
+
 ## 1.11.2-9 (2026-05-03)
 
 - Fix hadolint: use COPY for svc-pairdrop/run instead of heredoc

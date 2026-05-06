@@ -1,3 +1,6 @@
+## 5.1.4-r3-ls453 (2026-05-06)
+- Update to upstream 5.1.4-r3-ls453
+
 ## 5.1.4-r3-ls452 (2026-05-01)
 - Update to upstream 5.1.4-r3-ls452
 
