@@ -2,47 +2,32 @@
 set +u
 source /usr/local/lib/bashio-standalone.sh
 
-LOCATION=$(bashio::config 'data_location')
-if [[ "$LOCATION" = "null" || -z "$LOCATION" ]]; then LOCATION=/config; fi
-export DEBUG_MODE
-DEBUG_MODE=$(bashio::config 'debug_mode')
-
-DIAG="/config/pairdrop-debug.log"
-echo "=== $(date) Starting PairDrop ===" >> "$DIAG"
-echo "LOCATION=${LOCATION}" >> "$DIAG"
-echo "Processes:" >> "$DIAG"
-ps aux 2>/dev/null >> "$DIAG" || ps -ef 2>/dev/null >> "$DIAG"
-echo "Port 3000:" >> "$DIAG"
-ss -tlnp 2>/dev/null | grep 3000 >> "$DIAG" || netstat -tlnp 2>/dev/null | grep 3000 >> "$DIAG" || echo "(no tool)" >> "$DIAG"
-echo "nc check:" >> "$DIAG"
-nc -z localhost 3000 2>/dev/null && echo "PORT IN USE" >> "$DIAG" || echo "PORT FREE" >> "$DIAG"
-echo "Env vars:" >> "$DIAG"
-env | grep -i "pairdrop\|port\|node\|npm\|3000\|RATE\|WS_F\|HOST\|S6" >> "$DIAG"
-echo "=== end diagnostics ===" >> "$DIAG"
-
-if nc -z localhost 3000 2>/dev/null; then
-    echo "Port 3000 in use, killing..." >> "$DIAG"
-    fuser -k 3000/tcp 2>/dev/null >> "$DIAG" || true
-    for i in $(seq 1 10); do
-        nc -z localhost 3000 2>/dev/null || break
-        sleep 1
-    done
-    nc -z localhost 3000 2>/dev/null && echo "STILL IN USE AFTER KILL" >> "$DIAG" || echo "Port freed" >> "$DIAG"
-fi
-
-OPT_RATE_LIMIT=""
-OPT_WS_FALLBACK=""
-if [[ ${RATE_LIMIT,,} = "true" ]]; then OPT_RATE_LIMIT="--rate-limit"; fi
-if [[ ${WS_FALLBACK,,} = "true" ]]; then OPT_WS_FALLBACK="--include-ws-fallback"; fi
-
-cd /app/pairdrop
-
-if [[ -z ${LSIO_NON_ROOT_USER} ]]; then
-    HOME=$LOCATION exec \
-        s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 3000" \
-        s6-setuidgid abc node server/index.js ${OPT_RATE_LIMIT} ${OPT_WS_FALLBACK}
-else
-    HOME=$LOCATION exec \
-        s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 3000" \
-        node server/index.js ${OPT_RATE_LIMIT} ${OPT_WS_FALLBACK}
-fi
+echo "=== PAIRDROP DIAGNOSTIC MODE ==="
+echo "Hostname: $(hostname)"
+echo "Date: $(date)"
+echo "User: $(id)"
+echo ""
+echo "=== Processes ==="
+ps aux 2>/dev/null || ps -ef 2>/dev/null
+echo ""
+echo "=== Port 3000 status ==="
+ss -tlnp 2>/dev/null | grep 3000 || netstat -tlnp 2>/dev/null | grep 3000 || echo "(no port tool)"
+nc -z localhost 3000 2>/dev/null && echo "PORT 3000 IN USE" || echo "PORT 3000 FREE"
+echo ""
+echo "=== Network interfaces ==="
+ip addr 2>/dev/null || ifconfig 2>/dev/null
+echo ""
+echo "=== Relevant env vars ==="
+env | grep -iE "PORT|NODE|NPM|RATE|WS_F|HOST|S6|HOME|PATH|DEBUG|PAIR" || true
+echo ""
+echo "=== /app/pairdrop exists? ==="
+ls -la /app/pairdrop/ 2>/dev/null || echo "NO /app/pairdrop"
+echo ""
+echo "=== /config contents ==="
+ls -la /config/ 2>/dev/null || echo "NO /config"
+echo ""
+echo "=== Run script path ==="
+readlink -f "$0" 2>/dev/null || echo "(readlink not available)"
+echo ""
+echo "=== Sleeping forever (diagnostic mode) ==="
+sleep infinity
