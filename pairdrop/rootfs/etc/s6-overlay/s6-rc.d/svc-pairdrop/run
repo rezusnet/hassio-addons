@@ -13,6 +13,13 @@ export DEBUG_MODE
 
 mkdir -p "$LOCATION"
 
+for _ in $(seq 1 30); do
+    if ! nc -z localhost 3000 2>/dev/null; then
+        break
+    fi
+    sleep 1
+done
+
 if [[ ${RATE_LIMIT,,} = "true" ]]; then
     OPT_RATE_LIMIT="--rate-limit"
 fi

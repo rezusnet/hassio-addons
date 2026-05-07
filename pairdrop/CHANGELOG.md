@@ -1,3 +1,9 @@
+## 1.11.2-12 (2026-05-07)
+
+- Fix EADDRINUSE crash loop: add finish script that waits for port 3000 release
+- Add port availability pre-check in run script before starting node
+- Wait up to 30s for port to be freed on both start and finish
+
 ## 1.11.2-11 (2026-05-07)
 
 - Fix shebang: use `#!/usr/bin/with-contenv bash` + source bashio-standalone.sh
