@@ -1,10 +1,5 @@
 #!/usr/bin/with-contenv bash
-echo "================================================"
-echo "CUSTOM RUN SCRIPT v1.11.2-30-marker"
-echo "================================================"
-
 LOCATION="${LOCATION:-/config}"
-export PORT=8080
 
 cd /app/pairdrop
 
@@ -13,7 +8,7 @@ OPT_WS_FALLBACK=""
 if [[ "${RATE_LIMIT:-}" = "true" ]]; then OPT_RATE_LIMIT="--rate-limit"; fi
 if [[ "${WS_FALLBACK:-}" = "true" ]]; then OPT_WS_FALLBACK="--include-ws-fallback"; fi
 
-echo "Starting PairDrop on PORT=${PORT} LOCATION=${LOCATION}"
+echo "Starting PairDrop on port 3000 LOCATION=${LOCATION}"
 
 if [[ -z "${LSIO_NON_ROOT_USER:-}" ]]; then
     exec s6-setuidgid abc node server/index.js ${OPT_RATE_LIMIT} ${OPT_WS_FALLBACK}
