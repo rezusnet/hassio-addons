@@ -1,3 +1,8 @@
+## 1.11.2-19 (2026-05-07)
+
+- Remove host_network to fix port 3000 conflict with Grafana
+- Use bridge networking with ingress-only access
+
 ## 1.11.2-18 (2026-05-07)
 
 - Fix builder: add --no-cache to prevent stale Docker buildx cache on self-hosted runners
