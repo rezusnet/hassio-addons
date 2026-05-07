@@ -15,9 +15,19 @@ COPY ha_lsio.sh /ha_lsio.sh
 ARG CONFIGLOCATION="/config"
 RUN chmod 744 /ha_lsio.sh && if grep -qr "lsio" /etc; then /ha_lsio.sh "$CONFIGLOCATION"; fi && rm /ha_lsio.sh
 
-COPY rootfs/etc/s6-overlay/s6-rc.d/svc-pairdrop/run /etc/s6-overlay/s6-rc.d/svc-pairdrop/run
-COPY rootfs/etc/s6-overlay/s6-rc.d/svc-pairdrop/finish /etc/s6-overlay/s6-rc.d/svc-pairdrop/finish
-RUN chmod +x /etc/s6-overlay/s6-rc.d/svc-pairdrop/run /etc/s6-overlay/s6-rc.d/svc-pairdrop/finish
+RUN \
+    sed -i "s|contenv bash|contenv bashio|g" /etc/s6-overlay/s6-rc.d/svc-pairdrop/run && \
+    sed -i "s|npm start --|node server/index.js|g" /etc/s6-overlay/s6-rc.d/svc-pairdrop/run && \
+    sed -i "s|/config|\$LOCATION|g" /etc/s6-overlay/s6-rc.d/svc-pairdrop/run && \
+    sed -i "1a if [[ \"\$LOCATION\" = \"null\" || -z \"\$LOCATION\" ]]; then LOCATION=/config; fi" /etc/s6-overlay/s6-rc.d/svc-pairdrop/run && \
+    sed -i "1a LOCATION=\$(bashio::config 'data_location')" /etc/s6-overlay/s6-rc.d/svc-pairdrop/run && \
+    sed -i "1a DEBUG_MODE=\$(bashio::config 'debug_mode')" /etc/s6-overlay/s6-rc.d/svc-pairdrop/run && \
+    sed -i "1a export DEBUG_MODE" /etc/s6-overlay/s6-rc.d/svc-pairdrop/run && \
+    sed -i "1a source /usr/local/lib/bashio-standalone.sh" /etc/s6-overlay/s6-rc.d/svc-pairdrop/run && \
+    sed -i "1a set +u" /etc/s6-overlay/s6-rc.d/svc-pairdrop/run
+
+COPY rootfs/ /
+RUN find /etc/s6-overlay/s6-rc.d/svc-pairdrop/ -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -exec chmod +x {} \;
 
 ARG MODULES="00-banner.sh 01-custom_script.sh 00-local_mounts.sh 00-smb_mounts.sh"
 
