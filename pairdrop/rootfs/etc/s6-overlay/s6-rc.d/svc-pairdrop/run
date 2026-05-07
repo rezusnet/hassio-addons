@@ -1,6 +1,8 @@
-#!/usr/bin/with-contenv bashio
+#!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 set +u
+
+source /usr/local/lib/bashio-standalone.sh
 
 LOCATION="$(bashio::config 'data_location')"
 if [[ "$LOCATION" = "null" || -z "$LOCATION" ]]; then LOCATION=/config; fi

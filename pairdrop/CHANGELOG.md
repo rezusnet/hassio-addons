@@ -1,3 +1,8 @@
+## 1.11.2-11 (2026-05-07)
+
+- Fix shebang: use `#!/usr/bin/with-contenv bash` + source bashio-standalone.sh
+  (`bashio` is not a valid interpreter, causing S6 run script to fail silently)
+
 ## 1.11.2-10 (2026-05-03)
 
 - Fix EADDRINUSE: replace `npm start` with `node server/index.js` directly
