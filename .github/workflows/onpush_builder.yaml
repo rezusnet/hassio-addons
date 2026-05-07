@@ -474,6 +474,7 @@ jobs:
 
           echo "Building $IMAGE:$VERSION for $PLATFORM on native runner"
           docker buildx build \
+            --no-cache \
             --platform "$PLATFORM" \
             --file "$DOCKERFILE" \
             --tag "$IMAGE:$VERSION" \
