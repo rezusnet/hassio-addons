@@ -4,6 +4,8 @@ FROM ${BUILD_FROM}
 
 USER root
 
+RUN rm -rf /etc/s6-overlay/s6-rc.d/svc-pairdrop /etc/s6-overlay/s6-rc.d/user/contents.d/svc-pairdrop
+
 COPY rootfs/ /
 RUN find /etc/cont-init.d/ /etc/services.d/ -type f -exec chmod +x {} \;
 
