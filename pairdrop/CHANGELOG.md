@@ -1,3 +1,7 @@
+## 1.11.2-14 (2026-05-07)
+
+- Debug build: add process/port diagnostics to run script
+
 ## 1.11.2-13 (2026-05-07)
 
 - Remove host_network to fix EADDRINUSE crash loop (conflict with Grafana on port 3000)
