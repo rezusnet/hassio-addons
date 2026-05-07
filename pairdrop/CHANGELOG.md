@@ -1,6 +1,10 @@
-## 1.11.2-21 (2026-05-07)
+## 1.11.2-22 (2026-05-07)
 
-- Test: unpatched LSIO image to isolate EADDRINUSE issue
+- Full patched version with --no-cache builder
+- sed: npm start → node server/index.js (fix orphaned child process)
+- 99-run.sh: init only (no duplicate node start)
+- finish script: wait for port 3000 release before restart
+- No host_network (bridge networking to avoid port conflicts)
 
 ## 1.11.2-20 (2026-05-07)
 
