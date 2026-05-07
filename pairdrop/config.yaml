@@ -39,6 +39,7 @@ map:
   - share:rw
   - ssl
 name: PairDrop
+panel_icon: mdi:share-variant
 options:
   env_vars: []
   PGID: 0
@@ -53,7 +54,6 @@ options:
   rate_limit: false
   ws_fallback: false
   debug_mode: false
-panel_icon: mdi:share-variant
 ports:
   3000/tcp: null
 ports_description:
@@ -77,4 +77,4 @@ schema:
 slug: pairdrop
 udev: true
 url: https://github.com/schlagmichdoch/PairDrop
-version: "1.11.2-32"
+version: "1.11.2-33"
