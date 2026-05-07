@@ -1,3 +1,11 @@
+## 1.11.2-23 (2026-05-07)
+
+- Custom run script (replaces LSIO's, no more sed-patching)
+- Diagnostic output: process list, port status before/after start
+- Port 3000 cleanup: kill holder + wait before starting node
+- Improved finish script with diagnostic output
+- Removed npm (uses node directly)
+
 ## 1.11.2-22 (2026-05-07)
 
 - Full patched version with --no-cache builder
