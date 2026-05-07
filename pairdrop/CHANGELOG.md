@@ -1,3 +1,7 @@
+## 1.11.2-15 (2026-05-07)
+
+- Debug build: diagnostic only, no node start
+
 ## 1.11.2-14 (2026-05-07)
 
 - Debug build: add process/port diagnostics to run script
