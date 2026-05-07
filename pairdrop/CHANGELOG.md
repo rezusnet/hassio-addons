@@ -1,3 +1,8 @@
+## 1.11.2-10 (2026-05-03)
+
+- Fix EADDRINUSE: replace `npm start` with `node server/index.js` directly
+  (npm spawns node as child; when S6 kills npm, orphaned node keeps port bound)
+
 ## 1.11.2-9 (2026-05-03)
 
 - Fix hadolint: use COPY for svc-pairdrop/run instead of heredoc
