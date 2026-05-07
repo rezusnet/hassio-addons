@@ -4,13 +4,8 @@ FROM ${BUILD_FROM}
 
 USER root
 
-RUN rm -rf /etc/s6-overlay/s6-rc.d/svc-pairdrop \
-    /etc/s6-overlay/s6-rc.d/user/contents.d/svc-pairdrop \
-    /etc/s6-overlay/s6-rc.d/svc-cron \
-    /etc/s6-overlay/s6-rc.d/user/contents.d/svc-cron
-
 COPY rootfs/ /
-RUN find /etc/cont-init.d/ /etc/services.d/ -type f -exec chmod +x {} \;
+RUN find /etc/s6-overlay/s6-rc.d/svc-pairdrop/ -type f -exec chmod +x {} \;
 
 ARG BUILD_ARCH
 ARG BUILD_DATE
