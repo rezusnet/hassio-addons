@@ -1,3 +1,9 @@
+## 1.11.2-13 (2026-05-07)
+
+- Remove host_network to fix EADDRINUSE crash loop (conflict with Grafana on port 3000)
+- Switch to bridge networking with ingress-only access by default
+- Port 3000/tcp is now optional (null by default, ingress recommended)
+
 ## 1.11.2-12 (2026-05-07)
 
 - Fix EADDRINUSE crash loop: add finish script that waits for port 3000 release
