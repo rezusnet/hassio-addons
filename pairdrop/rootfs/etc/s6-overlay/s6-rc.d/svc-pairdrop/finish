@@ -1,8 +1,0 @@
-#!/usr/bin/with-contenv bash
-# shellcheck shell=bash
-for _ in $(seq 1 30); do
-    if ! nc -z localhost 3000 2>/dev/null; then
-        break
-    fi
-    sleep 1
-done

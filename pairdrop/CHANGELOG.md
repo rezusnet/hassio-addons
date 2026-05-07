@@ -1,3 +1,9 @@
+## 1.11.2-17 (2026-05-07)
+
+- Switch to non-LSIO pattern (init: true, standalone PairDrop install)
+- Install PairDrop directly instead of using LSIO base image
+- Use 99-run.sh with ha_entrypoint.sh pattern
+
 ## 1.11.2-16 (2026-05-07)
 
 - Rewrite Dockerfile to use sed-based approach (matching sonarr pattern)
