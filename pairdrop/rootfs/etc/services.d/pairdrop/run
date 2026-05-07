@@ -1,0 +1,26 @@
+#!/usr/bin/env bashio
+set +u
+
+bashio::log.info "Starting PairDrop add-on"
+
+LOCATION="$(bashio::config 'data_location')"
+if [[ "$LOCATION" = "null" || -z "$LOCATION" ]]; then LOCATION=/config; fi
+DEBUG_MODE="$(bashio::config 'debug_mode')"
+export DEBUG_MODE
+
+mkdir -p "$LOCATION"
+cd /app/pairdrop
+
+OPT_RATE_LIMIT=""
+OPT_WS_FALLBACK=""
+if [[ "${RATE_LIMIT:-}" = "true" ]]; then OPT_RATE_LIMIT="--rate-limit"; fi
+if [[ "${WS_FALLBACK:-}" = "true" ]]; then OPT_WS_FALLBACK="--include-ws-fallback"; fi
+
+bashio::log.info "Data location: ${LOCATION}"
+bashio::log.info "Starting PairDrop server on port 3000..."
+
+if [[ -z "${LSIO_NON_ROOT_USER:-}" ]]; then
+    exec s6-setuidgid abc node server/index.js ${OPT_RATE_LIMIT} ${OPT_WS_FALLBACK}
+else
+    exec node server/index.js ${OPT_RATE_LIMIT} ${OPT_WS_FALLBACK}
+fi
