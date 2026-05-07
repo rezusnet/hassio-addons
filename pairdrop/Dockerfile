@@ -16,7 +16,8 @@ ARG CONFIGLOCATION="/config"
 RUN chmod 744 /ha_lsio.sh && if grep -qr "lsio" /etc; then /ha_lsio.sh "$CONFIGLOCATION"; fi && rm /ha_lsio.sh
 
 COPY rootfs/etc/s6-overlay/s6-rc.d/svc-pairdrop/run /etc/s6-overlay/s6-rc.d/svc-pairdrop/run
-RUN chmod +x /etc/s6-overlay/s6-rc.d/svc-pairdrop/run
+COPY rootfs/etc/s6-overlay/s6-rc.d/svc-pairdrop/finish /etc/s6-overlay/s6-rc.d/svc-pairdrop/finish
+RUN chmod +x /etc/s6-overlay/s6-rc.d/svc-pairdrop/run /etc/s6-overlay/s6-rc.d/svc-pairdrop/finish
 
 ARG MODULES="00-banner.sh 01-custom_script.sh 00-local_mounts.sh 00-smb_mounts.sh"
 
