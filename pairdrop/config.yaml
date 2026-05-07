@@ -27,7 +27,6 @@ devices:
 environment:
   ATTACHED_DEVICES_PERMS: "/dev/dri -type c -o -type f"
 homeassistant: 2024.1.0
-host_network: true
 icon: icon.png
 image: ghcr.io/rezusnet/pairdrop-{arch}
 ingress: true
@@ -56,9 +55,9 @@ options:
   debug_mode: false
 panel_icon: mdi:share-variant
 ports:
-  3000/tcp: 3000
+  3000/tcp: null
 ports_description:
-  3000/tcp: Web UI for file sharing
+  3000/tcp: Web UI (optional, ingress recommended)
 schema:
   env_vars:
     - name: match(^[A-Za-z0-9_]+$)
@@ -78,4 +77,4 @@ schema:
 slug: pairdrop
 udev: true
 url: https://github.com/schlagmichdoch/PairDrop
-version: "1.11.2-18"
+version: "1.11.2-19"
