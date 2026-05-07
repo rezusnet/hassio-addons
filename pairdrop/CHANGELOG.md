@@ -1,3 +1,10 @@
+## 1.11.2-26 (2026-05-07)
+
+- Use Supervisor-managed init (`init: true`) instead of LSIO S6 overlay
+- Simple run script in `/etc/services.d/pairdrop/run`
+- Minimal Dockerfile (no LSIO scripts, no sed patching)
+- Bypasses LSIO's S6 overlay entirely
+
 ## 1.11.2-23 (2026-05-07)
 
 - Custom run script (replaces LSIO's, no more sed-patching)

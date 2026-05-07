@@ -2,36 +2,10 @@ ARG BUILD_FROM
 ARG BUILD_VERSION
 FROM ${BUILD_FROM}
 
-ARG BUILD_ARCH
-ARG BUILD_VERSION
-
 USER root
 
-ENV S6_CMD_WAIT_FOR_SERVICES=0 \
-    S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0 \
-    S6_SERVICES_GRACETIME=0
-
-COPY ha_lsio.sh /ha_lsio.sh
-ARG CONFIGLOCATION="/config"
-RUN chmod 744 /ha_lsio.sh && if grep -qr "lsio" /etc; then /ha_lsio.sh "$CONFIGLOCATION"; fi && rm /ha_lsio.sh
-
 COPY rootfs/ /
-RUN find /etc/cont-init.d/ /etc/s6-overlay/s6-rc.d/svc-pairdrop/ -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -exec chmod +x {} \;
-
-ARG MODULES="00-banner.sh 01-custom_script.sh 00-local_mounts.sh 00-smb_mounts.sh"
-
-COPY ha_automodules.sh /ha_automodules.sh
-RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
-
-COPY ha_autoapps.sh /ha_autoapps.sh
-RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "" && rm /ha_autoapps.sh
-
-ENV S6_STAGE2_HOOK=/ha_entrypoint.sh
-COPY ha_entrypoint.sh /ha_entrypoint.sh
-RUN chmod 777 /ha_entrypoint.sh
-
-COPY bashio-standalone.sh /usr/local/lib/bashio-standalone.sh
-RUN chmod 0755 /usr/local/lib/bashio-standalone.sh
+RUN find /etc/cont-init.d/ /etc/services.d/ -type f -exec chmod +x {} \;
 
 ARG BUILD_ARCH
 ARG BUILD_DATE
@@ -59,12 +33,3 @@ LABEL \
     org.opencontainers.image.created=${BUILD_DATE} \
     org.opencontainers.image.revision=${BUILD_REF} \
     org.opencontainers.image.version="${BUILD_VERSION}"
-
-ENV HEALTH_PORT="3000" \
-    HEALTH_URL="/"
-HEALTHCHECK \
-    --interval=30s \
-    --retries=5 \
-    --start-period=30s \
-    --timeout=25s \
-    CMD curl -A "HealthCheck: Docker/1.0" -s -f "http://127.0.0.1:${HEALTH_PORT}${HEALTH_URL}" &>/dev/null || exit 1
