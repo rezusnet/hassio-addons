@@ -30,9 +30,9 @@ homeassistant: 2024.1.0
 icon: icon.png
 image: ghcr.io/rezusnet/pairdrop-{arch}
 ingress: true
-ingress_port: 8080
+ingress_port: 3000
 ingress_stream: true
-init: true
+init: false
 map:
   - addon_config:rw
   - media:rw
@@ -77,4 +77,4 @@ schema:
 slug: pairdrop
 udev: true
 url: https://github.com/schlagmichdoch/PairDrop
-version: "1.11.2-30"
+version: "1.11.2-31"
