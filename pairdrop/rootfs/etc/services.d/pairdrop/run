@@ -11,16 +11,14 @@ export DEBUG_MODE
 mkdir -p "$LOCATION"
 cd /app/pairdrop
 
-OPT_RATE_LIMIT=""
-OPT_WS_FALLBACK=""
-if [[ "${RATE_LIMIT:-}" = "true" ]]; then OPT_RATE_LIMIT="--rate-limit"; fi
-if [[ "${WS_FALLBACK:-}" = "true" ]]; then OPT_WS_FALLBACK="--include-ws-fallback"; fi
+RATE_LIMIT="$(bashio::config 'rate_limit')"
+WS_FALLBACK="$(bashio::config 'ws_fallback')"
+
+OPT_ARGS=""
+if [[ "${RATE_LIMIT:-}" = "true" ]]; then OPT_ARGS="$OPT_ARGS --rate-limit"; fi
+if [[ "${WS_FALLBACK:-}" = "true" ]]; then OPT_ARGS="$OPT_ARGS --include-ws-fallback"; fi
 
 bashio::log.info "Data location: ${LOCATION}"
 bashio::log.info "Starting PairDrop server on port 3000..."
 
-if [[ -z "${LSIO_NON_ROOT_USER:-}" ]]; then
-    exec s6-setuidgid abc node server/index.js ${OPT_RATE_LIMIT} ${OPT_WS_FALLBACK}
-else
-    exec node server/index.js ${OPT_RATE_LIMIT} ${OPT_WS_FALLBACK}
-fi
+exec node server/index.js $OPT_ARGS
