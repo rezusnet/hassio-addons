@@ -1,3 +1,7 @@
+## 1.11.2-21 (2026-05-07)
+
+- Test: unpatched LSIO image to isolate EADDRINUSE issue
+
 ## 1.11.2-20 (2026-05-07)
 
 - Fix 99-run.sh: remove duplicate node server start (was causing EADDRINUSE)

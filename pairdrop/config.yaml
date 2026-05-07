@@ -2,30 +2,7 @@
 arch:
   - aarch64
   - amd64
-description:
-  Cross-platform local file sharing via browser. AirDrop-like peer-to-peer
-  transfers using WebRTC. No cloud upload required.
-devices:
-  - /dev/dri
-  - /dev/sda
-  - /dev/sdb
-  - /dev/sdc
-  - /dev/sdd
-  - /dev/sde
-  - /dev/sdf
-  - /dev/sdg
-  - /dev/nvme0n1
-  - /dev/nvme0n1p1
-  - /dev/nvme0n1p2
-  - /dev/nvme0n1p3
-  - /dev/nvme1n1
-  - /dev/nvme1n1p1
-  - /dev/nvme1n1p2
-  - /dev/nvme1n1p3
-  - /dev/mmcblk
-  - /dev/fuse
-environment:
-  ATTACHED_DEVICES_PERMS: "/dev/dri -type c -o -type f"
+description: PairDrop test - unpatched LSIO image
 homeassistant: 2024.1.0
 icon: icon.png
 image: ghcr.io/rezusnet/pairdrop-{arch}
@@ -35,15 +12,11 @@ ingress_stream: true
 init: false
 map:
   - addon_config:rw
-  - media:rw
-  - share:rw
-  - ssl
-name: PairDrop
+name: PairDrop Test
 options:
-  env_vars: []
   PGID: 0
   PUID: 0
-  data_location: /share/pairdrop
+  data_location: /config
   TZ: ""
   localdisks: ""
   networkdisks: ""
@@ -53,15 +26,9 @@ options:
   rate_limit: false
   ws_fallback: false
   debug_mode: false
+  env_vars: []
 panel_icon: mdi:share-variant
-ports:
-  3000/tcp: null
-ports_description:
-  3000/tcp: Web UI (optional, ingress recommended)
 schema:
-  env_vars:
-    - name: match(^[A-Za-z0-9_]+$)
-      value: str?
   PGID: int
   PUID: int
   data_location: str
@@ -74,7 +41,9 @@ schema:
   rate_limit: bool
   ws_fallback: bool
   debug_mode: bool
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
 slug: pairdrop
-udev: true
 url: https://github.com/schlagmichdoch/PairDrop
-version: "1.11.2-20"
+version: "1.11.2-21"
