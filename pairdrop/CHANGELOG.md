@@ -1,3 +1,9 @@
+## 1.11.2-16 (2026-05-07)
+
+- Rewrite Dockerfile to use sed-based approach (matching sonarr pattern)
+- Patch existing LSIO run file in-place instead of COPY replacement
+- Remove host_network, use bridge networking with ingress
+
 ## 1.11.2-15 (2026-05-07)
 
 - Debug build: diagnostic only, no node start
