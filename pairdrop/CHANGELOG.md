@@ -1,3 +1,9 @@
+## 1.11.2-27 (2026-05-07)
+
+- DELETE LSIO s6-overlay svc-pairdrop service from image
+- Prevents LSIO's original `npm start` from running alongside our service
+- Root cause: LSIO s6-overlay always starts original service, COPY doesn't remove files
+
 ## 1.11.2-26 (2026-05-07)
 
 - Use Supervisor-managed init (`init: true`) instead of LSIO S6 overlay
