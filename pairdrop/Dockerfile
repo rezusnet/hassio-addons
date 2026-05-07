@@ -5,7 +5,8 @@ FROM ${BUILD_FROM}
 USER root
 
 COPY rootfs/ /
-RUN find /etc/s6-overlay/s6-rc.d/svc-pairdrop/ -type f -exec chmod +x {} \;
+RUN find /etc/s6-overlay/s6-rc.d/svc-pairdrop/ -type f -exec chmod +x {} \; \
+    && chmod +x /etc/cont-init.d/99-run.sh
 
 ARG BUILD_ARCH
 ARG BUILD_DATE
