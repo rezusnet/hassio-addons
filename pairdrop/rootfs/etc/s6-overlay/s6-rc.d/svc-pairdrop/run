@@ -1,0 +1,52 @@
+#!/usr/bin/with-contenv bashio
+set +u
+source /usr/local/lib/bashio-standalone.sh
+
+LOCATION=$(bashio::config 'data_location')
+if [[ "$LOCATION" = "null" || -z "$LOCATION" ]]; then LOCATION=/config; fi
+export DEBUG_MODE
+DEBUG_MODE=$(bashio::config 'debug_mode')
+
+echo "[pairdrop] === Starting PairDrop service ==="
+echo "[pairdrop] LOCATION=${LOCATION}"
+
+echo "[pairdrop] Processes before start:"
+ps aux 2>/dev/null || ps -ef 2>/dev/null || echo "(ps not available)"
+
+echo "[pairdrop] Port 3000 status before start:"
+ss -tlnp 2>/dev/null | grep 3000 || netstat -tlnp 2>/dev/null | grep 3000 || echo "(port check tools not available)"
+
+if nc -z localhost 3000 2>/dev/null; then
+    echo "[pairdrop] WARNING: Port 3000 is already in use!"
+    echo "[pairdrop] Attempting to kill holder of port 3000..."
+    fuser -k 3000/tcp 2>/dev/null || true
+    for i in $(seq 1 10); do
+        if ! nc -z localhost 3000 2>/dev/null; then
+            echo "[pairdrop] Port 3000 freed after ${i}s"
+            break
+        fi
+        echo "[pairdrop] Waiting for port 3000... (${i}/10)"
+        sleep 1
+    done
+fi
+
+OPT_RATE_LIMIT=""
+OPT_WS_FALLBACK=""
+if [[ ${RATE_LIMIT,,} = "true" ]]; then
+    OPT_RATE_LIMIT="--rate-limit"
+fi
+if [[ ${WS_FALLBACK,,} = "true" ]]; then
+    OPT_WS_FALLBACK="--include-ws-fallback"
+fi
+
+cd /app/pairdrop
+
+if [[ -z ${LSIO_NON_ROOT_USER} ]]; then
+    HOME=$LOCATION exec \
+        s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 3000" \
+        s6-setuidgid abc node server/index.js ${OPT_RATE_LIMIT} ${OPT_WS_FALLBACK}
+else
+    HOME=$LOCATION exec \
+        s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 3000" \
+        node server/index.js ${OPT_RATE_LIMIT} ${OPT_WS_FALLBACK}
+fi
