@@ -1,3 +1,8 @@
+## 1.11.2-20 (2026-05-07)
+
+- Fix 99-run.sh: remove duplicate node server start (was causing EADDRINUSE)
+- 99-run.sh now only does initialization; S6 svc-pairdrop/run starts the server
+
 ## 1.11.2-19 (2026-05-07)
 
 - Remove host_network to fix port 3000 conflict with Grafana
