@@ -77,4 +77,4 @@ schema:
 slug: qbittorrent
 udev: true
 url: https://www.qbittorrent.org
-version: "5.1.4-r3-ls452"
+version: "libtorrentv1-5.2.0_v1.2.20-ls114"

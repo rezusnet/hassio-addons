@@ -1,3 +1,6 @@
+## 2.63.3 (2026-05-07)
+- Update to upstream v2.63.3
+
 ## 2.63.2 (2026-04-25)
 - Update to latest version from filebrowser/filebrowser
 
