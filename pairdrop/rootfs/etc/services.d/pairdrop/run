@@ -9,6 +9,7 @@ DEBUG_MODE="$(bashio::config 'debug_mode')"
 export DEBUG_MODE
 
 mkdir -p "$LOCATION"
+export PORT=8080
 cd /app/pairdrop
 
 RATE_LIMIT="$(bashio::config 'rate_limit')"
@@ -19,6 +20,6 @@ if [[ "${RATE_LIMIT:-}" = "true" ]]; then OPT_ARGS="$OPT_ARGS --rate-limit"; fi
 if [[ "${WS_FALLBACK:-}" = "true" ]]; then OPT_ARGS="$OPT_ARGS --include-ws-fallback"; fi
 
 bashio::log.info "Data location: ${LOCATION}"
-bashio::log.info "Starting PairDrop server on port 3000..."
+bashio::log.info "Starting PairDrop server on port 8080..."
 
 exec node server/index.js $OPT_ARGS
