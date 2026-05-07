@@ -2,41 +2,37 @@
 # shellcheck shell=bash
 set +u
 
-echo "=== PAIRDROP RUN SCRIPT STARTING (PID=$$) ==="
-echo "=== Parent PID: $(ps -o ppid= -p $$) ==="
-echo "=== All processes: ==="
-ps aux 2>/dev/null || ps -ef 2>/dev/null || true
-echo "=== Listening ports: ==="
-ss -tlnp 2>/dev/null || netstat -tlnp 2>/dev/null || true
-echo "=== Who is on port 3000: ==="
-fuser 3000/tcp 2>/dev/null || echo "No process found on port 3000"
-echo "=== END DEBUG ==="
+echo "=== PAIRDROP DEBUG (PID=$$, PPID=$(ps -o ppid= -p $$ 2>/dev/null || echo unknown)) ==="
 
-source /usr/local/lib/bashio-standalone.sh
+echo "=== ALL PROCESSES ==="
+ps aux 2>/dev/null || ps -ef 2>/dev/null || echo "ps failed"
 
-LOCATION="$(bashio::config 'data_location')"
-if [[ "$LOCATION" = "null" || -z "$LOCATION" ]]; then LOCATION=/config; fi
-RATE_LIMIT="$(bashio::config 'rate_limit')"
-WS_FALLBACK="$(bashio::config 'ws_fallback')"
-DEBUG_MODE="$(bashio::config 'debug_mode')"
-export DEBUG_MODE
+echo "=== LISTENING PORTS ==="
+ss -tlnp 2>/dev/null || netstat -tlnp 2>/dev/null || echo "ss/netstat not available"
 
-mkdir -p "$LOCATION"
+echo "=== PORT 3000 ==="
+fuser 3000/tcp 2>/dev/null && echo "Port 3000 in use by above PIDs" || echo "Port 3000 free"
 
-if [[ ${RATE_LIMIT,,} = "true" ]]; then
-    OPT_RATE_LIMIT="--rate-limit"
-fi
+echo "=== S6 SERVICES ==="
+ls -la /etc/s6-overlay/s6-rc.d/ 2>/dev/null || true
+for d in /etc/s6-overlay/s6-rc.d/*/; do
+    echo "--- $d ---"
+    cat "${d}type" 2>/dev/null || echo "(no type)"
+    ls -la "${d}" 2>/dev/null || true
+done
 
-if [[ ${WS_FALLBACK,,} = "true" ]]; then
-    OPT_WS_FALLBACK="--include-ws-fallback"
-fi
+echo "=== /etc/services.d ==="
+ls -laR /etc/services.d/ 2>/dev/null || echo "no services.d"
 
-if [[ -z ${LSIO_NON_ROOT_USER} ]]; then
-    HOME=$LOCATION exec \
-        s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 3000" \
-        cd /app/pairdrop s6-setuidgid abc node server/index.js "${OPT_RATE_LIMIT}" "${OPT_WS_FALLBACK}"
-else
-    HOME=$LOCATION exec \
-        s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 3000" \
-        cd /app/pairdrop node server/index.js "${OPT_RATE_LIMIT}" "${OPT_WS_FALLBACK}"
-fi
+echo "=== RUN FILES ==="
+for f in /etc/s6-overlay/s6-rc.d/*/run; do
+    echo "--- $f ---"
+    head -3 "$f" 2>/dev/null || true
+done
+
+echo "=== ha_entrypoint.sh shebang detection ==="
+cat /etc/s6-overlay/s6-rc.d/svc-pairdrop/run 2>/dev/null || true
+
+echo "=== SLEEPING 120s (no node start) ==="
+sleep 120
+echo "=== DONE ==="
