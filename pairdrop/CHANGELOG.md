@@ -1,3 +1,9 @@
+## 1.11.2-18 (2026-05-07)
+
+- Fix builder: add --no-cache to prevent stale Docker buildx cache on self-hosted runners
+- Revert to LSIO sed-based Dockerfile (sonarr pattern)
+- This version should ACTUALLY rebuild both architectures
+
 ## 1.11.2-17 (2026-05-07)
 
 - Switch to non-LSIO pattern (init: true, standalone PairDrop install)
