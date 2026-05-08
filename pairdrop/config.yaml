@@ -39,7 +39,7 @@ map:
   - share:rw
   - ssl
 name: PairDrop
-panel_icon: mdi:share-variant
+panel_icon: mdi:swap-horizontal-circle
 options:
   env_vars: []
   PGID: 0
@@ -77,4 +77,4 @@ schema:
 slug: pairdrop
 udev: true
 url: https://github.com/schlagmichdoch/PairDrop
-version: "1.11.2-33"
+version: "1.11.2-34"
