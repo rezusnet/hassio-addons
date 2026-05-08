@@ -1,3 +1,6 @@
+## 9.0.4 (2026-05-08)
+- Update to upstream 9.0.4
+
 ## 9.0.3 (02-05-2026)
 
 - Initial release based on Valkey 9.0.3 (Alpine)
