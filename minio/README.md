@@ -32,13 +32,15 @@ This add-on is based on the [pgsty/minio](https://hub.docker.com/r/pgsty/minio) 
 
 ## Configuration
 
-| Option          | Type     | Default        | Description                  |
-| --------------- | -------- | -------------- | ---------------------------- |
-| `access_key`    | string   | `minioadmin`   | Root access key (username)   |
-| `secret_key`    | password | `minioadmin`   | Root secret key (password)   |
-| `data_location` | string   | `/share/minio` | Storage path for objects     |
-| `TZ`            | string   |                | Timezone                     |
-| `env_vars`      | list     | `[]`           | Custom environment variables |
+| Option          | Type     | Default        | Description                                 |
+| --------------- | -------- | -------------- | ------------------------------------------- |
+| `access_key`    | string   | `minioadmin`   | Root access key (username)                  |
+| `secret_key`    | password | `minioadmin`   | Root secret key (password)                  |
+| `data_location` | string   | `/share/minio` | Storage path for objects                    |
+| `api_port`      | port     | `9000`         | S3 API port (internal)                      |
+| `console_port`  | port     | `9001`         | Web Console port (keep 9001 for HA ingress) |
+| `TZ`            | string   |                | Timezone                                    |
+| `env_vars`      | list     | `[]`           | Custom environment variables                |
 
 ### Example
 
@@ -46,6 +48,8 @@ This add-on is based on the [pgsty/minio](https://hub.docker.com/r/pgsty/minio) 
 access_key: myaccesskey
 secret_key: mysecretkey123
 data_location: /share/minio
+api_port: 9000
+console_port: 9001
 TZ: Europe/Brussels
 ```
 
