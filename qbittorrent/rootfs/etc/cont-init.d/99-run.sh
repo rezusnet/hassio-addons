@@ -6,13 +6,13 @@ bashio::log.info "Starting qBittorrent add-on initialization"
 LOCATION="$(bashio::config 'data_location')"
 
 if bashio::config.has_value 'TZ'; then
-	TZ_VAL="$(bashio::config 'TZ')"
-	export TZ="${TZ_VAL}"
-	bashio::log.info "Timezone set to ${TZ}"
+    TZ_VAL="$(bashio::config 'TZ')"
+    export TZ="${TZ_VAL}"
+    bashio::log.info "Timezone set to ${TZ}"
 fi
 
 mkdir -p "${LOCATION}/data" \
-	"${LOCATION}/downloads"
+    "${LOCATION}/downloads"
 
 bashio::log.info "Data location: ${LOCATION}"
 
