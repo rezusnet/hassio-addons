@@ -1,3 +1,6 @@
+## 8.1.7 (2026-05-10)
+- Update to upstream 8.1.7
+
 ## 8.1.6 (02-05-2026)
 
 - Initial release based on Valkey 8.1.6 (Alpine)

@@ -1,6 +1,6 @@
 {
   "dockerhub_tag_filter": "-alpine",
-  "last_update": "2026-05-01",
+  "last_update": "2026-05-10",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "haproxy",
@@ -9,5 +9,5 @@
   "tag_strategy": "suffix",
   "tag_suffix": "-alpine",
   "upstream_repo": "library/haproxy",
-  "upstream_version": "v3.3.8"
+  "upstream_version": "v3.3.9"
 }
