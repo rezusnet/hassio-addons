@@ -74,6 +74,7 @@ jobs:
     if: ${{ needs.detect-changed-addons.outputs.changedAddons != '' && needs.detect-changed-addons.outputs.changedAddons != '[]' }}
     needs: detect-changed-addons
     runs-on: [self-hosted, linux, arm64]
+    continue-on-error: true
     permissions:
       contents: write
     steps:
