@@ -12,7 +12,8 @@ USER root
 RUN apk add --no-cache \
         bash \
         ca-certificates \
-        curl
+        curl \
+        nginx
 
 COPY --from=minio-source /usr/bin/minio /usr/bin/minio
 
