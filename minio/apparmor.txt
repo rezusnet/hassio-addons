@@ -1,21 +1,36 @@
 #include <tunables/global>
 
 profile minio flags=(attach_disconnected,mediate_deleted) {
-  #include <abstractions/base>
-  #include <abstractions/nameservice>
+    #include <abstractions/base>
 
-  capability setgid,
-  capability setuid,
+    capability chown,
+    capability dac_override,
+    capability dac_read_search,
+    capability fowner,
+    capability setgid,
+    capability setuid,
+    file,
+    signal,
+    network udp,
+    network tcp,
+    network dgram,
+    network stream,
+    network inet,
+    network inet6,
 
-  network inet stream,
-  network inet6 stream,
-  network inet dgram,
-  network inet6 dgram,
+    /bin/** ix,
+    /usr/bin/** ix,
+    /usr/lib/** ix,
+    /usr/local/lib/** ix,
+    /etc/cont-init.d/** rwix,
+    /ha_entrypoint.sh ix,
+    /init ix,
 
-  /** rw,
-  /usr/bin/minio mr,
-  /usr/local/lib/bashio-standalone.sh r,
-  /ha_entrypoint.sh r,
+    /data/** rw,
+    /share/** rw,
+    /ssl/** rw,
+    /config/** rw,
+    /tmp/** mrkwl,
 
-  deny /sys/kernel/** w,
+    signal (receive) set=(kill,term) peer=/usr/bin/docker,
 }
