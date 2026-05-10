@@ -19,8 +19,12 @@ export MINIO_ROOT_PASSWORD="${SECRET_KEY}"
 mkdir -p "${DATA_LOCATION}"
 
 bashio::log.info "Data location: ${DATA_LOCATION}"
+
+nginx -c /etc/nginx/nginx.conf &
+bashio::log.info "nginx reverse proxy started on :9001 -> :9002"
+
 bashio::log.info "MinIO initialization complete"
 
 exec minio server "${DATA_LOCATION}" \
-    --console-address ":9001" \
+    --console-address ":9002" \
     --address ":9000"
