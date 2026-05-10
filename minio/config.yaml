@@ -22,22 +22,15 @@ options:
   access_key: minioadmin
   secret_key: minioadmin
   data_location: /share/minio
-  api_port: 9000
-  console_port: 9001
   TZ: ""
   env_vars: []
 ports:
-  9000/tcp: null
-  9001/tcp: null
-ports_description:
-  9000/tcp: S3 API endpoint (optional, enable for external access)
-  9001/tcp: Web Console (optional, ingress recommended)
+  9000/tcp: 9000
+  9001/tcp: 9001
 schema:
   access_key: str
   secret_key: password
   data_location: str
-  api_port: port
-  console_port: port
   TZ: str?
   env_vars:
     - name: match(^[A-Za-z0-9_]+$)
