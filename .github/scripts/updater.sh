@@ -194,7 +194,7 @@ verify_tag_exists() {
         return $?
     fi
 
-    if [[ "$domain" == *"docker.io"* ]] || [[ "$image_tag" != *"/"* ]] || [[ "$domain" == *"lscr.io"* ]]; then
+    if [[ "$domain" != *"ghcr.io"* ]]; then
         local normalized_repo="${repo}"
         [[ "$normalized_repo" != *"/"* ]] && normalized_repo="library/${normalized_repo}"
         local http_code
