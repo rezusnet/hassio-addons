@@ -147,11 +147,16 @@ matches_major_version() {
 compute_config_version() {
     local upstream_version="$1"
     local config_extract="$2"
+    local build_suffix="$3"
 
     local ver="${upstream_version#v}"
 
     if [ "$config_extract" = "semver" ]; then
         ver=$(echo "$ver" | grep -oP '^\d+\.\d+\.\d+' || echo "$ver")
+    fi
+
+    if [ -n "$build_suffix" ]; then
+        ver="${ver}${build_suffix}"
     fi
 
     echo "$ver"
@@ -337,6 +342,7 @@ for addon_dir in */; do
     TAG_KEEP_V=$(jq -r '.tag_keep_v // false' "$UPDATER_FILE")
     CONFIG_EXTRACT=$(jq -r '.config_extract // ""' "$UPDATER_FILE")
     MAJOR_VERSION=$(jq -r '.major_version // ""' "$UPDATER_FILE")
+    BUILD_SUFFIX=$(jq -r '.build_suffix // ""' "$UPDATER_FILE")
 
     [ -z "$UPSTREAM_REPO" ] && { log "Skipping $addon_dir (no upstream_repo)"; continue; }
     [ -z "$TAG_STRATEGY" ] && { log "Skipping $addon_dir (no tag_strategy)"; continue; }
@@ -378,7 +384,7 @@ for addon_dir in */; do
 
     [ "$NEW_VERSION_CLEAN" = "$CURRENT_VERSION_CLEAN" ] && { log "  Already up to date"; continue; }
 
-    CONFIG_VERSION=$(compute_config_version "$NEW_VERSION" "$CONFIG_EXTRACT")
+    CONFIG_VERSION=$(compute_config_version "$NEW_VERSION" "$CONFIG_EXTRACT" "$BUILD_SUFFIX")
     TAG_VERSION=$(compute_tag_version "$NEW_VERSION" "$TAG_KEEP_V")
 
     IMAGE_PREFIX=$(get_image_prefix "$addon_dir" "$TAG_STRATEGY")
