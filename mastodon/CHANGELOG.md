@@ -1,3 +1,6 @@
+## 4.5.9-ls191 (2026-05-12)
+- Update to upstream v4.5.9-ls191
+
 ## 4.5.9 (02-05-2026)
 
 - Initial release based on linuxserver/docker-mastodon v4.5.9

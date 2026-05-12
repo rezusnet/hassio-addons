@@ -1,3 +1,6 @@
+## 1.11.2-ls137 (2026-05-12)
+- Update to upstream v1.11.2-ls137
+
 ## 1.11.2-27 (2026-05-07)
 
 - DELETE LSIO s6-overlay svc-pairdrop service from image
