@@ -25,8 +25,8 @@ options:
   TZ: ""
   env_vars: []
 ports:
-  9000/tcp: 9000
-  9001/tcp: 9001
+  9000/tcp: 19000
+  9001/tcp: 19001
 schema:
   access_key: str
   secret_key: password

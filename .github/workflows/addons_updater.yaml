@@ -89,28 +89,20 @@ jobs:
           author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           committer: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
 
-      - name: Enable auto-merge
+      - name: Auto-merge PR
         if: >-
           ${{
             steps.cpr.outputs.pull-request-operation == 'created' ||
             steps.cpr.outputs.pull-request-operation == 'updated'
           }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PR_NUMBER="${{ steps.cpr.outputs.pull-request-number }}"
-          PR_NODE_ID="${{ steps.cpr.outputs.pull-request-node-id }}"
-          echo "Enabling auto-merge for PR #${PR_NUMBER}"
+          echo "Merging PR #${PR_NUMBER}"
           if command -v gh >/dev/null 2>&1; then
-            gh pr merge "$PR_NUMBER" --squash --auto
+            unset GH_TOKEN
+            gh pr merge "$PR_NUMBER" --squash --admin --delete-branch
           else
-            curl -sf \
-              -X POST \
-              -H "Authorization: token ${GH_TOKEN}" \
-              -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/merge" \
-              -d '{"merge_method":"squash","auto":true}' || \
-            echo "Auto-merge request submitted (may require branch protection rules to be configured)"
+            echo "gh CLI not available, PR will need manual merge"
           fi
 
       - name: Cleanup
