@@ -1,10 +1,10 @@
 {
-  "last_update": "2026-05-01",
+  "last_update": "2026-05-12",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "qbittorrent",
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-qbittorrent",
-  "upstream_version": "5.1.4-r3-ls452"
+  "upstream_version": "5.2.0_v2.0.12-ls455"
 }
