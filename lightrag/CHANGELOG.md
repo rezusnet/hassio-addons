@@ -1,7 +1,9 @@
 ## 1.4.16 (2026-05-12)
+
 - Update to upstream v1.4.16
 
 ## 1.5.0rc1 (2026-04-27)
+
 - Update to latest version from HKUDS/LightRAG
 
 ## 1.4.15 (25-04-2026)

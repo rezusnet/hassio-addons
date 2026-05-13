@@ -1,20 +1,27 @@
 ## 1.14.48 (2026-05-12)
+
 - Update to upstream v1.14.48
 
 ## 1.14.31 (2026-05-01)
+
 - Update to upstream v1.14.31
 
 ## 1.14.28 (2026-04-27)
+
 - Update to latest version from anomalyco/opencode
 
 ## 1.14.25 (2026-04-25)
+
 - Update to latest version from anomalyco/opencode
 
 ## 1.14.24 (2026-04-25)
+
 - Update to latest version from anomalyco/opencode
 
 ## 1.4.3 (12-04-2026)
+
 - Minor bugs fixed
+
 ## 1.4.3
 
 - Initial release
