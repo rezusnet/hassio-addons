@@ -410,7 +410,7 @@ for addon_dir in */; do
         update_config_version "$addon_dir" "$CONFIG_VERSION"
 
         if [ -f "$addon_dir/CHANGELOG.md" ]; then
-            sed -i "1i\\## ${CONFIG_VERSION} (${DATE})\n- Update to upstream ${NEW_VERSION}\n" "$addon_dir/CHANGELOG.md"
+            sed -i "1i\\## ${CONFIG_VERSION} (${DATE})\n\n- Update to upstream ${NEW_VERSION}\n" "$addon_dir/CHANGELOG.md"
         fi
     fi
 

@@ -891,7 +891,7 @@ jobs:
               elif [[ -z "$first_line" ]]; then
                 printf '%s\n' '- Minor bugs fixed' > CHANGELOG.md
               fi
-              sed -i "1i\## ${version} ($(date '+%d-%m-%Y'))" CHANGELOG.md
+              sed -i "1i\## ${version} ($(date '+%d-%m-%Y'))\n" CHANGELOG.md
             fi
           done
 
