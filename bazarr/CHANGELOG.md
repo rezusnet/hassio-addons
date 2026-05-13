@@ -1,3 +1,6 @@
+## 1.5.6-ls348 (2026-05-13)
+- Update to upstream v1.5.6-ls348
+
 ## 1.5.6-ls347 (2026-05-12)
 - Update to upstream v1.5.6-ls347
 
