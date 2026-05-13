@@ -95,14 +95,34 @@ jobs:
             steps.cpr.outputs.pull-request-operation == 'created' ||
             steps.cpr.outputs.pull-request-operation == 'updated'
           }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PR_NUMBER="${{ steps.cpr.outputs.pull-request-number }}"
+          REPO="${{ github.repository }}"
           echo "Merging PR #${PR_NUMBER}"
+
+          if ! command -v gh >/dev/null 2>&1; then
+            echo "Installing gh CLI..."
+            (sudo apt-get update -qq && sudo apt-get install -yqq gh 2>/dev/null) || \
+            (sudo pacman -S --noconfirm github-cli 2>/dev/null) || \
+            (brew install gh 2>/dev/null) || \
+            echo "WARNING: Could not install gh CLI"
+          fi
+
           if command -v gh >/dev/null 2>&1; then
             unset GH_TOKEN
-            gh pr merge "$PR_NUMBER" --squash --admin --delete-branch
+            gh auth status 2>/dev/null || gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}" 2>/dev/null || true
+            gh pr merge "$PR_NUMBER" --squash --admin --delete-branch && echo "Merged via gh CLI"
           else
-            echo "gh CLI not available, PR will need manual merge"
+            echo "gh CLI not available, trying GitHub API with admin merge"
+            curl -sf \
+              -X PUT \
+              -H "Authorization: token ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}/merge" \
+              -d '{"merge_method":"squash"}' && echo "Merged via API" || \
+            echo "Failed to merge PR #${PR_NUMBER} — needs manual merge"
           fi
 
       - name: Cleanup
