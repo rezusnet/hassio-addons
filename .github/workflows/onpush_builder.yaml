@@ -844,6 +844,7 @@ jobs:
       }}
     needs: [detect-changed-addons, build]
     runs-on: [self-hosted, linux, arm64]
+    continue-on-error: true
     permissions:
       contents: write
     steps:
