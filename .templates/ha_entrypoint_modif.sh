@@ -37,7 +37,7 @@ done
 sed -i "s|/command/with-contenv bashio|$shebang|g" /ha_entrypoint.sh
 
 for string in "/command/with-contenv bashio" "/usr/bin/with-contenv bashio"; do
-    grep -sril "$string" /etc/cont-init.d /etc/services.d /etc/s6-overlay/s6-rc.d 2>/dev/null | while read -r files; do
+    grep -sril "$string" /etc/cont-init.d /etc/services.d /etc/s6-overlay/s6-rc.d 2> /dev/null | while read -r files; do
         sed -i "s|$string|$shebang|g" "$files"
     done
 done
