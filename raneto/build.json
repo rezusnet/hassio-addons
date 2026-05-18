@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "lscr.io/linuxserver/raneto:arm64v8-0.18.1-ls199",
+    "amd64": "lscr.io/linuxserver/raneto:amd64-0.18.1-ls199"
+  }
+}
