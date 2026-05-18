@@ -1,3 +1,7 @@
+## 2.35.0 (2026-05-18)
+
+- Update to upstream v2.35.0
+
 ## 2.34.0 (2026-05-01)
 
 - Update to upstream v2.34.0
