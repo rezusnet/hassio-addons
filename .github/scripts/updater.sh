@@ -2,7 +2,6 @@
 # shellcheck shell=bash
 set -euo pipefail
 
-REPOSITORY="${GITHUB_REPOSITORY:-rezusnet/hassio-addons}"
 DRY_RUN="${DRY_RUN:-false}"
 VERBOSE="${VERBOSE:-true}"
 GH_TOKEN="${GH_TOKEN:-}"
@@ -436,9 +435,11 @@ done
 if [ "$GITHUB_OUTPUT" != "/dev/null" ]; then
     DATE_STAMP=$(date '+%Y-%m-%d')
     DATE_STAMP_COMPACT=$(date '+%Y%m%d')
-    echo "date_stamp=${DATE_STAMP}" >> "$GITHUB_OUTPUT"
-    echo "date_stamp_compact=${DATE_STAMP_COMPACT}" >> "$GITHUB_OUTPUT"
-    echo "has_updates=${CHANGES_COUNT}" >> "$GITHUB_OUTPUT"
+    {
+        echo "date_stamp=${DATE_STAMP}"
+        echo "date_stamp_compact=${DATE_STAMP_COMPACT}"
+        echo "has_updates=${CHANGES_COUNT}"
+    } >> "$GITHUB_OUTPUT"
 fi
 
 if [ -n "$CHANGES" ]; then

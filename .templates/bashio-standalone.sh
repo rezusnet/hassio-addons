@@ -360,6 +360,7 @@ bashio::host.hostname() {
 #   bashio::services.available "mqtt"
 bashio::services() {
     local svc="${1:-}" key="${2:-}"
+    # shellcheck disable=SC2015
     [ -n "$svc" ] && [ -n "$key" ] || {
         printf '%s' ""
         return 0

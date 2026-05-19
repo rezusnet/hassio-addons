@@ -24,7 +24,6 @@ cleanup_cred() {
 
 test_mount() {
     MOUNTED=false
-    ERROR_MOUNT=false
     mountpoint="/mnt/$diskname"
 
     if ! mountpoint -q "$mountpoint"; then

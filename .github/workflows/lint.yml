@@ -109,7 +109,7 @@ jobs:
             fi
           fi
           if ! hadolint --version >/dev/null 2>&1; then
-            if curl -fsSL -o /tmp/hadolint "https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-${ARCH_SUFFIX}" 2>/dev/null; then
+            if curl -fsSL -o /tmp/hadolint "https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-${ARCH_SUFFIX}"; then
               sudo cp /tmp/hadolint /usr/local/bin/hadolint && sudo chmod +x /usr/local/bin/hadolint && echo "hadolint installed" || echo "WARNING: Could not install hadolint"
             else
               echo "WARNING: Could not download hadolint"
@@ -140,6 +140,10 @@ jobs:
       - name: Lint Dockerfiles
         run: |
           set -euo pipefail
+          if ! hadolint --version >/dev/null 2>&1; then
+            echo "hadolint not available, skipping Dockerfile lint"
+            exit 0
+          fi
           find . -name "Dockerfile*" ! -path "./.git/*" | while read -r f; do
             if ! hadolint "$f" 2>&1; then
               echo "::warning file=$f::hadolint found issues"

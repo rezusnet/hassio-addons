@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 LOCATION="${LOCATION:-/config}"
 
-cd /app/pairdrop
+cd /app/pairdrop || exit
 
 OPT_RATE_LIMIT=""
 OPT_WS_FALLBACK=""

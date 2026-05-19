@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck shell=bash
+# shellcheck shell=bash disable=SC1090,SC2016
 
 PID1=false
 if [ "$$" -eq 1 ]; then
@@ -93,6 +93,7 @@ echo "${_bv:-PROBE_OK}"
 validate_shebang() {
     local candidate="$1"
     local tmp out rc errfile msg
+    # shellcheck disable=SC2206
     local cmd=($candidate)
     local exe="${cmd[0]}"
     if [ ! -x "$exe" ]; then

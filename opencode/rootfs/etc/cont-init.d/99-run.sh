@@ -1,5 +1,5 @@
 #!/usr/bin/env bashio
-# shellcheck shell=bash
+# shellcheck shell=bash disable=SC2086
 set -e
 
 # --- Timezone ---
@@ -50,7 +50,7 @@ if [ -n "$REPOS" ] && [ "$REPOS" != "[]" ]; then
 
         CLONE_URL="$REPO_URL"
         if [ -n "$GIT_TOKEN" ] && [[ "$REPO_URL" == https://github.com* ]]; then
-            CLONE_URL=$(echo "$REPO_URL" | sed "s|https://|https://x-access-token:${GIT_TOKEN}@|")
+            CLONE_URL="${REPO_URL//https:\/\//https:\/\/x-access-token:${GIT_TOKEN}@}"
         fi
 
         if [ -d "$REPO_PATH/.git" ]; then
@@ -73,6 +73,7 @@ if [ -n "$REPOS" ] && [ "$REPOS" != "[]" ]; then
             if [ -n "$REPO_BRANCH" ]; then
                 CLONE_ARGS="-b $REPO_BRANCH"
             fi
+            # shellcheck disable=SC2086
             git clone $CLONE_ARGS "$CLONE_URL" "$REPO_PATH" 2>&1 || {
                 bashio::log.fatal "Failed to clone $REPO_URL"
                 continue
@@ -158,7 +159,8 @@ export OPENCODE_CONFIG_DIR="${CONFIG_DIR}"
 
 # --- Server password ---
 if bashio::config.has_value 'server_password'; then
-    export OPENCODE_SERVER_PASSWORD=$(bashio::config 'server_password')
+    OPENCODE_SERVER_PASSWORD=$(bashio::config 'server_password')
+    export OPENCODE_SERVER_PASSWORD
     bashio::log.info "Server password protection enabled"
 else
     bashio::log.warning "No server password set - OpenCode web UI is unsecured"

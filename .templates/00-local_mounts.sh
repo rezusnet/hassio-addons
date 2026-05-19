@@ -10,7 +10,7 @@ if bashio::config.has_value 'localdisks'; then
     bashio::log.info "Mounting local disks"
     MOREDISKS=$(bashio::config 'localdisks')
     for disk in ${MOREDISKS//,/ }; do
-        disk=$(echo "$disk" | sed "s|/dev/||g")
+        disk="${disk//\/dev\//}"
         if [ -z "$disk" ]; then continue; fi
         mountpoint="/mnt/$disk"
         mkdir -p "$mountpoint"
