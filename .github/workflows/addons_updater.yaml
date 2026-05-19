@@ -70,7 +70,7 @@ jobs:
             (inputs.dry_run || 'false') != 'true'
           }}
         id: cpr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: update upstream versions ${{ steps.updater.outputs.date_stamp }}"
