@@ -6,13 +6,13 @@ After installing the add-on:
 
 1. Change the default `access_key` and `secret_key` in configuration.
 2. Start the add-on.
-3. Access the web console via the HA sidebar (ingress) or directly at `http://HA-IP:9001`.
+3. Access the web console via the HA sidebar (ingress) or directly at `http://HA-IP:19001`.
 
 ## S3 API Access
 
-The S3 API is available on port 9000. Configure your S3 clients with:
+The S3 API is available on host port 19000. Configure your S3 clients with:
 
-- **Endpoint**: `http://YOUR-HA-IP:9000`
+- **Endpoint**: `http://YOUR-HA-IP:19000`
 - **Access Key ID**: value of `access_key` config option
 - **Secret Access Key**: value of `secret_key` config option
 - **Region**: leave empty or use `us-east-1`
@@ -20,7 +20,7 @@ The S3 API is available on port 9000. Configure your S3 clients with:
 ### Using with mc (MinIO Client)
 
 ```bash
-mc alias set myha http://YOUR-HA-IP:9000 myaccesskey mysecretkey
+mc alias set myha http://YOUR-HA-IP:19000 myaccesskey mysecretkey
 mc ls myha/
 mc mb myha/mybucket
 mc cp file.txt myha/mybucket/
@@ -29,8 +29,8 @@ mc cp file.txt myha/mybucket/
 ### Using with aws cli
 
 ```bash
-aws --endpoint-url http://YOUR-HA-IP:9000 s3 mb s3://mybucket
-aws --endpoint-url http://YOUR-HA-IP:9000 s3 cp file.txt s3://mybucket/
+aws --endpoint-url http://YOUR-HA-IP:19000 s3 mb s3://mybucket
+aws --endpoint-url http://YOUR-HA-IP:19000 s3 cp file.txt s3://mybucket/
 ```
 
 ## Storage

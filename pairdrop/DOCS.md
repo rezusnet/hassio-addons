@@ -2,7 +2,7 @@
 
 After installing and starting the add-on:
 
-1. Open PairDrop via the **HA sidebar** (Ingress) or at `http://<your-ha-ip>:3000`
+1. Open PairDrop via the **HA sidebar** (Ingress). For direct access, enable port `3000` in the add-on's Network tab.
 2. The page displays devices on your local network that also have PairDrop open
 3. Tap a device to send a file, or click to receive
 
@@ -48,9 +48,9 @@ the server can observe transferred data.
 
 ## Ports
 
-| Port   | Protocol | Default | Description |
-| ------ | -------- | ------- | ----------- |
-| `3000` | TCP      | `3000`  | Web UI      |
+| Port   | Protocol | Default  | Description                    |
+| ------ | -------- | -------- | ------------------------------ |
+| `3000` | TCP      | Disabled | Web UI (enable in Network tab) |
 
 ## Upstream Documentation
 

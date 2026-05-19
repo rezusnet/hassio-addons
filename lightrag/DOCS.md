@@ -2,7 +2,7 @@
 
 After installing and starting the add-on:
 
-1. Open LightRAG via the **HA sidebar** (Ingress) or at `http://<your-ha-ip>:9621`.
+1. Open LightRAG via the **HA sidebar** (Ingress). For direct access, enable port `9621` in the add-on's Network tab.
 2. Configure your LLM provider and embedding provider in the add-on options.
 3. Upload documents through the web UI.
 4. Query the indexed data and explore the generated knowledge graph.

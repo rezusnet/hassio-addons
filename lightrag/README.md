@@ -30,6 +30,6 @@ This add-on is based on the official [ghcr.io/hkuds/lightrag](https://github.com
 2. Install the **LightRAG** add-on from the add-on store.
 3. Configure your LLM and embedding provider settings.
 4. Start the add-on.
-5. Access it via the **HA sidebar** (Ingress) or directly at `http://<your-ha-ip>:9621`.
+5. Access it via the **HA sidebar** (Ingress). For direct access, enable port `9621` in the add-on's Network tab.
 
 For full configuration details, provider setup, and troubleshooting, see the **Documentation** tab.

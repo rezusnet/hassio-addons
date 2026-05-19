@@ -1,9 +1,12 @@
 # Home Assistant add-on: MinIO
 
 [![Version](https://img.shields.io/badge/dynamic/yaml?label=Version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fminio%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/minio)
+[![Ingress](https://img.shields.io/badge/dynamic/yaml?color=blueviolet&label=Ingress&query=%24.ingress&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fminio%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/minio)
 [![Arch](https://img.shields.io/badge/dynamic/yaml?color=success&label=Arch&query=%24.arch&url=https%3A%2F%2Fraw.githubusercontent.com%2Frezusnet%2Fhassio-addons%2Fmaster%2Fminio%2Fconfig.yaml)](https://github.com/rezusnet/hassio-addons/tree/master/minio)
 [![Builder](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/onpush_builder.yaml?label=Builder)](https://github.com/rezusnet/hassio-addons/actions/workflows/onpush_builder.yaml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/rezusnet/hassio-addons/lint.yml?label=Lint)](https://github.com/rezusnet/hassio-addons/actions/workflows/lint.yml)
+
+![MinIO banner](banner.svg)
 
 ## About
 
@@ -32,15 +35,13 @@ This add-on is based on the [pgsty/minio](https://hub.docker.com/r/pgsty/minio) 
 
 ## Configuration
 
-| Option          | Type     | Default        | Description                                 |
-| --------------- | -------- | -------------- | ------------------------------------------- |
-| `access_key`    | string   | `minioadmin`   | Root access key (username)                  |
-| `secret_key`    | password | `minioadmin`   | Root secret key (password)                  |
-| `data_location` | string   | `/share/minio` | Storage path for objects                    |
-| `api_port`      | port     | `9000`         | S3 API port (internal)                      |
-| `console_port`  | port     | `9001`         | Web Console port (keep 9001 for HA ingress) |
-| `TZ`            | string   |                | Timezone                                    |
-| `env_vars`      | list     | `[]`           | Custom environment variables                |
+| Option          | Type     | Default        | Description                  |
+| --------------- | -------- | -------------- | ---------------------------- |
+| `access_key`    | string   | `minioadmin`   | Root access key (username)   |
+| `secret_key`    | password | `minioadmin`   | Root secret key (password)   |
+| `data_location` | string   | `/share/minio` | Storage path for objects     |
+| `TZ`            | string   |                | Timezone                     |
+| `env_vars`      | list     | `[]`           | Custom environment variables |
 
 ### Example
 
@@ -48,23 +49,22 @@ This add-on is based on the [pgsty/minio](https://hub.docker.com/r/pgsty/minio) 
 access_key: myaccesskey
 secret_key: mysecretkey123
 data_location: /share/minio
-api_port: 9000
-console_port: 9001
 TZ: Europe/Brussels
 ```
 
 ## Ports
 
-| Port       | Purpose                                           |
-| ---------- | ------------------------------------------------- |
-| 9000 (TCP) | S3 API endpoint — use this in client applications |
-| 9001       | Web console — accessible via HA ingress sidebar   |
+| Container Port | Host Port | Purpose                                           |
+| -------------- | --------- | ------------------------------------------------- |
+| 9000 (TCP)     | 19000     | S3 API endpoint — use this in client applications |
+| 9001           | 19001     | Web console — accessible via HA ingress sidebar   |
 
 ## Using with other add-ons
 
 Other add-ons or services can connect to MinIO via the S3 API:
 
-- **Endpoint**: `http://homeassistant:9000` (from within HA network)
+- **From HA add-ons (host_network)**: `http://localhost:19000`
+- **From LAN clients**: `http://YOUR-HA-IP:19000`
 - **Access key**: your configured `access_key`
 - **Secret key**: your configured `secret_key`
 

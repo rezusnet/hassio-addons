@@ -34,6 +34,6 @@ This add-on is based on the [linuxserver/docker-pairdrop](https://github.com/lin
 
 2. Install the **PairDrop** add-on from the add-on store.
 3. Start the add-on.
-4. Access via the **HA sidebar** (Ingress) or directly at `http://<your-ha-ip>:3000`.
+4. Access via the **HA sidebar** (Ingress). To access directly, enable port `3000` in the add-on's Network tab first.
 
 For full configuration details and troubleshooting, see the **Documentation** tab.
