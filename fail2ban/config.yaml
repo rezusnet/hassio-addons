@@ -49,4 +49,4 @@ schema:
       path: match(^/.+$)
 slug: fail2ban
 url: https://www.fail2ban.org/
-version: "1.1.0-r2-ls35"
+version: "1.1.0-r2-ls36"
