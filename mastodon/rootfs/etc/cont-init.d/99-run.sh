@@ -101,7 +101,7 @@ generate_vapid_keys() {
         bashio::log.info "Generating VAPID keys..."
         if command -v ruby > /dev/null 2>&1; then
             local vapid_output
-            vapid_output="$(ruby -e "require 'webpush'; vapid_key = Webpush.generate_key; puts vapid_key.private_key; puts vapid_key.public_key" 2>/dev/null || true)"
+            vapid_output="$(ruby -e "require 'webpush'; vapid_key = Webpush.generate_key; puts vapid_key.private_key; puts vapid_key.public_key" 2> /dev/null || true)"
             if [ -n "${vapid_output}" ]; then
                 VAPID_PRIVATE_KEY="$(echo "${vapid_output}" | head -1)"
                 VAPID_PUBLIC_KEY="$(echo "${vapid_output}" | tail -1)"
