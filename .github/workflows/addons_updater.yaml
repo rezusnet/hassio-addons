@@ -33,6 +33,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          token: ${{ secrets.ADMIN_PAT }}
 
       - name: Install dependencies
         run: |
@@ -72,7 +73,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v8
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ADMIN_PAT }}
           commit-message: "chore: update upstream versions ${{ steps.updater.outputs.date_stamp }}"
           title: "chore: update upstream versions ${{ steps.updater.outputs.date_stamp }}"
           body: |
@@ -90,17 +91,15 @@ jobs:
           committer: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
 
       - name: Auto-merge PR
-        continue-on-error: true
         if: >-
           ${{
             steps.cpr.outputs.pull-request-operation == 'created' ||
             steps.cpr.outputs.pull-request-operation == 'updated'
           }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.ADMIN_PAT }}
         run: |
           PR_NUMBER="${{ steps.cpr.outputs.pull-request-number }}"
-          REPO="${{ github.repository }}"
           echo "Auto-merging PR #${PR_NUMBER}"
 
           if ! command -v gh >/dev/null 2>&1; then
@@ -112,22 +111,15 @@ jobs:
           fi
 
           if command -v gh >/dev/null 2>&1; then
-            gh auth status 2>/dev/null || gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}" 2>/dev/null || true
-            gh pr merge "$PR_NUMBER" --squash --delete-branch --auto && echo "Auto-merge enabled for PR #${PR_NUMBER}" || \
-            gh pr merge "$PR_NUMBER" --squash --delete-branch && echo "Merged PR #${PR_NUMBER}" || \
-            echo "Could not merge PR #${PR_NUMBER} — needs manual merge"
+            gh pr merge "$PR_NUMBER" --squash --admin --delete-branch && echo "Merged PR #${PR_NUMBER}"
           else
             echo "gh CLI not available, trying GitHub API"
-            if curl -sf \
+            curl -sf \
               -X PUT \
               -H "Authorization: token ${GH_TOKEN}" \
               -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}/merge" \
-              -d '{"merge_method":"squash"}' 2>/dev/null; then
-              echo "Merged PR #${PR_NUMBER} via API"
-            else
-              echo "Failed to merge PR #${PR_NUMBER} — needs manual merge"
-            fi
+              "https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/merge" \
+              -d '{"merge_method":"squash"}' && echo "Merged PR #${PR_NUMBER} via API"
           fi
 
       - name: Cleanup
