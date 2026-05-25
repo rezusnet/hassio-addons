@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-05-25",
+  "paused": true,
+  "slug": "rreading-glasses",
+  "source": "dockerhub",
+  "tag_strategy": "lsio-latest",
+  "upstream_repo": "blampe/rreading-glasses",
+  "upstream_version": "latest"
+}
