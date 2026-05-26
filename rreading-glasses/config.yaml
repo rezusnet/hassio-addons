@@ -1,0 +1,47 @@
+---
+arch:
+  - aarch64
+  - amd64
+description: >-
+  Drop-in replacement for Readarr's defunct metadata service. Provides
+  GoodReads and Hardcover metadata for Readarr and its community forks.
+homeassistant: 2024.1.0
+icon: icon.png
+image: ghcr.io/rezusnet/rreading-glasses-{arch}
+init: true
+map:
+  - addon_config:rw
+  - share:rw
+name: Rreading Glasses
+options:
+  source: goodreads
+  port: 8788
+  hardcover_auth: ""
+  verbose: false
+  postgres_host: ""
+  postgres_port: 5432
+  postgres_user: rreading-glasses
+  postgres_password: ""
+  postgres_database: rreading-glasses
+  env_vars: []
+panel_icon: mdi:book-search
+ports:
+  8788/tcp: 8788
+ports_description:
+  8788/tcp: Metadata API for Readarr
+schema:
+  source: list(goodreads|hardcover)
+  port: int(1,65535)
+  hardcover_auth: password?
+  verbose: bool
+  postgres_host: str?
+  postgres_port: int(1,65535)
+  postgres_user: str
+  postgres_password: password
+  postgres_database: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+slug: rreading-glasses
+url: https://github.com/blampe/rreading-glasses
+version: "0.1.0"
