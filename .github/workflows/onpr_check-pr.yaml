@@ -277,6 +277,8 @@ jobs:
           file: ${{ matrix.addon }}/Dockerfile
           tags: test/${{ matrix.addon }}:smoke
           network: host
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           build-args: |
             BUILD_FROM=${{ steps.arch.outputs.arch == 'amd64' && steps.info.outputs.amd64_build_from || steps.info.outputs.aarch64_build_from }}
 
