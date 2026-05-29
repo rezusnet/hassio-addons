@@ -1,3 +1,7 @@
+## 4.5.10-ls194 (2026-05-29)
+
+- Update to upstream v4.5.10-ls194
+
 ## 4.5.10-ls193 (2026-05-24)
 
 - Update to upstream v4.5.10-ls193
