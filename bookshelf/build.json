@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "ghcr.io/pennydreadful/bookshelf:softcover-v0.4.20.129",
+    "amd64": "ghcr.io/pennydreadful/bookshelf:softcover-v0.4.20.129"
+  }
+}
