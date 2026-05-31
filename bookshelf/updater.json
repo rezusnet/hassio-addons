@@ -1,0 +1,10 @@
+{
+  "last_update": "2026-05-31",
+  "paused": true,
+  "slug": "bookshelf",
+  "source": "dockerhub",
+  "tag_strategy": "direct",
+  "dockerhub_tag_filter": "softcover-v",
+  "upstream_repo": "ghcr.io/pennydreadful/bookshelf",
+  "upstream_version": "softcover-v0.4.20.129"
+}
