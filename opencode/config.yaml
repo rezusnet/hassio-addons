@@ -60,4 +60,4 @@ schema:
   workspace: str
 slug: opencode
 url: https://github.com/anomalyco/opencode
-version: "pr-29948-screenshots"
+version: "1.15.13"
