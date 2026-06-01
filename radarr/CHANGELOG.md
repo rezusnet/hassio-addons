@@ -1,3 +1,7 @@
+## develop-6.2.1.10437-ls256 (2026-06-01)
+
+- Update to upstream develop-6.2.1.10437-ls256
+
 ## 6.1.1.10360-ls303 (2026-05-19)
 
 - Update to upstream 6.1.1.10360-ls303
