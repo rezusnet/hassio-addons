@@ -40,4 +40,4 @@ schema:
       value: str?
 slug: valkey8
 url: https://valkey.io
-version: "8.1.7"
+version: "8.1.8"
