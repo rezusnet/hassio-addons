@@ -28,15 +28,4 @@ fi
 
 mkdir -p "${REZUSCLOUD_DATA_DIR}"
 
-bashio::log.info "RezusCloud management plane starting"
-bashio::log.info "  WebUI:       http://localhost:3000"
-bashio::log.info "  MachineLink: :50180"
-bashio::log.info "  Provider:    :50190"
-
-if bashio::config.true 'auto_start'; then
-    bashio::log.info "Auto-start enabled, booting management cluster..."
-    rezuscloud boot --platform docker --management || bashio::log.warning "Boot command returned non-zero (may already be initialized)"
-fi
-
-bashio::log.info "Starting RezusCloud server..."
-exec rezuscloud
+bashio::log.info "RezusCloud initialization complete"
