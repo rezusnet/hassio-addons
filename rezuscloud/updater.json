@@ -1,6 +1,6 @@
 {
   "last_update": "2026-05-31",
-  "paused": true,
+  "paused": false,
   "slug": "rezuscloud",
   "source": "github",
   "tag_strategy": "direct",
