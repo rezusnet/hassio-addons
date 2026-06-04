@@ -21,20 +21,6 @@ RUN chmod +x /usr/local/bin/rezuscloud
 COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
 
-ARG MODULES="00-banner.sh 01-custom_script.sh"
-
-COPY ha_automodules.sh /ha_automodules.sh
-RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
-
-ENV PACKAGES=""
-
-COPY ha_autoapps.sh /ha_autoapps.sh
-RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh
-
-ENV S6_STAGE2_HOOK=/ha_entrypoint.sh
-COPY ha_entrypoint.sh /ha_entrypoint.sh
-RUN chmod 777 /ha_entrypoint.sh
-
 COPY bashio-standalone.sh /usr/local/lib/bashio-standalone.sh
 RUN chmod 0755 /usr/local/lib/bashio-standalone.sh
 
