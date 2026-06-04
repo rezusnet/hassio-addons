@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-05-31",
+  "paused": true,
+  "slug": "rezuscloud",
+  "source": "github",
+  "tag_strategy": "direct",
+  "upstream_repo": "rezuscloud/rezuscloud",
+  "upstream_version": "v0.0.1-35"
+}
