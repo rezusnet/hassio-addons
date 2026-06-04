@@ -78,4 +78,4 @@ schema:
 slug: filebrowser
 udev: true
 url: https://filebrowser.org
-version: "2.63.5"
+version: "2.63.10"
