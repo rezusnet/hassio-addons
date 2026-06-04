@@ -1,0 +1,15 @@
+#!/usr/bin/env bashio
+# shellcheck shell=bash disable=SC2034
+set -e
+
+bashio::log.info "RezusCloud management plane starting"
+bashio::log.info "  WebUI:       http://localhost:3000"
+bashio::log.info "  MachineLink: :50180"
+bashio::log.info "  Provider:    :50190"
+
+if bashio::config.true 'auto_start'; then
+    bashio::log.info "Auto-start enabled, booting management cluster..."
+    rezuscloud boot --platform docker --management || bashio::log.warning "Boot command returned non-zero (may already be initialized)"
+fi
+
+exec rezuscloud
