@@ -1,0 +1,57 @@
+---
+arch:
+  - aarch64
+  - amd64
+apparmor: false
+boot: manual
+description: >-
+  Personal cloud management — run Kubernetes clusters from your home. RezusCloud
+  management plane with WebUI, MachineLink, and provider gRPC.
+docker_api: true
+full_access: true
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/rezuscloud-{arch}
+ingress: true
+ingress_port: 3000
+ingress_stream: true
+init: false
+map:
+  - data:rw
+  - addon_config:rw
+name: RezusCloud
+options:
+  auto_start: false
+  join_token: ""
+  ingress_type: direct
+  backup_enabled: false
+  backup_s3_endpoint: ""
+  backup_s3_bucket: ""
+panel_admin: true
+panel_icon: mdi:cloud
+panel_title: RezusCloud
+ports:
+  3000/tcp: 3000
+  50180/tcp: 50180
+  50190/tcp: 50190
+ports_description:
+  3000/tcp: WebUI (also via ingress)
+  50180/tcp: MachineLink gRPC
+  50190/tcp: Provider gRPC
+privileged:
+  - NET_ADMIN
+  - SYS_ADMIN
+  - NET_RAW
+schema:
+  auto_start: bool
+  join_token: password?
+  ingress_type: list(direct|cloudflare|ngrok)
+  backup_enabled: bool
+  backup_s3_endpoint: str?
+  backup_s3_bucket: str?
+slug: rezuscloud
+startup: services
+url: https://github.com/rezuscloud/rezuscloud
+version: "0.0.1"
+watchdog: "http://[HOST]:[PORT:3000]/healthz"
