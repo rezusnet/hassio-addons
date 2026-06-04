@@ -16,7 +16,7 @@ image: ghcr.io/rezusnet/rezuscloud-{arch}
 ingress: true
 ingress_port: 3000
 ingress_stream: true
-init: false
+init: true
 map:
   - data:rw
   - addon_config:rw
