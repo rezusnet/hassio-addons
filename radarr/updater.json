@@ -1,10 +1,10 @@
 {
-  "last_update": "2026-06-01",
+  "last_update": "2026-06-11",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "radarr",
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-radarr",
-  "upstream_version": "develop-6.2.1.10437-ls256"
+  "upstream_version": "6.2.1.10461-ls305"
 }
