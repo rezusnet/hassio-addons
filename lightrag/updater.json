@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-11",
+  "last_update": "2026-06-14",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "lightrag",
@@ -7,5 +7,5 @@
   "tag_keep_v": true,
   "tag_strategy": "direct",
   "upstream_repo": "HKUDS/LightRAG",
-  "upstream_version": "v1.5.2"
+  "upstream_version": "v1.5.3"
 }
