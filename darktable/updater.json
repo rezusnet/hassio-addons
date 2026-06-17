@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-30",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "darktable",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-darktable",
+  "upstream_version": "25.4.1"
+}
