@@ -1,3 +1,7 @@
+## 4.1.2-r0-ls349 (2026-06-17)
+
+- Update to upstream 4.1.2-r0-ls349
+
 ## 4.1.2-r0-ls348 (2026-06-10)
 
 - Update to upstream 4.1.2-r0-ls348
