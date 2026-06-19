@@ -37,4 +37,4 @@ schema:
       value: str?
 slug: minio
 url: https://silo.pigsty.io
-version: RELEASE.2026-04-17T00-00-00Z.2
+version: "RELEASE.2026-06-18T00-00-00Z.2"
