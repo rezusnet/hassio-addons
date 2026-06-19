@@ -1,10 +1,10 @@
 {
   "build_suffix": ".2",
-  "last_update": "2026-05-10",
+  "last_update": "2026-06-19",
   "paused": false,
   "slug": "minio",
   "source": "github",
   "tag_strategy": "direct",
   "upstream_repo": "pgsty/minio",
-  "upstream_version": "RELEASE.2026-04-17T00-00-00Z"
+  "upstream_version": "RELEASE.2026-06-18T00-00-00Z"
 }

@@ -1,3 +1,7 @@
+## RELEASE.2026-06-18T00-00-00Z.2 (2026-06-19)
+
+- Update to upstream RELEASE.2026-06-18T00-00-00Z
+
 ## RELEASE.2026-04-17T00-00-00Z (2026-05-10)
 
 - Initial release based on pgsty/minio (Silo) RELEASE.2026-04-17T00-00-00Z
