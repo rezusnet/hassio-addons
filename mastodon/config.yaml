@@ -87,4 +87,4 @@ schema:
   ES_ENABLED: bool
 slug: mastodon
 url: https://joinmastodon.org
-version: "4.6.0-ls197"
+version: "4.6.1-ls198"

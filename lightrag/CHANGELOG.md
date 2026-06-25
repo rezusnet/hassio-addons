@@ -1,3 +1,7 @@
+## 1.5.4 (2026-06-25)
+
+- Update to upstream v1.5.4
+
 ## 1.5.3 (2026-06-14)
 
 - Update to upstream v1.5.3
