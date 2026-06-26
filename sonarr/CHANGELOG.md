@@ -1,3 +1,7 @@
+## develop-4.0.18.2978-ls176 (2026-06-26)
+
+- Update to upstream develop-4.0.18.2978-ls176
+
 ## develop-4.0.18.2976-ls175 (2026-06-25)
 
 - Update to upstream develop-4.0.18.2976-ls175
