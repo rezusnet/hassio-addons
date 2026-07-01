@@ -1,3 +1,7 @@
+## 4.1.3-r0-ls352 (2026-07-01)
+
+- Update to upstream 4.1.3-r0-ls352
+
 ## 4.1.2-r0-ls350 (2026-06-24)
 
 - Update to upstream 4.1.2-r0-ls350
