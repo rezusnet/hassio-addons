@@ -23,7 +23,7 @@ defaults
     timeout server  300s
 
 frontend https_in
-    bind *:443
+    bind [::]:443 v4v6
     mode tcp
     tcp-request inspect-delay 5s
     tcp-request content accept if { req_ssl_hello_type 1 }
@@ -51,7 +51,7 @@ backend default_https
     server default ${DEFAULT_HTTPS}
 
 frontend http_in
-    bind *:80
+    bind [::]:80 v4v6
     mode http
 EOF
 
