@@ -82,4 +82,4 @@ schema:
 slug: sonarr
 udev: true
 url: https://sonarr.tv
-version: "4.0.19.2979-ls316"
+version: "4.0.19.2979-ls317"
