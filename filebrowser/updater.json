@@ -1,6 +1,6 @@
 {
   "github_beta": false,
-  "last_update": "2026-06-28",
+  "last_update": "2026-07-05",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "filebrowser",
@@ -9,5 +9,5 @@
   "tag_strategy": "suffix",
   "tag_suffix": "-s6",
   "upstream_repo": "filebrowser/filebrowser",
-  "upstream_version": "v2.63.17"
+  "upstream_version": "v2.63.18"
 }
