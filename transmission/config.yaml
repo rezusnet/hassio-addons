@@ -77,4 +77,4 @@ schema:
 slug: transmission
 udev: true
 url: https://transmissionbt.com
-version: "4.1.3-r0-ls352"
+version: "4.1.3-r0-ls353"
