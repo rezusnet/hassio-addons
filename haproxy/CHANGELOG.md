@@ -1,3 +1,7 @@
+## 3.0.25 (2026-07-08)
+
+- Update to upstream v3.0.25
+
 ## 2.6.30-1 (2026-07-02)
 
 - Bind frontends on IPv6 dual-stack sockets (`[::]:80`/`[::]:443 v4v6`) so the add-on accepts IPv4 and IPv6 clients, not just IPv4

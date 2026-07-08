@@ -1,3 +1,7 @@
+## development-v1.6.0-ls800 (2026-07-08)
+
+- Update to upstream development-v1.6.0-ls800
+
 ## 1.6.0-ls354 (2026-07-05)
 
 - Update to upstream v1.6.0-ls354

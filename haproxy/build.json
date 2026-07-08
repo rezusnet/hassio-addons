@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "haproxy:2.6.30-alpine",
-    "amd64": "haproxy:2.6.30-alpine"
+    "aarch64": "haproxy:3.0.25-alpine",
+    "amd64": "haproxy:3.0.25-alpine"
   }
 }
