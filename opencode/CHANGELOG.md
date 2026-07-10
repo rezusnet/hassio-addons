@@ -1,3 +1,7 @@
+## 1.17.18 (2026-07-10)
+
+- Update to upstream v1.17.18
+
 ## 1.17.15 (2026-07-08)
 
 - Update to upstream v1.17.15
