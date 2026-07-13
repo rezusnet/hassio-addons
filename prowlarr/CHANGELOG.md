@@ -1,3 +1,7 @@
+## develop-2.5.1.5464-ls268 (2026-07-13)
+
+- Update to upstream develop-2.5.1.5464-ls268
+
 ## 2.4.0.5397-ls153 (2026-07-10)
 
 - Update to upstream 2.4.0.5397-ls153
