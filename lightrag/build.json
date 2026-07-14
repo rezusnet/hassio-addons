@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "ghcr.io/hkuds/lightrag:v1.5.4",
-    "amd64": "ghcr.io/hkuds/lightrag:v1.5.4"
+    "aarch64": "ghcr.io/hkuds/lightrag:v1.5.5rc1",
+    "amd64": "ghcr.io/hkuds/lightrag:v1.5.5rc1"
   }
 }

@@ -68,4 +68,4 @@ schema:
       value: str?
 slug: lightrag
 url: https://github.com/HKUDS/LightRAG
-version: "1.5.4"
+version: "1.5.5rc1"
