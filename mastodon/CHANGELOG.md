@@ -1,3 +1,7 @@
+## glitch-v4.6.3-ls340 (2026-07-15)
+
+- Update to upstream glitch-v4.6.3-ls340
+
 ## 4.6.3-ls200 (2026-07-04)
 
 - Update to upstream v4.6.3-ls200
