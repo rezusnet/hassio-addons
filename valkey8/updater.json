@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-03",
+  "last_update": "2026-07-22",
   "major_version": "8",
   "paused": false,
   "slug": "valkey8",
@@ -7,5 +7,5 @@
   "tag_strategy": "suffix",
   "tag_suffix": "-alpine",
   "upstream_repo": "valkey-io/valkey",
-  "upstream_version": "8.1.8"
+  "upstream_version": "8.1.9"
 }

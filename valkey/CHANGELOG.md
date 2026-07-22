@@ -1,3 +1,7 @@
+## 9.1.1 (2026-07-22)
+
+- Update to upstream 9.1.1
+
 ## 9.1.0 (2026-05-24)
 
 - Update to upstream 9.1.0
