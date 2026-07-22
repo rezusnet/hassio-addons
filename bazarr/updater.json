@@ -1,10 +1,10 @@
 {
-  "last_update": "2026-07-15",
+  "last_update": "2026-07-22",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "bazarr",
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-bazarr",
-  "upstream_version": "v1.6.0-ls355"
+  "upstream_version": "v1.6.0-ls356"
 }
