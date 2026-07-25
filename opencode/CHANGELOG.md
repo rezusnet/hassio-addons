@@ -1,3 +1,7 @@
+## 1.18.5 (2026-07-25)
+
+- Update to upstream v1.18.5
+
 ## pr-38252-videos (2026-07-22)
 
 - Update to upstream pr-38252-videos
