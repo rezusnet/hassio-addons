@@ -60,4 +60,4 @@ schema:
   workspace: str
 slug: opencode
 url: https://github.com/anomalyco/opencode
-version: "pr-38252-videos"
+version: "1.18.5"
