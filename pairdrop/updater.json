@@ -1,10 +1,10 @@
 {
-  "last_update": "2026-07-26",
+  "last_update": "2026-08-02",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "pairdrop",
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-pairdrop",
-  "upstream_version": "v1.11.2-ls142"
+  "upstream_version": "v1.11.2-ls143"
 }
