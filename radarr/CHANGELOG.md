@@ -1,3 +1,7 @@
+## 6.3.0.10514-ls313 (2026-08-03)
+
+- Update to upstream 6.3.0.10514-ls313
+
 ## develop-6.4.0.10540-ls263 (2026-08-02)
 
 - Update to upstream develop-6.4.0.10540-ls263
