@@ -1,0 +1,38 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description:
+  Knowledge base and documentation system. Organize and share documents with
+  a simple, clean interface. Perfect for internal documentation, wikis, and
+  knowledge management.
+homeassistant: 2024.1.0
+icon: icon.png
+image: ghcr.io/rezusnet/raneto-{arch}
+ingress: true
+ingress_port: 3000
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+name: Raneto
+options:
+  PGID: 0
+  PUID: 0
+  data_location: /share/raneto
+  TZ: ""
+panel_icon: mdi:book-open-page-variant
+ports:
+  3000/tcp: 3000
+ports_description:
+  3000/tcp: Web interface
+schema:
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+slug: raneto
+url: https://raneto.com
+version: "0.18.1"
