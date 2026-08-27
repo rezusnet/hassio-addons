@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "lscr.io/linuxserver/code-server:arm64v8-4.117.0",
+    "amd64": "lscr.io/linuxserver/code-server:amd64-4.117.0"
+  }
+}
