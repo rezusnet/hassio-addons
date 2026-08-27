@@ -1,0 +1,38 @@
+#include <tunables/global>
+
+profile ha_pyload-ng flags=(attach_disconnected) {
+  #include <abstractions/base>
+
+  capability setuid,
+  capability setgid,
+  capability dac_override,
+
+  /proc/sys/kernel/osrelease r,
+  /proc/sys/kernel/hostname r,
+  /proc/*/stat r,
+  /proc/*/status r,
+  /proc/meminfo r,
+  /proc/diskstats r,
+
+  /sys/kernel/debug/tracing/trace_pipe r,
+
+  /config/ r,
+  /config/** rw,
+
+  /share/ r,
+  /share/** rw,
+
+  /opt/** rw,
+
+  # Allow reading system information
+  /etc/hostname r,
+  /etc/resolv.conf r,
+
+  # Network access
+  network inet stream,
+  network inet dgram,
+  network inet6 stream,
+  network inet6 dgram,
+  network unix stream,
+  network unix dgram,
+}
