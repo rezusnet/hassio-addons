@@ -1,3 +1,7 @@
+## 4.7.0-ls210 (2026-08-28)
+
+- Update to upstream v4.7.0-ls210
+
 ## 4.7.0-ls209 (2026-08-21)
 
 - Update to upstream v4.7.0-ls209
