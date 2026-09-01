@@ -1,3 +1,7 @@
+## 8.1.10 (2026-09-01)
+
+- Update to upstream 8.1.10
+
 ## 8.1.9 (2026-07-22)
 
 - Update to upstream 8.1.9
