@@ -1,3 +1,7 @@
+## 4.1.3-r0-ls360 (2026-09-02)
+
+- Update to upstream 4.1.3-r0-ls360
+
 ## 4.1.3-r0-ls359 (2026-08-26)
 
 - Update to upstream 4.1.3-r0-ls359
