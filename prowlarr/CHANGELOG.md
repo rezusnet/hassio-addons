@@ -1,3 +1,7 @@
+## 2.5.2.5491-ls158 (2026-09-03)
+
+- Update to upstream 2.5.2.5491-ls158
+
 ## develop-2.6.3.5592-ls272 (2026-09-01)
 
 - Update to upstream develop-2.6.3.5592-ls272
