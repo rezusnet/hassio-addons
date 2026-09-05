@@ -1,3 +1,7 @@
+## 1.1.0-r2-ls42 (2026-09-05)
+
+- Update to upstream 1.1.0-r2-ls42
+
 ## 1.1.0-r2-ls41 (2026-08-22)
 
 - Update to upstream 1.1.0-r2-ls41
