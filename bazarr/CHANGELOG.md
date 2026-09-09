@@ -1,3 +1,7 @@
+## 1.6.0-ls363 (2026-09-09)
+
+- Update to upstream v1.6.0-ls363
+
 ## 1.6.0-ls362 (2026-09-02)
 
 - Update to upstream v1.6.0-ls362
