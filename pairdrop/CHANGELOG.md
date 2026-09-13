@@ -1,3 +1,7 @@
+## 1.11.2-ls144 (2026-09-13)
+
+- Update to upstream v1.11.2-ls144
+
 ## 1.11.2-ls143 (2026-08-02)
 
 - Update to upstream v1.11.2-ls143
