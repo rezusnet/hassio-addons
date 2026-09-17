@@ -1,3 +1,7 @@
+## 6.4.4.10685-ls317 (2026-09-17)
+
+- Update to upstream 6.4.4.10685-ls317
+
 ## develop-6.4.4.10684-ls267 (2026-09-15)
 
 - Update to upstream develop-6.4.4.10684-ls267
