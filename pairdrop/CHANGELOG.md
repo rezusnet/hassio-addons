@@ -1,34 +1,37 @@
+<!-- markdownlint-disable -->
+<!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
+
 ## 1.11.2-ls144 (2026-09-13)
 
-- Update to upstream v1.11.2-ls144
+Upstream image rebuild (`1.11.2-ls143` → `1.11.2-ls144`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
 
 ## 1.11.2-ls143 (2026-08-02)
 
-- Update to upstream v1.11.2-ls143
+Upstream image rebuild (`1.11.2-ls142` → `1.11.2-ls143`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
 
 ## 1.11.2-ls142 (2026-07-26)
 
-- Update to upstream v1.11.2-ls142
+Upstream image rebuild (`1.11.2-ls141` → `1.11.2-ls142`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
 
 ## 1.11.2-ls141 (2026-07-19)
 
-- Update to upstream v1.11.2-ls141
+Upstream image rebuild (`1.11.2-ls140` → `1.11.2-ls141`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
 
 ## 1.11.2-ls140 (2026-07-12)
 
-- Update to upstream v1.11.2-ls140
+Upstream image rebuild (`1.11.2-ls139` → `1.11.2-ls140`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
 
 ## 1.11.2-ls139 (2026-06-28)
 
-- Update to upstream v1.11.2-ls139
+Upstream image rebuild (`1.11.2-ls138` → `1.11.2-ls139`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
 
 ## 1.11.2-ls138 (2026-05-19)
 
-- Update to upstream v1.11.2-ls138
+Upstream image rebuild (`1.11.2-ls137` → `1.11.2-ls138`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
 
 ## 1.11.2-ls137 (2026-05-12)
 
-- Update to upstream v1.11.2-ls137
+Upstream image rebuild (`1.11.2-27` → `1.11.2-ls137`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
 
 ## 1.11.2-27 (2026-05-07)
 
@@ -172,3 +175,20 @@
 - Local disk mounting (USB, SATA, NVMe)
 - Custom environment variables
 - AppArmor profile
+
+### Upstream PairDrop 1.11.2
+
+### Enhancements
+- Speed up update process by skipping waiting and claiming currently open pages -> no need to close all tabs in order to get an update anymore
+- Update Bluesky icon from square to butterfly
+- Update node dependencies
+
+### Fixes
+- Prevent service-worker from responding with redirect (fixes #384)
+- Fix: switch off twitter button via env var not possible (#388)
+- Add missing files to paths that get cached upon sw installation
+
+### Languages
+- Translations updates from Hosted Weblate (Japanese)
+
+[Full release notes](https://github.com/schlagmichdoch/PairDrop/releases/tag/v1.11.2)

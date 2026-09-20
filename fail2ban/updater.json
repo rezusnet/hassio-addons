@@ -6,5 +6,7 @@
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-fail2ban",
-  "upstream_version": "1.1.0-r2-ls43"
+  "upstream_version": "1.1.0-r2-ls43",
+  "app_repo": "fail2ban/fail2ban",
+  "app_name": "Fail2ban"
 }

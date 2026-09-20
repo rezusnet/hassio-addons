@@ -7,5 +7,7 @@
   "source": "github",
   "tag_strategy": "dockerfile",
   "upstream_repo": "anomalyco/opencode",
-  "upstream_version": "v1.18.31"
+  "upstream_version": "v1.18.31",
+  "app_repo": "anomalyco/opencode",
+  "app_name": "OpenCode"
 }

@@ -6,5 +6,7 @@
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-radarr",
-  "upstream_version": "6.4.4.10685-ls317"
+  "upstream_version": "6.4.4.10685-ls317",
+  "app_repo": "Radarr/Radarr",
+  "app_name": "Radarr"
 }

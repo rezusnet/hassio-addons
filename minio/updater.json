@@ -1,10 +1,12 @@
 {
   "build_suffix": ".2",
-  "last_update": "2026-08-05",
+  "last_update": "2026-09-21",
   "paused": false,
   "slug": "minio",
   "source": "github",
   "tag_strategy": "direct",
-  "upstream_repo": "pgsty/minio",
-  "upstream_version": "RELEASE.2026-08-04T00-00-00Z"
+  "upstream_repo": "pgsty/silo",
+  "upstream_version": "RELEASE.2026-09-16T00-00-00Z",
+  "app_repo": "pgsty/silo",
+  "app_name": "MinIO"
 }

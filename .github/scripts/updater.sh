@@ -22,9 +22,9 @@ github_api() {
     local endpoint="$1"
     local url="https://api.github.com/${endpoint}"
     if [ -n "$GH_TOKEN" ]; then
-        curl -sfH "Authorization: token ${GH_TOKEN}" -H "Accept: application/vnd.github+json" "$url" 2> /dev/null
+        curl -sfLH "Authorization: token ${GH_TOKEN}" -H "Accept: application/vnd.github+json" "$url" 2> /dev/null
     else
-        curl -sfH "Accept: application/vnd.github+json" "$url" 2> /dev/null
+        curl -sfLH "Accept: application/vnd.github+json" "$url" 2> /dev/null
     fi
 }
 
@@ -345,6 +345,13 @@ for addon_dir in */; do
     CONFIG_EXTRACT=$(jq -r '.config_extract // ""' "$UPDATER_FILE")
     MAJOR_VERSION=$(jq -r '.major_version // ""' "$UPDATER_FILE")
     BUILD_SUFFIX=$(jq -r '.build_suffix // ""' "$UPDATER_FILE")
+    APP_REPO=$(jq -r '.app_repo // .upstream_repo // ""' "$UPDATER_FILE")
+    APP_NAME=$(jq -r '.app_name // ""' "$UPDATER_FILE")
+    CHANGELOG_URL=$(jq -r '.changelog_url // ""' "$UPDATER_FILE")
+    case "$TAG_STRATEGY" in
+        lsio-*) LSIO=true ;;
+        *) LSIO=false ;;
+    esac
 
     [ -z "$UPSTREAM_REPO" ] && {
         log "Skipping $addon_dir (no upstream_repo)"
@@ -415,6 +422,35 @@ for addon_dir in */; do
 
     echo "Updating $SLUG: ${CURRENT_VERSION:-none} → $NEW_VERSION (config: $CONFIG_VERSION)"
 
+    # Build the CHANGELOG entry from the upstream application's release notes
+    NOTES_BLOCK=""
+    NOTES_URL=""
+    if [ -n "$APP_REPO" ]; then
+        URL_FILE=$(mktemp)
+        if NOTES_BLOCK=$(python3 "$(dirname "$0")/release_notes.py" \
+            --repo "$APP_REPO" \
+            --version "$NEW_VERSION" \
+            --prev-version "$CURRENT_VERSION" \
+            --lsio "$LSIO" \
+            --build-suffix "$BUILD_SUFFIX" \
+            --app-name "$APP_NAME" \
+            --url-file "$URL_FILE" 2> /dev/null); then
+            NOTES_URL=$(cat "$URL_FILE" 2> /dev/null || true)
+        else
+            NOTES_BLOCK=""
+        fi
+        rm -f "$URL_FILE"
+    fi
+    if [ -z "$NOTES_BLOCK" ]; then
+        if [ -n "$CHANGELOG_URL" ]; then
+            NOTES_LINK=${CHANGELOG_URL//\{version\}/${NEW_VERSION_CLEAN}}
+        else
+            NOTES_LINK="https://github.com/${APP_REPO:-${UPSTREAM_REPO}}/releases"
+        fi
+        NOTES_BLOCK="- Update to upstream ${NEW_VERSION}
+- Upstream release notes: ${NOTES_LINK}"
+    fi
+
     if [ "$DRY_RUN" != "true" ]; then
         DATE=$(date '+%Y-%m-%d')
         jq --arg d "$DATE" --arg v "$NEW_VERSION" '.last_update = $d | .upstream_version = $v' "$UPDATER_FILE" > tmp.json && mv tmp.json "$UPDATER_FILE"
@@ -424,11 +460,23 @@ for addon_dir in */; do
         update_config_version "$addon_dir" "$CONFIG_VERSION"
 
         if [ -f "$addon_dir/CHANGELOG.md" ]; then
-            sed -i "1i\\## ${CONFIG_VERSION} (${DATE})\n\n- Update to upstream ${NEW_VERSION}\n" "$addon_dir/CHANGELOG.md"
+            CHANGELOG_FILE="$addon_dir/CHANGELOG.md"
+            # Keep any leading markdownlint-disable header comment on top
+            HEADER_LINES=$(awk '/^<!--/ { print; next } { exit }' "$CHANGELOG_FILE")
+            BODY_LINES=$(awk '/^<!--/ { next } { header = 1 } header { print }' "$CHANGELOG_FILE")
+            {
+                [ -n "$HEADER_LINES" ] && printf '%s\n\n' "$HEADER_LINES"
+                printf '## %s (%s)\n\n%s\n\n' "$CONFIG_VERSION" "$DATE" "$NOTES_BLOCK"
+                [ -n "$BODY_LINES" ] && printf '%s\n' "$BODY_LINES"
+            } > "${CHANGELOG_FILE}.tmp" && mv "${CHANGELOG_FILE}.tmp" "$CHANGELOG_FILE"
         fi
     fi
 
-    CHANGES="${CHANGES}- **${SLUG}**: \`${CURRENT_VERSION:-none}\` → \`${NEW_VERSION}\`\n"
+    if [ -n "$NOTES_URL" ]; then
+        CHANGES="${CHANGES}- **${SLUG}**: \`${CURRENT_VERSION:-none}\` → \`${NEW_VERSION}\` ([release notes](${NOTES_URL}))\n"
+    else
+        CHANGES="${CHANGES}- **${SLUG}**: \`${CURRENT_VERSION:-none}\` → \`${NEW_VERSION}\`\n"
+    fi
     CHANGES_COUNT=$((CHANGES_COUNT + 1))
 done
 

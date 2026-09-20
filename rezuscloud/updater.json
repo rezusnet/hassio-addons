@@ -5,5 +5,7 @@
   "source": "github",
   "tag_strategy": "direct",
   "upstream_repo": "rezuscloud/rezuscloud",
-  "upstream_version": "v0.0.1-35"
+  "upstream_version": "v0.0.1-35",
+  "app_repo": "rezuscloud/rezuscloud",
+  "app_name": "RezusCloud"
 }

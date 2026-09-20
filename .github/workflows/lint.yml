@@ -35,6 +35,9 @@ jobs:
           VALIDATE_CHECKOV: false
           VALIDATE_PYTHON_PYLINT: false
           VALIDATE_NATURAL_LANGUAGE: false
+          # CHANGELOG.md files mirror upstream release notes verbatim;
+          # prettier formatting is intentionally not applied to them.
+          VALIDATE_MARKDOWN_PRETTIER: false
           VALIDATE_TYPESCRIPT_STANDARD: false
           VALIDATE_CPP: false
           VALIDATE_CLANG_FORMAT: false

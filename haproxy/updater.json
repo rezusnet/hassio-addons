@@ -9,5 +9,8 @@
   "tag_strategy": "suffix",
   "tag_suffix": "-alpine",
   "upstream_repo": "library/haproxy",
-  "upstream_version": "v3.3.14"
+  "upstream_version": "v3.3.14",
+  "app_repo": "haproxy/haproxy",
+  "app_name": "HAProxy",
+  "changelog_url": "https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%22{version}%22"
 }

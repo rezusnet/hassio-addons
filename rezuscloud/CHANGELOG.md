@@ -1,3 +1,6 @@
+<!-- markdownlint-disable -->
+<!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
+
 ## 0.0.1 (2026-05-31)
 
 - Initial release based on RezusCloud v0.0.1-22

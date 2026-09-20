@@ -7,5 +7,7 @@
   "source": "github",
   "tag_strategy": "lsio-pinned",
   "upstream_repo": "linuxserver/docker-jellyfin",
-  "upstream_version": "10.11.8ubu2404-ls30"
+  "upstream_version": "10.11.8ubu2404-ls30",
+  "app_repo": "jellyfin/jellyfin",
+  "app_name": "Jellyfin"
 }

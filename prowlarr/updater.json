@@ -6,5 +6,7 @@
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-prowlarr",
-  "upstream_version": "2.6.5.5623-ls161"
+  "upstream_version": "2.6.5.5623-ls161",
+  "app_repo": "Prowlarr/Prowlarr",
+  "app_name": "Prowlarr"
 }

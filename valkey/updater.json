@@ -7,5 +7,7 @@
   "tag_strategy": "suffix",
   "tag_suffix": "-alpine",
   "upstream_repo": "valkey-io/valkey",
-  "upstream_version": "9.0.6"
+  "upstream_version": "9.0.6",
+  "app_repo": "valkey-io/valkey",
+  "app_name": "Valkey"
 }

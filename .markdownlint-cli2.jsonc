@@ -1,0 +1,30 @@
+{
+  "//": "CHANGELOG.md files intentionally mirror upstream release notes verbatim, so style-consistency rules are relaxed for them only.",
+  "config": {
+    "default": true,
+    "MD001": false,
+    "MD002": false,
+    "MD007": { "indent": 2 },
+    "MD012": false,
+    "MD013": false,
+    "MD025": false,
+    "MD033": false,
+    "MD041": false
+  },
+  "overrides": [
+    {
+      "files": ["**/CHANGELOG.md"],
+      "config": {
+        "MD003": false,
+        "MD004": false,
+        "MD022": false,
+        "MD024": false,
+        "MD026": false,
+        "MD030": false,
+        "MD032": false,
+        "MD034": false,
+        "MD036": false
+      }
+    }
+  ]
+}

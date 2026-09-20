@@ -5,7 +5,7 @@ The autoupdate system is a **universal, config-driven pipeline**. The CI script 
 ## How It Works
 
 1. **Daily at 03:00 UTC**, the `addons_updater.yaml` workflow runs `updater.sh`.
-2. The script iterates every `*/updater.json`, fetches the latest upstream version, compares with the current version, and writes changes to `updater.json`, `build.json`, `config.yaml`, and optionally `CHANGELOG.md`.
+2. The script iterates every `*/updater.json`, fetches the latest upstream version, compares with the current version, and writes changes to `updater.json`, `build.json`, `config.yaml`, and `CHANGELOG.md` (with the upstream application's actual release notes — see **Changelog** below).
 3. A PR is created and auto-merged via `gh pr merge --squash --admin`.
 4. The `onpush_builder.yaml` workflow detects changed `config.*` files, builds new images, and pushes to GHCR.
 
@@ -57,6 +57,30 @@ All fields are optional unless marked **required**.
 |---|---|---|
 | `upstream_version` | string | Last known upstream version. Written by the updater. Used for comparison on next run. |
 | `last_update` | string | ISO date of last update check. Written by the updater. |
+
+### Changelog
+
+| Field | Type | Default | Description |
+|---|---|---|---|
+| `app_repo` | string | `upstream_repo` | GitHub repo (`owner/name`) of the **application** the add-on packages — where release notes come from. Required for LSIO-based add-ons (their `upstream_repo` points at the image repo, which has no release notes). |
+| `app_name` | string | repo name | Human-readable name used in changelog entries (e.g. `Bazarr`). |
+| `changelog_url` | string | *(none)* | Link template used when the app has no GitHub releases. `{version}` is replaced with the version. |
+
+#### Changelog entries
+
+On every version bump the updater writes a `CHANGELOG.md` entry containing the **upstream application's actual release notes** (fetched from GitHub releases, headings demoted, bodies trimmed at ~3500 chars, with a *Full release notes* link):
+
+* Application version changed (e.g. `1.5.5-ls352` → `1.5.6-ls353`) — full upstream notes.
+* LSIO image rebuild only (`-lsNNN` bump, same app version) — one-line "rebuild, no application changes" entry.
+* No release notes available — mechanical line plus an *Upstream release notes* link (e.g. HAProxy, which announces on the mailing list instead of GitHub).
+
+`CHANGELOG.md` files start with a `<!-- markdownlint-disable -->` header: entries mirror upstream release notes verbatim, so markdown style rules are intentionally disabled for these files (prettier is skipped too, via `.prettierignore`). New entries are inserted below that header.
+
+`.github/scripts/release_notes.py` implements the lookup and rendering; `.github/scripts/backfill_changelog.py` is an idempotent one-shot tool that rewrites historical mechanical entries the same way:
+
+```bash
+GH_TOKEN=$(gh auth token) python3 .github/scripts/backfill_changelog.py [--dry-run] [--only SLUG]
+```
 
 ## Tag Strategies
 

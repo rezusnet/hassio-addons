@@ -8,5 +8,7 @@
   "tag_keep_v": false,
   "tag_strategy": "direct",
   "upstream_repo": "advplyr/audiobookshelf",
-  "upstream_version": "v2.36.1"
+  "upstream_version": "v2.36.1",
+  "app_repo": "advplyr/audiobookshelf",
+  "app_name": "Audiobookshelf"
 }

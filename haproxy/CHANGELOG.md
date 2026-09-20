@@ -1,26 +1,35 @@
+<!-- markdownlint-disable -->
+<!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
+
 ## 3.3.14 (2026-09-20)
 
-- Update to upstream v3.3.14
+- Update to upstream 3.3.14
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.3.14%22
 
 ## 3.4.4 (2026-08-31)
 
-- Update to upstream v3.4.4
+- Update to upstream 3.4.4
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.4.4%22
 
 ## 3.0.27 (2026-08-28)
 
-- Update to upstream v3.0.27
+- Update to upstream 3.0.27
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.0.27%22
 
 ## 3.0.26 (2026-07-31)
 
-- Update to upstream v3.0.26
+- Update to upstream 3.0.26
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.0.26%22
 
 ## 3.4.3 (2026-07-30)
 
-- Update to upstream v3.4.3
+- Update to upstream 3.4.3
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.4.3%22
 
 ## 3.0.25 (2026-07-08)
 
-- Update to upstream v3.0.25
+- Update to upstream 3.0.25
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.0.25%22
 
 ## 2.6.30-1 (2026-07-02)
 
@@ -28,35 +37,43 @@
 
 ## 2.6.30 (2026-06-27)
 
-- Update to upstream v2.6.30
+- Update to upstream 2.6.30
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%222.6.30%22
 
 ## 3.4.1 (2026-06-26)
 
-- Update to upstream v3.4.1
+- Update to upstream 3.4.1
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.4.1%22
 
 ## 2.8.24 (2026-06-20)
 
-- Update to upstream v2.8.24
+- Update to upstream 2.8.24
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%222.8.24%22
 
 ## 2.6.29 (2026-06-18)
 
-- Update to upstream v2.6.29
+- Update to upstream 2.6.29
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%222.6.29%22
 
 ## 3.4.0 (2026-06-04)
 
-- Update to upstream v3.4.0
+- Update to upstream 3.4.0
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.4.0%22
 
 ## 3.0.23 (2026-05-19)
 
-- Update to upstream v3.0.23
+- Update to upstream 3.0.23
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.0.23%22
 
 ## 3.3.10 (2026-05-12)
 
-- Update to upstream v3.3.10
+- Update to upstream 3.3.10
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.3.10%22
 
 ## 3.3.8 (2026-05-01)
 
-- Update to upstream v3.3.8
+- Update to upstream 3.3.8
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.3.8%22
 
 ## 3.3.7 (2026-04-25)
 

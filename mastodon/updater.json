@@ -6,5 +6,7 @@
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-mastodon",
-  "upstream_version": "v4.7.2-ls213"
+  "upstream_version": "v4.7.2-ls213",
+  "app_repo": "mastodon/mastodon",
+  "app_name": "Mastodon"
 }

@@ -6,5 +6,7 @@
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-sonarr",
-  "upstream_version": "4.0.20.3014-ls325"
+  "upstream_version": "4.0.20.3014-ls325",
+  "app_repo": "Sonarr/Sonarr",
+  "app_name": "Sonarr"
 }
