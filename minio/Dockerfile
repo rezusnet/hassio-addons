@@ -15,7 +15,9 @@ RUN apk add --no-cache \
         curl \
         nginx
 
-COPY --from=minio-source /usr/bin/minio /usr/bin/minio
+# pgsty renamed the upstream image (pgsty/minio -> pgsty/silo) and the
+# binary (minio -> silo); keep the add-on's internal name for compatibility.
+COPY --from=minio-source /usr/bin/silo /usr/bin/minio
 
 COPY rootfs/ /
 RUN find . -type f \( -name "*.sh" -o -name "run" -o -name "finish" \) -print -exec chmod +x {} \;
