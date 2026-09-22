@@ -1,6 +1,25 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.18.32 (2026-09-22)
+
+Updated to upstream OpenCode **1.18.32**:
+
+### Core
+
+### Bugfixes
+
+- Fixed Bedrock image attachments so they are only hoisted for Claude, Nova, and Llama 4 models.
+- Fixed Together AI streaming usage reporting.
+
+**Thank you to 1 community contributor:**
+- @dc85:
+  - docs: add DeepSeek V4.1 Flash to Zen (#49897)
+  - feat: add Grok 4.7 to Zen and Go (#50288)
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v1.18.32)
+
+
 ## 1.18.31 (2026-09-15)
 
 Updated to upstream OpenCode **1.18.31**:
