@@ -36,4 +36,4 @@ startup: system
 boot: auto
 url: https://openbao.org
 version: "2.6.2"
-webui: 'http://[HOST]:[PORT:8200]/'
+webui: "http://[HOST]:[PORT:8200]/"
