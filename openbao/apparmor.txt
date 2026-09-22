@@ -1,0 +1,34 @@
+#include <tunables/global>
+
+profile openbao flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+
+    capability chown,
+    capability dac_override,
+    capability dac_read_search,
+    capability fowner,
+    capability setgid,
+    capability setuid,
+    file,
+    signal,
+    network udp,
+    network tcp,
+    network dgram,
+    network inet,
+    network inet6,
+
+    /bin/** ix,
+    /usr/bin/** ix,
+    /usr/local/bin/** ix,
+    /usr/sbin/** ix,
+    /usr/lib/** ix,
+    /etc/cont-init.d/** rwix,
+    /ha_entrypoint.sh ix,
+    /init ix,
+
+    # Raft storage + config + init.json: read/write with file locking.
+    /data/** rwk,
+    /tmp/** mrkwl,
+
+    signal (receive) set=(kill,term) peer=/usr/bin/docker,
+}

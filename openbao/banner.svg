@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="320" viewBox="0 0 1024 320" role="img" aria-label="OpenBao add-on banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16222f"/>
+      <stop offset="1" stop-color="#1f3247"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="1008" height="304" rx="56" fill="url(#bg)"/>
+  <g transform="translate(160,160)">
+    <circle r="86" fill="none" stroke="#e8b64c" stroke-width="15"/>
+    <g stroke="#e8b64c" stroke-width="13">
+      <line x1="0" y1="-33" x2="0" y2="-74"/>
+      <line x1="0" y1="33" x2="0" y2="74"/>
+      <line x1="-33" y1="0" x2="-74" y2="0"/>
+      <line x1="33" y1="0" x2="74" y2="0"/>
+      <line x1="-23" y1="-23" x2="-52" y2="-52"/>
+      <line x1="23" y1="23" x2="52" y2="52"/>
+      <line x1="-23" y1="23" x2="-52" y2="52"/>
+      <line x1="23" y1="-23" x2="52" y2="-52"/>
+    </g>
+    <circle r="33" fill="#e8b64c"/>
+    <circle r="15" fill="#16222f"/>
+  </g>
+  <text x="360" y="188" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="96" font-weight="700" fill="#f5f7fa">OpenBao</text>
+  <text x="365" y="248" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="34" fill="#8fa4b8">Home Assistant add-on</text>
+</svg>
