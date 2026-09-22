@@ -1,0 +1,12 @@
+{
+  "slug": "openbao",
+  "source": "github",
+  "tag_strategy": "direct",
+  "tag_keep_v": false,
+  "upstream_repo": "openbao/openbao",
+  "upstream_version": "2.6.2",
+  "app_repo": "openbao/openbao",
+  "app_name": "OpenBao",
+  "last_update": "2026-09-22",
+  "paused": false
+}

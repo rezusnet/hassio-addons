@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "ghcr.io/openbao/openbao:2.6.2",
+    "amd64": "ghcr.io/openbao/openbao:2.6.2"
+  }
+}
