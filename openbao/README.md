@@ -46,6 +46,7 @@ storage** on your Home Assistant device (aarch64 / amd64).
 
 Maintained by [rezusnet](https://github.com/rezusnet).
 Upstream: [openbao/openbao](https://github.com/openbao/openbao) (MPL-2.0).
+Logo and banner: [openbao/artwork](https://github.com/openbao/artwork), CC-BY-4.0.
 
 ## License
 
