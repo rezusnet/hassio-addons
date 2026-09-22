@@ -1,6 +1,17 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.6.2-r2 (2026-09-23)
+
+Add-on-side revision (upstream stays **2.6.2**). The add-on options now mirror the configuration surface of the official [`openbao-helm`](https://github.com/openbao/openbao-helm) chart:
+
+- New options: `log_format`, `ui`, `default_lease_ttl`, `max_lease_ttl`, `disable_mlock`, `dev_mode`, `dev_root_token`, `extra_args`, `telemetry_prometheus_retention`, `extra_config`, `ssl`.
+- `extra_config` accepts a JSON object written as an additional server configuration file — the place for `seal` stanzas (KMS/transit auto-unseal).
+- `telemetry_prometheus_retention` exposes Prometheus metrics at `/sys/metrics?format=prometheus` without authentication.
+- New `ssl` option: native TLS listener using `/ssl/fullchain.pem` + `/ssl/privkey.pem`; certificate material is copied to `/data/openbao/tls` for the unprivileged server user and the CLI env switches to `https` + `BAO_CACERT`.
+- Healthcheck is protocol-agnostic (works with and without `ssl`).
+- DOCS.md: recipe for pinning OpenBao to the Home Assistant sidebar via `panel_iframe` (HA ingress cannot serve the OpenBao UI — absolute `/v1` API paths), plus KMS/transit auto-unseal examples.
+
 ## 2.6.2 (2026-09-22)
 
 Updated to upstream OpenBao **2.6.2**:
