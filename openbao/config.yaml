@@ -9,14 +9,27 @@ homeassistant: 2024.1.0
 icon: icon.png
 image: ghcr.io/rezusnet/openbao-{arch}
 init: true
+map:
+  - ssl:ro
 name: OpenBao
 panel_icon: mdi:vault
 options:
   log_level: info
+  log_format: standard
+  ui: true
   auto_unseal: true
+  dev_mode: false
+  dev_root_token: ""
+  disable_mlock: true
+  default_lease_ttl: "168h"
+  max_lease_ttl: "720h"
+  telemetry_prometheus_retention: ""
+  ssl: false
   audit_stdout: true
   audit_file: false
   trusted_proxies: ""
+  extra_args: []
+  extra_config: ""
   env_vars: []
 ports:
   8200/tcp: 8200
@@ -24,10 +37,22 @@ ports_description:
   8200/tcp: OpenBao API and UI
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)
+  log_format: list(standard|json)
+  ui: bool
   auto_unseal: bool
+  dev_mode: bool
+  dev_root_token: password?
+  disable_mlock: bool
+  default_lease_ttl: str?
+  max_lease_ttl: str?
+  telemetry_prometheus_retention: str?
+  ssl: bool
   audit_stdout: bool
   audit_file: bool
   trusted_proxies: str?
+  extra_args:
+    - str
+  extra_config: str?
   env_vars:
     - name: match(^[A-Za-z0-9_]+$)
       value: str?
@@ -35,5 +60,5 @@ slug: openbao
 startup: system
 boot: auto
 url: https://openbao.org
-version: "2.6.2"
+version: "2.6.2-r2"
 webui: "http://[HOST]:[PORT:8200]/"

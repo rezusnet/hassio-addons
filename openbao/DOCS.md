@@ -18,40 +18,89 @@ directory (included in Home Assistant backups).
    the unseal key, the vault data can never be decrypted again.
 4. Open the UI at `http://HOME-ASSISTANT-IP:8200` (or use the *Open Web UI*
    link) and sign in with the `root_token` from `init.json`.
-5. *Settings → Seal* shows the seal state; with the default `auto_unseal:
-   true` the vault re-unseals itself after every restart automatically.
+5. With the default `auto_unseal: true` the vault re-unseals itself after
+   every restart automatically.
 
 ## Configuration
 
-| Option | Default | Description |
-| --- | --- | --- |
-| `log_level` | `info` | Server log verbosity (`trace` … `fatal`). |
-| `auto_unseal` | `true` | Re-unseal automatically after restarts using the key from `init.json`. See the security note below. |
-| `audit_stdout` | `true` | Audit device writing to container stdout (visible in add-on logs). Declared declaratively in the server config (OpenBao 2.x no longer allows runtime audit enablement). |
-| `audit_file` | `false` | Additionally write an audit trail to `/data/openbao/logs/audit.log`. |
-| `trusted_proxies` | *(empty)* | CIDR list allowed to set `X-Forwarded-For` (relevant when fronting the UI with Nginx Proxy Manager / HAProxy). |
-| `env_vars` | *(empty)* | Extra environment variables for the server process (`BAO_*`, proxies, …). |
+Options mirror the knobs exposed by the [official OpenBao helm chart](https://github.com/openbao/openbao-helm) (`server.*` values):
 
-## The auto-unseal trade-off
+| Option | Default | Helm equivalent | Description |
+| --- | --- | --- | --- |
+| `log_level` | `info` | `server.logLevel` | Server log verbosity (`trace` … `fatal`). |
+| `log_format` | `standard` | `server.logFormat` | Log output format (`standard` or `json`). |
+| `ui` | `true` | `ui.enabled` | Serve the web UI on port 8200. |
+| `auto_unseal` | `true` | *(add-on specific)* | Re-unseal after restarts using the key from `init.json`. See the security note below. |
+| `dev_mode` | `false` | `server.dev.enabled` | In-memory ephemeral server — no init/unseal, data lost on restart. Experimenting only! |
+| `dev_root_token` | *(empty)* | `server.dev.devRootToken` | Root token for dev mode (`root` upstream default if unset). |
+| `disable_mlock` | `true` | config `disable_mlock` | Disable memory locking (leave on for containers). |
+| `default_lease_ttl` | `168h` | config `default_lease_ttl` | Default TTL for generated tokens/secrets. |
+| `max_lease_ttl` | `720h` | config `max_lease_ttl` | Maximum allowed lease TTL. |
+| `telemetry_prometheus_retention` | *(empty)* | `telemetry` stanza | Set (e.g. `30s`, `24h`) to expose Prometheus metrics at `/sys/metrics?format=prometheus` without authentication. |
+| `ssl` | `false` | TLS volume pattern | Terminate TLS natively using `/ssl/fullchain.pem` + `/ssl/privkey.pem` (enable the *SSL* map). |
+| `audit_stdout` | `true` | *(declarative audit)* | Audit device writing to container stdout (visible in add-on logs). OpenBao 2.x only supports declarative audit — the device is defined in the generated server config. |
+| `audit_file` | `false` | *(declarative audit)* | Additionally write an audit trail to `/data/openbao/logs/audit.log`. |
+| `trusted_proxies` | *(empty)* | listener `x_forwarded_for_authorized_addrs` | CIDR list allowed to set `X-Forwarded-For` (reverse proxy in front of the UI). |
+| `extra_args` | *(empty)* | `server.extraArgs` | Extra CLI arguments for `bao server`. |
+| `extra_config` | *(empty)* | `server.standalone.config` | Extra server configuration as a **JSON object** (written as an additional config file). This is where `seal` stanzas for KMS auto-unseal belong — see below. |
+| `env_vars` | *(empty)* | `server.extraEnvironmentVars` | Extra environment variables for the server process (`BAO_*`, KMS credentials, …). |
 
-A single-node vault cannot reach a quorum, so it must be unsealed with its
-key after every restart. With `auto_unseal: true` the add-on stores the
-unseal key in `/data/openbao/init.json` (permissions `0600`) on the same
-device and unseals on startup. This protects the secret data against
-application-level attacks and casual storage access, **but not against an
-attacker with full disk access**.
+## Adding OpenBao to the Home Assistant sidebar
 
-For a stricter posture set `auto_unseal: false` and unseal manually after
-each HAOS reboot or add-on restart:
+The add-on does not use HA ingress because the OpenBao UI cannot be served
+under a sub-path: its assets and API calls use absolute paths (`/ui/...`,
+`/v1/...`), which under ingress would be resolved against the Home Assistant
+frontend instead of the vault. This is a limitation of the upstream UI, not
+of the add-on.
 
-```bash
-# from any machine with the bao/vault CLI
-export BAO_ADDR="http://HOME-ASSISTANT-IP:8200"
-bao operator unseal "<unseal key from init.json>"
+To pin OpenBao to the left bar, use an **iframe panel** in your Home
+Assistant `configuration.yaml`:
+
+```yaml
+panel_iframe:
+  openbao:
+    title: OpenBao
+    icon: mdi:vault
+    url: https://bao.YOURDOMAIN.duckdns.org
 ```
 
-Either way: keep `init.json` backed up off-device. If it is lost and the
-vault is sealed, the data is unrecoverable (by design).
+If your Home Assistant frontend is served over **HTTPS** (e.g. via Nginx
+Proxy Manager + DuckDNS), the iframe URL must be HTTPS too — browsers block
+mixed content. Two supported ways:
+
+1. Enable the `ssl` option, put your certificate files in the HA `ssl`
+   folder, and point the panel at `https://HOME-ASSISTANT-IP:8200` (the
+   certificate must be valid for the name/IP you use).
+2. Front the add-on with Nginx Proxy Manager (a `bao.yourdomain` proxy host
+   → `http://HOME-ASSISTANT-IP:8200`), set `trusted_proxies` to the proxy
+   address, and point the panel at that HTTPS URL.
+
+Without HTTPS on the frontend, plain `http://HOME-ASSISTANT-IP:8200` works.
+
+## Auto-unseal via KMS / transit (`extra_config` + `env_vars`)
+
+Single-node vaults seal on every restart. Instead of the `auto_unseal`
+option (key stored next to the data), you can delegate sealing to a cloud
+KMS or another OpenBao/Vault via transit — the same way the helm chart's
+`server.standalone.config` does. Example for AWS KMS:
+
+```json
+{
+  "seal": {
+    "awskms": {
+      "region": "eu-south-1",
+      "kms_key_id": "alias/openbao-unseal"
+    }
+  }
+}
+```
+
+Put that JSON in `extra_config`, add the AWS credentials to `env_vars`
+(`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`), and set `auto_unseal: false`.
+Transit auto-unseal works the same way with a `seal "transit"` stanza plus
+`BAO_ADDR`/`BAO_TOKEN` in `env_vars`. On first start after switching, the
+vault must be re-initialized (or migrated) — a KMS-sealed vault cannot be
+unsealed with the old Shamir key.
 
 ## CLI / API usage
 
@@ -64,13 +113,14 @@ bao kv put secret/homeassistant example="value"
 bao kv get secret/homeassistant
 ```
 
+A KV-v2 secrets engine is mounted at `secret/` on first start (OpenBao 2.x
+no longer creates it automatically), so `bao kv put secret/…` works out of
+the box.
+
 ## Storage & backups
 
 - Secrets live in `/data/openbao/data` (Raft) — the add-on's private data
   directory, which is **included in Home Assistant backups**.
-- A KV-v2 secrets engine is mounted at `secret/` on first start (OpenBao 2.x
-  no longer creates it automatically), so `bao kv put secret/…` works out of
-  the box.
 - Restoring a backup restores the vault data; on start it is unsealed
   automatically (with `auto_unseal: true` and `init.json` present in the
   backup).
@@ -80,10 +130,11 @@ bao kv get secret/homeassistant
 
 ## Reverse proxy / TLS
 
-The listener is plain HTTP on port 8200 by design — terminate TLS in front
-of it (e.g. Nginx Proxy Manager). If you do, set `trusted_proxies` to your
-proxy's CIDR so client IPs in the audit log are correct. Exposing a vault
-beyond your LAN is not recommended.
+By default the listener is plain HTTP on port 8200. Enable the `ssl` option
+for native TLS via the HA `ssl` folder, or terminate TLS in front of it
+(e.g. Nginx Proxy Manager). If you do, set `trusted_proxies` to your proxy's
+CIDR so client IPs in the audit log are correct. Exposing a vault beyond
+your LAN is not recommended.
 
 ## Troubleshooting
 
@@ -93,3 +144,6 @@ beyond your LAN is not recommended.
   secrets are lost).
 - **"OpenBao API did not become ready"** — check the add-on logs above the
   error for `bao server` output; a corrupt Raft directory shows up there.
+- **"ssl is enabled but /ssl/fullchain.pem was not found"** — enable the
+  *SSL* map in the add-on configuration and place the certificate files
+  there.

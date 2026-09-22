@@ -76,9 +76,12 @@ LABEL \
     org.opencontainers.image.version="${BUILD_VERSION}"
 
 # sys/seal-status answers 200 whether sealed or not — a good liveness probe.
+# The https attempt with -k covers the ssl option; plain http is the default.
 HEALTHCHECK \
     --interval=30s \
     --retries=5 \
     --start-period=10s \
     --timeout=5s \
-    CMD curl -sf http://localhost:8200/v1/sys/seal-status || exit 1
+    CMD curl -sfk https://localhost:8200/v1/sys/seal-status \
+        || curl -sf http://localhost:8200/v1/sys/seal-status \
+        || exit 1

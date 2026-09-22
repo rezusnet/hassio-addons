@@ -8,5 +8,6 @@
   "app_repo": "openbao/openbao",
   "app_name": "OpenBao",
   "last_update": "2026-09-22",
-  "paused": false
+  "paused": false,
+  "build_suffix": "-r2"
 }
