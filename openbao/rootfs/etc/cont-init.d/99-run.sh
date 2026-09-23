@@ -273,6 +273,20 @@ if [ "${DEV_MODE}" != "true" ]; then
         fi
 
         unset BAO_TOKEN
+
+        # -------------------------------------------------------------------
+        # Publish a copy of init.json to the add-on configuration folder
+        # (/addon_configs/<slug>) so it can be viewed and backed up from the
+        # Filebrowser add-on or the Samba addon_configs share without host
+        # access. The live Raft database stays in the private data dir.
+        # -------------------------------------------------------------------
+        if [ -d /addon_configs ]; then
+            CFG_PUB="/addon_configs/2eafa696_openbao"
+            mkdir -p "${CFG_PUB}"
+            cp "${INIT_FILE}" "${CFG_PUB}/init.json"
+            chmod 600 "${CFG_PUB}/init.json"
+            bashio::log.info "init.json copy published to ${CFG_PUB}/init.json"
+        fi
     fi
 fi
 
