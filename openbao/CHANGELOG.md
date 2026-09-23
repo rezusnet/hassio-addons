@@ -1,6 +1,13 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.6.2-r3 (2026-09-23)
+
+Add-on-side revision (upstream stays **2.6.2**):
+
+- Publishes a copy of `init.json` (root token + unseal key) to the add-on configuration folder (`addon_configs/2eafa696_openbao/init.json`), so it can be viewed and backed up from the Filebrowser add-on or the Samba `addon_configs` share without host console access. The live Raft database stays in the private data directory by design.
+- New `addon_configs:rw` mapping.
+
 ## 2.6.2-r2 (2026-09-23)
 
 Add-on-side revision (upstream stays **2.6.2**). The add-on options now mirror the configuration surface of the official [`openbao-helm`](https://github.com/openbao/openbao-helm) chart:

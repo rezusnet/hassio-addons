@@ -117,6 +117,24 @@ A KV-v2 secrets engine is mounted at `secret/` on first start (OpenBao 2.x
 no longer creates it automatically), so `bao kv put secret/…` works out of
 the box.
 
+## Finding your credentials on the filesystem
+
+The add-on stores everything in its **private data directory** (`/data` in the
+container). On the host that lives under the supervisor's `apps/data` tree —
+visible only from the host console, not from other add-ons:
+
+| File | In-container | Host (HAOS console only) |
+| --- | --- | --- |
+| `init.json` (root token + unseal key) | `/data/openbao/init.json` | `/mnt/data/supervisor/apps/data/2eafa696_openbao/openbao/init.json` |
+| Raft database (the secrets) | `/data/openbao/data/` | `/mnt/data/supervisor/apps/data/2eafa696_openbao/openbao/data/` |
+
+For everyday access without the console, the add-on publishes a copy of
+`init.json` into its **add-on configuration folder** — open the *Filebrowser*
+add-on (or the Samba `addon_configs` share) and look for
+`2eafa696_openbao/init.json`. The live Raft database deliberately stays
+private: serving a live database over the file browser/SMB risks corruption.
+Use HA backups or Raft snapshots for full data backups.
+
 ## Storage & backups
 
 - Secrets live in `/data/openbao/data` (Raft) — the add-on's private data

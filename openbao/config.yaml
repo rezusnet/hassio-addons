@@ -10,6 +10,7 @@ icon: icon.png
 image: ghcr.io/rezusnet/openbao-{arch}
 init: true
 map:
+  - addon_configs:rw
   - ssl:ro
 name: OpenBao
 panel_icon: mdi:vault
@@ -60,5 +61,5 @@ slug: openbao
 startup: system
 boot: auto
 url: https://openbao.org
-version: "2.6.2-r2"
+version: "2.6.2-r3"
 webui: "http://[HOST]:[PORT:8200]/"
