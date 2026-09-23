@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.6.1-ls365 (2026-09-23)
+
+Upstream image rebuild (`v1.6.1-ls364` → `v1.6.1-ls365`) — packaging / base-image refresh, no application changes (Bazarr **1.6.1**).
+
+
 ## 1.6.1-ls364 (2026-09-15)
 
 Updated to upstream Bazarr **1.6.1** (image `1.6.1-ls364`):
