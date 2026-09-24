@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.6.5.5623-ls162 (2026-09-24)
+
+Upstream image rebuild (`2.6.5.5623-ls161` → `2.6.5.5623-ls162`) — packaging / base-image refresh, no application changes (Prowlarr **2.6.5.5623**).
+
+
 ## 2.6.5.5623-ls161 (2026-09-17)
 
 Updated to upstream Prowlarr **2.6.5.5623** (image `2.6.5.5623-ls161`):

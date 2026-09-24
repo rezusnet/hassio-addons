@@ -1,6 +1,12 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.7.0-r3 (2026-09-24)
+
+- Update to upstream v2.7.0
+- Upstream release notes: https://github.com/openbao/openbao/releases
+
+
 ## 2.6.2-r3 (2026-09-23)
 
 Add-on-side revision (upstream stays **2.6.2**):
