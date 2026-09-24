@@ -16,14 +16,14 @@ All fields are optional unless marked **required**.
 ### Identity
 
 | Field | Type | Default | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `slug` | string | *(dir name)* | Add-on directory name. Used in log messages and PR body. |
 | `repository` | string | `""` | This repo (e.g. `rezusnet/hassio-addons`). Cosmetic only — not read by the script. |
 
 ### Source Configuration
 
 | Field | Type | Default | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `source` **(required)** | string | `"github"` | Where to fetch the latest version. One of: `github`, `github_tags`, `dockerhub`. |
 | `upstream_repo` **(required)** | string | `""` | Upstream repository in `owner/repo` format (GitHub) or `org/name` format (Docker Hub). |
 | `paused` | bool | `false` | Set to `true` to skip this add-on entirely. |
@@ -31,14 +31,14 @@ All fields are optional unless marked **required**.
 ### Source-Specific Options
 
 | Field | Type | Source | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `github_beta` | bool | `github` | When `true`, fetches the single most recent release including pre-releases. When `false` (default), filters out tags containing `rc`, `beta`, `alpha`, `dev`, `pre`, or starting with `nightly`. |
 | `dockerhub_tag_filter` | string | `dockerhub` | Required substring in Docker Hub tag name (e.g. `"-alpine"`). Tags not containing this string are skipped. |
 
 ### Tag Strategy
 
 | Field | Type | Default | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `tag_strategy` **(required)** | string | `""` | How the Docker image tag is constructed. See **Tag Strategies** below. |
 | `tag_keep_v` | bool | `false` | Keep the `v` prefix from the upstream tag (e.g. `v2.0.0` stays `v2.0.0`). |
 | `tag_suffix` | string | `""` | Suffix appended to the tag (e.g. `"-alpine"`, `"-s6"`). Used by `suffix` strategy. |
@@ -47,21 +47,21 @@ All fields are optional unless marked **required**.
 ### Version Computation
 
 | Field | Type | Default | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `config_extract` | string | `""` | Set to `"semver"` to extract only `MAJOR.MINOR.PATCH` from the upstream tag (e.g. `10.11.8ubu2404-ls30` → `10.11.8`). |
 | `build_suffix` | string | `""` | Appended to the config version **without affecting upstream tracking**. See **Local Build Versioning** below. |
 
 ### Metadata
 
 | Field | Type | Description |
-|---|---|---|
+| --- | --- | --- |
 | `upstream_version` | string | Last known upstream version. Written by the updater. Used for comparison on next run. |
 | `last_update` | string | ISO date of last update check. Written by the updater. |
 
 ### Changelog
 
 | Field | Type | Default | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `app_repo` | string | `upstream_repo` | GitHub repo (`owner/name`) of the **application** the add-on packages — where release notes come from. Required for LSIO-based add-ons (their `upstream_repo` points at the image repo, which has no release notes). |
 | `app_name` | string | repo name | Human-readable name used in changelog entries (e.g. `Bazarr`). |
 | `changelog_url` | string | *(none)* | Link template used when the app has no GitHub releases. `{version}` is replaced with the version. |
@@ -126,7 +126,7 @@ This produces a config version of `1.2.3.1` — a **4-part semver** that:
 2. **Local builds** append an integer counter: `MAJOR.MINOR.PATCH.N` (e.g. `1.2.3.1`, `1.2.3.2`)
 3. **Pre-release tags** like `rc1` are handled naturally: `v1.5.0rc1` stays as-is
 4. **Non-semver tags** like MinIO's `RELEASE.2026-04-17T00-00-00Z` append the suffix directly: `RELEASE.2026-04-17T00-00-00Z.1`
-5. When the **upstream** releases a new version, the updater resets the config version to the new upstream version (without suffix). Set `build_suffix` back to `""` or increment if further local changes are needed.
+5. When the **upstream** releases a new version, the updater resets the config version to the new upstream version (without suffix) **and clears `build_suffix` automatically** — the next local change starts again at the first revision (`.1`, `-r1`, …). The suffix never survives an upstream bump.
 
 ### Workflow
 
@@ -134,7 +134,7 @@ This produces a config version of `1.2.3.1` — a **4-part semver** that:
 2. Increment `build_suffix` in `updater.json` (e.g. `""` → `".1"`, `".1"` → `".2"`)
 3. Commit and push — the builder will build the image with the new version
 4. HAOS sees the new version and pulls the image
-5. When upstream releases a new version, the updater auto-updates and the suffix is preserved until you reset it
+5. When upstream releases a new version, the updater auto-updates and **clears `build_suffix`** — your next local change starts a fresh counter at the first revision
 
 ## Adding a New Add-on
 
