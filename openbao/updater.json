@@ -4,10 +4,10 @@
   "tag_strategy": "direct",
   "tag_keep_v": false,
   "upstream_repo": "openbao/openbao",
-  "upstream_version": "2.6.2",
+  "upstream_version": "v2.7.0",
   "app_repo": "openbao/openbao",
   "app_name": "OpenBao",
-  "last_update": "2026-09-22",
+  "last_update": "2026-09-24",
   "paused": false,
   "build_suffix": "-r3"
 }
