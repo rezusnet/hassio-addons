@@ -1,10 +1,43 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
-## 2.7.0-r3 (2026-09-24)
+## 2.7.0 (2026-09-24)
 
-- Update to upstream v2.7.0
-- Upstream release notes: https://github.com/openbao/openbao/releases
+Updated to upstream OpenBao **2.7.0**:
+
+### SECURITY
+
+* agent, proxy: Ensure the quit endpoint correctly requires the `X-Vault-Request` header when specified by listener configuration. GHSA-8gmq-wv9h-fcwp. [[GH-4065](https://github.com/openbao/openbao/pull/4065)]
+* auth/cert, auth/kubernetes, auth/userpass, secrets/pki, core/policies, core/workflows: Use `ResolvePathOperation` to define canonical URLs for canonicalized resources. GHSA-fg5x-7whg-6c28. [[GH-4065](https://github.com/openbao/openbao/pull/4065)]
+* core/plugins: Ensure plugin command name is relative to `plugin_directory` prior to executing. GHSA-j6wc-jpvg-xfxq. [[GH-4065](https://github.com/openbao/openbao/pull/4065)]
+* core/plugins: Ensure writes to `sys/plugins/catalog/*` endpoints are restricted to the root namespace. GHSA-cg72-x35g-xfp8. [[GH-4065](https://github.com/openbao/openbao/pull/4065)]
+* core/policies: Ensure denied ACL policy template evaluation returns an error and is not silently dropped. GHSA-hr5j-3j78-4vh2. [[GH-4065](https://github.com/openbao/openbao/pull/4065)]
+* core/policies: Prevent cross-namespace policy resolution traversal in the LRU policy cache, allowing unintentional cross-namespace access. GHSA-mjch-vcw3-hhmf. [[GH-4065](https://github.com/openbao/openbao/pull/4065)]
+* sdk: Prevent `TypeKVPair`, `TypeHeader` from leaking malformed request data into audit logs in plaintext. GHSA-8xxq-mq9m-xmhw. [[GH-4065](https://github.com/openbao/openbao/pull/4065)]
+* secrets/pki: Forbid issuance of non-validated SANs through ACME. GHSA-x8fg-h69x-p28f. [[GH-4065](https://github.com/openbao/openbao/pull/4065)]
+* ui: Remove support for `prompt=none` redirection in the OIDC provider. GHSA-2cjw-94fw-wqjx. [[GH-4065](https://github.com/openbao/openbao/pull/4065)]
+
+### FEATURES
+
+* **External Keys**: The PKI and Transit secret engines can now use KMS plugins to perform cryptographic operations without storing key material in OpenBao. [[GH-3956](https://github.com/openbao/openbao/pull/3956)]
+  - Configure mappings to HSM or KMS-backed keys via the `/sys/external-keys` APIs and grant access to select mounts.
+  - Use the PKI engine to sign certificates &co with external private keys.
+  - Use the Transit engine to sign, verify, encrypt, and decrypt payloads with external key material.
+  - Several KMS plugins provide support:
+    - Support for PKCS#11-backed keys is included via the `kms-pkcs11` plugin available in openbao-plugins.
+    - Support for Transit-backed keys is built-in. This is similar in concept to the built-in Transit seal.
+    - Like Auto Seal support via KMS plugins, the interface is provider-agnostic: Develop plugins and enable support for additional providers at any time.
+* **ML-DSA Support in PKI**: Introduces support for the ML-DSA (NIST's FIPS 204) signature algorithm for all CA, CSR, and leaf actions. [[GH-3903](https://github.com/openbao/openbao/pull/3903)]
+  - ML-DSA is a widely standardized post-quantum cryptography (PQC) algorithm resistant to attacks from quantum computers.
+  - Note that Go's OCSP implementation does not support ML-DSA so will be unusable with ML-DSA typed issuers.
+* **ML-DSA Support in Transit**: Introduces support for the ML-DSA (NIST's FIPS 204) signature algorithm. [[GH-3909](https://github.com/openbao/openbao/pull/3909)]
+  - Generate, import, and export keys of type `mldsa-44`, `mldsa-65` and `mldsa-87`.
+  - Create and verify pure ML-DSA signatures.
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/openbao/openbao/releases/tag/v2.7.0)
+
 
 
 ## 2.6.2-r3 (2026-09-23)
