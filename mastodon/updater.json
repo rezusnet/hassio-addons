@@ -1,12 +1,12 @@
 {
-  "last_update": "2026-09-16",
+  "last_update": "2026-09-25",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "mastodon",
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-mastodon",
-  "upstream_version": "v4.7.2-ls213",
+  "upstream_version": "v4.7.2-ls214",
   "app_repo": "mastodon/mastodon",
   "app_name": "Mastodon"
 }
