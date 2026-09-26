@@ -1,6 +1,6 @@
 {
   "dockerhub_tag_filter": "-alpine",
-  "last_update": "2026-09-25",
+  "last_update": "2026-09-26",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "haproxy",
@@ -9,7 +9,7 @@
   "tag_strategy": "suffix",
   "tag_suffix": "-alpine",
   "upstream_repo": "library/haproxy",
-  "upstream_version": "v3.4.5",
+  "upstream_version": "v3.3.15",
   "app_repo": "haproxy/haproxy",
   "app_name": "HAProxy",
   "changelog_url": "https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%22{version}%22"
