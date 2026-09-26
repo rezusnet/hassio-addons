@@ -1,11 +1,15 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.0.20.3014-ls326 (2026-09-26)
+
+Upstream image rebuild (`4.0.20.3014-ls325` → `4.0.20.3014-ls326`) — packaging / base-image refresh, no application changes (Sonarr **4.0.20.3014**).
+
+
 ## 4.0.20.3014-ls325 (2026-09-17)
 
 Updated to upstream Sonarr **4.0.20.3014** (image `4.0.20.3014-ls325`):
 
-<!-- Release notes generated using configuration in .github/release.yml at cab419ade8ac7fcab5bf80394ee492abd35d5f5a -->
 
 ### What's Changed
 ### Changes
@@ -22,7 +26,6 @@ Updated to upstream Sonarr **4.0.20.3014** (image `4.0.20.3014-ls325`):
 
 Updated to upstream Sonarr **4.0.19.2979** (image `4.0.19.2979-ls324`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 4ff1b780010d3d9ec76a4864dce96b6494e9caea -->
 
 ### What's Changed
 ### Changes
@@ -37,7 +40,6 @@ Updated to upstream Sonarr **4.0.19.2979** (image `4.0.19.2979-ls324`):
 
 Updated to upstream Sonarr **4.0.20.3012** (image `develop-4.0.20.3012-ls191`):
 
-<!-- Release notes generated using configuration in .github/release.yml at cab419ade8ac7fcab5bf80394ee492abd35d5f5a -->
 
 
 
@@ -49,7 +51,6 @@ Updated to upstream Sonarr **4.0.20.3012** (image `develop-4.0.20.3012-ls191`):
 
 Updated to upstream Sonarr **4.0.19.3011** (image `develop-4.0.19.3011-ls190`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 70df99d51d45d98c40c9beeabf79724051d881e5 -->
 
 
 
@@ -61,7 +62,6 @@ Updated to upstream Sonarr **4.0.19.3011** (image `develop-4.0.19.3011-ls190`):
 
 Updated to upstream Sonarr **4.0.19.2979** (image `4.0.19.2979-ls323`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 4ff1b780010d3d9ec76a4864dce96b6494e9caea -->
 
 ### What's Changed
 ### Changes
@@ -76,7 +76,6 @@ Updated to upstream Sonarr **4.0.19.2979** (image `4.0.19.2979-ls323`):
 
 Updated to upstream Sonarr **4.0.19.3009** (image `develop-4.0.19.3009-ls189`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 980a6fc09f808a07bee8913f00f408d248b3a269 -->
 
 
 
@@ -88,7 +87,6 @@ Updated to upstream Sonarr **4.0.19.3009** (image `develop-4.0.19.3009-ls189`):
 
 Updated to upstream Sonarr **4.0.19.3008** (image `develop-4.0.19.3008-ls188`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 32a5d492c78e661d7e2e5a011433ed5c23cd22a8 -->
 
 
 
@@ -104,7 +102,6 @@ Upstream image rebuild (`4.0.19.2979-ls321` → `4.0.19.2979-ls322`) — packagi
 
 Updated to upstream Sonarr **4.0.19.2979** (image `4.0.19.2979-ls321`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 4ff1b780010d3d9ec76a4864dce96b6494e9caea -->
 
 ### What's Changed
 ### Changes
@@ -119,7 +116,6 @@ Updated to upstream Sonarr **4.0.19.2979** (image `4.0.19.2979-ls321`):
 
 Updated to upstream Sonarr **4.0.19.2997** (image `develop-4.0.19.2997-ls183`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 1a6064167622534de270b55ea46ac3112d948ef3 -->
 
 
 
@@ -131,7 +127,6 @@ Updated to upstream Sonarr **4.0.19.2997** (image `develop-4.0.19.2997-ls183`):
 
 Updated to upstream Sonarr **4.0.19.2995** (image `develop-4.0.19.2995-ls182`):
 
-<!-- Release notes generated using configuration in .github/release.yml at be1dc0374a0ce6ea23ba88cd7fb57675d5b9ea1e -->
 
 ### What's Changed
 ### Changes
@@ -146,7 +141,6 @@ Updated to upstream Sonarr **4.0.19.2995** (image `develop-4.0.19.2995-ls182`):
 
 Updated to upstream Sonarr **4.0.19.2991** (image `develop-4.0.19.2991-ls181`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 709c9f6483b6d37d6d4f29f60212cb339afddff1 -->
 
 ### What's Changed
 ### Changes
@@ -173,7 +167,6 @@ Upstream image rebuild (`4.0.19.2979-ls316` → `4.0.19.2979-ls317`) — packagi
 
 Updated to upstream Sonarr **4.0.19.2979** (image `4.0.19.2979-ls316`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 4ff1b780010d3d9ec76a4864dce96b6494e9caea -->
 
 ### What's Changed
 ### Changes
@@ -188,7 +181,6 @@ Updated to upstream Sonarr **4.0.19.2979** (image `4.0.19.2979-ls316`):
 
 Updated to upstream Sonarr **4.0.18.2978** (image `develop-4.0.18.2978-ls176`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 97d24acf06e636ddc888babc3df8f689da879304 -->
 
 ### What's Changed
 ### Changes
@@ -203,7 +195,6 @@ Updated to upstream Sonarr **4.0.18.2978** (image `develop-4.0.18.2978-ls176`):
 
 Updated to upstream Sonarr **4.0.18.2976** (image `develop-4.0.18.2976-ls175`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 34761ca2162eb45d1f207a097f0d546239665bfa -->
 
 
 
@@ -243,7 +234,6 @@ Upstream image rebuild (`4.0.17.2952` → `4.0.17.2952-ls309`) — packaging / b
 
 ### Upstream Sonarr 4.0.17.2952
 
-<!-- Release notes generated using configuration in .github/release.yml at 97e85a908d4fd37c0652dd38f462cd6ddd1fa2f6 -->
 
 
 

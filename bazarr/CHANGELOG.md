@@ -1,6 +1,29 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.6.2-ls366 (2026-09-26)
+
+Updated to upstream Bazarr **1.6.2** (image `v1.6.2-ls366`):
+
+From newest to oldest:
+- Fixed cutoff logic to correctly consider non-HI subtitles when HI is excluded in language profile for both series and movies. #3607 [7448b2a](https://github.com/morpheus65535/bazarr/commit/7448b2a7dc1a289fdc3978b782f72ecb86f8a85e)
+- Added clickable GitHub issue links to release notes by parsing #&lt;number&gt; patterns and converting them to hyperlinks [02bae52](https://github.com/morpheus65535/bazarr/commit/02bae52912867767e2b484e9408b6041d8d0450b)
+- Fixed napiprojekt to use SSL [d30a659](https://github.com/morpheus65535/bazarr/commit/d30a659d87c28fed41736b8678e186802132b861)
+- Added hash-only mode to napiprojekt provider. #3227 [3cd0600](https://github.com/morpheus65535/bazarr/commit/3cd06003e49719892a1df362fc77f4a421536933)
+- Improved subssabbz by adding a fallback to folder/file title for non-ASCII titles and prevent empty query dumps [3f012cc](https://github.com/morpheus65535/bazarr/commit/3f012ccc23f63a8bb5baff3159b9e69afc68a8b3)
+- Fixed duplicate history entries by using subquery with MIN to select single external subtitle path per episode/movie instead of joining all subtitle records. #3558 [a500741](https://github.com/morpheus65535/bazarr/commit/a500741bf2ff0d90300a3d53c224e13d7e74358b)
+- Added distinct clause to history queries to prevent duplicate entries in episode and movie subtitle history API endpoints. #3558 [f7c9919](https://github.com/morpheus65535/bazarr/commit/f7c99196424e0c06466cab36f1c762f008fa78db)
+- Added existence of subtitle in database before attempting deletion to prevent unauthorized file deletion [c76f583](https://github.com/morpheus65535/bazarr/commit/c76f5833d5c9c8ec462c593e9e0b961918cde209)
+- Added anime provider tsukihime [#3597](https://github.com/morpheus65535/bazarr/pull/3597)
+- Refactored post-processing to pass arguments as list instead of command string to prevent shell injection and fix Windows path handling. #3598 [2a9f0b3](https://github.com/morpheus65535/bazarr/commit/2a9f0b3d1d51a5979b68d3ae018aafa1c6739332)
+- Refactored post-processing placeholder replacement to use dictionary-based lookup and single regex pattern [954b47b](https://github.com/morpheus65535/bazarr/commit/954b47b11648f7b1e4d6c3339168bb573a368b33)
+- Added quality check parameters for subsync framerate-fix mode to prevent ruining correct subtitles by settings minimum score, max offset, and max framerate deviation. #3599 [bb380cf](https://github.com/morpheus65535/bazarr/commit/bb380cf9a5a097b9f701ca53144a09e187e3f845)
+- Added additional URL parameters to the generic webhook call [58e8729](https://github.com/morpheus65535/bazarr/commit/58e8729f61315aba5bda1cc5b1a47478b7ffedd6)
+- Fixed mass checkbox disabled for non srt formats [fc8ab88](https://github.com/morpheus65535/bazarr/commit/fc8ab886e35046bfbefd2b4400d2fdaad4b64883)
+
+[Full release notes](https://github.com/morpheus65535/bazarr/releases/tag/v1.6.2)
+
+
 ## 1.6.1-ls365 (2026-09-23)
 
 Upstream image rebuild (`v1.6.1-ls364` → `v1.6.1-ls365`) — packaging / base-image refresh, no application changes (Bazarr **1.6.1**).
