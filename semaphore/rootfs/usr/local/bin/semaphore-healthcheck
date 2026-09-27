@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+# Healthcheck for the Semaphore UI add-on: the listen port is configurable,
+# so read it from the managed config.json instead of hardcoding it.
+set -o pipefail
+
+PORT="$(jq -r '.port // ":3000"' /data/semaphore/config.json 2> /dev/null | tr -d ':')"
+[ -n "${PORT}" ] || PORT=3000
+
+exec curl -sf --max-time 4 "http://localhost:${PORT}/api/ping"
