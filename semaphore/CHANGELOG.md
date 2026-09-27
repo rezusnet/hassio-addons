@@ -1,6 +1,12 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.19.12-r1 (2026-09-28)
+
+Add-on-side revision (upstream stays **2.19.12**):
+
+- Fix first-run bootstrap under a real Supervisor: the bashio standalone shim is now sourced explicitly (it is a sourcing library, not a script interpreter), and the init script aborts on errors. Previously `semaphore users add` could run with an empty password when the interpreter-mode shim did not define the bashio functions.
+
 ## 2.19.12 (2026-09-28)
 
 Initial add-on release, packaging upstream Semaphore UI **2.19.12** (MIT).
