@@ -1,0 +1,59 @@
+---
+arch:
+  - aarch64
+  - amd64
+description: >-
+  Modern UI and powerful API for Ansible (MIT). Run playbooks on schedules
+  from a web interface with project/inventory/key management. Bundles
+  ansible, terraform, opentofu and terragrunt in a single image.
+homeassistant: 2024.1.0
+icon: icon.svg
+image: ghcr.io/rezusnet/semaphore-{arch}
+init: true
+name: Semaphore UI
+options:
+  admin_username: admin
+  admin_name: Semaphore Admin
+  admin_email: admin@localhost
+  admin_password: ""
+  max_parallel_tasks: 10
+  non_admin_can_create_project: false
+  password_login_disable: false
+  email_alert: false
+  email_sender: ""
+  email_host: ""
+  email_port: 587
+  email_username: ""
+  email_password: ""
+  email_secure: true
+  additional_requirements: ""
+  env_vars: []
+ports:
+  3000/tcp: 3000
+ports_description:
+  3000/tcp: Semaphore UI web interface and API
+schema:
+  admin_username: match(^[A-Za-z0-9._-]+$)
+  admin_name: str?
+  admin_email: str?
+  admin_password: password?
+  max_parallel_tasks: int(1,100)
+  non_admin_can_create_project: bool
+  password_login_disable: bool
+  email_alert: bool
+  email_sender: str?
+  email_host: str?
+  email_port: port?
+  email_username: str?
+  email_password: password?
+  email_secure: bool
+  additional_requirements: str?
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+slug: semaphore
+startup: services
+boot: auto
+url: https://semaphoreui.com
+version: "2.19.12"
+webui: "http://[HOST]:[PORT:3000]/"

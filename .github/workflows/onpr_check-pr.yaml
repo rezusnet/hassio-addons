@@ -324,7 +324,9 @@ jobs:
           if [ "${HOST_NETWORK}" = "true" ]; then
             RUN_ARGS+=("--network" "host")
           elif [ -n "${HEALTH_PORT}" ]; then
-            RUN_ARGS+=("-p" "${HEALTH_PORT}:${HEALTH_PORT}")
+            # Publish on a random loopback host port: the runner is shared,
+            # so fixed host ports can collide with other workloads.
+            RUN_ARGS+=("--publish" "127.0.0.1::${HEALTH_PORT}")
           fi
 
           # --- Capabilities from privileged field ---
@@ -390,6 +392,13 @@ jobs:
           echo "Starting container with $(echo "${RUN_ARGS[@]}" | wc -w) args..."
           docker run -d "${RUN_ARGS[@]}" "${IMAGE}"
 
+          # Resolve the ephemeral host port assigned for the health endpoint.
+          PUBLISHED_PORT=""
+          if [ -n "${HEALTH_PORT}" ]; then
+            PUBLISHED_PORT=$(docker port "smoke-${ADDON}" "${HEALTH_PORT}/tcp" 2>/dev/null | head -1 | sed 's/^.*://')
+            echo "Health endpoint: container ${HEALTH_PORT} -> host ${PUBLISHED_PORT}"
+          fi
+
           echo "Waiting for startup (max 120s)..."
           MAX_WAIT=24
           HEALTHY=false
@@ -402,8 +411,8 @@ jobs:
               exit 1
             fi
 
-            if [ -n "${HEALTH_PORT}" ]; then
-              if curl -sf -o /dev/null "http://127.0.0.1:${HEALTH_PORT}/" 2>/dev/null; then
+            if [ -n "${PUBLISHED_PORT}" ]; then
+              if curl -sf -o /dev/null "http://127.0.0.1:${PUBLISHED_PORT}/" 2>/dev/null; then
                 echo "Health check PASSED after $((i * 5))s"
                 HEALTHY=true
                 break
