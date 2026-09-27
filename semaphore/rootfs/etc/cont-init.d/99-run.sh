@@ -1,5 +1,12 @@
-#!/usr/bin/env bashio
+#!/usr/bin/env bash
 # shellcheck shell=bash disable=SC2154,SC1091
+set -e
+
+# bashio functions: always source the standalone shim directly. It is a
+# compatibility layer meant to be sourced — using it as a script
+# interpreter (shebang) only worked accidentally without a Supervisor.
+# shellcheck source=/dev/null
+source /usr/local/lib/bashio-standalone.sh
 # ==============================================================================
 # Semaphore UI add-on — bootstrap & supervision
 #   1. first run: generate config.json directly + deterministic CLI bootstrap
@@ -68,7 +75,7 @@ if [ ! -f "${CONFIG_FILE}" ]; then
     if ! bashio::config.has_value 'admin_password'; then
         ADMIN_PASSWORD="$(head -c 24 /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | head -c 24)"
         GENERATED="true"
-        bashio::log.notice "admin_password option is empty — generated a random password"
+        bashio::log.warning "admin_password option is empty — generated a random password"
     fi
 
     bashio::log.info "Creating admin user '${ADMIN_USERNAME}'"
@@ -90,7 +97,7 @@ if [ ! -f "${CONFIG_FILE}" ]; then
             echo "Log in, change the password in the UI, then delete this file."
         } > "${CRED_FILE}"
         chmod 600 "${CRED_FILE}"
-        bashio::log.notice "credentials written to ${CRED_FILE} (data/semaphore/admin_credentials.txt)"
+        bashio::log.warning "credentials written to ${CRED_FILE} (data/semaphore/admin_credentials.txt)"
     fi
     unset ADMIN_PASSWORD
 elif bashio::config.has_value 'admin_password' && [ ! -f "${CRED_FILE}" ]; then
