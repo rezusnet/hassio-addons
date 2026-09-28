@@ -1,6 +1,33 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.18.33 (2026-09-28)
+
+Updated to upstream OpenCode **1.18.33**:
+
+### Core
+
+### Bugfixes
+- Cloudflare AI Gateway models now honor provider response and stream timeouts. (@danlapid)
+- MCP browser launch failures are now reported when the launcher exits immediately.
+- Debug configuration output now redacts credentials and sensitive headers.
+- Gemini thinking defaults and effort options now match the supported controls across model generations. (@markmcd)
+
+**Thank you to 5 community contributors:**
+- @dc85:
+  - docs(web): add Claude Opus 5.5, GPT 6 Sol, and GPT 6 Luna to Zen (#50708)
+- @vglafirov:
+  - maint(gitlab): bump gitlab-ai-provider to 6.16.0 (#50742)
+- @markmcd:
+  - fix(gemini): switch thinking default logic (#50841)
+- @remorses:
+  - docs(web): link kimaki to product website (#49735)
+- @danlapid:
+  - fix(opencode): apply provider timeouts to Cloudflare AI Gateway models (#51549)
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v1.18.33)
+
+
 ## 1.18.32 (2026-09-22)
 
 Updated to upstream OpenCode **1.18.32**:
