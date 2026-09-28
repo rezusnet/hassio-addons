@@ -7,7 +7,7 @@ description: >-
   from a web interface with project/inventory/key management. Bundles
   ansible, terraform, opentofu and terragrunt in a single image.
 homeassistant: 2024.1.0
-icon: icon.svg
+icon: icon.png
 image: ghcr.io/rezusnet/semaphore-{arch}
 init: true
 name: Semaphore UI
@@ -55,5 +55,5 @@ slug: semaphore
 startup: services
 boot: auto
 url: https://semaphoreui.com
-version: "2.19.12-r1"
+version: "2.19.12-r2"
 webui: "http://[HOST]:[PORT:3000]/"
