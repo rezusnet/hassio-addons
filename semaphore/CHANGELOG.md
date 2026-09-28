@@ -1,6 +1,12 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.19.12-r2 (2026-09-28)
+
+Add-on-side revision (upstream stays **2.19.12**):
+
+- Icon now ships as PNG (256×256) like every other add-on — the SVG-only icon did not render in the Home Assistant frontend store/app pages.
+
 ## 2.19.12-r1 (2026-09-28)
 
 Add-on-side revision (upstream stays **2.19.12**):
