@@ -1,6 +1,30 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## libtorrentv1-5.2.4_v1.2.20-ls135 (2026-09-29)
+
+Updated to upstream qBittorrent **5.2.4** (image `libtorrentv1-5.2.4_v1.2.20-ls135`):
+
+- BUGFIX: Enable links in add torrent comments (TurboTheTurtle) [#24604](https://github.com/qbittorrent/qBittorrent/pull/24604)
+- BUGFIX: Resolve relative UI theme paths against config folder (vrubleg) [#24658](https://github.com/qbittorrent/qBittorrent/pull/24658)
+- BUGFIX: Fix redefined signal (glassez) [#24679](https://github.com/qbittorrent/qBittorrent/pull/24679)
+- BUGFIX: Skip processing of already being added torrent source (glassez) [#24743](https://github.com/qbittorrent/qBittorrent/pull/24743)
+- BUGFIX: Close file descriptors when starting file manager (ValdikSS) [#24761](https://github.com/qbittorrent/qBittorrent/pull/24761)
+- BUGFIX: Fix case-only renaming isn't applied (glassez) [#24852](https://github.com/qbittorrent/qBittorrent/pull/24852)
+- BUGFIX: Fix crash when second instance is started during legal notice (glassez) [#24877](https://github.com/qbittorrent/qBittorrent/pull/24877)
+- WEBUI: Add shared dialog for adding multiple torrents (Piccirello) [#24386](https://github.com/qbittorrent/qBittorrent/pull/24386)
+- WEBUI: Do not select invisible rows in dynamicTable.js (vafada) [#24725](https://github.com/qbittorrent/qBittorrent/pull/24725)
+- WEBUI: Escape add-torrent window title (RealFakeAccount) [#24726](https://github.com/qbittorrent/qBittorrent/pull/24726)
+- WEBUI: Use safe property for setting element title (Chocobo1) [#24766](https://github.com/qbittorrent/qBittorrent/pull/24766)
+- WEBUI: Only open http(s) URLs from RSS articles and search results (Piccirello) [#24790](https://github.com/qbittorrent/qBittorrent/pull/24790)
+- WEBUI: Prevent in-place corruption in DynamicTable.loadColumnsOrder() (UgurGumushan) [#24809](https://github.com/qbittorrent/qBittorrent/pull/24809)
+- WEBUI: Fixed ability to manually add peers (Chocobo1) [#24733](https://github.com/qbittorrent/qBittorrent/pull/24733)
+- WEBUI: Fixed Preferences page crash with Italian locale (Chocobo1) [#24733](https://github.com/qbittorrent/qBittorrent/pull/24733)
+- OTHER: Suppress useless compiler warning (Chocobo1) [#24814](https://github.com/qbittorrent/qBittorrent/pull/24814)
+
+[Full release notes](https://github.com/qbittorrent/qBittorrent/releases/tag/release-5.2.4)
+
+
 ## libtorrentv1-5.2.3_v1.2.20-ls134 (2026-09-28)
 
 Upstream image rebuild (`5.2.3_v2.0.15-ls478` → `libtorrentv1-5.2.3_v1.2.20-ls134`) — packaging / base-image refresh, no application changes (qBittorrent **5.2.3**).
