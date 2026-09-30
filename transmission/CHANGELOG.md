@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.1.3-r0-ls363 (2026-09-30)
+
+Upstream image rebuild (`4.1.3-r0-ls362` → `4.1.3-r0-ls363`) — packaging / base-image refresh, no application changes (Transmission **4.1.3**).
+
+
 ## 4.1.3-r0-ls362 (2026-09-16)
 
 Upstream image rebuild (`4.1.3-r0-ls361` → `4.1.3-r0-ls362`) — packaging / base-image refresh, no application changes (Transmission **4.1.3**).
