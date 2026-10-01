@@ -1,6 +1,28 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.18.34 (2026-10-01)
+
+Updated to upstream OpenCode **1.18.34**:
+
+### Core
+
+### Bugfixes
+- Send namespaced session and parent-session identity headers with model requests.
+- Re-sign locally compiled macOS binaries so they run reliably on macOS 27+. (@ryangamerdev)
+- Sign macOS CLI release binaries with a Developer ID.
+
+**Thank you to 3 community contributors:**
+- @dc85:
+  - docs(web): correct GPT 6.1 Sol cache pricing (#52176)
+- @metal-huang:
+  - fix(tui): use path.sep for plugin name extraction in /status dialog (#52328)
+- @ryangamerdev:
+  - fix(opencode): ad-hoc re-sign darwin binaries after local compile (#52183)
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v1.18.34)
+
+
 ## 1.18.33 (2026-09-28)
 
 Updated to upstream OpenCode **1.18.33**:
