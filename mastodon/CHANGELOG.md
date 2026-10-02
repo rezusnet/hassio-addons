@@ -1,6 +1,91 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.7.3-ls215 (2026-10-02)
+
+Updated to upstream Mastodon **4.7.3** (image `v4.7.3-ls215`):
+
+<h1><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./lib/assets/wordmark.dark.png?raw=true">
+  <source media="(prefers-color-scheme: light)" srcset="./lib/assets/wordmark.light.png?raw=true">
+  <img alt="Mastodon" src="./lib/assets/wordmark.light.png?raw=true" height="34">
+</picture></h1>
+
+### Upgrade overview
+
+This release contains upgrade notes that deviate from the norm:
+
+ℹ️ Requires assets recompilation
+
+For more information, view the complete release notes and scroll down to the upgrade instructions section.
+
+### Changelog
+
+### Security
+
+- Update dependencies
+
+### Added
+
+- Add logging of account data removal (#40572 by @ClearlyClaire)
+- Add link to homepage to 404 error page (#40369 by @diondiondion)
+
+### Changed
+
+- Change account self-deletion page to always ask to confirm username (#40576 and #40733 by @ClearlyClaire)
+
+### Fixed
+
+- Fix error handling for malformed webfinger subjects (#40731 by @ClearlyClaire)
+- Fix threads leak by updating dependency aws-sdk-s3
+- Fix occasional installation-time error by updating dependency yarn to v4.18.1 (#40722 by @renovate[bot])
+- Fix inconsistent horizontal page padding between profile and profile editor (#40700 by @diondiondion)
+- Fix server error on registration for wrong DOB (#40607 by @sudeeptarlekar)
+- Fix quotes disclaimer disappearing on posts with no quote (#40587 by @crafkaz)
+- Fix `POST /api/v1/accounts` still being accessible when `SSO_ACCOUNT_SIGN_UP` is set (#40681 by @ClearlyClaire)
+- Fix reported statuses not being deleted after account deletion (#40650 by @ClearlyClaire)
+- Fix mobile navigation covering up "Next step" button during onboarding (#40634 by @diondiondion)
+- Fix rate limits not normalizing submitted e-mail addresses (#40658 by @Gargron)
+- Fix moderators being able to issue a warning on moderators of higher position (#40646 by @ClearlyClaire)
+- Fix deleted-because-of-suspension accounts being marked as manually deleted (#40645 by @ClearlyClaire)
+- Fix description text overflowing on Overview landing page (#40272 by @diondiondion)
+- Fix account avatar and header descriptions not being deleted when an account is deleted (#40621 by @ClearlyClaire)
+- Fix deleted accounts not being removed from featured collections (#40623 by @ClearlyClaire)
+- Fix `PreviewCardsStatus` records not being deleted on account deletion (#40624 by @ClearlyClaire)
+- Fix z-index of PIP video player to be above the side panel (#40484 by @tribela)
+- Fix replies order (#40481 by @OmmyZhang)
+- Fix missing confirmation when leaving with an unsent post (#40478 by @crafkaz)
+- Fix email footer spacing around custom footer text (#40440 by @mjankowski)
+
+### Upgrade notes
+
+To get the code for v4.7.3, use `git fetch && git checkout v4.7.3`.
+
+> [!NOTE]
+> As always, make sure you have backups of the database before performing any upgrades. If you are using docker-compose, this is how a backup command might look: `docker exec mastodon_db_1 pg_dump -Fc -U postgres postgres > name_of_the_backup.dump`
+
+### Dependencies
+
+External dependencies have not changed since v4.6.0.
+
+- Ruby: 3.3 or newer
+- PostgreSQL: 14 or newer
+- Elasticsearch (recommended, for full-text search): 7.x (OpenSearch should also work)
+- LibreTranslate (optional, for translations): 1.3.3 or newer
+- Redis: 7.0 or newer
+- Node: 22 or newer
+- libvips: 8.13 or newer
+- FFMpeg: 5.1 or newer
+
+### Update steps
+
+The following instructions are for updating from 4.7.2.
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/mastodon/mastodon/releases/tag/v4.7.3)
+
+
 ## 4.7.2-ls214 (2026-09-25)
 
 Upstream image rebuild (`v4.7.2-ls213` → `v4.7.2-ls214`) — packaging / base-image refresh, no application changes (Mastodon **4.7.2**).
