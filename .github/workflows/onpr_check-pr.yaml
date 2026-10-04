@@ -128,6 +128,34 @@ jobs:
               errors.append("schema is required when options is defined")
           if not (addon_dir / "Dockerfile").exists():
               errors.append("Dockerfile is missing")
+
+          # Icon: native-artwork policy (CONTRIBUTING.md - icon.png).
+          # SVG does not render in the HA frontend, so a real square PNG is
+          # mandatory; parse the IHDR instead of shelling out.
+          import struct
+
+          icon_path = addon_dir / "icon.png"
+          if not icon_path.exists():
+              errors.append("icon.png is missing")
+          else:
+              data = icon_path.read_bytes()
+              if len(data) < 24 or data[:8] != b"\x89PNG\r\n\x1a\n":
+                  errors.append("icon.png is not a valid PNG (SVG does not render in the HA frontend)")
+              else:
+                  width, height = struct.unpack(">II", data[16:24])
+                  if width != height:
+                      errors.append(f"icon.png must be square, got {width}x{height}")
+                  if width < 128:
+                      errors.append(f"icon.png must be at least 128x128, got {width}x{height}")
+
+          # Changelog: every release (initial included) needs a per-version
+          # entry embedding the upstream notes (CONTRIBUTING.md - CHANGELOG.md).
+          changelog_path = addon_dir / "CHANGELOG.md"
+          if not changelog_path.exists():
+              errors.append("CHANGELOG.md is missing")
+          elif f"## {config.get('version')}" not in changelog_path.read_text():
+              errors.append(f"CHANGELOG.md has no entry for version {config.get('version')} (entries embed upstream release notes verbatim)")
+
           for e in errors:
               print(f"::error::{e}")
           if errors:
