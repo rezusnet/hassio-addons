@@ -50,7 +50,9 @@ Once lint + build pass, merge the PR. The builder workflow on master will:
 
 - Build multi-arch images
 - Push to `ghcr.io/rezusnet/<addon>-{arch}`
-- Update the CHANGELOG
+- Update the CHANGELOG (every release entry — **including the initial
+  release** — embeds the upstream release notes verbatim; see
+  [CHANGELOG.md](#changelogmd) below)
 
 ### 7. Verify
 
@@ -115,11 +117,52 @@ Keep `DOCS.md` as the full operational reference shown in the Home Assistant **D
 
 Every add-on **must** include an `icon.png` in its directory. This icon appears in the Home Assistant Add-on Store and must be:
 
-- A valid PNG image, **128x128** pixels
-- Sourced from the upstream project's official repository (e.g., `Logo/128.png` for \*arr apps)
-- Committed to the repo alongside `config.yaml` (referenced as `icon: icon.png`)
+- The **native project artwork**, sourced from an authoritative upstream asset:
+  the project's official site/press asset, the icon the upstream application
+  itself serves (favicon/app icon), or a file from the upstream repository
+  (e.g. `Logo/128.png` for \*arr apps). Never a placeholder, a redraw or a
+  lookalike — when a running instance of the app is available, verify
+  provenance (e.g. pixel-compare against the icon it serves; done for
+  authentik in #519).
+- **PNG format** — SVG does not render in the Home Assistant frontend
+  (learned in #511: an SVG-only icon showed blank in the store/app pages).
+- Square, **128x128 minimum** (the current fleet ships 128, 256 and 512;
+  256x256 RGBA renders crisply and is the preferred size for new icons).
+- Committed to the repo alongside `config.yaml` (referenced as `icon: icon.png`).
 
-Do not use placeholder or generic icons. Download the upstream branded logo at 128x128 and commit it directly.
+Do not use placeholder or generic icons. Download the native upstream artwork
+(native square resolution when available, otherwise resample preserving
+aspect) and commit it directly.
+
+### CHANGELOG.md
+
+Every release entry — **including the initial release of a new add-on** —
+embeds the **upstream application's actual release notes verbatim**
+(highlights / breaking changes / fixed sections, security notes, links to
+PRs or the upstream release page), never a summary-with-link. This is the
+same policy the auto-updater applies on version bumps
+([UPDATER.md — Changelog](.github/scripts/UPDATER.md)); the updater only
+handles bumps, so initial releases and **paused-updater add-ons** (e.g.
+authentik) embed the notes manually in the same format.
+
+House format for each entry:
+
+```markdown
+## <version> (<date>)
+
+Updated to upstream <APP> **<version>**:
+
+<upstream release notes, verbatim — headings kept, links preserved>
+
+[Full release notes](<upstream link>)
+
+### Add-on packaging
+
+<add-on-specific changes only, as a separate section>
+```
+
+`CHANGELOG.md` files start with a `<!-- markdownlint-disable -->` header and
+are exempt from prettier (see `.prettierignore`).
 
 ### config.yaml Consistency
 

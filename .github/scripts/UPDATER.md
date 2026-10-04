@@ -15,66 +15,68 @@ All fields are optional unless marked **required**.
 
 ### Identity
 
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `slug` | string | *(dir name)* | Add-on directory name. Used in log messages and PR body. |
-| `repository` | string | `""` | This repo (e.g. `rezusnet/hassio-addons`). Cosmetic only — not read by the script. |
+| Field        | Type   | Default      | Description                                                                        |
+| ------------ | ------ | ------------ | ---------------------------------------------------------------------------------- |
+| `slug`       | string | _(dir name)_ | Add-on directory name. Used in log messages and PR body.                           |
+| `repository` | string | `""`         | This repo (e.g. `rezusnet/hassio-addons`). Cosmetic only — not read by the script. |
 
 ### Source Configuration
 
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `source` **(required)** | string | `"github"` | Where to fetch the latest version. One of: `github`, `github_tags`, `dockerhub`. |
-| `upstream_repo` **(required)** | string | `""` | Upstream repository in `owner/repo` format (GitHub) or `org/name` format (Docker Hub). |
-| `paused` | bool | `false` | Set to `true` to skip this add-on entirely. |
+| Field                          | Type   | Default    | Description                                                                            |
+| ------------------------------ | ------ | ---------- | -------------------------------------------------------------------------------------- |
+| `source` **(required)**        | string | `"github"` | Where to fetch the latest version. One of: `github`, `github_tags`, `dockerhub`.       |
+| `upstream_repo` **(required)** | string | `""`       | Upstream repository in `owner/repo` format (GitHub) or `org/name` format (Docker Hub). |
+| `paused`                       | bool   | `false`    | Set to `true` to skip this add-on entirely.                                            |
 
 ### Source-Specific Options
 
-| Field | Type | Source | Description |
-| --- | --- | --- | --- |
-| `github_beta` | bool | `github` | When `true`, fetches the single most recent release including pre-releases. When `false` (default), filters out tags containing `rc`, `beta`, `alpha`, `dev`, `pre`, or starting with `nightly`. |
-| `dockerhub_tag_filter` | string | `dockerhub` | Required substring in Docker Hub tag name (e.g. `"-alpine"`). Tags not containing this string are skipped. |
+| Field                  | Type   | Source      | Description                                                                                                                                                                                      |
+| ---------------------- | ------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `github_beta`          | bool   | `github`    | When `true`, fetches the single most recent release including pre-releases. When `false` (default), filters out tags containing `rc`, `beta`, `alpha`, `dev`, `pre`, or starting with `nightly`. |
+| `dockerhub_tag_filter` | string | `dockerhub` | Required substring in Docker Hub tag name (e.g. `"-alpine"`). Tags not containing this string are skipped.                                                                                       |
 
 ### Tag Strategy
 
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `tag_strategy` **(required)** | string | `""` | How the Docker image tag is constructed. See **Tag Strategies** below. |
-| `tag_keep_v` | bool | `false` | Keep the `v` prefix from the upstream tag (e.g. `v2.0.0` stays `v2.0.0`). |
-| `tag_suffix` | string | `""` | Suffix appended to the tag (e.g. `"-alpine"`, `"-s6"`). Used by `suffix` strategy. |
-| `major_version` | string | `""` | Pin to a specific major version line (e.g. `"9"` for valkey 9.x). Tags with a different major version are skipped. |
+| Field                         | Type   | Default | Description                                                                                                        |
+| ----------------------------- | ------ | ------- | ------------------------------------------------------------------------------------------------------------------ |
+| `tag_strategy` **(required)** | string | `""`    | How the Docker image tag is constructed. See **Tag Strategies** below.                                             |
+| `tag_keep_v`                  | bool   | `false` | Keep the `v` prefix from the upstream tag (e.g. `v2.0.0` stays `v2.0.0`).                                          |
+| `tag_suffix`                  | string | `""`    | Suffix appended to the tag (e.g. `"-alpine"`, `"-s6"`). Used by `suffix` strategy.                                 |
+| `major_version`               | string | `""`    | Pin to a specific major version line (e.g. `"9"` for valkey 9.x). Tags with a different major version are skipped. |
 
 ### Version Computation
 
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `config_extract` | string | `""` | Set to `"semver"` to extract only `MAJOR.MINOR.PATCH` from the upstream tag (e.g. `10.11.8ubu2404-ls30` → `10.11.8`). |
-| `build_suffix` | string | `""` | Appended to the config version **without affecting upstream tracking**. See **Local Build Versioning** below. |
+| Field            | Type   | Default | Description                                                                                                           |
+| ---------------- | ------ | ------- | --------------------------------------------------------------------------------------------------------------------- |
+| `config_extract` | string | `""`    | Set to `"semver"` to extract only `MAJOR.MINOR.PATCH` from the upstream tag (e.g. `10.11.8ubu2404-ls30` → `10.11.8`). |
+| `build_suffix`   | string | `""`    | Appended to the config version **without affecting upstream tracking**. See **Local Build Versioning** below.         |
 
 ### Metadata
 
-| Field | Type | Description |
-| --- | --- | --- |
+| Field              | Type   | Description                                                                           |
+| ------------------ | ------ | ------------------------------------------------------------------------------------- |
 | `upstream_version` | string | Last known upstream version. Written by the updater. Used for comparison on next run. |
-| `last_update` | string | ISO date of last update check. Written by the updater. |
+| `last_update`      | string | ISO date of last update check. Written by the updater.                                |
 
 ### Changelog
 
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `app_repo` | string | `upstream_repo` | GitHub repo (`owner/name`) of the **application** the add-on packages — where release notes come from. Required for LSIO-based add-ons (their `upstream_repo` points at the image repo, which has no release notes). |
-| `app_name` | string | repo name | Human-readable name used in changelog entries (e.g. `Bazarr`). |
-| `changelog_url` | string | *(none)* | Link template used when the app has no GitHub releases. `{version}` is replaced with the version. |
+| Field           | Type   | Default         | Description                                                                                                                                                                                                          |
+| --------------- | ------ | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `app_repo`      | string | `upstream_repo` | GitHub repo (`owner/name`) of the **application** the add-on packages — where release notes come from. Required for LSIO-based add-ons (their `upstream_repo` points at the image repo, which has no release notes). |
+| `app_name`      | string | repo name       | Human-readable name used in changelog entries (e.g. `Bazarr`).                                                                                                                                                       |
+| `changelog_url` | string | _(none)_        | Link template used when the app has no GitHub releases. `{version}` is replaced with the version.                                                                                                                    |
 
 #### Changelog entries
 
-On every version bump the updater writes a `CHANGELOG.md` entry containing the **upstream application's actual release notes** (fetched from GitHub releases, headings demoted, bodies trimmed at ~3500 chars, with a *Full release notes* link):
+On every version bump the updater writes a `CHANGELOG.md` entry containing the **upstream application's actual release notes** (fetched from GitHub releases, headings demoted, bodies trimmed at ~3500 chars, with a _Full release notes_ link):
 
-* Application version changed (e.g. `1.5.5-ls352` → `1.5.6-ls353`) — full upstream notes.
-* LSIO image rebuild only (`-lsNNN` bump, same app version) — one-line "rebuild, no application changes" entry.
-* No release notes available — mechanical line plus an *Upstream release notes* link (e.g. HAProxy, which announces on the mailing list instead of GitHub).
+- Application version changed (e.g. `1.5.5-ls352` → `1.5.6-ls353`) — full upstream notes.
+- LSIO image rebuild only (`-lsNNN` bump, same app version) — one-line "rebuild, no application changes" entry.
+- No release notes available — mechanical line plus an _Upstream release notes_ link (e.g. HAProxy, which announces on the mailing list instead of GitHub).
 
 `CHANGELOG.md` files start with a `<!-- markdownlint-disable -->` header: entries mirror upstream release notes verbatim, so markdown style rules are intentionally disabled for these files (prettier is skipped too, via `.prettierignore`). New entries are inserted below that header.
+
+**Initial releases and paused add-ons**: the updater only handles bumps — the initial release entry of a new add-on, and every bump of a `paused` add-on (e.g. authentik, pinned for version lockstep), embeds the upstream notes manually in the same format (house spec: `CONTRIBUTING.md` → _CHANGELOG.md_).
 
 `.github/scripts/release_notes.py` implements the lookup and rendering; `.github/scripts/backfill_changelog.py` is an idempotent one-shot tool that rewrites historical mechanical entries the same way:
 
@@ -84,13 +86,13 @@ GH_TOKEN=$(gh auth token) python3 .github/scripts/backfill_changelog.py [--dry-r
 
 ## Tag Strategies
 
-| Strategy | `build.json` updated? | Tag format | Use case |
-|---|---|---|---|
-| `lsio-latest` | No (uses `:latest`) | `lscr.io/<repo>:latest` | LSIO add-ons that always pull latest image |
-| `lsio-pinned` | Yes | `lscr.io/<repo>:arm64v8-<ver>` / `amd64-<ver>` | LSIO add-ons with pinned version tags |
-| `direct` | Yes | `<repo>:<ver>` | Direct image reference, both archs share same tag |
-| `suffix` | Yes | `<repo>:<ver><suffix>` | Tags with a suffix like `-alpine`, `-s6` |
-| `dockerfile` | No | N/A | Version is embedded in the Dockerfile itself (e.g. via build-arg) |
+| Strategy      | `build.json` updated? | Tag format                                     | Use case                                                          |
+| ------------- | --------------------- | ---------------------------------------------- | ----------------------------------------------------------------- |
+| `lsio-latest` | No (uses `:latest`)   | `lscr.io/<repo>:latest`                        | LSIO add-ons that always pull latest image                        |
+| `lsio-pinned` | Yes                   | `lscr.io/<repo>:arm64v8-<ver>` / `amd64-<ver>` | LSIO add-ons with pinned version tags                             |
+| `direct`      | Yes                   | `<repo>:<ver>`                                 | Direct image reference, both archs share same tag                 |
+| `suffix`      | Yes                   | `<repo>:<ver><suffix>`                         | Tags with a suffix like `-alpine`, `-s6`                          |
+| `dockerfile`  | No                    | N/A                                            | Version is embedded in the Dockerfile itself (e.g. via build-arg) |
 
 ## Local Build Versioning
 
@@ -99,6 +101,7 @@ When you make a **local change** to an add-on (nginx config fix, startup script 
 ### The Problem
 
 If the upstream is at `1.2.3` and you locally change `config.yaml` to `1.2.4` to force a pull, the updater will see:
+
 - Upstream latest: `1.2.3`
 - Your config: `1.2.4`
 - It won't update because `1.2.4 > 1.2.3`, and when upstream releases `1.2.4` for real, you're already on it — the update is silently skipped.
@@ -116,6 +119,7 @@ Use the `build_suffix` field in `updater.json` to append a local build counter:
 ```
 
 This produces a config version of `1.2.3.1` — a **4-part semver** that:
+
 - Is **greater than** `1.2.3`, so HAOS sees it as a new version and pulls the image
 - Does **not conflict** with upstream `1.2.4` when it's released (the updater will correctly detect `1.2.4 > 1.2.3` and update)
 - Preserves the upstream version in `upstream_version` for accurate comparison
