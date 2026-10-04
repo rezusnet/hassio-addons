@@ -1,0 +1,13 @@
+{
+  "slug": "authentik",
+  "source": "github",
+  "tag_strategy": "direct",
+  "tag_keep_v": false,
+  "upstream_repo": "goauthentik/authentik",
+  "upstream_version": "2026.5.3",
+  "app_repo": "goauthentik/authentik",
+  "app_name": "Authentik",
+  "last_update": "2026-10-05",
+  "paused": true,
+  "build_suffix": ""
+}
