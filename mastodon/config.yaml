@@ -87,4 +87,4 @@ schema:
   ES_ENABLED: bool
 slug: mastodon
 url: https://joinmastodon.org
-version: "4.7.3-ls215"
+version: "glitch-v4.7.3-ls354"
