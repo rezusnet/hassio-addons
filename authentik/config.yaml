@@ -1,0 +1,49 @@
+arch:
+  - aarch64
+  - amd64
+description: >-
+  Open-source identity provider: SSO, authentication, authorization with
+  OIDC, SAML, LDAP, SCIM and RADIUS outposts. Self-contained add-on
+  (PostgreSQL 17 + server + worker pinned to the upstream release).
+homeassistant: 2024.1.0
+icon: icon.png
+image: ghcr.io/rezusnet/authentik-{arch}
+init: true
+name: Authentik
+options:
+  admin_email: admin@localhost
+  admin_password: ""
+  email_host: ""
+  email_port: 587
+  email_username: ""
+  email_password: ""
+  email_from: ""
+  email_use_tls: true
+  email_use_ssl: false
+  error_reporting: false
+  env_vars: []
+ports:
+  9000/tcp: 9000
+ports_description:
+  9000/tcp: Authentik web interface (http) and API
+schema:
+  admin_email: str?
+  admin_password: password?
+  email_host: str?
+  email_port: port?
+  email_username: str?
+  email_password: password?
+  email_from: str?
+  email_use_tls: bool
+  email_use_ssl: bool
+  error_reporting: bool
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+slug: authentik
+startup: services
+boot: auto
+watchdog: true
+url: https://goauthentik.io
+version: "2026.5.3"
+webui: "http://[HOST]:[PORT:9000]/"

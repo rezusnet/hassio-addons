@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="384" viewBox="0 0 1280 384">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="384" fill="url(#bg)"/>
+  <g transform="translate(96,96) scale(4)">
+    <rect x="8" y="18" width="32" height="24" rx="4" fill="none" stroke="#fd4b2d" stroke-width="4"/>
+    <path d="M24 18 V8" stroke="#94a3b8" stroke-width="4" fill="none"/>
+    <circle cx="24" cy="6" r="4" fill="none" stroke="#94a3b8" stroke-width="3"/>
+    <circle cx="18" cy="30" r="3" fill="#38bdf8"/>
+    <circle cx="30" cy="30" r="3" fill="#38bdf8"/>
+  </g>
+  <text x="320" y="196" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" font-size="72" font-weight="700" fill="#f8fafc">Authentik</text>
+  <text x="324" y="252" font-family="ui-monospace,'JetBrains Mono',monospace" font-size="30" fill="#fd4b2d">identity provider for home assistant</text>
+  <text x="324" y="296" font-family="ui-monospace,'JetBrains Mono',monospace" font-size="22" fill="#64748b">OIDC · SAML · LDAP · SCIM · RADIUS · proxy outposts</text>
+</svg>
