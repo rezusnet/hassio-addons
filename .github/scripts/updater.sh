@@ -397,6 +397,11 @@ for addon_dir in */; do
         continue
     }
 
+    # Normalize slash-prefixed release tags (e.g. goauthentik tags releases
+    # as "version/2026.5.3" while the image tag is "2026.5.3"). Plain tags
+    # and v-prefixed tags are unaffected.
+    NEW_VERSION="${NEW_VERSION##*/}"
+
     CURRENT_VERSION_CLEAN="${CURRENT_VERSION#v}"
     NEW_VERSION_CLEAN="${NEW_VERSION#v}"
 
