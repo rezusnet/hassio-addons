@@ -1,0 +1,48 @@
+arch:
+  - aarch64
+  - amd64
+description: >-
+  Single sign-on and multi-factor portal for web apps: forward-auth for
+  reverse proxies, OpenID Certified OIDC provider, TOTP/WebAuthn 2FA and
+  granular access-control rules. Self-contained (SQLite storage, no Redis).
+homeassistant: 2024.1.0
+icon: icon.png
+image: ghcr.io/rezusnet/authelia-{arch}
+init: true
+name: Authelia
+options:
+  session_domain: example.com
+  authelia_url: https://auth.example.com
+  default_redirection_url: ""
+  theme: auto
+  log_level: info
+  default_policy: one_factor
+  users: []
+  env_vars: []
+ports:
+  9091/tcp: 9091
+ports_description:
+  9091/tcp: Authelia web portal and API (http)
+schema:
+  session_domain: str
+  authelia_url: str
+  default_redirection_url: str?
+  theme: list(auto|grey|dark|light)
+  log_level: list(trace|debug|info|warn|error)
+  default_policy: list(bypass|one_factor|two_factor|deny)
+  users:
+    - username: str
+      password: password
+      email: str?
+      groups:
+        - str?
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+slug: authelia
+startup: services
+boot: auto
+watchdog: "http://[HOST]:9091/api/health"
+url: https://www.authelia.com
+version: "4.39.28"
+webui: "http://[HOST]:[PORT:9091]/"

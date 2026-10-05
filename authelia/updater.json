@@ -1,0 +1,12 @@
+{
+  "slug": "authelia",
+  "source": "github",
+  "tag_strategy": "direct",
+  "tag_keep_v": false,
+  "upstream_repo": "authelia/authelia",
+  "upstream_version": "4.39.28",
+  "app_repo": "authelia/authelia",
+  "app_name": "Authelia",
+  "last_update": "2026-10-05",
+  "paused": false
+}
