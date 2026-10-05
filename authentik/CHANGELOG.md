@@ -1,6 +1,22 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2026.5.3-r2 (2026-10-05)
+
+Add-on-side revision (upstream stays **2026.5.3**):
+
+- **External database support**: new `postgres_host`/`postgres_port`/`postgres_user`/
+  `postgres_password`/`postgres_db` options. When `postgres_host` is set the add-on
+  skips the embedded PostgreSQL cluster entirely and uses the external server —
+  e.g. the [postgres_17 add-on](https://github.com/alexbelgium/hassio-addons/tree/master/postgres_17)
+  running on the same box (host = your HAOS IP, port 5432). The database is
+  auto-created if missing; TLS/extra connection options can be set via `env_vars`
+  (e.g. `AUTHENTIK_POSTGRESQL__SSLMODE`).
+- Bootstrap hardening: `akadmin` bootstrap is now applied **only when the target
+  schema is empty** (detected via the `authentik_user` table), in both embedded
+  and external mode — pointing the add-on at an already-initialized database can
+  no longer reset the admin password.
+
 ## 2026.5.3-r1 (2026-10-05)
 
 Add-on-side revision (upstream stays **2026.5.3**):

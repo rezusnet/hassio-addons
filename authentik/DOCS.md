@@ -5,7 +5,8 @@ exact upstream release. One container runs:
 
 - **PostgreSQL 17** (Debian packages) — cluster in `/data/postgresql`,
   listening on `127.0.0.1:5432` inside the container only (local `trust`
-  auth; the database is not reachable from outside the container).
+  auth; the database is not reachable from outside the container). **Or an
+  external PostgreSQL server when configured** (see below).
 - **authentik server** (`ak server`) — web UI and API on container port
   `9000` (http).
 - **authentik worker** (`ak worker`) — background tasks and scheduled jobs.
@@ -13,12 +14,46 @@ exact upstream release. One container runs:
 authentik 2026.x has **no Redis dependency** — the task queue is dramatiq
 with a PostgreSQL-backed broker (this matches the reference compose shipped
 inside the upstream image). The supervisor restarts the whole add-on (via
-the HAOS watchdog) if either authentik process dies.
+the HAOS watchdog health endpoint) if either authentik process dies.
+
+## External database
+
+By default the add-on is self-contained (embedded PostgreSQL). To use an
+external PostgreSQL server instead, set `postgres_host` — the embedded
+cluster is then skipped entirely:
+
+| Option              | Default     | Description                                                                     |
+| ------------------- | ----------- | ------------------------------------------------------------------------------- |
+| `postgres_host`     | _(empty)_   | Empty = embedded mode. Set to the server's hostname/IP to enable external mode. |
+| `postgres_port`     | `5432`      | Server port.                                                                    |
+| `postgres_user`     | _(empty)_   | Role with `CREATEDB` (or superuser) privileges.                                 |
+| `postgres_password` | _(empty)_   | Role password.                                                                  |
+| `postgres_db`       | `authentik` | Database name — **auto-created if missing**.                                    |
+
+Baseline pairing: the
+[postgres_17 add-on](https://github.com/alexbelgium/hassio-addons/tree/master/postgres_17)
+on the same box — set `POSTGRES_PASSWORD` there, then here:
+`postgres_host` = your HAOS IP (e.g. `192.168.7.2`), `postgres_port` = `5432`,
+`postgres_user` = `postgres`, `postgres_password` = the password you set,
+`postgres_db` = `authentik`.
+
+Notes:
+
+- Bootstrap (akadmin creation) happens **only when the target schema is
+  empty** — pointing the add-on at an already-initialized database never
+  resets the admin password. To re-bootstrap, start from an empty database.
+- Extra connection settings (e.g. `AUTHENTIK_POSTGRESQL__SSLMODE=require`)
+  can be passed via the `env_vars` option.
+- Backups: with an external database, the data lives in that server's
+  storage — include it in your backup strategy (postgres_17 stores under
+  its own `/config`, covered by HA backups).
+- Migrations run on the first boot against the database; the authentik
+  version must match (or be newer than) the version that last wrote it.
 
 ## Options
 
 | Option            | Default           | Description                                                                                                                                                 |
-|-------------------|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `admin_email`     | `admin@localhost` | Email for the `akadmin` user — **first run only**.                                                                                                          |
 | `admin_password`  | **(empty)**       | Password for `akadmin`. Empty → auto-generated and written to `data/authentik/admin_credentials.txt`. **First run only.**                                   |
 | `email_host`      | **(empty)**       | SMTP server for authentik notifications. Set to enable email.                                                                                               |
@@ -63,7 +98,7 @@ the issuer URL of every provider is derived from it.
 ## Storage layout
 
 | Path                                    | Contents                                           |
-|-----------------------------------------|----------------------------------------------------|
+| --------------------------------------- | -------------------------------------------------- |
 | `/data/postgresql/`                     | PostgreSQL cluster (all authentik state)           |
 | `/data/authentik/secret_key`            | `AUTHENTIK_SECRET_KEY` (token/session signing)     |
 | `/data/authentik/admin_credentials.txt` | First-run `akadmin` credentials (delete after use) |
@@ -100,7 +135,7 @@ hostname). For that role:
 - the PostgreSQL data directory is a stock cluster — it can be replaced by
   a streaming replica (same major version or newer on the subscriber),
 - the issuer hostname must be the same on both sites; OIDC clients and
-  issued tokens embed it, so a second hostname is *not* a drop-in failover.
+  issued tokens embed it, so a second hostname is _not_ a drop-in failover.
 
 Standalone use (no cluster) is fully supported — the add-on is
 self-contained.

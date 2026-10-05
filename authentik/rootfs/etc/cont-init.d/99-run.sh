@@ -10,8 +10,13 @@ source /usr/local/lib/bashio-standalone.sh
 # Authentik add-on — bootstrap & supervision
 #   authentik 2026.x needs only PostgreSQL (task queue = dramatiq with a
 #   PG-backed broker; no Redis — see the image's own reference compose).
-#   1. first run: initdb into /data, generate secret key + akadmin password
-#   2. every run: local PostgreSQL up, apply options as AUTHENTIK_* env
+#   1. database: embedded PostgreSQL cluster in /data (default) or an
+#      external server when the postgres_host option is set (e.g. the
+#      alexbelgium postgres_17 add-on) — the database is auto-created if
+#      missing
+#   2. bootstrap: akadmin credentials are applied only when the target
+#      schema is empty (authentik_user table absent), so pointing the
+#      add-on at an already-initialized database can never reset akadmin
 #   3. supervise `ak server` + `ak worker` as user 1000 (the ak wrapper
 #      skips its chown/chpst dance when not run as root)
 # ==============================================================================
@@ -24,25 +29,31 @@ SECRET_KEY_FILE="${AK_DATA}/secret_key"
 CREDS_FILE="${AK_DATA}/admin_credentials.txt"
 BOOTSTRAP_MARK="${AK_DATA}/.bootstrapped"
 
-mkdir -p "${PG_DATA}" "${AK_DATA}"
-# /data must be traversable by postgres and writable by the authentik
-# user (upstream writes state directly under /data).
-chown 1000:0 /data
-chown postgres:postgres "${PG_DATA}"
-chmod 700 "${PG_DATA}"
-chown -R 1000:0 "${AK_DATA}"
-touch "${PG_LOG}"
-chown postgres:postgres "${PG_LOG}"
+if bashio::config.has_value 'postgres_host'; then
+    EXTERNAL_DB=true
+else
+    EXTERNAL_DB=false
+fi
 
-# ---------------------------------------------------------------- #
-# First run: PostgreSQL cluster + authentik secrets
-# ---------------------------------------------------------------- #
-if [ ! -f "${PG_DATA}/PG_VERSION" ]; then
-    bashio::log.info "Initializing PostgreSQL cluster in ${PG_DATA}"
-    # Local-only trust auth: PostgreSQL listens on 127.0.0.1 inside this
-    # container only; the role owns the instance from the start.
-    runuser -u postgres -- "${PG_BIN}/initdb" -D "${PG_DATA}" -U authentik \
-        -E UTF8 --locale=C.UTF-8 -A trust > /dev/null
+mkdir -p "${AK_DATA}"
+# /data must be writable by the authentik user (upstream writes state
+# directly under /data).
+chown 1000:0 /data
+chown -R 1000:0 "${AK_DATA}"
+
+if [ "${EXTERNAL_DB}" != "true" ]; then
+    mkdir -p "${PG_DATA}"
+    chown postgres:postgres "${PG_DATA}"
+    chmod 700 "${PG_DATA}"
+    touch "${PG_LOG}"
+    chown postgres:postgres "${PG_LOG}"
+    if [ ! -f "${PG_DATA}/PG_VERSION" ]; then
+        bashio::log.info "Initializing embedded PostgreSQL cluster in ${PG_DATA}"
+        # Local-only trust auth: PostgreSQL listens on 127.0.0.1 inside this
+        # container only; the role owns the instance from the start.
+        runuser -u postgres -- "${PG_BIN}/initdb" -D "${PG_DATA}" -U authentik \
+            -E UTF8 --locale=C.UTF-8 -A trust > /dev/null
+    fi
 fi
 
 if [ ! -f "${SECRET_KEY_FILE}" ]; then
@@ -53,9 +64,78 @@ if [ ! -f "${SECRET_KEY_FILE}" ]; then
     bashio::log.info "Generated authentik secret key"
 fi
 
+# ---------------------------------------------------------------- #
+# Database up + database present
+# ---------------------------------------------------------------- #
+PSQL="${PG_BIN}/psql"
+if [ "${EXTERNAL_DB}" = "true" ]; then
+    DB_HOST="$(bashio::config 'postgres_host')"
+    DB_PORT="$(bashio::config 'postgres_port')"
+    DB_USER="$(bashio::config 'postgres_user')"
+    DB_PASS="$(bashio::config 'postgres_password')"
+    DB_NAME="$(bashio::config 'postgres_db')"
+    export PGPASSWORD="${DB_PASS}"
+    PSQL_ARGS=(-h "${DB_HOST}" -p "${DB_PORT}" -U "${DB_USER}")
+
+    bashio::log.info "Using external PostgreSQL at ${DB_HOST}:${DB_PORT} (db: ${DB_NAME})"
+    for _ in $(seq 1 30); do
+        if "${PG_BIN}/pg_isready" "${PSQL_ARGS[@]}" -d postgres > /dev/null 2>&1; then
+            break
+        fi
+        sleep 2
+    done
+    if ! "${PG_BIN}/pg_isready" "${PSQL_ARGS[@]}" -d postgres > /dev/null 2>&1; then
+        bashio::exit.nok "external PostgreSQL at ${DB_HOST}:${DB_PORT} is not reachable"
+    fi
+
+    if ! "${PSQL}" "${PSQL_ARGS[@]}" -d postgres -tAc \
+        "SELECT 1 FROM pg_database WHERE datname='${DB_NAME}'" | grep -q 1; then
+        bashio::log.info "Creating database ${DB_NAME} on the external server"
+        "${PSQL}" "${PSQL_ARGS[@]}" -d postgres -qc "CREATE DATABASE ${DB_NAME}"
+    fi
+
+    export AUTHENTIK_POSTGRESQL__HOST="${DB_HOST}"
+    export AUTHENTIK_POSTGRESQL__PORT="${DB_PORT}"
+    export AUTHENTIK_POSTGRESQL__NAME="${DB_NAME}"
+    export AUTHENTIK_POSTGRESQL__USER="${DB_USER}"
+    export AUTHENTIK_POSTGRESQL__PASSWORD="${DB_PASS}"
+else
+    bashio::log.info "Starting embedded PostgreSQL"
+    runuser -u postgres -- "${PG_BIN}/pg_ctl" -D "${PG_DATA}" -l "${PG_LOG}" \
+        -o "-c listen_addresses=127.0.0.1" -w start > /dev/null
+
+    if ! "${PSQL}" -h 127.0.0.1 -U authentik -d postgres -tAc \
+        "SELECT 1 FROM pg_database WHERE datname='authentik'" | grep -q 1; then
+        bashio::log.info "Creating authentik database"
+        "${PSQL}" -h 127.0.0.1 -U authentik -d postgres -qc 'CREATE DATABASE authentik'
+    fi
+
+    export AUTHENTIK_POSTGRESQL__HOST=127.0.0.1
+    export AUTHENTIK_POSTGRESQL__PORT=5432
+    export AUTHENTIK_POSTGRESQL__NAME=authentik
+    export AUTHENTIK_POSTGRESQL__USER=authentik
+    export AUTHENTIK_POSTGRESQL__PASSWORD=""
+fi
+
+# ---------------------------------------------------------------- #
+# Bootstrap: apply akadmin credentials ONLY on an empty schema
+# ---------------------------------------------------------------- #
+# The authentik_core_user table is created by the very first migration
+# run, so its absence means this database has never seen authentik. This
+# keeps a fresh database bootstrap-able while making it impossible to
+# reset akadmin on an existing one (AUTHENTIK_BOOTSTRAP_* resets the
+# password on every start where it is set).
+TABLE_COUNT_SQL="SELECT count(*) FROM information_schema.tables WHERE table_schema='public' AND table_name='authentik_core_user'"
+if [ "${EXTERNAL_DB}" = "true" ]; then
+    TABLE_COUNT="$("${PSQL}" "${PSQL_ARGS[@]}" -d "${AUTHENTIK_POSTGRESQL__NAME}" -tAc "${TABLE_COUNT_SQL}" | tr -d '[:space:]')"
+else
+    TABLE_COUNT="$("${PSQL}" -h 127.0.0.1 -U authentik -d authentik -tAc "${TABLE_COUNT_SQL}" | tr -d '[:space:]')"
+fi
+FRESH=$([ "${TABLE_COUNT}" = "0" ] && echo true || echo false)
+
 BOOTSTRAP_EMAIL=""
 BOOTSTRAP_PASSWORD=""
-if [ ! -f "${BOOTSTRAP_MARK}" ]; then
+if [ "${FRESH}" = "true" ]; then
     BOOTSTRAP_EMAIL="$(bashio::config 'admin_email')"
     if ! bashio::config.has_value 'admin_password'; then
         BOOTSTRAP_PASSWORD="$(head -c 32 /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | head -c 24)"
@@ -73,27 +153,18 @@ if [ ! -f "${BOOTSTRAP_MARK}" ]; then
     } > "${CREDS_FILE}"
     chown 1000:0 "${CREDS_FILE}"
     chmod 600 "${CREDS_FILE}"
-    bashio::log.warning "credentials written to ${CREDS_FILE} (data/authentik/admin_credentials.txt)"
-    # AUTHENTIK_BOOTSTRAP_* would reset the akadmin password on every
-    # start — the marker exists only until the first successful boot;
-    # it is removed below once the web tier reports ready.
+    bashio::log.warning "empty database detected — bootstrap will create akadmin; credentials written to ${CREDS_FILE} (data/authentik/admin_credentials.txt)"
+    # The marker exists only until the first successful boot; it is
+    # removed below once the web tier reports ready.
     echo "pending" > "${BOOTSTRAP_MARK}"
     chown 1000:0 "${BOOTSTRAP_MARK}"
-elif bashio::config.has_value 'admin_password'; then
-    bashio::log.warning "admin_password/admin_email are only used on first run — instance already initialized, ignoring"
+else
+    bashio::log.info "Existing database detected — bootstrap skipped (admin_password/admin_email ignored)"
 fi
 
-# ---------------------------------------------------------------- #
-# PostgreSQL up + database present
-# ---------------------------------------------------------------- #
-bashio::log.info "Starting PostgreSQL"
-runuser -u postgres -- "${PG_BIN}/pg_ctl" -D "${PG_DATA}" -l "${PG_LOG}" \
-    -o "-c listen_addresses=127.0.0.1" -w start > /dev/null
-
-if ! "${PG_BIN}/psql" -h 127.0.0.1 -U authentik -d postgres -tAc \
-    "SELECT 1 FROM pg_database WHERE datname='authentik'" | grep -q 1; then
-    bashio::log.info "Creating authentik database"
-    "${PG_BIN}/psql" -h 127.0.0.1 -U authentik -d postgres -qc 'CREATE DATABASE authentik'
+if [ -f "${BOOTSTRAP_MARK}" ] && [ -n "${BOOTSTRAP_EMAIL}" ]; then
+    export AUTHENTIK_BOOTSTRAP_EMAIL="${BOOTSTRAP_EMAIL}"
+    export AUTHENTIK_BOOTSTRAP_PASSWORD="${BOOTSTRAP_PASSWORD}"
 fi
 
 # ---------------------------------------------------------------- #
@@ -107,20 +178,8 @@ option_bool() {
 }
 
 AUTHENTIK_SECRET_KEY="$(cat "${SECRET_KEY_FILE}")"
-
 export AUTHENTIK_SECRET_KEY
-export AUTHENTIK_POSTGRESQL__HOST=127.0.0.1
-export AUTHENTIK_POSTGRESQL__PORT=5432
-export AUTHENTIK_POSTGRESQL__NAME=authentik
-export AUTHENTIK_POSTGRESQL__USER=authentik
-export AUTHENTIK_POSTGRESQL__PASSWORD=""
-if [ -f "${BOOTSTRAP_MARK}" ]; then
-    export AUTHENTIK_BOOTSTRAP_EMAIL="${BOOTSTRAP_EMAIL}"
-    export AUTHENTIK_BOOTSTRAP_PASSWORD="${BOOTSTRAP_PASSWORD}"
-fi
-
 AUTHENTIK_ERROR_REPORTING__ENABLED="$(option_bool error_reporting)"
-
 export AUTHENTIK_ERROR_REPORTING__ENABLED
 export AUTHENTIK_DISABLE_UPDATE_CHECK=true
 export AUTHENTIK_DISABLE_STARTUP_ANALYTICS=true
@@ -163,7 +222,9 @@ shutdown() {
         sleep 1
     done
     kill -KILL "${SERVER_PID}" "${WORKER_PID:-}" 2> /dev/null || true
-    runuser -u postgres -- "${PG_BIN}/pg_ctl" -D "${PG_DATA}" -m fast -w stop > /dev/null 2>&1 || true
+    if [ "${EXTERNAL_DB}" != "true" ]; then
+        runuser -u postgres -- "${PG_BIN}/pg_ctl" -D "${PG_DATA}" -m fast -w stop > /dev/null 2>&1 || true
+    fi
     exit "${1:-0}"
 }
 trap 'shutdown 0' TERM INT
