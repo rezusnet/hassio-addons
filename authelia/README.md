@@ -13,30 +13,26 @@ covers standalone use — no PostgreSQL, no Redis, no companion services.
 
 ## Key features
 
-**Upstream (Authelia)**
-
-- Forward-auth endpoints (`/api/authz/*`) for protecting anything behind a
-  reverse proxy, regardless of the app's own auth support
-- OpenID Certified™ OIDC identity provider for apps with native SSO
+- **Forward-auth** endpoints (`/api/authz/*`) protect anything behind a
+  reverse proxy — Nginx Proxy Manager, Traefik, Caddy — regardless of the
+  app's own auth support
+- **OpenID Certified™ OIDC provider** for apps with native SSO
 - Per-domain access control: `bypass`, `one_factor`, `two_factor` policies,
-  rules by user/group
-- 2FA: TOTP apps, WebAuthn/security keys; regulation (ban after failed
-  attempts)
+  rules by user and group
+- 2FA: TOTP apps and WebAuthn/security keys, plus regulation (banning after
+  repeated failed attempts)
 - File-based user backend (argon2id hashes) or LDAP backend
-- Self-service password reset, device management portal
-
-**Home Assistant packaging**
-
-- Self-contained: SQLite + generated secrets, nothing else to run
+- Self-service password reset and device management portal
+- Self-contained packaging: SQLite storage, in-memory sessions, filesystem
+  notifier — no PostgreSQL, no Redis, nothing else to run
 - First boot generates a complete working `configuration.yml` and
-  `users_database.yml` from the add-on options — including argon2id hashes
-  for your initial users
-- After first boot the files are **yours**: edit `/data/configuration.yml`
-  freely, the add-on never overwrites them
+  `users_database.yml` from the add-on options, including argon2id hashes
+  for your initial users; afterwards the files are yours and never
+  overwritten
 - Secrets (session, storage encryption, reset-password JWT) generated
   automatically and injected via `AUTHELIA_*_FILE` environment variables
-- Configuration validated at startup; runs as non-root (uid 1000)
-- Auto-updates with the upstream release train (daily updater)
+- Configuration validated at startup; runs as non-root (uid 1000); auto-
+  updates with the upstream release train
 
 ## Quick start
 
