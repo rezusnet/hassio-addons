@@ -9,5 +9,5 @@
   "app_name": "Authentik",
   "last_update": "2026-10-05",
   "paused": true,
-  "build_suffix": ""
+  "build_suffix": "-r1"
 }

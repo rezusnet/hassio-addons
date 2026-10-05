@@ -1,6 +1,16 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2026.5.3-r1 (2026-10-05)
+
+Add-on-side revision (upstream stays **2026.5.3**):
+
+- Fixed `watchdog` in `config.yaml`: this supervisor version (2026.09.x) expects a
+  health-endpoint URL string (`http://[HOST]:[PORT]/…`), not a boolean — a boolean
+  makes the whole add-on invisible in the store (config.yaml rejected at parse
+  time). The add-on now declares `http://[HOST]:9000/-/health/ready/`, so the
+  supervisor restarts it automatically when the web tier stops answering.
+
 ## 2026.5.3 (2026-10-05)
 
 Initial add-on release, packaging upstream authentik **2026.5.3** (MIT, OpenID client license).
