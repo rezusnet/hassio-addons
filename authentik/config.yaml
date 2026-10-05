@@ -43,7 +43,7 @@ schema:
 slug: authentik
 startup: services
 boot: auto
-watchdog: true
+watchdog: "http://[HOST]:9000/-/health/ready/"
 url: https://goauthentik.io
-version: "2026.5.3"
+version: "2026.5.3-r1"
 webui: "http://[HOST]:[PORT:9000]/"
