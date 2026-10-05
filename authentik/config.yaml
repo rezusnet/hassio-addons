@@ -13,6 +13,11 @@ name: Authentik
 options:
   admin_email: admin@localhost
   admin_password: ""
+  postgres_host: ""
+  postgres_port: 5432
+  postgres_user: ""
+  postgres_password: ""
+  postgres_db: authentik
   email_host: ""
   email_port: 587
   email_username: ""
@@ -29,6 +34,11 @@ ports_description:
 schema:
   admin_email: str?
   admin_password: password?
+  postgres_host: str?
+  postgres_port: port?
+  postgres_user: str?
+  postgres_password: password?
+  postgres_db: str?
   email_host: str?
   email_port: port?
   email_username: str?
@@ -45,5 +55,5 @@ startup: services
 boot: auto
 watchdog: "http://[HOST]:9000/-/health/ready/"
 url: https://goauthentik.io
-version: "2026.5.3-r1"
+version: "2026.5.3-r2"
 webui: "http://[HOST]:[PORT:9000]/"
