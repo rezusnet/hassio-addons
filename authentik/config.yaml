@@ -55,5 +55,5 @@ startup: services
 boot: auto
 watchdog: "http://[HOST]:9000/-/health/ready/"
 url: https://goauthentik.io
-version: "2026.5.3-r2"
+version: "2026.8.3-r2"
 webui: "http://[HOST]:[PORT:9000]/"
