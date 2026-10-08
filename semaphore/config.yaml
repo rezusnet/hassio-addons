@@ -55,5 +55,5 @@ slug: semaphore
 startup: services
 boot: auto
 url: https://semaphoreui.com
-version: "2.19.12-r2"
+version: "2.19.16-r2"
 webui: "http://[HOST]:[PORT:3000]/"
