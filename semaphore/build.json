@@ -1,6 +1,6 @@
 {
   "build_from": {
-    "aarch64": "docker.io/semaphoreui/semaphore:v2.19.12",
-    "amd64": "docker.io/semaphoreui/semaphore:v2.19.12"
+    "aarch64": "docker.io/semaphoreui/semaphore:v2.19.16",
+    "amd64": "docker.io/semaphoreui/semaphore:v2.19.16"
   }
 }
