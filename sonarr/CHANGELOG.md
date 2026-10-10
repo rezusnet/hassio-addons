@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.0.20.3014-ls327 (2026-10-10)
+
+Upstream image rebuild (`4.0.20.3014-ls326` → `4.0.20.3014-ls327`) — packaging / base-image refresh, no application changes (Sonarr **4.0.20.3014**).
+
+
 ## 4.0.20.3014-ls326 (2026-09-26)
 
 Upstream image rebuild (`4.0.20.3014-ls325` → `4.0.20.3014-ls326`) — packaging / base-image refresh, no application changes (Sonarr **4.0.20.3014**).
