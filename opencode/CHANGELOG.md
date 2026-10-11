@@ -1,6 +1,33 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.19.0 (2026-10-11)
+
+Updated to upstream OpenCode **1.19.0**:
+
+### Core
+
+### Improvements
+- Run `opencode upgrade --major` to upgrade to OpenCode 2.
+
+### Bugfixes
+- Allow the OpenAI `ultrafast` service tier.
+- Validate PTY connection origins and tickets before checking whether a PTY exists.
+
+### TUI
+
+### Improvements
+- Use `/update` to install OpenCode updates or upgrade to OpenCode 2; updates are no longer installed automatically.
+
+**Thank you to 1 community contributor:**
+- @dc85:
+  - docs(web): add Exo Free to Zen docs (#53622)
+  - fix(stats): attribute exo usage to an unknown provider (#53621)
+  - docs(web): remove Fledge Alpha Free from Zen docs (#53984)
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v1.19.0)
+
+
 ## 1.18.35 (2026-10-07)
 
 Updated to upstream OpenCode **1.18.35**:
