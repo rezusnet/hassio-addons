@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 5.2.4_v2.0.15-ls480 (2026-10-12)
+
+Upstream image rebuild (`libtorrentv1-5.2.4_v1.2.20-ls135` → `5.2.4_v2.0.15-ls480`) — packaging / base-image refresh, no application changes (qBittorrent **5.2.4**).
+
+
 ## libtorrentv1-5.2.4_v1.2.20-ls135 (2026-09-29)
 
 Updated to upstream qBittorrent **5.2.4** (image `libtorrentv1-5.2.4_v1.2.20-ls135`):

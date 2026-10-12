@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 6.4.4.10685-ls320 (2026-10-12)
+
+Upstream image rebuild (`6.4.4.10685-ls319` → `6.4.4.10685-ls320`) — packaging / base-image refresh, no application changes (Radarr **6.4.4.10685**).
+
+
 ## 6.4.4.10685-ls319 (2026-10-05)
 
 Upstream image rebuild (`6.4.4.10685-ls318` → `6.4.4.10685-ls319`) — packaging / base-image refresh, no application changes (Radarr **6.4.4.10685**).
