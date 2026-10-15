@@ -1,6 +1,34 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-5.0.0.2608-ls194 (2026-10-15)
+
+Updated to upstream Sonarr **5.0.0.2608** (image `develop-5.0.0.2608-ls194`):
+
+<!-- Release notes generated using configuration in .github/release.yml at 1c01b720a5049d8597a46862dd31321206aea979 -->
+
+### What's Changed
+### Changes
+* Translations update from Servarr Weblate by @ServarrAdmin in https://github.com/Sonarr/Sonarr/pull/9103
+* Bump .NET to 10.0.13 by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9104
+* Fix: Defer series path update until file move completes by @kushiemoon-dev in https://github.com/Sonarr/Sonarr/pull/8799
+* New: Fail torrents with rejected file extensions that qBittorrent skipped downloading by @markus101 in https://github.com/Sonarr/Sonarr/pull/9074
+* Update incomplete/invalid issue messaging by @markus101 in https://github.com/Sonarr/Sonarr/pull/9087
+* Address some initial v5 UI feedback by @markus101 in https://github.com/Sonarr/Sonarr/pull/9092
+* Stay on series details page when the title slug changes during a refresh by @markus101 in https://github.com/Sonarr/Sonarr/pull/9105
+* Don't start interactive search for episode until requested by @markus101 in https://github.com/Sonarr/Sonarr/pull/9106
+* Fixed: Ignore download removing from download client by @markus101 in https://github.com/Sonarr/Sonarr/pull/9107
+* Label queued download progress in Calendar and Series views by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9108
+* Show Test All results on download client cards by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9109
+* Consider unknown series queue items filter in queue status count by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9114
+* New: Fail executables and potentially dangerous files by default for most indexers by @markus101 in https://github.com/Sonarr/Sonarr/pull/9093
+
+
+**Full Changelog**: https://github.com/Sonarr/Sonarr/compare/v5.0.0.2569...v5.0.0.2608
+
+[Full release notes](https://github.com/Sonarr/Sonarr/releases/tag/v5.0.0.2608)
+
+
 ## 4.0.20.3014-ls328 (2026-10-13)
 
 Upstream image rebuild (`4.0.20.3014-ls327` → `4.0.20.3014-ls328`) — packaging / base-image refresh, no application changes (Sonarr **4.0.20.3014**).
