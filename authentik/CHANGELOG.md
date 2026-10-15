@@ -1,6 +1,12 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2026.8.4-r2 (2026-10-15)
+
+- Update to upstream 2026.8.4
+- Upstream release notes: https://github.com/goauthentik/authentik/releases
+
+
 ## 2026.8.3-r2 (2026-10-06)
 
 - Update to upstream 2026.8.3

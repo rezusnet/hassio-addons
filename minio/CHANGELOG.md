@@ -1,6 +1,37 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## RELEASE.2026-10-15T00-00-00Z.2 (2026-10-15)
+
+Updated to upstream MinIO **RELEASE.2026-10-15T00-00-00Z**:
+
+SILO 20261015 is the first formal Server release containing the Object Lock fixes from [#234](https://github.com/pgsty/silo/pull/234) and [#235](https://github.com/pgsty/silo/pull/235). Object Lock users should upgrade promptly.
+
+Release notes: [English](https://silo.pgsty.com/blog/release/silo-20261015/) · [中文](https://silo.pgsty.com/zh/blog/release/silo-20261015/).
+
+The release enforces retention authorization, protects immutable versions during writes, and rejects Object Lock preflight read failures. Authorized GOVERNANCE bypass requires the retention permission, bypass permission, and explicit bypass request. Active COMPLIANCE retention and legal holds remain protected. [#237](https://github.com/pgsty/silo/pull/237) makes the existing Object Lock regression suite with the race detector a mandatory step before release builds or uploads.
+
+Upgrade every node and replication site that accepts writes. An upgrade does not restore already overwritten data or previous retention metadata. See the [security advisory](https://silo.pgsty.com/blog/security/20260926-governance-retention-bypass/) and [repair design](https://silo.pgsty.com/blog/design/governance-retention-bypass-repair/) for scope and compatibility.
+
+This release includes the full merged Server change set since 20260916, including scanner response, legacy metadata decoder, checksum, event-target, and Go/toolchain changes. The generated changelog follows below; the [complete source comparison](https://github.com/pgsty/silo/compare/RELEASE.2026-09-16T00-00-00Z...RELEASE.2026-10-15T00-00-00Z) includes documentation and test changes as well.
+
+- Source: `7a3ca0f82100cce06289a465f54139da2639f642`
+- Package version: `20261015000000.0.0`
+- Server tag: `RELEASE.2026-10-15T00-00-00Z`
+- Official containers: `docker.io/pgsty/silo:RELEASE.2026-10-15T00-00-00Z` and `docker.io/pgsty/silo:RELEASE.2026-10-15T00-00-00Z-distroless`
+- Classic multiarch digest: `sha256:aaac6bce13eb99316b3c88bd20143fc3c38ab607585256a411a095c44ee57f62`
+- Distroless multiarch digest: `sha256:70cac541c5a928be5cd16d6b8732d85ac06e891a0e3d9956a745381330692fc6`
+
+Both indexes include `linux/amd64` and `linux/arm64`. Anonymous registry checks confirmed that `latest` and `distroless` resolve to their respective versioned index digests.
+
+
+### Validation and acceptance
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/pgsty/silo/releases/tag/RELEASE.2026-10-15T00-00-00Z)
+
+
 ## RELEASE.2026-09-16T00-00-00Z.2 (2026-09-21)
 
 Updated to upstream MinIO **RELEASE.2026-09-16T00-00-00Z**:
