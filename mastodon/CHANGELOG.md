@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.7.3-ls216 (2026-10-16)
+
+Upstream image rebuild (`glitch-v4.7.3-ls355` → `v4.7.3-ls216`) — packaging / base-image refresh, no application changes (Mastodon **4.7.3**).
+
+
 ## glitch-v4.7.3-ls355 (2026-10-09)
 
 Upstream image rebuild (`glitch-v4.7.3-ls354` → `glitch-v4.7.3-ls355`) — packaging / base-image refresh, no application changes (Mastodon **4.7.3**).

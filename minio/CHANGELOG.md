@@ -1,6 +1,27 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## RELEASE.2026-09-16T00-00-00Z.2 (2026-10-16)
+
+Updated to upstream MinIO **RELEASE.2026-09-16T00-00-00Z**:
+
+SILO 20260916 is a security and correctness release following `RELEASE.2026-09-03T13-18-01Z`, built from [`2a4d51406b7ed87af5fe6fe0f801f3290f96eb3c`](https://github.com/pgsty/silo/commit/2a4d51406b7ed87af5fe6fe0f801f3290f96eb3c). The package version is `20260916000000.0.0`.
+
+### Highlights
+
+- **Authentication and policies:** reject unsigned `x-amz-*` operation headers, verify header-bound presigned payloads, and align signature-age and payload-hash conditions with authenticated values. Shared policy fixes preserve distinct Deny statements and avoid exponential wildcard matching. See [SN-2026-011 through SN-2026-014](https://silo.pgsty.com/about/security-advisories/).
+- **Durable IAM revocation:** retain deletion revisions, membership grant times and parent revocation boundaries so stale replication events and old child credentials cannot cross retained revocations. Peer notifications reload committed state. Password self-service now checks `admin:ChangeMyPassword` separately from `admin:CreateUser`.
+- **Multi-pool consistency:** evaluate conditional PUT and multipart completion against the logical current object; honor single-object conditional DELETE; reconcile addressed-version deletion and independently ordered tags/Object Lock metadata across pools. Rebalance and decommission preserve object tags and their revisions for ordinary and multipart objects ([`fced86303`](https://github.com/pgsty/silo/commit/fced8630365fd57d6116c595b65252bcd12e13be)).
+- **Listing and delete-marker repairs:** retain a quorate null version when a newer minority would hide it; require majority-confirmed absence for missing-version purge retries; preserve marker replication/purge metadata through healing; recheck queued marker creations under the replication lock; and report a purged data version without incorrectly identifying it as a delete marker ([`8d06424b1`](https://github.com/pgsty/silo/commit/8d06424b126b4ac640cd076a4585b66f2ec753a6), [`eb4f5e5b3`](https://github.com/pgsty/silo/commit/eb4f5e5b3178da42b8b5137acfded62c35f6e3b2), [`254b19ac0`](https://github.com/pgsty/silo/commit/254b19ac071ba0afc178c875aa1681bc9e9c07af), [`358ab38fb`](https://github.com/pgsty/silo/commit/358ab38fb0876d10420373d88af99a1413e65e93)).
+- **Encrypted and federated copies:** preserve raw SSE-C replicas, logical multipart sizes, lock/tag revisions and key-rotation checksums; prevent new compressed SSE-C writes; bind federated CopyObject checksums, version and timestamps to the actual destination write.
+- **Replication and configuration:** repair ordered tag deletion, marker purge/MRF recovery, resync counters and cancellation, bucket metadata convergence and CORS export/import. Prevent transport-only `aws-chunked` from being stored as object encoding.
+- **Multipart discovery:** add durable, quorum-checked listing and preflight with global prefix, delimiter and pagination behavior. **Legacy remains the default.** Strict mode is enabled only through `MINIO_API_MULTIPART_LISTING=strict` after the documented upgrade and capacity checks ([#198](https://github.com/pgsty/silo/pull/198), [#213](https://github.com/pgsty/silo/pull/213)).
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/pgsty/silo/releases/tag/RELEASE.2026-09-16T00-00-00Z)
+
+
 ## RELEASE.2026-10-15T00-00-00Z.2 (2026-10-15)
 
 Updated to upstream MinIO **RELEASE.2026-10-15T00-00-00Z**:

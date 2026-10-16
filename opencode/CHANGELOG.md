@@ -1,6 +1,22 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.19.2 (2026-10-16)
+
+Updated to upstream OpenCode **1.19.2**:
+
+### Core
+
+### Bugfixes
+- OpenCode 1 now stays on the 1.x release line: update checks use only the npm `opencode-ai` latest version, so 1.x installs are never offered a 2.x build as a regular update.
+- Upgrading to OpenCode 2 remains a separate, explicit choice through the 2.0 offer in `/update` or `opencode upgrade --major`.
+- Fix upgrades for installs managed by yarn.
+- Skip 1.x updates for Homebrew Core installs, which now track OpenCode 2, and check tap and Chocolatey availability before offering an update.
+- The install script refuses to install 2.x versions.
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v1.19.2)
+
+
 ## 1.19.0 (2026-10-11)
 
 Updated to upstream OpenCode **1.19.0**:
