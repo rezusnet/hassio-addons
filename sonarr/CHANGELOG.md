@@ -1,11 +1,28 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.0.20.3014-ls329 (2026-10-16)
+
+Updated to upstream Sonarr **4.0.20.3014** (image `4.0.20.3014-ls329`):
+
+<!-- Release notes generated using configuration in .github/release.yml at cab419ade8ac7fcab5bf80394ee492abd35d5f5a -->
+
+### What's Changed
+### Changes
+* Fixed: Unexpected languages stored in DB will be treated as Unknown by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/8810
+* Jellyfin/Emby Connection Test and New Jellyfin Auth header by @markus101 in https://github.com/Sonarr/Sonarr/pull/8826
+* Fixed: Avoid checking for free space if other specifications fail first by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/8867
+
+
+**Full Changelog**: https://github.com/Sonarr/Sonarr/compare/v4.0.19.2979...v4.0.20.3014
+
+[Full release notes](https://github.com/Sonarr/Sonarr/releases/tag/v4.0.20.3014)
+
+
 ## develop-5.0.0.2608-ls194 (2026-10-15)
 
 Updated to upstream Sonarr **5.0.0.2608** (image `develop-5.0.0.2608-ls194`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 1c01b720a5049d8597a46862dd31321206aea979 -->
 
 ### What's Changed
 ### Changes
