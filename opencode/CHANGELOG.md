@@ -1,6 +1,18 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.19.3 (2026-10-17)
+
+Updated to upstream OpenCode **1.19.3**:
+
+### Core
+
+### Improvements
+- Configure model reasoning options to generate reasoning variants, replacing catalog variants while preserving your configured variant overrides.
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v1.19.3)
+
+
 ## 1.19.2 (2026-10-16)
 
 Updated to upstream OpenCode **1.19.2**:
