@@ -1,6 +1,33 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## RELEASE.2026-10-18T00-00-00Z.2 (2026-10-19)
+
+Updated to upstream MinIO **RELEASE.2026-10-18T00-00-00Z**:
+
+SILO **20261018000000** improves authorization, data-movement safety, and recovery from inconsistent object metadata. This release also includes clearer S3 errors and faster policy evaluation through silo-pkg v3.14.3.
+
+### What's changed
+
+- **Stronger Object Lock protection.** Retention updates now enforce the required permissions and request conditions, and protected versions are checked before in-place or version-addressed writes. These fixes address retention bypasses and overwrite paths in [#234](https://github.com/pgsty/silo/pull/234) and [#235](https://github.com/pgsty/silo/pull/235).
+- **More consistent IAM authorization.** Administrative credential operations respect explicit denies, session restrictions, and parent-account boundaries. Restricted credentials cannot create broader service accounts under built-in authorization. See [#242](https://github.com/pgsty/silo/pull/242).
+- **Durable, scoped STS revocation.** Administrative revocation discovers persisted identities, propagates revocation records to sibling processes and replication peers, and recovers missed updates through refresh and healing.
+- **Safer rebalance and decommission.** Moving an older copy no longer overwrites a newer destination copy. Migration preserves delete markers and removes only confirmed moved versions, protecting concurrent source updates. This incorporates [#248](https://github.com/pgsty/silo/pull/248), with further migration safeguards.
+- **More reliable object listings.** LIST recovery checks eligible ambiguous entries against the locked read path, preserves directory and common-prefix entries, and bounds lock waits. See [#221](https://github.com/pgsty/silo/pull/221) and [#239](https://github.com/pgsty/silo/pull/239).
+- **Better error handling and cleanup.** Missing commit metadata returns a retryable `503 SlowDownWrite`; reused metadata fields are cleared; stale multipart-upload timestamps and empty upload directories are handled correctly. Checksum errors identify the algorithm, and the embedded Console preserves wrapped S3 errors. See [#232](https://github.com/pgsty/silo/pull/232), [#233](https://github.com/pgsty/silo/pull/233), [#236](https://github.com/pgsty/silo/pull/236), and [#238](https://github.com/pgsty/silo/pull/238).
+- **Faster policy evaluation.** [silo-pkg v3.14.3](https://github.com/pgsty/silo-pkg/releases/tag/v3.14.3) reduces admin-action classification overhead while preserving authorization decisions. The many-bucket policy microbenchmark improved by about 82%; application gains depend on workload.
+
+Built with Go 1.27.2, embedded Console v2.4.2, silo-pkg v3.14.3, and upstream minio-go v7.4.1. Use [mcli 20261018](https://github.com/pgsty/mc/releases/tag/RELEASE.2026-10-18T00-00-00Z) for administration.
+
+### Before upgrading
+
+The supported combination is the maintained PGSTY SILO, Console, mcli, and silo-pkg stack. Coordinate the upgrade across all server processes and replication sites. Mixing old and new binaries against one IAM backend, and rolling downgrades, are unsupported.
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/pgsty/silo/releases/tag/RELEASE.2026-10-18T00-00-00Z)
+
+
 ## RELEASE.2026-09-16T00-00-00Z.2 (2026-10-16)
 
 Updated to upstream MinIO **RELEASE.2026-09-16T00-00-00Z**:
