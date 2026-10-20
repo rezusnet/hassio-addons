@@ -1,6 +1,12 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.19.17-r2 (2026-10-20)
+
+- Update to upstream v2.19.17
+- Upstream release notes: https://github.com/semaphoreui/semaphore/releases
+
+
 ## 2.19.16-r2 (2026-10-08)
 
 - Update to upstream v2.19.16

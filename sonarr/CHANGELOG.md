@@ -1,11 +1,39 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-5.0.0.2701-ls199 (2026-10-20)
+
+Updated to upstream Sonarr **5.0.0.2701** (image `develop-5.0.0.2701-ls199`):
+
+<!-- Release notes generated using configuration in .github/release.yml at 7ccafd3a13b737aca0619d4eb0d985c89c00df73 -->
+
+### What's Changed
+### Changes
+* Translations update from Servarr Weblate by @ServarrAdmin in https://github.com/Sonarr/Sonarr/pull/9156
+* Improve form labels and modal headings for screen readers by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9134
+* Fixed: On Import Complete notification could use wrong series by @markus101 in https://github.com/Sonarr/Sonarr/pull/9151
+* Ignore command body when deserializing command resource by @markus101 in https://github.com/Sonarr/Sonarr/pull/9154
+* Fix option key for Disabled For Localhost by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9158
+* Improve quality group appearance when editing groups by @markus101 in https://github.com/Sonarr/Sonarr/pull/9159
+* Fixed: Version header missing from API error responses by @cplieger in https://github.com/Sonarr/Sonarr/pull/9161
+* Fix error trying to return episode file that didn't exist by @cplieger in https://github.com/Sonarr/Sonarr/pull/9162
+* Status indicator caused extra scrolling on Chromium browsers by @markus101 in https://github.com/Sonarr/Sonarr/pull/9163
+* Responsive Sidebar/Header by @markus101 in https://github.com/Sonarr/Sonarr/pull/9164
+* Fixed: Series files were always moved after changing path by @markus101 in https://github.com/Sonarr/Sonarr/pull/9165
+* Fix deleting of release profiles by @markus101 in https://github.com/Sonarr/Sonarr/pull/9169
+
+### New Contributors
+* @cplieger made their first contribution in https://github.com/Sonarr/Sonarr/pull/9161
+
+**Full Changelog**: https://github.com/Sonarr/Sonarr/compare/v5.0.0.2668...v5.0.0.2701
+
+[Full release notes](https://github.com/Sonarr/Sonarr/releases/tag/v5.0.0.2701)
+
+
 ## 4.0.20.3014-ls329 (2026-10-16)
 
 Updated to upstream Sonarr **4.0.20.3014** (image `4.0.20.3014-ls329`):
 
-<!-- Release notes generated using configuration in .github/release.yml at cab419ade8ac7fcab5bf80394ee492abd35d5f5a -->
 
 ### What's Changed
 ### Changes
