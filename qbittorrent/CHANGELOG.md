@@ -1,6 +1,62 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 5.3.0_v2.1.2-ls484 (2026-10-21)
+
+Updated to upstream qBittorrent **5.3.0** (image `5.3.0_v2.1.2-ls484`):
+
+- FEATURE: Add an option to match all share limits (glassez) #24043
+- FEATURE: Put Email examples in placeholder text (Chocobo1) #23949
+- FEATURE: Add support for widely used image types in HTTP server (Chocobo1) #23886
+- FEATURE: Allow to filter torrent list by infohash (stalkerok) #23829
+- FEATURE: Add "Copy path" in Content tab (vafada) #23973
+- FEATURE: Don't overwrite config file when it has no write permission (Chocobo1) #23817
+- FEATURE: Allow banning IP range (KagurazakaNyaa) #23157
+- FEATURE: Enhance filename validation (cocopaw) #23386
+- FEATURE: Allow monochrome tray icon to follow color mode (glassez) #24083
+- FEATURE: Add "Queued tracker announces" session metric (Chocobo1) #24084
+- FEATURE: Improve "Deletion confirmation" dialog (glassez) #24117
+- FEATURE: Add scroll bars to Statistics dialog (Chocobo1) #24122
+- FEATURE: Decide system tray icon color based on Windows color scheme (glassez) #24127
+- FEATURE: Create a group for status bar related settings (Chocobo1) #24150
+- FEATURE: Add 'request latency' metric to Statistics dialog (Chocobo1) #24152
+- FEATURE: Add "Contribution" column to Peers list (aaron-kruse) #23989
+- FEATURE: Add tooltips to email notification Options fields (LewpyUK) #24061
+- FEATURE: Add 'Open Destination Folder' button to toolbar (FTA7700) #24090
+- FEATURE: Implement `seeding_outgoing_connections` libtorrent setting (HanabishiRecca) #24158
+- FEATURE: Add "Force start torrents" to filter context menus (aaron-kruse) #24260
+- FEATURE: Improve management of torrent content (glassez) #24266
+- FEATURE: Support multiple recipients for email notifications (LewpyUK) #24304
+- FEATURE: Add support for magnet link 'so' parameter (glassez) #24336
+- FEATURE: Add 'Ignore dotfiles' option in Torrent Creator (Chocobo1) #24346
+- FEATURE: Implement 'Maximum outstanding block requests from a peer' setting (buroa) #24253
+- FEATURE: Revamp .torrent files backup management (glassez) #24641
+- FEATURE: Make Torrent Options dialog scrollable (AgentCent) #24644
+- FEATURE: Add allow_multiple_connections_per_pid advanced setting (lzhzh1) #24684
+- FEATURE: Add button to open Default Apps settings on Windows (Chocobo1) #24707
+- FEATURE: Reference torrent "seed mode" by its exact name (glassez) #24724
+- FEATURE: Add logging of IP ban alerts (Chocobo1) #24734
+- FEATURE: Add 'Resize columns' action to 'Torrent Content Layout' dialog header (Chocobo1) #24735
+- FEATURE: Detect redundant quotes from Python executable path (Chocobo1) #24740
+- FEATURE: Add option to toggle closing search tabs with middle-click (thalieht) #24776
+- FEATURE: Expose libtorrent setting for WebTorrent STUN server (Chocobo1) #24837
+- FEATURE: Add I2P PeX setting (thalieht) #24870
+- FEATURE: Add settings for I2P inbound/outbound length variance (thalieht) #24891
+- FEATURE: Make disabled speed graphs warning clickable (M-Hassan-Raza) #24023
+- FEATURE: Relax plugin versioning rule (Chocobo1) #25017
+- BUGFIX: Fix Comment area background mismatch in Add New Torrent dialog (M-Hassan-Raza) #23916
+- BUGFIX: Rename FYR Macedonia to North Macedonia (alphanumericcharter) #23825
+- BUGFIX: Fix LineEdit dark corner artifacts on macOS (M-Hassan-Raza) #23909
+- BUGFIX: Fix macOS delete shortcuts to match platform conventions (M-Hassan-Raza) #23908
+- BUGFIX: Replace invisible toolbar spacers with visible separators on macOS (M-Hassan-Raza) #23905
+- BUGFIX: Fix STARTTLS implementation (LewpyUK) #23838
+- BUGFIX: Don't try to load zero size GeoIP database (orbisai0security) #24087
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/qbittorrent/qBittorrent/releases/tag/release-5.3.0)
+
+
 ## 5.2.4_v2.0.15-ls481 (2026-10-19)
 
 Upstream image rebuild (`5.2.4_v2.0.15-ls480` → `5.2.4_v2.0.15-ls481`) — packaging / base-image refresh, no application changes (qBittorrent **5.2.4**).
