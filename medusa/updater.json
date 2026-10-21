@@ -1,0 +1,9 @@
+{
+  "last_update": "2026-04-16",
+  "paused": false,
+  "repository": "rezusnet/hassio-addons",
+  "slug": "medusa",
+  "source": "github",
+  "upstream_repo": "linuxserver/docker-medusa",
+  "upstream_version": "v1.0.25-ls268"
+}

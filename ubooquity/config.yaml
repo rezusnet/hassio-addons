@@ -1,0 +1,61 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+description:
+  A free, lightweight and easy-to-use home server for your comics and ebooks.
+  Access your library from anywhere with a tablet, e-reader, phone or computer.
+homeassistant: 2024.1.0
+icon: icon.png
+image: ghcr.io/rezusnet/ubooquity-{arch}
+ingress: true
+ingress_port: 2202
+init: false
+map:
+  - addon_config:rw
+  - books:rw
+  - comics:rw
+  - files:rw
+  - share:rw
+name: Ubooquity
+options:
+  DOCKER_MODS: []
+  MAXMEM: ""
+  PGID: 0
+  PUID: 0
+  TZ: ""
+  cifspassword: ""
+  cifsdomain: ""
+  cifsusername: ""
+  data_location: /share/ubooquity
+  env_vars: []
+  localdisks: ""
+  networkdisks: ""
+panel_icon: mdi:book-multiple
+ports:
+  2202/tcp: 2202
+  2203/tcp: 2203
+ports_description:
+  2202/tcp: Library web interface
+  2203/tcp: Admin web interface
+schema:
+  DOCKER_MODS:
+    - match(^linuxserver/mods:ubooquity-[a-z0-9-]+$)?
+  MAXMEM: str?
+  PGID: int
+  PUID: int
+  TZ: str?
+  cifspassword: str?
+  cifsdomain: str?
+  cifsusername: str?
+  data_location: str
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  localdisks: str?
+  networkdisks: str?
+slug: ubooquity
+url: https://vaemendis.net/ubooquity/
+version: "3.1.0"
