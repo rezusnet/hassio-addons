@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "lscr.io/linuxserver/kimai:arm64v8-latest",
+    "amd64": "lscr.io/linuxserver/kimai:amd64-latest"
+  }
+}

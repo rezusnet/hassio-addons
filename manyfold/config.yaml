@@ -1,0 +1,54 @@
+arch:
+  - aarch64
+  - amd64
+backup_exclude:
+  - "**/cache/"
+  - "**/log/"
+  - "**/transcode/"
+description: An open source, self-hosted web application for managing a collection of 3D models, particularly focused on 3D printing.
+homeassistant: 2024.1.0
+host_network: true
+icon: icon.png
+image: ghcr.io/rezusnet/manyfold-{arch}
+ingress: true
+ingress_port: 3214
+init: false
+map:
+  - addon_config:rw
+  - share:rw
+name: Manyfold
+options:
+  env_vars: []
+  PGID: 0
+  PUID: 0
+  data_location: /share/manyfold
+  TZ: ""
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+  DOCKER_MODS: []
+panel_icon: mdi:cube-outline
+ports:
+  3214/tcp: 3214
+ports_description:
+  3214/tcp: Web interface
+schema:
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  PGID: int
+  PUID: int
+  data_location: str
+  TZ: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+  DOCKER_MODS:
+    - match(^linuxserver/mods:manyfold-[a-z0-9-]+$)?
+slug: manyfold
+url: https://github.com/manyfold3d/manyfold
+version: "0.138.0"
