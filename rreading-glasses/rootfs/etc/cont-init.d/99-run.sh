@@ -40,10 +40,10 @@ else
     bashio::log.info "Starting PostgreSQL..."
     su-exec "${PGUSER}" pg_ctl start -D "${PGDATA}" -l "${PGDATA}/pg.log" -o "-p ${PG_PORT}" -w 2>&1
 
-    if ! su-exec "${PGUSER}" psql -p "${PG_PORT}" -lqt 2>/dev/null | cut -d '|' -f 1 | grep -qw "${PG_DB}"; then
+    if ! su-exec "${PGUSER}" psql -p "${PG_PORT}" -lqt 2> /dev/null | cut -d '|' -f 1 | grep -qw "${PG_DB}"; then
         bashio::log.info "Creating database and user..."
-        su-exec "${PGUSER}" psql -p "${PG_PORT}" -c "CREATE USER \"${PG_USER}\";" 2>/dev/null || true
-        su-exec "${PGUSER}" psql -p "${PG_PORT}" -c "CREATE DATABASE \"${PG_DB}\" OWNER \"${PG_USER}\";" 2>/dev/null || true
+        su-exec "${PGUSER}" psql -p "${PG_PORT}" -c "CREATE USER \"${PG_USER}\";" 2> /dev/null || true
+        su-exec "${PGUSER}" psql -p "${PG_PORT}" -c "CREATE DATABASE \"${PG_DB}\" OWNER \"${PG_USER}\";" 2> /dev/null || true
     fi
 fi
 
