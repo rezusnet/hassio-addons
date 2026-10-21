@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "aarch64": "lscr.io/linuxserver/manyfold:arm64v8-0.138.0",
+    "amd64": "lscr.io/linuxserver/manyfold:amd64-0.138.0"
+  }
+}
