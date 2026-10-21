@@ -1,0 +1,54 @@
+name: Raneto
+description: >
+  Raneto — markdown-powered knowledge base and wiki platform.
+  Create searchable documentation and FAQs using static Markdown files.
+version: "1.0.0"
+slug: raneto
+url: http://raneto.com
+panel_icon: mdi:book-open-page-variant-outline
+image: ghcr.io/rezusnet/raneto-{arch}
+arch:
+  - amd64
+  - aarch64
+init: false
+homeassistant: "2024.1.0"
+ingress: true
+ingress_port: 0
+ingress_stream: true
+ports:
+  3000/tcp: null
+ports_description:
+  3000/tcp: "HTTP web interface (optional, not required for Ingress)"
+ports_description:
+  3000/tcp: "HTTP web interface (optional, not required for Ingress)"
+environment:
+  PUID: "0"
+  PGID: "0"
+map:
+  - addon_config:rw
+  - share:rw
+options:
+  PUID: 0
+  PGID: 0
+  data_location: /config/raneto
+  TZ: ""
+  env_vars: []
+  localdisks: ""
+  networkdisks: ""
+  cifsusername: ""
+  cifspassword: ""
+  cifsdomain: ""
+schema:
+  PUID: int
+  PGID: int
+  data_location: str
+  TZ: str?
+  env_vars:
+    - name: match(^[A-Za-z0-9_]+$)
+      value: str?
+  localdisks: str?
+  networkdisks: str?
+  cifsusername: str?
+  cifspassword: str?
+  cifsdomain: str?
+udev: true
