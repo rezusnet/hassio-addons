@@ -1,13 +1,13 @@
 {
   "github_beta": false,
-  "last_update": "2026-10-17",
+  "last_update": "2026-10-23",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "opencode",
   "source": "github",
   "tag_strategy": "dockerfile",
   "upstream_repo": "anomalyco/opencode",
-  "upstream_version": "v1.19.3",
+  "upstream_version": "v1.19.4",
   "app_repo": "anomalyco/opencode",
   "app_name": "OpenCode"
 }

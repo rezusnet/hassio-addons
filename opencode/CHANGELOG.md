@@ -1,6 +1,18 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.19.4 (2026-10-23)
+
+Updated to upstream OpenCode **1.19.4**:
+
+### Core
+
+### Improvements
+- Upgraded the bundled Bun runtime to 1.4.4, which includes [security fixes](https://bun.com/blog/bun-v1.4.4#security) for Brotli, TLS, HTTP/1.1, HTTP/2, HTTP/3, WebSocket, and `fetch`, and updates root certificates to NSS 3.131.1.
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v1.19.4)
+
+
 ## 1.19.3 (2026-10-17)
 
 Updated to upstream OpenCode **1.19.3**:
