@@ -1,12 +1,12 @@
 {
-  "last_update": "2026-10-17",
+  "last_update": "2026-10-24",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "fail2ban",
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-fail2ban",
-  "upstream_version": "1.1.0-r2-ls46",
+  "upstream_version": "1.1.0-r2-ls47",
   "app_repo": "fail2ban/fail2ban",
   "app_name": "Fail2ban"
 }
