@@ -1,11 +1,40 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-5.0.0.2742-ls201 (2026-10-24)
+
+Updated to upstream Sonarr **5.0.0.2742** (image `develop-5.0.0.2742-ls201`):
+
+<!-- Release notes generated using configuration in .github/release.yml at af9b932db9970a562b89342fa7810296782a6335 -->
+
+### What's Changed
+### Changes
+* Translations update from Servarr Weblate by @ServarrAdmin in https://github.com/Sonarr/Sonarr/pull/9178
+* New: Trakt Smart List import list by @vladjerca in https://github.com/Sonarr/Sonarr/pull/9027
+* New: Option to send seed time as inactive seeding time limit to qBittorrent by @acalebratliff in https://github.com/Sonarr/Sonarr/pull/9034
+* Remove legacy SeasonNumber from parsed episode info by @IonBazan in https://github.com/Sonarr/Sonarr/pull/9044
+* Small Label Tweaks by @markus101 in https://github.com/Sonarr/Sonarr/pull/9171
+* Run deploy after build only for upstream repository by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9172
+* Improve screen reader feedback for form validation errors by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9175
+* Fixed: Refreshing pending releases on removal by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9176
+* Fix: use episode file count to calculate average size on disk by @stevietv in https://github.com/Sonarr/Sonarr/pull/9177
+* Fixed: Interactive Search horizontal scrollbar only reachable at the bottom of results by @markus101 in https://github.com/Sonarr/Sonarr/pull/9180
+* Fix styling of poster select by @markus101 in https://github.com/Sonarr/Sonarr/pull/9182
+* Fix deepmerge state for array values by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9173
+
+### New Contributors
+* @vladjerca made their first contribution in https://github.com/Sonarr/Sonarr/pull/9027
+* @acalebratliff made their first contribution in https://github.com/Sonarr/Sonarr/pull/9034
+
+**Full Changelog**: https://github.com/Sonarr/Sonarr/compare/v5.0.0.2701...v5.0.0.2742
+
+[Full release notes](https://github.com/Sonarr/Sonarr/releases/tag/v5.0.0.2742)
+
+
 ## 4.0.20.3014-ls1 (2026-10-21)
 
 Updated to upstream Sonarr **4.0.20.3014** (image `4.0.20.3014-ls1`):
 
-<!-- Release notes generated using configuration in .github/release.yml at cab419ade8ac7fcab5bf80394ee492abd35d5f5a -->
 
 ### What's Changed
 ### Changes
