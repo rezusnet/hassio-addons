@@ -1,11 +1,37 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-5.0.0.2785-ls202 (2026-10-25)
+
+Updated to upstream Sonarr **5.0.0.2785** (image `develop-5.0.0.2785-ls202`):
+
+<!-- Release notes generated using configuration in .github/release.yml at 465b5192acfe16a28da72b37179e37daa22aca86 -->
+
+### What's Changed
+### Changes
+* Translations update from Servarr Weblate by @ServarrAdmin in https://github.com/Sonarr/Sonarr/pull/9183
+* Split media info migration into batches for lower memory usage by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9095
+* Add episode ordering message when edit is disabled by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9179
+* Allow unmonitoring of seasons and episodes when series is unmonitored by @markus101 in https://github.com/Sonarr/Sonarr/pull/9185
+* Fix: use /history/season endpoint when season number is present by @stevietv in https://github.com/Sonarr/Sonarr/pull/9190
+* Fixed: Wildcard IP addresses in Allowed Hosts by @markus101 in https://github.com/Sonarr/Sonarr/pull/9193
+* Fixed: Series column in Queue could wrap too aggressively by @markus101 in https://github.com/Sonarr/Sonarr/pull/9194
+* Fix Wanted lists not refreshing after toggling monitored by @ljlongwing in https://github.com/Sonarr/Sonarr/pull/9195
+* fix: increase queue, history and blocklist icons to 16 by @stevietv in https://github.com/Sonarr/Sonarr/pull/9196
+* Remember Me for OIDC login by @markus101 in https://github.com/Sonarr/Sonarr/pull/9197
+
+### New Contributors
+* @ljlongwing made their first contribution in https://github.com/Sonarr/Sonarr/pull/9195
+
+**Full Changelog**: https://github.com/Sonarr/Sonarr/compare/v5.0.0.2742...v5.0.0.2785
+
+[Full release notes](https://github.com/Sonarr/Sonarr/releases/tag/v5.0.0.2785)
+
+
 ## develop-5.0.0.2742-ls201 (2026-10-24)
 
 Updated to upstream Sonarr **5.0.0.2742** (image `develop-5.0.0.2742-ls201`):
 
-<!-- Release notes generated using configuration in .github/release.yml at af9b932db9970a562b89342fa7810296782a6335 -->
 
 ### What's Changed
 ### Changes
