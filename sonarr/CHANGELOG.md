@@ -1,11 +1,31 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-5.0.0.2800-ls203 (2026-10-26)
+
+Updated to upstream Sonarr **5.0.0.2800** (image `develop-5.0.0.2800-ls203`):
+
+<!-- Release notes generated using configuration in .github/release.yml at a6171f0ca61b2a76ec529da3e9aadb11435344f9 -->
+
+### What's Changed
+### Changes
+* Translations update from Servarr Weblate by @ServarrAdmin in https://github.com/Sonarr/Sonarr/pull/9204
+* Bump .NET to 10.0.14 by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9207
+* Improve Calendar view and menu accessibility by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9189
+* Give icon-only controls descriptive names by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9198
+* Fix: iCal with All-Day events by @stevietv in https://github.com/Sonarr/Sonarr/pull/9201
+* Fixed: Response type for v3 custom format schema by @rcdailey in https://github.com/Sonarr/Sonarr/pull/9202
+
+
+**Full Changelog**: https://github.com/Sonarr/Sonarr/compare/v5.0.0.2785...v5.0.0.2800
+
+[Full release notes](https://github.com/Sonarr/Sonarr/releases/tag/v5.0.0.2800)
+
+
 ## develop-5.0.0.2785-ls202 (2026-10-25)
 
 Updated to upstream Sonarr **5.0.0.2785** (image `develop-5.0.0.2785-ls202`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 465b5192acfe16a28da72b37179e37daa22aca86 -->
 
 ### What's Changed
 ### Changes
