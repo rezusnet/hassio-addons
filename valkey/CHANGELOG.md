@@ -1,6 +1,42 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 9.1.3 (2026-10-27)
+
+Updated to upstream Valkey **9.1.3**:
+
+Valkey 9.1.3  -  Released Mon 26 October 2026
+---------------------------------------------
+
+Upgrade urgency SECURITY: This release includes security fixes we recommend you apply as soon as possible.
+
+### Security Fixes
+* GHSA-f4q9-j22m-xqq9: Fix a heap buffer overflow in cluster Pub/Sub message construction that could allow an authenticated client to potentially execute arbitrary code by publishing an oversized message by @roshkhatri (#5030)
+
+### Bug Fixes
+* Fix stream commands that mutate consumer-group or PEL state (`XGROUP`, `XSETID`, `XREADGROUP`, `XACK`, `XCLAIM`, `XAUTOCLAIM`) not triggering `WATCH` and client-side tracking invalidation by @Tarte12 (#3459)
+* Reject module write commands while the server is paused for writes, preventing a crash from module timer callbacks during `CLIENT PAUSE WRITE` or `CLUSTER FAILOVER` by @smkher (#3645)
+* Fix event loop busy-spinning on virtual machines by not using raw TSC for the monotonic clock when the kernel clocksource is not tsc by @quanyeyang (#4707)
+* Fix a crash in `ValkeyModule_HashHasStringRef` on a missing or expired field and correct wrong return values in the hash stringRef module APIs by @ShubhamTaple (#4504)
+* Fix a server abort on a RESTORE payload declaring a string length that overflows the allocation size; such payloads are now rejected as bad data by @enjoy-binbin (#4733)
+* Fix ZINTER/ZINTERSTORE returning input-order-dependent scores when a weighted term is 0*inf; a NaN weighted score now counts as 0, matching ZUNION by @leomurillo (#4997)
+* Clear a stale primary-failure gossip flag on replicas so later failovers don't incorrectly skip the election delay by @charsyam (#4533)
+* Correct `ValkeyModule_FreeModuleUser`, `ValkeyModule_ACLAddLogEntry` and `ValkeyModule_ACLAddLogEntryByUserName` declarations to return int as implemented, fixing undefined behavior on targets with strict call signature checks by @rainsupreme (#4676)
+* valkey-check-aof now recognizes RDB base files with the `VALKEY` signature instead of misreporting a valid multipart AOF as invalid by @sarthakaggarwal97 (#4739)
+* Fix module commands that access undeclared keys in other slots reading or writing the wrong slot in cluster mode, and aborting in debug builds by @patrickswedish (#4424)
+* Reject relative expire times in `SET`/`GETEX`, `RESTORE`, and `ValkeyModule_SetExpire` that overflow when added to the current time, preventing server aborts from negative expires by @madolson (#4880)
+* `HDEL`, `HGETDEL`, `HPERSIST`, and `HEXPIRE` no longer propagate fields they treat as expired, preventing replica and AOF-reload divergence by @xdk-amz (#4772)
+* Fix a server crash when loading an ACL file containing a selector with an unmatched parenthesis by @magic-peach (#4214)
+* Fix a segfault on Alpine/musl when Lua is built as a module, caused by a symbol clash on an internal clock function by @mohammedgqudah (#4270)
+* `COPY` of a hash now includes expired-but-unreaped fields so their deletion is propagated and replicas stay in sync by @pirate329 (#4939)
+* Restore acceptance of hexadecimal float sorted set scores (such as `0x10`), keeping replication and AOF replay compatible with Valkey 9.0 by @quanyeyang (#4875)
+* Sorted set range commands with a negative `LIMIT` offset now return an empty result instead of a spurious element on btree-encoded keys by @xiaocj (#4637)
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/valkey-io/valkey/releases/tag/9.1.3)
+
+
 ## 9.0.6 (2026-09-01)
 
 Updated to upstream Valkey **9.0.6**:

@@ -61,5 +61,5 @@ slug: openbao
 startup: system
 boot: auto
 url: https://openbao.org
-version: "2.7.1"
+version: "2.7.2"
 webui: "http://[HOST]:[PORT:8200]/"
