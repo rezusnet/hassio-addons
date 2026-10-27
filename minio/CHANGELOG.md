@@ -1,6 +1,36 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## RELEASE.2026-10-26T00-00-00Z.2 (2026-10-27)
+
+Updated to upstream MinIO **RELEASE.2026-10-26T00-00-00Z**:
+
+SILO 20261026 is the coordinated Server release with mcli 20261026, Console v2.5.1 and silo-pkg v3.15.2. PGSTY KES 20261026 is available as the optional external key service.
+
+Tag: `RELEASE.2026-10-26T00-00-00Z` · Package version: `20261026000000.0.0` · Source: `c3ad836aed0d8a7d23c2e44a5eaa3009d08525e3`.
+
+### English
+
+Changes since Server 20261018:
+
+- Restore LDAP login for normalized DNs with an impossible ASCII filename component over 255 bytes, while retaining fail-closed handling for unreadable revocation records and other storage errors (#250). Improve IAM policy reload locking and cancellation propagation.
+- Make built-in policy Reset immediately restore the native definition. Reload committed policy state on peer/etcd notifications so delayed notifications preserve subsequent edits. Read live bucket inventory for Console refresh; object usage remains scanner-derived.
+- Preserve the authoritative multi-pool object copy when ordinary or bulk deletion cleanup fails; improve delete-marker placement and protect referenced tier objects (#257 / #256).
+- Retain tier payloads when lifecycle expiration only creates a delete marker, including non-null versions in versioning-suspended buckets (#253 / #252).
+- Preserve the FULL_OBJECT checksum type when replicating multipart CRC objects, preventing BadDigest at the destination (#255 / #254).
+- Forward storage-RPC deletion options required by overwrite rollback. Preserve established drive/RPC deadlines, cancellation, object locking, read quorum and healing policy.
+- Embed Console v2.5.1 with the 2.5 interface, permissions, task and identity-management improvements, high-latency diagnostics, and subsequent group/OIDC/session/export/ZIP/accessibility fixes. Select released mcli 20261026 and silo-pkg v3.15.2, including identity-aware client caches, resync/batch observation and exit-code repairs, alias regions and upstream SDK fixes.
+- Build with Go 1.27.3 and upstream minio-go `v7.4.2-0.20261025165926-320af050c445` (a pinned commit, not a v7.4.2 tag). Refresh SFTP, etcd, NATS and cloud dependencies; preserve Kafka protocol 2.1 defaults and legacy DARE v1 reads. Ship Windows ZIP archives, native Linux packages, SBOMs and provenance; correct RPM fingerprint verification in finalization. Standard images bundle mcli 20261026 and static curl 8.23.0 and apply the documented certificate-trust mitigation.
+
+Upgrade all participating Server processes and replication sites as a coordinated stack. Back up IAM state, configuration and encryption keys; verify LDAP/OIDC login, policy Reset, bucket refresh, replication, versioned reads and encrypted-object decryption. Update mcli automation for `pending` batch states and nonzero partial resync mutation exits. A successful query of an already Failed/Canceled resync job still exits zero.
+
+A timeout does not prove that underlying I/O stopped or that a write failed to commit. Late commits, delayed rollback and stale values/tags remain possible after partial failure, lease loss or partitions. This release adds no distributed fencing or strict cross-pool read recovery and cannot restore previously lost data. Durable multipart listing (#79 / #217) and webhook hot reload (#249) are not included; #251 remains open. Earlier candidate test totals do not certify the final source.
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/pgsty/silo/releases/tag/RELEASE.2026-10-26T00-00-00Z)
+
+
 ## RELEASE.2026-10-18T00-00-00Z.2 (2026-10-19)
 
 Updated to upstream MinIO **RELEASE.2026-10-18T00-00-00Z**:
