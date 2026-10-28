@@ -1,6 +1,22 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.19.5 (2026-10-28)
+
+Updated to upstream OpenCode **1.19.5**:
+
+### Core
+
+### Bugfixes
+- Failed TUI worker requests now return an error instead of leaving the caller hanging. (@Nowaker)
+
+**Thank you to 1 community contributor:**
+- @Nowaker:
+  - fix(opencode): answer a failed TUI worker request instead of hanging (#54936)
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v1.19.5)
+
+
 ## 1.19.4 (2026-10-23)
 
 Updated to upstream OpenCode **1.19.4**:
