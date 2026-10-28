@@ -1,6 +1,39 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.7.0.5723-ls166 (2026-10-28)
+
+Updated to upstream Prowlarr **2.7.0.5723** (image `2.7.0.5723-ls166`):
+
+*To receive further updates for a non-docker installation, please change the branch to **master**. (Settings -> General (Show Advanced Settings) -> Updates -> Branch)*
+
+**If you are using docker you will need to update the container image.  *Do not attempt to update Prowlarr within an existing docker container.***
+
+### Changes:
+
+* 0dc20d8495bad9951c3fafe53f32b6e1c70fcf3b Bump to 2.7.0
+* 71c5435cf81b957c748080433ba3e4e4057cd779 Multiple Translations updated by Weblate
+* f78adbbb0d7184d46ea406f5aed3f2a1cbbee2bc Bump to 2.6.6
+* 3f28a7907dae0023d439af92034859857af64e2d Fixed: Wildcard IP addresses in Allowed Hosts
+* 874e38b99e61c8c2da8f6e7c3d5128e002cc8b31 Fixed: Increase AvistaZ indexer rate limit to 6.1 seconds
+* 97f3676cc67be264e3a940c5f96f9a6ffef1e992 Fixed: (BroadcasTheNet) Add imdb search support
+* 26a605e41f6156b959bc8f3ae5db4bec252106c5 Update corejs version in babel/preset-env
+* d9c37084b4b79f3a727fa40f58def263d93ad04c Disable webpack HTML built-in minification
+* b59c9defe86ac63b0bf2230768e50d8fa8e846f0 Add place-content to stylelint properties order
+* c1e4f7e576986ed6c0f1363404ff66c575bab924 Update React
+<details><summary><b>See More</b></summary>
+
+* b8d04898207b16070c010c8d74b4cc218ff84b8f Update frontend dependencies
+* e135a6d379fcd7e01aac8c2cc38e51ce3a5991fa Use default page size recommended by the indexer
+* cbb30c69efa39d39d18f193124ad53c1c6fa1d26 Clear all expired cache entries periodically
+* adaf77308f2a89225c318f6130a990fe1b7048b4 Bump indexers definition version to 12
+* 3c6e1d97ac485a70cc9d4063dd5d17af7a77584d add support to cardigann for a base64decode filters
+
+This list of changes was [auto generated](https://dev.azure.com/Prowlarr/a958e221-aeac-4b0e-a862-d8ffe1df4b09/_release?releaseId=260&_a=release-summary).</details>
+
+[Full release notes](https://github.com/Prowlarr/Prowlarr/releases/tag/v2.7.0.5723)
+
+
 ## develop-2.6.6.5717-ls279 (2026-10-27)
 
 Updated to upstream Prowlarr **2.6.6.5717** (image `develop-2.6.6.5717-ls279`):

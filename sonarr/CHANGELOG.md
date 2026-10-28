@@ -1,11 +1,40 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-5.0.0.2838-ls204 (2026-10-28)
+
+Updated to upstream Sonarr **5.0.0.2838** (image `develop-5.0.0.2838-ls204`):
+
+<!-- Release notes generated using configuration in .github/release.yml at 58fe69664800283237cbca06ace87766dfc66615 -->
+
+### What's Changed
+### Changes
+* Translations update from Servarr Weblate by @ServarrAdmin in https://github.com/Sonarr/Sonarr/pull/9212
+* Suppress additional ImageSharp 3.x advisory by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9217
+* Fixed: Clearing release group in Manual Import by @markus101 in https://github.com/Sonarr/Sonarr/pull/9209
+* Import qBittorrent single-file torrents from root_path by @davidnewhall in https://github.com/Sonarr/Sonarr/pull/9211
+* Add series names to library action buttons by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9213
+* Add episode context to search button labels by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9214
+* Clean MediaInfo interface after streams split by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9216
+* Translations update from Servarr Weblate by @ServarrAdmin in https://github.com/Sonarr/Sonarr/pull/9222
+* Episode details redesign by @markus101 in https://github.com/Sonarr/Sonarr/pull/9206
+* Fixed: Series index footer statistics by @stevietv in https://github.com/Sonarr/Sonarr/pull/9221
+* Fix Trakt audio channels formatting by @connor-grady in https://github.com/Sonarr/Sonarr/pull/9215
+* Warn before losing single-series edits on navigation or reload by @cpwasthere in https://github.com/Sonarr/Sonarr/pull/9218
+
+### New Contributors
+* @connor-grady made their first contribution in https://github.com/Sonarr/Sonarr/pull/9215
+* @cpwasthere made their first contribution in https://github.com/Sonarr/Sonarr/pull/9218
+
+**Full Changelog**: https://github.com/Sonarr/Sonarr/compare/v5.0.0.2800...v5.0.0.2838
+
+[Full release notes](https://github.com/Sonarr/Sonarr/releases/tag/v5.0.0.2838)
+
+
 ## develop-5.0.0.2800-ls203 (2026-10-26)
 
 Updated to upstream Sonarr **5.0.0.2800** (image `develop-5.0.0.2800-ls203`):
 
-<!-- Release notes generated using configuration in .github/release.yml at a6171f0ca61b2a76ec529da3e9aadb11435344f9 -->
 
 ### What's Changed
 ### Changes
