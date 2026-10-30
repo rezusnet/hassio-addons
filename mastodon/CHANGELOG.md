@@ -1,6 +1,85 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.7.4-ls219 (2026-10-30)
+
+Updated to upstream Mastodon **4.7.4** (image `v4.7.4-ls219`):
+
+<h1><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./lib/assets/wordmark.dark.png?raw=true">
+  <source media="(prefers-color-scheme: light)" srcset="./lib/assets/wordmark.light.png?raw=true">
+  <img alt="Mastodon" src="./lib/assets/wordmark.light.png?raw=true" height="34">
+</picture></h1>
+
+### Upgrade overview
+
+This release contains upgrade notes that deviate from the norm:
+
+ℹ️ Default Ruby version has been updated
+ℹ️ Requires assets recompilation
+
+For more information, view the complete release notes and scroll down to the upgrade instructions section.
+
+### Changelog
+
+### Security
+
+- Fix insufficient ActivityPub identifier verification ([GHSA-288h-6j8h-6x5j](https://github.com/mastodon/mastodon/security/advisories/GHSA-288h-6j8h-6x5j))
+- Added security challenge e-mail to users that try to log in after long period of inactivity (#40745 by @jhbabon)
+- Updated dependencies, in particular to address security advisories in Ruby, NodeJS, `excon`, `css_parser`, `pghero`, and `sanitize`
+
+### Fixed
+
+- Fix inefficiency in some hashtag timeline queries (#41132 by @hugogameiro)
+- Fix minor inefficiency in timeline deliveries (#41079 by @isidzukuri)
+- Fix account timeline with `exclude_direct` also excluding followers-only posts for non-followed users (#41019 by @ClearlyClaire)
+- Fix error in `dev:populate_sample_data` task (#40995 and #41051 by @isidzukuri and @mjankowski)
+- Fix local collection item revocation not being properly federated (#40930 by @oneiros)
+
+### Upgrade notes
+
+To get the code for v4.7.4, use `git fetch && git checkout v4.7.4`.
+
+> [!NOTE]
+> As always, make sure you have backups of the database before performing any upgrades. If you are using docker-compose, this is how a backup command might look: `docker exec mastodon_db_1 pg_dump -Fc -U postgres postgres > name_of_the_backup.dump`
+
+### Dependencies
+
+External dependencies have not changed since v4.6.0.
+
+- Ruby: 3.3 or newer
+- PostgreSQL: 14 or newer
+- Elasticsearch (recommended, for full-text search): 7.x (OpenSearch should also work)
+- LibreTranslate (optional, for translations): 1.3.3 or newer
+- Redis: 7.0 or newer
+- Node: 22 or newer
+- libvips: 8.13 or newer
+- FFMpeg: 5.1 or newer
+
+### Update steps
+
+The following instructions are for updating from 4.7.3.
+
+If you are upgrading directly from an earlier release, please carefully read the upgrade notes for the skipped releases as well, as they often require extra steps such as database migrations. In particular, it is very important to read the [4.7.0 release notes](https://github.com/mastodon/mastodon/releases/tag/v4.7.0).
+
+### Non-Docker
+
+> [!TIP]
+> The `charlock_holmes` gem may fail to build on some systems with recent versions of gcc.
+If you run into this issue, try `BUNDLE_BUILD__CHARLOCK_HOLMES="--with-cxxflags=-std=c++17" bundle install`.
+
+1. If you are using `rbenv`, [update the list of available versions](https://github.com/rbenv/ruby-build/wiki#updating-ruby-build) and install the proper Ruby version by doing `RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install` in the Mastodon install directory (e.g. `/home/mastodon/live`)
+2. Install dependencies with `bundle install` and `yarn install --immutable`
+3. Precompile the assets: `RAILS_ENV=production bundle exec rails assets:precompile`
+4. Restart all Mastodon processes.
+
+### When using Docker
+
+1. Restart all Mastodon processes.
+
+[Full release notes](https://github.com/mastodon/mastodon/releases/tag/v4.7.4)
+
+
 ## 4.7.3-ls218 (2026-10-23)
 
 Upstream image rebuild (`v4.7.3-ls216` → `v4.7.3-ls218`) — packaging / base-image refresh, no application changes (Mastodon **4.7.3**).
