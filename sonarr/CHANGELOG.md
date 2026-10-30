@@ -1,11 +1,39 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-5.0.0.2870-ls205 (2026-10-30)
+
+Updated to upstream Sonarr **5.0.0.2870** (image `develop-5.0.0.2870-ls205`):
+
+<!-- Release notes generated using configuration in .github/release.yml at 43d500c02e56aa2e7ab5738dc5807b9b480b96dc -->
+
+### What's Changed
+### Changes
+* Translations update from Servarr Weblate by @ServarrAdmin in https://github.com/Sonarr/Sonarr/pull/9224
+* New: TMDb Import Lists by @dimac-h in https://github.com/Sonarr/Sonarr/pull/8997
+* Display every season of multi-season packs by @IonBazan in https://github.com/Sonarr/Sonarr/pull/9072
+* Add Multi-Season Pack release type by @IonBazan in https://github.com/Sonarr/Sonarr/pull/9073
+* Calendar improvements on smaller screens by @markus101 in https://github.com/Sonarr/Sonarr/pull/9226
+* Improve cleansing of long log messages by @markus101 in https://github.com/Sonarr/Sonarr/pull/9227
+* Series search input refactor by @markus101 in https://github.com/Sonarr/Sonarr/pull/9228
+* Add download context to queue action buttons by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9229
+* Add release names to history and blocklist actions by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9230
+* Fixed: Norwegian translations and date formats not working by @markus101 in https://github.com/Sonarr/Sonarr/pull/9232
+* Bump github actions by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9233
+* Fixed: Episode file details missing when opened from History or Queue by @markus101 in https://github.com/Sonarr/Sonarr/pull/9236
+
+### New Contributors
+* @dimac-h made their first contribution in https://github.com/Sonarr/Sonarr/pull/8997
+
+**Full Changelog**: https://github.com/Sonarr/Sonarr/compare/v5.0.0.2838...v5.0.0.2870
+
+[Full release notes](https://github.com/Sonarr/Sonarr/releases/tag/v5.0.0.2870)
+
+
 ## develop-5.0.0.2838-ls204 (2026-10-28)
 
 Updated to upstream Sonarr **5.0.0.2838** (image `develop-5.0.0.2838-ls204`):
 
-<!-- Release notes generated using configuration in .github/release.yml at 58fe69664800283237cbca06ace87766dfc66615 -->
 
 ### What's Changed
 ### Changes

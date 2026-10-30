@@ -1,6 +1,72 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.2.2 (2026-10-30)
+
+Updated to upstream OpenCode **2.2.2**:
+
+### Highlights
+
+- **Image Generation by Default**: When a connected provider supports image models, agents can now use `experimental_image_generate` without additional configuration. Set its preferred model through `experimental.image_generate.model`. ([#60258](https://github.com/anomalyco/opencode/pull/60258))
+- **Faster Worktree Selection**: On the new-session screen, click the current Git branch to open that project’s “Run session in” worktree picker directly. ([#60263](https://github.com/anomalyco/opencode/pull/60263))
+- **Unified Quotes and Annotations**: Timeline quotes, terminal quotes, and browser annotations now share a compact optional-comment editor, while source highlights remain attached to local drafts. ([#60164](https://github.com/anomalyco/opencode/pull/60164))
+
+### Core
+
+#### Improvements
+
+- Enabled `experimental_image_generate` by default when an image-capable provider is connected. ([#60258](https://github.com/anomalyco/opencode/pull/60258))
+- Recorded the start time of each session’s latest execution.
+
+#### Bug fixes
+
+- Rejected persistent terminal requests whose working directory no longer exists.
+- Preserved media when sessions are forked or imported.
+- Associated image-generation notices with the correct background job.
+
+### TUI
+
+#### Bug fixes
+
+- Preserved captured attachments and their original source paths. Thanks [@OpeOginni](https://github.com/OpeOginni). ([#60222](https://github.com/anomalyco/opencode/pull/60222))
+- Prevented middle-truncated paths from overflowing at very narrow terminal widths.
+- Improved Go usage-limit messages with the reset time and account page link.
+- Correctly typed and displayed Go and ChatGPT usage-limit errors.
+
+### Desktop
+
+#### Improvements
+
+- Made the Git branch on the new-session screen open the current project’s worktree picker directly. ([#60263](https://github.com/anomalyco/opencode/pull/60263))
+- Unified timeline quotes, terminal quotes, and browser annotations around one optional-comment workflow. ([#60164](https://github.com/anomalyco/opencode/pull/60164))
+- Restored classic question cards by default and added **Settings → Experimental → New question UI** for the redesigned keyboard-oriented dock. ([#59723](https://github.com/anomalyco/opencode/pull/59723))
+- Added a side-panel tab menu and kept close buttons visible when tabs overflow.
+- Moved user-message actions into a compact menu.
+- Redesigned the active todo pill to show the current task and concurrent work more clearly.
+- Added consistent styling for searchable dialogs and composer pills.
+
+#### Bug fixes
+
+- Stopped queued prompts from dropping frames as their content grows.
+- Counted queued quotes and browser annotations as attachments.
+- Reported failures to persist composer attachments through the normal error UI.
+- Made Markdown fragment links scroll to the referenced heading.
+- Kept each tab’s timeline state when switching directories.
+- Ordered the inbox’s **Working** shelf by execution start time.
+- Fixed side-panel launchers and automatic closing when the final tab is removed.
+- Focused the matching navigation arrow while reviewing changes.
+- Preserved pending model labels only when a queued prompt actually changes models.
+- Added reset details, an account link, and a composer tray for Go usage limits.
+
+### SDK
+
+#### Improvements
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v2.2.2)
+
+
 ## 2.2.1 (2026-10-29)
 
 Updated to upstream OpenCode **2.2.1**:

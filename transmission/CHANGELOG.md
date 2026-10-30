@@ -1,6 +1,48 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.1.4-r0-ls367 (2026-10-30)
+
+Updated to upstream Transmission **4.1.4** (image `4.1.4-r0-ls367`):
+
+### Transmission 4.1.4
+
+This is Transmission 4.1.4, a bugfix release. It fixes a security vulnerability in the macOS client and has other small bugfixes. Users are encouraged to upgrade to this version.
+
+### What's New in 4.1.4
+
+### All Platforms
+
+* Fixed a Transmission 4.1.0 regression that could cause torrents with zero-byte files to be handled incorrectly, sometimes losing downloaded progress ([#9165](https://github.com/transmission/transmission/pull/9165))
+* Hardened the `torrent-add` RPC method against malformed requests. ([#9158](https://github.com/transmission/transmission/pull/9158))
+* Unified launch and delegation between the Qt and GTK clients: If either is already running and then you or a browser's mime-type handler tries to start the other to add a new torrent, that new torrent will get handed off to the pre-existing session. ([#9032](https://github.com/transmission/transmission/pull/9032))
+* Fixed a build failure that happened when building Transmission with `-Wnull-dereference -Werror` in gcc 12.15. ([#9057](https://github.com/transmission/transmission/pull/9057))
+* Fixed a rare bug could leave Transmission hung but running on shutdown. ([#9058](https://github.com/transmission/transmission/pull/9058))
+* Fixed a rare bug that could prevent downloading webseeds from finishing. ([#9146](https://github.com/transmission/transmission/pull/9146))
+* Fixed a bug where setting `TR_CURL_PROXY_SSL_NO_VERIFY` broke origin server SSL verification. ([#9153](https://github.com/transmission/transmission/pull/9153))
+* Fixed per-torrent session speed-limit overrides so they apply to both downloads and uploads. ([#9154](https://github.com/transmission/transmission/pull/9154))
+
+### macOS Client
+
+* Fixed a potential RCE vulnerability in the macOS client. It requires local write access to the user's preferences, so it is not remotely exploitable. ([GHSA-v7mp-fpv3-jf5r](https://github.com/transmission/transmission/security/advisories/GHSA-v7mp-fpv3-jf5r))
+* Minimum supported version increased to macOS 12 ([#9166](https://github.com/transmission/transmission/pull/9166))
+* Fixed a bug that prevented some magnet links from being added correctly. ([#9062](https://github.com/transmission/transmission/pull/9062))
+* Migrate Sparkle update signing from DSA to EdDSA. ([#9065](https://github.com/transmission/transmission/pull/9065))
+
+### Qt Client
+
+* On Windows builds, change to zlib `1.3.2` from `1.3.1` to pick up [7ASecurity audit](https://7asecurity.com/blog/2026/02/zlib-7asecurity-audit/) fixes. ([#9025](https://github.com/transmission/transmission/pull/9025))
+* On Windows 10+ builds, change to Qt `6.10.3` from `6.10.1` to pick up Qt bugfixes. ([#9030](https://github.com/transmission/transmission/pull/9030))
+* On Windows 7 builds, change to Qt `5.15.19` from `5.15.17` to pick up Qt bugfixes. ([#9030](https://github.com/transmission/transmission/pull/9030))
+* Improved UI code to use less CPU. ([#9161](https://github.com/transmission/transmission/pull/9161))
+
+### GTK Client
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/transmission/transmission/releases/tag/4.1.4)
+
+
 ## 4.1.3-r0-ls366 (2026-10-28)
 
 Upstream image rebuild (`4.1.3-r0-ls365` → `4.1.3-r0-ls366`) — packaging / base-image refresh, no application changes (Transmission **4.1.3**).
