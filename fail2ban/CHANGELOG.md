@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.1.0-r2-ls48 (2026-10-31)
+
+Upstream image rebuild (`1.1.0-r2-ls47` → `1.1.0-r2-ls48`) — packaging / base-image refresh, no application changes (Fail2ban **1.1.0**).
+
+
 ## 1.1.0-r2-ls47 (2026-10-24)
 
 Upstream image rebuild (`1.1.0-r2-ls46` → `1.1.0-r2-ls47`) — packaging / base-image refresh, no application changes (Fail2ban **1.1.0**).

@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## glitch-v4.7.4-ls360 (2026-10-31)
+
+Upstream image rebuild (`v4.7.4-ls219` → `glitch-v4.7.4-ls360`) — packaging / base-image refresh, no application changes (Mastodon **4.7.4**).
+
+
 ## 4.7.4-ls219 (2026-10-30)
 
 Updated to upstream Mastodon **4.7.4** (image `v4.7.4-ls219`):
