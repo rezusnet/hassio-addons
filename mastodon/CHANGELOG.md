@@ -1,6 +1,73 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.7.5-ls220 (2026-11-04)
+
+Updated to upstream Mastodon **4.7.5** (image `v4.7.5-ls220`):
+
+<h1><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./lib/assets/wordmark.dark.png?raw=true">
+  <source media="(prefers-color-scheme: light)" srcset="./lib/assets/wordmark.light.png?raw=true">
+  <img alt="Mastodon" src="./lib/assets/wordmark.light.png?raw=true" height="34">
+</picture></h1>
+
+### Changelog
+
+### Security
+
+- Fix password authentication bypass for inactive accounts ([GHSA-3xjw-gv43-3w62](https://github.com/mastodon/mastodon/security/advisories/GHSA-3xjw-gv43-3w62))
+- Fix DoS through JSON-LD compaction (#41482 by @ClearlyClaire, [GHSA-cf49-73r7-rxj6](https://github.com/mastodon/mastodon/security/advisories/GHSA-cf49-73r7-rxj6))
+- Fix `Forwarded` header taking precedence over `X-Forwarded-For` (#41481 by @ClearlyClaire, [GHSA-qp4r-p842-mw5c](https://github.com/mastodon/mastodon/security/advisories/GHSA-qp4r-p842-mw5c))
+  - If your reverse-proxy setup uses `Forwarded` instead of `X-Forwarded-For`, please make sure it ignores user-provided `X-Forwarded-For` headers.
+  - If you are using our provided `nginx.conf`, please consider updating it.
+- Updated dependencies, in particular to address security advisories in `addressable`, `loofah`, `rack`, and `rails-html-sanitizer`
+
+### Changed
+
+- Change invites use counts to not decrease if an invited user deletes their account (#41458 by @ClearlyClaire)
+
+### Upgrade notes
+
+To get the code for v4.7.5, use `git fetch && git checkout v4.7.5`.
+
+> [!NOTE]
+> As always, make sure you have backups of the database before performing any upgrades. If you are using docker-compose, this is how a backup command might look: `docker exec mastodon_db_1 pg_dump -Fc -U postgres postgres > name_of_the_backup.dump`
+
+### Dependencies
+
+External dependencies have not changed since v4.6.0.
+
+- Ruby: 3.3 or newer
+- PostgreSQL: 14 or newer
+- Elasticsearch (recommended, for full-text search): 7.x (OpenSearch should also work)
+- LibreTranslate (optional, for translations): 1.3.3 or newer
+- Redis: 7.0 or newer
+- Node: 22 or newer
+- libvips: 8.13 or newer
+- FFMpeg: 5.1 or newer
+
+### Update steps
+
+The following instructions are for updating from 4.7.4.
+
+If you are upgrading directly from an earlier release, please carefully read the upgrade notes for the skipped releases as well, as they often require extra steps such as database migrations. In particular, it is very important to read the [4.7.0 release notes](https://github.com/mastodon/mastodon/releases/tag/v4.7.0).
+
+### Non-Docker
+
+> [!TIP]
+> The `charlock_holmes` gem may fail to build on some systems with recent versions of gcc.
+If you run into this issue, try `BUNDLE_BUILD__CHARLOCK_HOLMES="--with-cxxflags=-std=c++17" bundle install`.
+
+1. Install dependencies with `bundle install` and `yarn install --immutable`
+2. Restart all Mastodon processes.
+
+### When using Docker
+
+1. Restart all Mastodon processes.
+
+[Full release notes](https://github.com/mastodon/mastodon/releases/tag/v4.7.5)
+
+
 ## glitch-v4.7.4-ls360 (2026-10-31)
 
 Upstream image rebuild (`v4.7.4-ls219` → `glitch-v4.7.4-ls360`) — packaging / base-image refresh, no application changes (Mastodon **4.7.4**).
