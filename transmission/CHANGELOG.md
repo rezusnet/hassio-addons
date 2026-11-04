@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.1.4-r0-ls368 (2026-11-04)
+
+Upstream image rebuild (`4.1.4-r0-ls367` → `4.1.4-r0-ls368`) — packaging / base-image refresh, no application changes (Transmission **4.1.4**).
+
+
 ## 4.1.4-r0-ls367 (2026-10-30)
 
 Updated to upstream Transmission **4.1.4** (image `4.1.4-r0-ls367`):
