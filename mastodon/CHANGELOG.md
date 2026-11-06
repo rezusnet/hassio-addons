@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.7.5-ls221 (2026-11-06)
+
+Upstream image rebuild (`v4.7.5-ls220` → `v4.7.5-ls221`) — packaging / base-image refresh, no application changes (Mastodon **4.7.5**).
+
+
 ## 4.7.5-ls220 (2026-11-04)
 
 Updated to upstream Mastodon **4.7.5** (image `v4.7.5-ls220`):
