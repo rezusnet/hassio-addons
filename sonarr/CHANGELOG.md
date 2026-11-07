@@ -1,11 +1,15 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.0.20.3014-ls3 (2026-11-07)
+
+Upstream image rebuild (`4.0.20.3014-ls2` → `4.0.20.3014-ls3`) — packaging / base-image refresh, no application changes (Sonarr **4.0.20.3014**).
+
+
 ## 4.0.20.3014-ls2 (2026-10-31)
 
 Updated to upstream Sonarr **4.0.20.3014** (image `4.0.20.3014-ls2`):
 
-<!-- Release notes generated using configuration in .github/release.yml at cab419ade8ac7fcab5bf80394ee492abd35d5f5a -->
 
 ### What's Changed
 ### Changes
