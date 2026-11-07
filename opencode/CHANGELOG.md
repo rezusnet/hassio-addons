@@ -1,6 +1,38 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.2.6 (2026-11-07)
+
+Updated to upstream OpenCode **2.2.6**:
+
+### Highlights
+
+- **Shared MCP Connections**: Turn on pooling for an MCP server to share one connection across projects with the same setup, so you run fewer processes and start faster. ([#61185](https://github.com/anomalyco/opencode/pull/61185))
+- **GUI Plugin Themes and New Slots**: GUI plugins can now add color themes, render or add actions to code blocks, and use native settings and menu components. ([#61485](https://github.com/anomalyco/opencode/pull/61485), [#61533](https://github.com/anomalyco/opencode/pull/61533), [#61527](https://github.com/anomalyco/opencode/pull/61527), [#61509](https://github.com/anomalyco/opencode/pull/61509))
+- **Mobile Composer Dock**: On phones and tablets, composer actions now sit in a touch dock above the keyboard with larger buttons. ([#61773](https://github.com/anomalyco/opencode/pull/61773))
+- **Scripted Runs in Worktrees**: Run `opencode run -w` to start the session in a new git worktree, or `--worktree=<name>` to name it. ([#60712](https://github.com/anomalyco/opencode/pull/60712))
+- **Automatically Archived Runs**: Add `--archived` to `opencode run` to keep scripted and CI sessions out of your inbox and session lists. ([#61270](https://github.com/anomalyco/opencode/pull/61270))
+
+### Core
+
+#### Improvements
+
+- Added opt-in MCP connection sharing through `pool: true`. ([#61185](https://github.com/anomalyco/opencode/pull/61185))
+- Added `opencode run --archived`, which creates the session already archived so scripted and CI runs stay out of the inbox, home, and session lists. Archived sessions are also hidden from the TUI session list and skipped by `--continue`. ([#61270](https://github.com/anomalyco/opencode/pull/61270))
+- Added `opencode run --worktree` (`-w`), which starts the session in a new git worktree. Use `--worktree=<name>` to choose the worktree name. It cannot be combined with `--continue` or `--session`. ([#60712](https://github.com/anomalyco/opencode/pull/60712))
+- Added provider- and model-specific session warming settings, including an `interval: "auto"` mode based on cache TTL. ([#60025](https://github.com/anomalyco/opencode/pull/60025), [#60969](https://github.com/anomalyco/opencode/pull/60969))
+- Added the `websearch.use` policy action and switches for enabling all feature flags with `OPENCODE_FLAGS=all` or `experimental.all_flags`. ([#61557](https://github.com/anomalyco/opencode/pull/61557), [#61826](https://github.com/anomalyco/opencode/pull/61826))
+- Added an experimental bytecode VM for Code Mode. It is off by default; turn it on with `experimental.codemode_vm: true` or `OPENCODE_FLAGS=codemode_vm`. ([#62358](https://github.com/anomalyco/opencode/pull/62358))
+- Added support for Microsoft Store installations of PowerShell 7 on Windows. ([#61952](https://github.com/anomalyco/opencode/pull/61952))
+- Added Azure Messages support for Foundry Claude models. ([#60934](https://github.com/anomalyco/opencode/pull/60934))
+
+#### Bug fixes
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v2.2.6)
+
+
 ## process-daemon-v0.5.0 (2026-11-06)
 
 Updated to upstream OpenCode **process-daemon-v0.5.0**:
