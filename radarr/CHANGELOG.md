@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-7.0.1.10859-ls277 (2026-11-08)
+
+Upstream image rebuild (`develop-7.0.1.10859-ls276` → `develop-7.0.1.10859-ls277`) — packaging / base-image refresh, no application changes (Radarr **7.0.1.10859**).
+
+
 ## develop-7.0.1.10859-ls276 (2026-11-03)
 
 Updated to upstream Radarr **7.0.1.10859** (image `develop-7.0.1.10859-ls276`):
