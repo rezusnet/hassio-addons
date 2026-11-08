@@ -82,4 +82,4 @@ schema:
 slug: radarr
 udev: true
 url: https://radarr.video
-version: "develop-7.0.1.10859-ls276"
+version: "develop-7.0.1.10859-ls277"
