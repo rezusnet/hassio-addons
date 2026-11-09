@@ -1,6 +1,59 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 6.4.4.10685-ls326 (2026-11-09)
+
+Updated to upstream Radarr **6.4.4.10685** (image `6.4.4.10685-ls326`):
+
+*To receive further Pre-Release or final updates for a non-docker installation, please change the branch to **master**. (Settings -> General (Show Advanced Settings) -> Updates -> Branch)*
+
+**If you are using docker you will need to update the container image.  *Do not attempt to update Radarr within an existing docker container.***
+
+### Changes:
+
+* a96bf7c3ecb23cb76993770727285dc17a613fbc Multiple Translations updated by Weblate
+* 3fcf0db80f396059ffc1a4c513075a88a7816080 Don't skip health check if Allowed Hosts is set to *
+* 92f24bcdb96def15923779e277afea878ee0de3a Fixed: Improve logging for 'Allowed Hosts' and 'Trusted Networks'
+* 223dc1862d980517554acea36541a06c13ee27db Fix modals on iOS
+* 7946e7bd2cec7a67227c642ab9c9fa61ef1c14c5 Fixed: Switch theme automatically on system change
+* 7004fe8b3eee3f0280ea440dd6f59e576e0692b1 Produce distinct values in aggregated movie stats from Postgres
+* c52c7f438764e793529e0cdbfdcc12400ff6fc35 New: Filter movies by movie file quality
+* 0220f0daa9f68ffa40e5f0fe1ce4f909858ceba4 Log warning if hardlinking failed and fallbacks to copy
+* 516ca5979e0b2ed776778e9b73158aec0a456c96 Restore auto width behavior from previous FontAwesome versions
+* 36d8492959846d4189b60375835d48ce6e4e2dd2 Bump frontend dependencies
+<details><summary><b>See More</b></summary>
+
+* 02834499f47b077f63b993df3d8ec6af6e5ff5f4 Remove unused package references
+* 35d35321fbe79c41ceae647659ed889af006b1f6 Multiple Translations updated by Weblate
+* 255f38dce817a5a2fb0cdc9b9476324725dc75b3 Fixed: Refactor showing grabbed/blocklisted releases in Interactive Search
+* 48a61bf63aabac13446c3792a1d6e0ec8ccd741d Bump to 6.4.4
+* 04e27cb264104973e531cf5226430dabf5611786 Bump Sentry to 5.16.3
+* 39c172d827a3738af4a2d9e951c7c52ce7153d77 Bump NUnit to 4.5.1
+* e80abdd603ffbdcfc48615f824488f7c7402424f Improve external restart handling
+* 68b93db78cb7a648d61a486d94eae703242e1e36 Fixed: Importing single files from Freebox
+* 45da623c777c2451bff5684718832952925f2be3 Fixed: Re-grabbing a torrent that was already imported should re-import
+* 9910767f58b0d9beb3b7fa671ed4695487d917d3 Fixed: Unexpected languages stored in DB will be treated as Unknown
+* 2cfc781f85c6fb0355f4c37da5c68d86616e7bdf Fixed: Ignore invalid languages during Manual Import
+* 40bb746c5e3f5929f09e0edb9350c721e7670065 Fixed: Connecting to Jellyfin 12+ (#11663)
+* bdd5a726071630f408c85fe1b716c5bef108d513 Multiple Translations updated by Weblate
+* 1906cfb3819b6e9f603642020c6a7d689c8e5352 Fixed: Format of timestamps for Discord notifications from some systems
+* 02ef5f56d54aaf46216b6718fd3591ad253548e5 Bump to 6.4.3
+* fb908fd5f4861a529e6d60e12ee0a214e24c80ef Remove configuring as service duplicated PostgresOptions
+* e575ec5e5e856ebbfeef1c4c1f9b55a86e0d1641 Add isSaving to createSettingsSectionSelector
+* c3f0654984994145deeb6bfbdd77654653fd2224 Fix allowed hosts check check on config file changes
+* 387d43d7aecc3dfa63f780bf93a72e0966aab319 New: Add Trusted Networks setting
+* 91c6dc4eac9883e8389145ff4728858442502212 New: Add hostname validation
+* 72ae0c011dc3297b6b5b9feb8971da28977f510c Add reason to health check
+* 94ef97b1f1187aeeca20d658a747620df8980238 Improve zip extraction
+* a11778302bc04e9d60b7d1d0c640c423272deb0b Bump FluentAssertions to 7.2.2
+* f62cb92c105b761c142cedfef2e3eed024f6e922 Display external ID only for main movie link group
+* dbcb327a1134d26d2feb9b4589ee8c7b2dafb1ae New: Include External IDs for movies with links
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/Radarr/Radarr/releases/tag/v6.4.4.10685)
+
+
 ## develop-7.0.1.10859-ls277 (2026-11-08)
 
 Upstream image rebuild (`develop-7.0.1.10859-ls276` → `develop-7.0.1.10859-ls277`) — packaging / base-image refresh, no application changes (Radarr **7.0.1.10859**).
