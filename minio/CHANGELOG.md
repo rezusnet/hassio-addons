@@ -1,6 +1,36 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## RELEASE.2026-11-09T00-00-00Z.2 (2026-11-10)
+
+Updated to upstream MinIO **RELEASE.2026-11-09T00-00-00Z**:
+
+SILO Server 20261109 is a maintenance release after 20261026, built from `d998292387ccf1d2907749e0fb1575ef5fb93fda` with Go 1.27.3, embedded Console 2.7.0, mcli 20261109 and silo-pkg 3.16.0. Package version: `20261109000000.0.0`.
+
+### Changes
+
+- Reconcile lifecycle decisions, version history, Object Lock and remote-tier ownership across pools; protect shared tier data and clean up only the intended restored copy or exact key.
+- Stage native restores without holding an object write lock throughout download; validate ownership before publication and bound synchronous cancellation cleanup before background recovery.
+- Enforce Object Lock during S3 bulk version deletion, including directory null versions and protection held by another pool. Replicated deletion obeys destination retention and legal hold.
+- Bind batch execution to the authenticated submitter's current permissions; pause on unavailable authorization dependencies, retry discovery and preserve completed jobs.
+- Align single-pool object locks, fix CopyObject lock ordering and evaluate multipart initiation conditions against the current object.
+- Update persisted IAM edits, long-DN LDAP login, embedded Console login with LDAP, webhook reloads, partial-view reads and healing behavior.
+- Ship Windows ZIP archives, six Linux packages, standard and distroless multi-architecture images, SBOMs and workflow provenance. RPMs are GPG-signed before final package checksums and attestations are regenerated.
+
+### Upgrade requirements and costs
+
+1. Stop batch submissions and drain or cancel unfinished jobs before changing versions. Resubmit unfinished legacy jobs after all nodes upgrade. New submitter-bound manifests and reports cannot be resumed by 20261026; do not downgrade with pending or paused new jobs. [Batch upgrade checklist](https://silo.pgsty.com/administration/batch-framework/#upgrade-20261109).
+2. A single pool whose erasure sets do not all occupy the same host set requires a drained restart, rather than mixed old/new lock domains. Pause new restores during mixed-version operation: upgraded nodes return `503` while any peer is old or unreachable. Full multi-pool protection requires every serving node to upgrade.
+3. `ready` and `cluster` do not independently prove that a restarted node can serve S3. Perform bounded signed writes and readback through every node before resuming applications, preserving peer discovery during bootstrap. [Healthcheck contract](https://silo.pgsty.com/operations/monitoring/healthcheck-probe/#native-probe).
+4. With `helm upgrade --reuse-values`, explicitly set `image.tag=RELEASE.2026-11-09T00-00-00Z`.
+
+Physical version removal in Object Lock buckets now checks each item under its mutation lock. This intentionally increases large-batch deletion latency; a bounded Linux ARM64 two-pool check measured about 202→310ms per 1,000 removable versions. Ordinary buckets and delete-marker creation keep the bulk path. Local disk timings varied materially even when testing the same binary against itself; these tests are not production capacity or tail-latency guarantees.
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/pgsty/silo/releases/tag/RELEASE.2026-11-09T00-00-00Z)
+
+
 ## RELEASE.2026-10-26T00-00-00Z.2 (2026-10-27)
 
 Updated to upstream MinIO **RELEASE.2026-10-26T00-00-00Z**:

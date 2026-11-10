@@ -1,6 +1,44 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.2.7 (2026-11-10)
+
+Updated to upstream OpenCode **2.2.7**:
+
+### Highlights
+
+- **GitHub Copilot Auto**: Pick **Auto** in the model picker when your Copilot account has an Auto pool, and Copilot's router chooses the model for each session at the Auto discount. If routing fails, OpenCode falls back to the account's default chat model. ([#62997](https://github.com/anomalyco/opencode/pull/62997))
+- **Side Panel Tab Shortcuts**: Right-click a side panel tab and choose **Close tabs to the right**. `⌘W` now closes side panel tabs wherever focus is, `⌥⌘W` or `Ctrl+Alt+W` always closes the session tab, and `⌘⇧T` reopens the last closed tab of either kind where it was. ([#62922](https://github.com/anomalyco/opencode/pull/62922))
+- **Mark Sessions Read or Unread**: Open the menu on a tab, Home row, project row or inbox card and choose **Mark as unread** to keep its dot until you next visit. ([#62889](https://github.com/anomalyco/opencode/pull/62889))
+
+### Breaking changes
+
+#### `@opencode/ai`: `ImageResponse.image` is removed
+
+This affects code that imports `@opencode/ai` directly. Read `response.images[0]` instead of `response.image`. ([#63011](https://github.com/anomalyco/opencode/pull/63011))
+
+#### SDK: fewer endpoints wait for plugins to load
+
+On a Location that is still loading plugins, `agent.list` returns the agents loaded so far, and `integration.list`, `usage.limits`, `vcs.init`, `rpc.call` and `artifact.*` no longer wait up to 5 seconds. Entries and actions that a plugin provides appear when it finishes loading, so refresh on the matching `*.updated` event. Model, provider, `generate.*`, `voice.*` and `websearch.query` endpoints still wait. ([#62796](https://github.com/anomalyco/opencode/pull/62796), [#63040](https://github.com/anomalyco/opencode/pull/63040))
+
+### Core
+
+#### Improvements
+
+- **MCP Logins Stay Signed In**: Remote MCP servers that rotate refresh tokens no longer sign you out when several clients refresh at once or the token endpoint fails for a moment. ([#62827](https://github.com/anomalyco/opencode/pull/62827), [#63012](https://github.com/anomalyco/opencode/pull/63012))
+- `read` accepts a negative `offset` to read from the end of a file, such as `-50` for the last 50 lines. An offset past the end returns the last lines and the file's line count instead of failing. ([#62147](https://github.com/anomalyco/opencode/pull/62147))
+- When `read` can't find a file, it suggests close names: different capitalization, another extension, a small typo, or the matching path inside the project. ([#62147](https://github.com/anomalyco/opencode/pull/62147))
+- Shell results end with `Exit code: N`. Commands killed by a signal show the signal name, and timeouts say how long they waited and suggest a larger timeout. ([#62141](https://github.com/anomalyco/opencode/pull/62141))
+- Prompt cache warming times its pings from the model's `cache.ttl` by default (`interval: "auto"`), or every 4 minutes without a TTL. Models whose cache outlasts the warming `duration` are no longer pinged. ([#62831](https://github.com/anomalyco/opencode/pull/62831))
+- When MCP servers connect, disconnect or change tools, Code Mode sends the model a short list of what changed instead of the whole tool catalog. ([#62176](https://github.com/anomalyco/opencode/pull/62176))
+
+#### Bug fixes
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v2.2.7)
+
+
 ## 2.2.6 (2026-11-07)
 
 Updated to upstream OpenCode **2.2.6**:
