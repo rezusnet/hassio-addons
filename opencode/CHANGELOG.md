@@ -1,6 +1,15 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## process-daemon-v0.5.2 (2026-11-12)
+
+Updated to upstream OpenCode **process-daemon-v0.5.2**:
+
+opencode-pty 0.5.2 (protocol 8) from packages/process-daemon, published to npm as @opencode/pty@0.5.2.
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/process-daemon-v0.5.2)
+
+
 ## 2.2.7 (2026-11-10)
 
 Updated to upstream OpenCode **2.2.7**:
