@@ -1,6 +1,27 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## RELEASE.2026-11-12T00-00-00Z.2 (2026-11-12)
+
+Updated to upstream MinIO **RELEASE.2026-11-12T00-00-00Z**:
+
+SILO Server 20261112 is a security and correctness release after 20261109, built from `44e848fedf8cec3d8c0da4b1aa8422390a2b7a8b` with Go 1.27.4, embedded Console 2.7.2, mcli 20261112, and silo-pkg 3.16.1. Package version: `20261112000000.0.0` (Helm chart `7.0.5`).
+
+### Security Advisories Addressed
+
+- **`SN-2026-020` (Critical):** Reject dot-segment, backslash, control-character, and non-canonical keys in S3 `DeleteObjects` across single-pool and multi-pool deployments; route all explicit `VersionId` deletes and unaddressed deletes that could replace a locked `null` version through single-object validation; enforce Object Lock across suspended/prefix-excluded replication targets (`b3e69bca2`, `cf486df66`). [Advisory](https://silo.pgsty.com/blog/security/20261110-bulk-delete-path-traversal/).
+- **`SN-2026-021` & `SN-2026-025` (High):** Preserve existing service-account inline session policies when `UpdateServiceAccount` omits `newPolicy` while resetting inheritance on explicit empty documents (`{}` / `{"Statement":[]}`), replicate stored service-account policy modes across sites instead of rendered parent policies (`da8d8a54b`), preserve disabled service-account and group status during `ImportIAM`, normalize versionless inline policies to `"2012-10-17"`, and pair with Console `2.7.2` (`c11bfda8f`, `1d714834c`, `44e848fed`). [SN-2026-021](https://silo.pgsty.com/blog/security/20261110-svcacct-inline-policy-preservation/) · [SN-2026-025](https://silo.pgsty.com/blog/security/20261111-iam-import-status-and-console-policy/).
+- **`SN-2026-022` (Critical):** Authenticate `DeleteObjectTagging` before local lookup or replication proxying; inspect and authorize stored tags across every present active-active replica before proxied `GET`/`PUT`/`DELETE ?tagging` while tolerating missing lagging peers and failing closed on unreadable targets; gate `x-amz-tagging-count` and `X-Amz-Object-Lock-*` headers on local and proxied `GET`/`HEAD` (`14ecb222e`, `67a90dfef`, `293ab78b4`, `c39605d4f`, `ea37a7e8b`). [Advisory](https://silo.pgsty.com/blog/security/20261111-tagging-replication-proxy-auth/).
+- **`SN-2026-023` (High):** Enforce the 15-minute `X-Amz-Date` clock-skew window and signed-header coverage on `Authorization`-authenticated `STREAMING-UNSIGNED-PAYLOAD-TRAILER` uploads (keeping anonymous public-bucket streams intact), and populate `s3:signatureversion` / `s3:authType` across trailer streaming modes (`14ecb222e`, `296c9710b`). [Advisory](https://silo.pgsty.com/blog/security/20261111-streaming-unsigned-trailer-replay/).
+- **`SN-2026-024` (High):** Authorize `GetObjectAttributes` and read-only `.zip` archive requests (`x-minio-extract: true` on `GET`, `HEAD`, `ListObjectsV2`) against stored `UserTags`, require `s3:GetObject` on the archive before member listing, and make read-time `.zip` index construction strictly in-memory (`f746d0707`, `296c9710b`). [Advisory](https://silo.pgsty.com/blog/security/20261111-attributes-and-archive-tag-authz/).
+
+### Storage, Lifecycle, Migration, and Encryption Fixes
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/pgsty/silo/releases/tag/RELEASE.2026-11-12T00-00-00Z)
+
+
 ## RELEASE.2026-11-09T00-00-00Z.2 (2026-11-10)
 
 Updated to upstream MinIO **RELEASE.2026-11-09T00-00-00Z**:
