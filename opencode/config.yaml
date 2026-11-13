@@ -60,4 +60,4 @@ schema:
   workspace: str
 slug: opencode
 url: https://github.com/anomalyco/opencode
-version: "process-daemon-v0.5.2"
+version: "2.3.0"

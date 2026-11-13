@@ -1,6 +1,41 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.3.0 (2026-11-13)
+
+Updated to upstream OpenCode **2.3.0**:
+
+### Highlights
+
+- **Background Subagents by Default**: Subagents now return immediately, continue in the background, and report back whenever they become idle. You can keep working in the parent session while multiple subagents run concurrently. ([#63382](https://github.com/anomalyco/opencode/pull/63382))
+- **Quieter Transcripts by Default**: The TUI now summarizes each run of tool calls and thoughts into one collapsible activity row, so the answer is easier to follow. To see every step again, set **Verbosity** to `medium` or `high` in settings, or set `session.verbosity` in your TUI config; an existing setting is kept. ([#63207](https://github.com/anomalyco/opencode/pull/63207))
+- **Jump to an Earlier Prompt**: In the desktop app, open **Jump to message** from the command palette or press `Cmd+Alt+G` (`Ctrl+Alt+G` on Windows and Linux) to search prompts across the current session and jump directly to one. ([#63585](https://github.com/anomalyco/opencode/pull/63585))
+
+### Core
+
+#### Improvements
+
+- Subagents now always run in the background, return their session ID immediately, and report results to their parent whenever they become idle. ([#63382](https://github.com/anomalyco/opencode/pull/63382))
+- Added experimental support for MCP events, behind the `mcp_events` flag. ([#63254](https://github.com/anomalyco/opencode/pull/63254), [#63261](https://github.com/anomalyco/opencode/pull/63261), [#63269](https://github.com/anomalyco/opencode/pull/63269))
+- Shell commands now survive server handoffs and keep their output when interrupted.
+- Added experimental support for moving a shell command to the background when its timeout expires, behind the `shell_timeout_background` flag. With the flag on, an explicit timeout on a background command stops it. ([#63024](https://github.com/anomalyco/opencode/pull/63024), [#63703](https://github.com/anomalyco/opencode/pull/63703))
+- Local Windows shell commands now run through the process daemon.
+- Added support for freeform tool input on compatible models.
+- Added LM Studio decision-model support.
+- Agents are now told when their session is a fork. Thanks @hasta84. ([#63235](https://github.com/anomalyco/opencode/pull/63235))
+- Tool output truncation now keeps the beginning of the output and preserves a usable preview if the full output cannot be saved.
+- Tail reads no longer load the entire file into memory.
+- Providers can present a client certificate for gateways that require mutual TLS. Set `settings.tls` with `cert`, `key` and an optional `passphrase` on the provider; values accept `{file:}` and `{env:}` like `apiKey`. ([#61832](https://github.com/anomalyco/opencode/pull/61832))
+- When a subagent goes idle while its own background work is still running, its report to the parent now says it is still running, so the parent waits for the final report instead of treating the partial answer as done. ([#63675](https://github.com/anomalyco/opencode/pull/63675))
+- Code Mode gets simpler structured results from file and skill tools: `write` and `edit` return their confirmation as a string, `patch` returns an empty result, and `skill` returns the skill's directory and content. ([#63616](https://github.com/anomalyco/opencode/pull/63616), [#63635](https://github.com/anomalyco/opencode/pull/63635), [#63618](https://github.com/anomalyco/opencode/pull/63618), [#63623](https://github.com/anomalyco/opencode/pull/63623))
+
+#### Bug fixes
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v2.3.0)
+
+
 ## process-daemon-v0.5.2 (2026-11-12)
 
 Updated to upstream OpenCode **process-daemon-v0.5.2**:
