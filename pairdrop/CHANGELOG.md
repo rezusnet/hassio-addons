@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.11.2-ls150 (2026-11-15)
+
+Upstream image rebuild (`v1.11.2-ls149` → `v1.11.2-ls150`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
+
+
 ## 1.11.2-ls149 (2026-11-01)
 
 Upstream image rebuild (`v1.11.2-ls148` → `v1.11.2-ls149`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
