@@ -1,6 +1,42 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.5.8rc1 (2026-11-16)
+
+Updated to upstream LightRAG **1.5.8rc1**:
+
+### Important Notes
+
+> v1.5.8rc1 is a release candidate. Please test it on a copy of your data before upgrading production.
+
+### Highlights
+
+**1. Configuration storage: LightRAG now remembers which embedding model built your vectors**
+
+In earlier releases, changing `EMBEDDING_MODEL` or `EMBEDDING_DIM` on an existing deployment failed silently. Depending on the backend, LightRAG either kept the old vectors and returned wrong neighbours, or opened a new, empty vector container (Milvus / Qdrant / PostgreSQL) and served a knowledge graph with no vectors at all.
+
+v1.5.8 adds a **configuration storage**. It is a small KV namespace (`config`) that holds each workspace's **embedding baselines**: for every vector target (entities, relationships, chunks), the embedding space its vectors were written in. Startup checks the baselines against the current embedding configuration. If the space has changed, the server **refuses to start** and names the target and the way out, instead of serving bad results.
+
+* **Backends:** `JsonKVStorage`, `PGKVStorage`, `MongoKVStorage` and `OpenSearchKVStorage`, selected with `LIGHTRAG_CONFIG_STORAGE`. Left unset, it follows `LIGHTRAG_KV_STORAGE`, so most deployments need no new setting. `RedisKVStorage` is not admitted, so Redis deployments default to `JsonKVStorage`, with a startup warning.
+* **No preparation needed.** On the first start of v1.5.8, an existing deployment records its baselines on its own. A baseline is recorded only on evidence: an **adoption probe** re-embeds a few stored records (up to 8 per target) and compares them with the stored vectors, or the container is confirmed empty. A probe that cannot run (for example, the embedding service is down) records nothing and is retried on the next start.
+* **Deployment anchor.** The first start also binds the deployment to the configuration container it opened, in `WORKING_DIR/config_storage_anchor.json` (backend type + container UUID). Every later start refuses a container of another type or another UUID. A changed `LIGHTRAG_KV_STORAGE`, a different database or a replaced volume therefore no longer silently moves your configuration.
+* **New offline tools:**
+  * `lightrag-rebuild-vdb` re-embeds a workspace with the current model and records the new baselines. This is the way out after an intentional model change.
+  * `lightrag-migrate-config` moves the configuration storage to a backend of another type, for example from JSON files to PostgreSQL.
+  * `lightrag-clear-storage` clears a workspace offline, configuration records included.
+* **Several servers, one `WORKING_DIR`:** supported when each server has its own `WORKSPACE` and port. A second server on the **same** workspace is refused where the filesystem supports file locks.
+
+For more information, see:
+
+- [`docs/LightRAG-API-Server.md`](https://github.com/HKUDS/LightRAG/blob/main/docs/LightRAG-API-Server.md): *Configuration Storage Migration Between Backend Types*
+- [`lightrag/tools/README_REBUILD_VDB.md`](https://github.com/HKUDS/LightRAG/blob/main/lightrag/tools/README_REBUILD_VDB.md), [`README_MIGRATE_CONFIG.md`](https://github.com/HKUDS/LightRAG/blob/main/lightrag/tools/README_MIGRATE_CONFIG.md), [`README_CLEAR_STORAGE.md`](https://github.com/HKUDS/LightRAG/blob/main/lightrag/tools/README_CLEAR_STORAGE.md)
+- [`docs/design/ConfigurationStorageDesign.md`](https://github.com/HKUDS/LightRAG/blob/main/docs/design/ConfigurationStorageDesign.md): the design overview
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/HKUDS/LightRAG/releases/tag/v1.5.8rc1)
+
+
 ## 1.5.7 (2026-09-03)
 
 Updated to upstream LightRAG **1.5.7**:
