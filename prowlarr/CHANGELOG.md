@@ -1,6 +1,27 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-3.0.2.5777-ls283 (2026-11-16)
+
+Updated to upstream Prowlarr **3.0.2.5777** (image `develop-3.0.2.5777-ls283`):
+
+*To receive further Pre-Release updates for a non-docker installation, please change the branch to **develop**. (Settings -> General (Show Advanced Settings) -> Updates -> Branch)*
+
+**If you are using docker you will need to update the container image.  *Do not attempt to update Prowlarr within an existing docker container.***
+
+### Changes:
+
+* 847d4876aabf6a31dce5ae40d44ec2ae73ba536b Multiple Translations updated by Weblate
+* b24d707cbd45f51d780d07782517009f0fb1b4a7 Fixed: Report a rejected grab when qBittorrent already has the release [ #2878 ]
+* 87f7d770e26c48463fd6dc11818af735ecd55e54 New: Add Anthelion as a default torznab preset
+* d2d1fc0e77664a94b8d3931b7f216eaafd234af4 Bump .NET to 10.0.15
+* 61476876ec3cb4526c21782f468a205ce608e7a9 Bump to 3.0.2
+
+This list of changes was [auto generated](https://dev.azure.com/Prowlarr/a958e221-aeac-4b0e-a862-d8ffe1df4b09/_release?releaseId=265&_a=release-summary).
+
+[Full release notes](https://github.com/Prowlarr/Prowlarr/releases/tag/v3.0.2.5777)
+
+
 ## 2.7.0.5723-ls168 (2026-11-12)
 
 Updated to upstream Prowlarr **2.7.0.5723** (image `2.7.0.5723-ls168`):
