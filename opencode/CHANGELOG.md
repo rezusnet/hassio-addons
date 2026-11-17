@@ -1,6 +1,24 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.19.6 (2026-11-17)
+
+Updated to upstream OpenCode **1.19.6**:
+
+### Desktop
+
+### Improvements
+- OpenCode 1 now offers the upgrade to OpenCode 2.0. OpenCode 2 downloads in the background and installs only when you choose: Restart to upgrade, Upgrade on quit, or Later. Your sessions, projects, and settings are kept. Plugins made for OpenCode 1 need an update.
+
+### Core
+
+### Bugfixes
+- Sessions with many images no longer send oversized requests. When the images in a session's history pass 25 MiB, the oldest are replaced with a placeholder.
+- A provider error for a request body that is too large now starts compaction and a retry instead of failing the turn.
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v1.19.6)
+
+
 ## 2.3.0 (2026-11-13)
 
 Updated to upstream OpenCode **2.3.0**:
