@@ -1,6 +1,37 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-5.0.0.2997-ls210 (2026-11-18)
+
+Updated to upstream Sonarr **5.0.0.2997** (image `develop-5.0.0.2997-ls210`):
+
+<!-- Release notes generated using configuration in .github/release.yml at 51a2412af235197ce15d7d4a17c053a8e2c26609 -->
+
+### What's Changed
+### Changes
+* Fixed: Reject releases and imports that match multiple series by @markus101 in https://github.com/Sonarr/Sonarr/pull/9268
+* Optimize calendar and series list by @IonBazan in https://github.com/Sonarr/Sonarr/pull/9269
+* Find season folder for nested anime files in multi-season packs by @IonBazan in https://github.com/Sonarr/Sonarr/pull/9270
+* Remove leftover Kometa translations by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9275
+* Add accessible move controls to sortable lists by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9276
+* Cleanse API keys in JSON-escaped query strings from logs by @jayhemnani9910 in https://github.com/Sonarr/Sonarr/pull/9287
+* Fixed: Removing pending releases from queue via v3 API by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9292
+* Fix getting items from Flood with an empty post-import tags setting by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9295
+* Fix label for select with multi-languages in manual import by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9296
+* Bump FFMpegCore to 6.0.0 by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9300
+* Bump .NET to 10.0.15 by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9302
+* Fixed: Table pagination by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9308
+* Fix conditions by using the logical AND operator by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9314
+* Translations update from Servarr Weblate by @ServarrAdmin in https://github.com/Sonarr/Sonarr/pull/9280
+
+### New Contributors
+* @jayhemnani9910 made their first contribution in https://github.com/Sonarr/Sonarr/pull/9287
+
+**Full Changelog**: https://github.com/Sonarr/Sonarr/compare/v5.0.0.2941...v5.0.0.2997
+
+[Full release notes](https://github.com/Sonarr/Sonarr/releases/tag/v5.0.0.2997)
+
+
 ## 4.0.20.3014-ls5 (2026-11-14)
 
 Upstream image rebuild (`4.0.20.3014-ls4` → `4.0.20.3014-ls5`) — packaging / base-image refresh, no application changes (Sonarr **4.0.20.3014**).
