@@ -1,6 +1,45 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 8.1.12 (2026-11-19)
+
+Updated to upstream Valkey **8.1.12**:
+
+Valkey 8.1.12  -  Released Wed 18 November 2026
+-----------------------------------------------
+
+Upgrade urgency SECURITY: This release includes security fixes we recommend you apply as soon as possible.
+
+### Security Fixes
+* CVE-2026-130822: Fix a use-after-free crash in client eviction when maxmemory-clients is enabled by @nadav-levanoni (#5435)
+
+### Bug Fixes
+* Fix a server crash when a key name of 2 GiB or more is sampled for eviction, and incorrect comparison of strings of 2 GiB or more by @madolson (#5133)
+* Correct command metadata to describe the `ZINCRBY` increment and `ZINTER`/`ZINTERSTORE`/`ZUNION`/`ZUNIONSTORE` weights as doubles instead of integers by @sarthakaggarwal97 (#5210)
+* Propagate `PFADD` elements applied before a corrupted-HLL INVALIDOBJ error so replicas and the AOF stay consistent with the primary by @madolson (#5128)
+* Fix a server panic when a Lua script returns or raises an error table whose metatable has an `__index` metamethod that raises an error by @madolson (#5118)
+* Mark the `RESTORE` and `RESTORE-ASKING` `IDLETIME` and `FREQ` options as mutually exclusive in command metadata by @sarthakaggarwal97 (#5212)
+* Fix a memory leak when `server.register_function` named arguments are repeated in a different letter case by @madolson (#5120)
+* Fix a server crash when a module never sets a postponed reply length; the leftover placeholder is now filled with an empty array by @madolson (#5159)
+* Fix quadratic slowdown in `HRANDFIELD` and `SRANDMEMBER` with counts on collections whose elements differ only in letter case by @madolson (#5167)
+* Fix a crash in a cluster replica whose primary was removed from the nodes table when another primary claims an unassigned slot by @madolson (#5184)
+* Fix `SCRIPT KILL` and `FUNCTION KILL` not stopping Lua scripts that loop inside nested coroutines, and script timeouts not being detected when work is spread across coroutines by @madolson (#5108)
+* Fix an out-of-bounds write in `PFADD` and `PFMERGE` on a corrupted sparse HyperLogLog ending in a truncated XZERO opcode by rejecting it as invalid by @madolson (#5124)
+* Fix a server abort in `PFADD` and `PFMERGE` on short sparse HyperLogLogs when `hll-sparse-max-bytes` is set to 31 or less by @madolson (#5138)
+* Fix a server crash in `SORT` and `SORT_RO` with `BY` or `GET` patterns when an element is 2 GiB or larger by @madolson (#5146)
+* Fix `ValkeyModule_Calloc` and `ValkeyModule_TryCalloc` returning an undersized buffer when `nmemb * size` overflows by @madolson (#5155)
+* Fix `ValkeyModule_CallReplyAttributeElement` always returning an error on RESP3 attribute replies by @madolson (#5157)
+* Fix `EXEC` succeeding after a key that was already expired at `WATCH` time is overwritten, which can happen on replicas by @madolson (#5169)
+* Correct expiry command metadata to show that `XX` can be combined with `GT` or `LT`, rather than all four conditions being mutually exclusive by @sarthakaggarwal97 (#5213)
+* Fix `PFMERGE` with no source keys bypassing ACL key permissions and failing in `COMMAND GETKEYS`, and a crash in module commands whose keynum key spec starts past the last argument by @madolson (#5087)
+* Fix a memory leak when a script or module command is refused by ACL while the ACL log is disabled with `acllog-max-len 0` by @madolson (#5162)
+* Fix a crash on the first `FUNCTION LOAD` after startup when the shebang engine name contains a NUL byte by @madolson (#5115)
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/valkey-io/valkey/releases/tag/8.1.12)
+
+
 ## 8.1.11 (2026-10-27)
 
 Updated to upstream Valkey **8.1.11**:

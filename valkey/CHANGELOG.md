@@ -1,6 +1,42 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 9.2.0 (2026-11-19)
+
+Updated to upstream Valkey **9.2.0**:
+
+Valkey 9.2.0 GA  -  Released Wed 18 November 2026
+-------------------------------------------------
+
+Upgrade urgency LOW: This is the first stable release of Valkey 9.2.
+
+### Behavior Changes
+* `ZRANGEBYSCORE`, `ZREVRANGEBYSCORE`, `ZCOUNT`, and `ZRANGESTORE` now reject a bare `(` or an empty string as a score bound instead of silently treating it as 0 by @AlisinaDevelo (#4054)
+* Path Hash deletion commands now remove the key when the last path is deleted, following the Hash key lifecycle and emitting a generic del event by @yangbodong22011 (#5068)
+* Active expiration of keys and hash fields now increments the dirty counter, so save points (and thus BGSAVE) may trigger more often by @enjoy-binbin (#3118)
+
+### New Features and Enhanced Behavior
+* Add new `DELEX` command to conditionally delete a string key when its value matches (`IFEQ`) or differs from (`IFNE`) a given value by @lightsigma96 (#4607)
+* Add Zstd as a streaming compression codec for RDB persistence and replication, offering better compression ratios than LZ4 by @sarthakaggarwal97 (#3798)
+* Support streaming-compressed RDB preambles in AOF bases, so compressed full-sync RDB files can be reused directly as AOF bases by @sarthakaggarwal97 (#4754)
+* `ACL GENPASS` and the hash function seed draw randomness from the configured OpenSSL 3 provider when built with TLS, supporting deployments that require a validated crypto module by @MarkAtwood (#4339)
+* Support forkless full synchronization to replicas, serving disk and diskless full syncs from a background-thread snapshot without forking by @nitaicaro (#4797)
+* Add ACL DIGEST command that returns a fingerprint of the ACL rules currently in effect, useful to verify what ACL LOAD applied by @melancholictheory (#4446)
+* Add forkless RDB snapshots, opt-in via the new `forkless-infrastructure-enabled` and `bgsave-default-method` configs, with new INFO persistence fields reporting the save method and progress by @JimB123 (#4460)
+* Add the `XACKDEL` and `XDELEX` stream commands with `KEEPREF`, `DELREF` and `ACKED` modes to acknowledge and delete messages once consumer groups no longer need them by @nickiaq (#4629)
+* Support a secondary server certificate via `tls-alt-cert-file`, `tls-alt-key-file` and `tls-alt-key-file-pass`, e.g. a post-quantum certificate alongside RSA, with matching INFO TLS fields by @pkhartsk (#3717)
+* Add ACL roles: named, reusable sets of ACL selectors managed with `ACL SETROLE`/`DELROLE`/`GETROLE`/`ROLES` and assigned to users with `role:<name>`, in commands, the ACL file and valkey.conf by @yang-z-o (#3967)
+* Add a `maxmemory-scripts` config to limit memory used by cached `EVAL` scripts, and mark `SCRIPT LOAD` as DENYOOM so it respects the global maxmemory limit by @enjoy-binbin (#866)
+* Add Path Hash, a new radix-tree-backed data type with `PH*` commands for exact lookup, longest-prefix matching, and prefix traversal over binary-safe paths by @yangbodong22011 (#4506)
+* Support whole-stream LZ4 compression of RDB files via the new `rdbcompression lz4` option; the default per-string LZF behavior is unchanged by @sarthakaggarwal97 (#3531)
+* Add server-side hot key detection with new `HOTKEYS GET`/`RESET` commands, enabled by setting `hotkeys-top-k` by @alon-arenberg (#3708)
+* Add optional replication throttling (`repl-throttling-enabled`) that slows client writes when a replica falls behind, avoiding disconnects and full syncs by @harrylin98 (#4356)
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/valkey-io/valkey/releases/tag/9.2.0)
+
+
 ## 9.1.3 (2026-10-27)
 
 Updated to upstream Valkey **9.1.3**:

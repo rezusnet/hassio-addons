@@ -1,6 +1,12 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 3.4.8 (2026-11-19)
+
+- Update to upstream v3.4.8
+- Upstream release notes: https://www.mail-archive.com/search?l=haproxy%40formilux.org&q=%223.4.8%22
+
+
 ## 3.2.26 (2026-11-10)
 
 - Update to upstream v3.2.26

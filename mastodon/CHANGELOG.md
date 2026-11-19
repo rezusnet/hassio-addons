@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.7.5-ls223 (2026-11-19)
+
+Upstream image rebuild (`v4.7.5-ls222` → `v4.7.5-ls223`) — packaging / base-image refresh, no application changes (Mastodon **4.7.5**).
+
+
 ## 4.7.5-ls222 (2026-11-13)
 
 Upstream image rebuild (`v4.7.5-ls221` → `v4.7.5-ls222`) — packaging / base-image refresh, no application changes (Mastodon **4.7.5**).
