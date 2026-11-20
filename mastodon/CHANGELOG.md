@@ -1,6 +1,83 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 4.7.6-ls225 (2026-11-20)
+
+Updated to upstream Mastodon **4.7.6** (image `v4.7.6-ls225`):
+
+<h1><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./lib/assets/wordmark.dark.png?raw=true">
+  <source media="(prefers-color-scheme: light)" srcset="./lib/assets/wordmark.light.png?raw=true">
+  <img alt="Mastodon" src="./lib/assets/wordmark.light.png?raw=true" height="34">
+</picture></h1>
+
+This release is made primarily to update Ruby in our docker container images to fix [multiple critical security issues](https://www.ruby-lang.org/en/news/2026/11/18/multiple-vulnerabilities-in-regexp-and-string/). It is critical to update if you use our docker container images.
+
+If you are not using our docker container images, please make sure you use Ruby 4.0.10, 3.4.13, 3.3.14 or newer.
+
+### Upgrade overview
+
+This release contains upgrade notes that deviate from the norm:
+
+ℹ️ Default Ruby version has been updated
+
+For more information, view the complete release notes and scroll down to the upgrade instructions section.
+
+### Changelog
+
+### Security
+
+- Updated dependencies `ruby`, `puma`, `rails`, `sanitize`, `msgpack` and `omniauth`
+
+### Fixed
+
+- Fix missing `featuredCollections` definition to JSON-LD context (#41728 by @oneiros)
+- Fix improper use of translation strings in email notification unsubscription page (#41555 by @ClearlyClaire)
+- Fix missing dropdown label in admin audit log (#41301 by @e-nomem)
+
+### Upgrade notes
+
+To get the code for v4.7.6, use `git fetch && git checkout v4.7.6`.
+
+> [!NOTE]
+> As always, make sure you have backups of the database before performing any upgrades. If you are using docker-compose, this is how a backup command might look: `docker exec mastodon_db_1 pg_dump -Fc -U postgres postgres > name_of_the_backup.dump`
+
+### Dependencies
+
+External dependencies have not changed since v4.6.0.
+
+- Ruby: 3.3 or newer
+- PostgreSQL: 14 or newer
+- Elasticsearch (recommended, for full-text search): 7.x (OpenSearch should also work)
+- LibreTranslate (optional, for translations): 1.3.3 or newer
+- Redis: 7.0 or newer
+- Node: 22 or newer
+- libvips: 8.13 or newer
+- FFMpeg: 5.1 or newer
+
+### Update steps
+
+The following instructions are for updating from 4.7.5.
+
+If you are upgrading directly from an earlier release, please carefully read the upgrade notes for the skipped releases as well, as they often require extra steps such as database migrations. In particular, it is very important to read the [4.7.0 release notes](https://github.com/mastodon/mastodon/releases/tag/v4.7.0).
+
+### Non-Docker
+
+> [!TIP]
+> The `charlock_holmes` gem may fail to build on some systems with recent versions of gcc.
+If you run into this issue, try `BUNDLE_BUILD__CHARLOCK_HOLMES="--with-cxxflags=-std=c++17" bundle install`.
+
+1. If you are using `rbenv`, [update the list of available versions](https://github.com/rbenv/ruby-build/wiki#updating-ruby-build) and install the proper Ruby version by doing `RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install` in the Mastodon install directory (e.g. `/home/mastodon/live`)
+2. Install dependencies with `bundle install` and `yarn install --immutable`
+3. Restart all Mastodon processes.
+
+### When using Docker
+
+1. Restart all Mastodon processes.
+
+[Full release notes](https://github.com/mastodon/mastodon/releases/tag/v4.7.6)
+
+
 ## 4.7.5-ls223 (2026-11-19)
 
 Upstream image rebuild (`v4.7.5-ls222` → `v4.7.5-ls223`) — packaging / base-image refresh, no application changes (Mastodon **4.7.5**).

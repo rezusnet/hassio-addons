@@ -1,6 +1,43 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.7.3 (2026-11-20)
+
+Updated to upstream OpenBao **2.7.3**:
+
+### SECURITY
+
+* core/auth: Entity and group aliases of newly created auth mounts are now case-sensitive by default. GHSA-fgmw-h9wp-wc7g. [[GH-4550](https://github.com/openbao/openbao/pull/4550)]
+* core/auth: Alias case-sensitivity can now be configured per auth mount via `case_sensitive_alias`. [[GH-4550](https://github.com/openbao/openbao/pull/4550)]
+* core/listeners: Correctly handle forwarded client cert headers on the active node when a request was forwarded from a standby. GHSA-h8fh-pmch-cjww. [[GH-4550](https://github.com/openbao/openbao/pull/4550)]
+* core/listeners: Ensure `disable_unauthed_rekey_endpoints` and `disable_unauthed_generate_root_endpoints` are enforced before forwarding a request to the active node. GHSA-h8fh-pmch-cjww. [[GH-4550](https://github.com/openbao/openbao/pull/4550)]
+* core/listeners: Ensure `max_request_size`, `max_request_json_memory`, `max_request_json_strings` and `max_request_duration` continue to be enforced at the configured limit after forwarding a request to the active node. GHSA-h8fh-pmch-cjww. [[GH-4550](https://github.com/openbao/openbao/pull/4550)]
+
+### IMPROVEMENTS
+
+* secrets/transit: Support public key export for keys of type `external-key`. [[GH-4272](https://github.com/openbao/openbao/pull/4272)]
+
+### BUG FIXES
+
+* command/operator/raft: Fix snapshot saving discarding output when redirected to the active node. [[GH-4337](https://github.com/openbao/openbao/pull/4337)]
+* command/operator/raft: Fix snapshot restoration failing silently when redirected to the active node. [[GH-4337](https://github.com/openbao/openbao/pull/4337)]
+* command/operator/diagnose: Fix panic when `plugin_directory` is set in the configuration but does not exist. [[GH-4536](https://github.com/openbao/openbao/pull/4536)]
+* core: Fix router not setting `logical.Request.MountAccessor`. [[GH-4434](https://github.com/openbao/openbao/pull/4434)]
+* core/auth: Ensure control group wrapping tokens are single-use. [[GH-4510](https://github.com/openbao/openbao/pull/4510)]
+* core/mounts: Ensure mount invalidations triggered by namespace creation on the active node do not race on standby nodes and cause double-mount errors. [[GH-4390](https://github.com/openbao/openbao/pull/4390)]
+* core/leases: Ensure revocation of leases in child namespaces when their parent-namespace attributed token is revoked. [[GH-4373](https://github.com/openbao/openbao/pull/4373)]
+* core/policies: Accept empty or omitted `controlled_capabilities` in Control Group factors and treat either case as applying to all operations. [[GH-4508](https://github.com/openbao/openbao/pull/4508)]
+* core/namespaces: Ensure mount creation cannot overlap with a sealed namespace. [[GH-4376](https://github.com/openbao/openbao/pull/4376)]
+* core/namespaces: Ensure mount creation cannot overlap with namespaces due to race conditions. [[GH-4376](https://github.com/openbao/openbao/pull/4376)]
+* core/identity: Fix changes to one namespace’s group data deleting the group data of other namespaces on standby nodes when using `unsafe_cross_namespace_identity`. [[GH-4363](https://github.com/openbao/openbao/pull/4363)]
+* core/external-keys: Close race window where standby nodes would miss config updates and keep stale KMS clients. [[GH-4400](https://github.com/openbao/openbao/pull/4400)]
+* http: Include PATCH, HEAD, and HELP in CORS preflight responses so cross-origin requests using these methods succeed. [[GH-4412](https://github.com/openbao/openbao/pull/4412)]
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/openbao/openbao/releases/tag/v2.7.3)
+
+
 ## 2.7.2 (2026-10-27)
 
 Updated to upstream OpenBao **2.7.2**:
