@@ -1,6 +1,45 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.5.8rc2 (2026-11-22)
+
+Updated to upstream LightRAG **1.5.8rc2**:
+
+### What's Changed
+* fix(jina): stop retrying permanent 4xx errors by @Shizoqua in https://github.com/HKUDS/LightRAG/pull/4028
+* fix(pipeline): round-trip sidecar URIs for Windows drive paths by @rtmalikian in https://github.com/HKUDS/LightRAG/pull/4273
+* fix(rerank): stop retrying permanent errors in generic_rerank_api by @danielaskdd in https://github.com/HKUDS/LightRAG/pull/4420
+* fix(query): return the failure shape from aquery_data when no keywords are extracted by @Zhuoxi2000 in https://github.com/HKUDS/LightRAG/pull/4419
+* fix(postgres): give AGE a valid graph name for long or digit-leading workspaces by @zzjiho in https://github.com/HKUDS/LightRAG/pull/4408
+* fix(llm): retry malformed OpenAI completion responses by @ZXLyyds100 in https://github.com/HKUDS/LightRAG/pull/4279
+* fix(gemini): convert safety_settings mapping to SDK list shape by @Shizoqua in https://github.com/HKUDS/LightRAG/pull/4423
+* fix(nano): stop delete() from swallowing queue failures by @Shizoqua in https://github.com/HKUDS/LightRAG/pull/4424
+* fix(llm): close Zhipu clients after chat and embedding calls by @remote-controlled-man in https://github.com/HKUDS/LightRAG/pull/4427
+* test(rerank): cover ali_rerank aliyun request and response format by @Shizoqua in https://github.com/HKUDS/LightRAG/pull/4425
+* fix(mongo): propagate KV deletion failures to document recovery by @dajiaohuang in https://github.com/HKUDS/LightRAG/pull/4167
+* fix(postgres): propagate KV and doc-status delete failures by @danielaskdd in https://github.com/HKUDS/LightRAG/pull/4432
+* fix(postgres): escape LIKE wildcards in PGGraphStorage.search_labels by @MohammadHijjawi97 in https://github.com/HKUDS/LightRAG/pull/4431
+* fix: honor disabled DOCX table header markers by @LimbC-C in https://github.com/HKUDS/LightRAG/pull/4430
+* fix(opensearch): reject incomplete graph and status deletes by @dajiaohuang in https://github.com/HKUDS/LightRAG/pull/4169
+* fix(docx): honor OOXML on/off values everywhere and repeat only leading header rows by @danielaskdd in https://github.com/HKUDS/LightRAG/pull/4433
+* fix(openai): do not close a caller-supplied http_client by @GautamVhavle in https://github.com/HKUDS/LightRAG/pull/4237
+* fix(api): delete the archived source of a name ending in _NNN by @MohammadHijjawi97 in https://github.com/HKUDS/LightRAG/pull/4428
+* fix(api): preserve temporary-prefixed sources for deferred parsing by @dajiaohuang in https://github.com/HKUDS/LightRAG/pull/4173
+* fix(neo4j): truncate an oversized APOC subgraph from the walk already run by @wkpark in https://github.com/HKUDS/LightRAG/pull/4216
+* fix(hf): pass resolved max_length to truncate hf_embed inputs by @Shizoqua in https://github.com/HKUDS/LightRAG/pull/4138
+* fix(parser): 修复 UTF-8 BOM 污染正文并绕过空文件校验 by @2gg-bit in https://github.com/HKUDS/LightRAG/pull/4132
+* fix(rerank): 修复重排分块破坏 Unicode 字符 by @2gg-bit in https://github.com/HKUDS/LightRAG/pull/4131
+* fix(parser): accept UTF-16/UTF-32 text files with a BOM by @danielaskdd in https://github.com/HKUDS/LightRAG/pull/4434
+* fix(ollama): consume both legacy extraction flags by @xyi74976-del in https://github.com/HKUDS/LightRAG/pull/4289
+* fix(vlm): accept case-insensitive image data URLs by @Elon-Jiang in https://github.com/HKUDS/LightRAG/pull/4287
+* fix(openai): preserve client-configured default headers by @xujiantop-crypto in https://github.com/HKUDS/LightRAG/pull/4152
+* fix(nvidia): 修复 base64 嵌入响应无法返回数值向量 by @2gg-bit in https://github.com/HKUDS/LightRAG/pull/4135
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/HKUDS/LightRAG/releases/tag/v1.5.8rc2)
+
+
 ## 1.5.8rc1 (2026-11-16)
 
 Updated to upstream LightRAG **1.5.8rc1**:
