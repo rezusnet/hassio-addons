@@ -1,11 +1,45 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-5.0.0.3041-ls212 (2026-11-23)
+
+Updated to upstream Sonarr **5.0.0.3041** (image `develop-5.0.0.3041-ls212`):
+
+<!-- Release notes generated using configuration in .github/release.yml at 03f822c78293981e6e1459fbce59d11476b2107f -->
+
+### What's Changed
+### Changes
+* Translations update from Servarr Weblate by @ServarrAdmin in https://github.com/Sonarr/Sonarr/pull/9325
+* New: Support virtiofs mounts in Disk Space by @warna720 in https://github.com/Sonarr/Sonarr/pull/9286
+* Push series updates when episode monitored status changes by @ljlongwing in https://github.com/Sonarr/Sonarr/pull/9289
+* Fixed: Toggling monitored from episode details on Wanted pages by @ljlongwing in https://github.com/Sonarr/Sonarr/pull/9293
+* Display the Sonarr icon in ntfy notifications by @schoentoon in https://github.com/Sonarr/Sonarr/pull/9294
+* Fixed: Wrong series used for On Import Complete when manually importing multiple downloads by @ecatuogno1 in https://github.com/Sonarr/Sonarr/pull/9297
+* Fixed: OIDC login when userinfo returns an unparsable JSON Content-Type by @Pauwelz in https://github.com/Sonarr/Sonarr/pull/9316
+* Improve image descriptions for screen readers by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9321
+* Fixed: Exclude commentary streams from media info augmentation by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9322
+* Add a skip link to the main content by @coopa11y in https://github.com/Sonarr/Sonarr/pull/9323
+* New: OIDC back-channel logout by @IonBazan in https://github.com/Sonarr/Sonarr/pull/9324
+* Fixed: Parsing languages on cultures with a dotless i (tr, az) by @menes97 in https://github.com/Sonarr/Sonarr/pull/9329
+* Fix displaying season numbers in parse result by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9330
+* Update Dapper and Npgsql, and bump FFprobe to 9.1 by @mynameisbogdan in https://github.com/Sonarr/Sonarr/pull/9333
+
+### New Contributors
+* @warna720 made their first contribution in https://github.com/Sonarr/Sonarr/pull/9286
+* @schoentoon made their first contribution in https://github.com/Sonarr/Sonarr/pull/9294
+* @ecatuogno1 made their first contribution in https://github.com/Sonarr/Sonarr/pull/9297
+* @Pauwelz made their first contribution in https://github.com/Sonarr/Sonarr/pull/9316
+* @menes97 made their first contribution in https://github.com/Sonarr/Sonarr/pull/9329
+
+**Full Changelog**: https://github.com/Sonarr/Sonarr/compare/v5.0.0.2997...v5.0.0.3041
+
+[Full release notes](https://github.com/Sonarr/Sonarr/releases/tag/v5.0.0.3041)
+
+
 ## 4.0.20.3014-ls6 (2026-11-21)
 
 Updated to upstream Sonarr **4.0.20.3014** (image `4.0.20.3014-ls6`):
 
-<!-- Release notes generated using configuration in .github/release.yml at cab419ade8ac7fcab5bf80394ee492abd35d5f5a -->
 
 ### What's Changed
 ### Changes
