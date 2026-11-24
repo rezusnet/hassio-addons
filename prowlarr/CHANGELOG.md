@@ -1,6 +1,29 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 3.1.0.5799-ls170 (2026-11-24)
+
+Updated to upstream Prowlarr **3.1.0.5799** (image `3.1.0.5799-ls170`):
+
+*To receive further updates for a non-docker installation, please change the branch to **master**. (Settings -> General (Show Advanced Settings) -> Updates -> Branch)*
+
+**If you are using docker you will need to update the container image.  *Do not attempt to update Prowlarr within an existing docker container.***
+
+### Changes:
+
+* b0b5774bf3bd594d0fb2dcd151495b5d034920ef Multiple Translations updated by Weblate
+* dca30461ad4c110a0dd450ff837a274e6d895b8c Update AngleSharp, coverlet.collector, Dapper and Npgsql
+* 46c468c443ff3ebb86fc99347d3a15885d41d1e1 Fixed: (MyAnonamouse) Parsing results with numeric titles
+* f72c94c561d1581e6334eabb1afde1f2559fa695 Handle history events async
+* 7ee91a13fa5eb6bb4d03579b2df48a96150acbfc New: Add per-indexer query timeout setting [ #2625 ]
+* c7926e55033470e584434ffbb872bdbe05a4e56c Fixed: Multiple categories support for Cardigann definitions
+* 0336fe2fa7da88883f42087715b83225ee314faa Bump to 3.1.0
+
+This list of changes was [auto generated](https://dev.azure.com/Prowlarr/a958e221-aeac-4b0e-a862-d8ffe1df4b09/_release?releaseId=268&_a=release-summary).
+
+[Full release notes](https://github.com/Prowlarr/Prowlarr/releases/tag/v3.1.0.5799)
+
+
 ## 3.0.2.5780-ls169 (2026-11-17)
 
 Updated to upstream Prowlarr **3.0.2.5780** (image `3.0.2.5780-ls169`):

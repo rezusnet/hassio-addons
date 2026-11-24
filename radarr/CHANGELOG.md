@@ -1,6 +1,38 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## develop-7.1.0.10948-ls279 (2026-11-24)
+
+Updated to upstream Radarr **7.1.0.10948** (image `develop-7.1.0.10948-ls279`):
+
+*To receive further Pre-Release updates for a non-docker installation, please change the branch to **develop**. (Settings -> General (Show Advanced Settings) -> Updates -> Branch)*
+
+**If you are using docker you will need to update the container image.  *Do not attempt to update Radarr within an existing docker container.***
+
+### Changes:
+
+* d86218b6bab3f010ba868eeea97e58240914ac21 Multiple Translations updated by Weblate
+* 34d724c2d67f49dffbb02557814a9222be4e7ebe Support virtiofs mounts in Disk Space
+* 4a7385edc2c7aa45006ed4888393091a15560265 Fixed: Fetch TMDb user lists by newest added
+* 34264435156ec0f3028d61f7251ad6156e102f57 Fixed: Validate settings for single list sync
+* 8812868c3c3db9485c6d2ceca01377d1ef2755c9 Fixed: Exclude commentary streams from media info augmentation
+* 9fbe5e352890a737700cc1248cb186d8edc16c69 Bump FFprobe to 9.1.0
+* ff405215ee2a3ccb504d099e201cb407e5d0397d Update coverlet.collector, Dapper and Npgsql
+* bcf4c7cf729c3ad028fce0aea19739ebf845d68f Add tests for rescanning a movie whose folder is removed during the scan
+* 1ad269b83beede6f12dafced5a0923f9f93baeea Fixed: Rescan failing when Delete Empty Folders removes the movie folder
+* 25a2124d7d5bb10aae6b89726577303f4bd60f75 Fix getting items from Flood with an empty post-import tags setting
+<details><summary><b>See More</b></summary>
+
+* 0a57272adb68f22ea225a58bbaca1418bfba40ea New: Ignore torrents from Flood with matching Post-Import Tags [ #8147 ]
+* c482b3262e2aeedbd11d5491310060193ecd8967 Fixed: Kodi library update not finding movies scraped with TMDb [ #12076 ]
+* e83f5e8327cb910eb44468058caf78db5ae9c285 Bump to 7.1.0
+* 19edd437952373cd7bd39224c6235b61fad5672a Multiple Translations updated by Weblate
+
+This list of changes was [auto generated](https://dev.azure.com/Radarr/961c82cf-1428-4ab0-9257-63be1671eac8/_release?releaseId=246&_a=release-summary).</details>
+
+[Full release notes](https://github.com/Radarr/Radarr/releases/tag/v7.1.0.10948)
+
+
 ## 7.0.3.10918-ls328 (2026-11-16)
 
 Updated to upstream Radarr **7.0.3.10918** (image `7.0.3.10918-ls328`):

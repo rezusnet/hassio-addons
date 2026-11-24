@@ -1,6 +1,34 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.5.8 (2026-11-24)
+
+Updated to upstream LightRAG **1.5.8**:
+
+### Important Notes
+
+### Highlights
+
+**1. Introduces a new storage type: Configuration storage**
+
+This store holds the key LightRAG configuration. It prepares the ground for gradually moving settings from the .env file into backend storage, and it also lays the foundation for the next step: account and permission management.
+
+In v1.5.8 configuration storage holds each workspace's **embedding baselines**: for every vector target (entities, relationships, chunks), the embedding space its vectors were written in. **Changing the embedding model on an existing workspace now refuses startup**.
+
+* **Backends:** `JsonKVStorage`, `PGKVStorage`, `MongoKVStorage` and `OpenSearchKVStorage`, selected with `LIGHTRAG_CONFIG_STORAGE`. Left unset, it follows `LIGHTRAG_KV_STORAGE`, so most deployments need no new setting. `RedisKVStorage` is not admitted, so Redis deployments default to `JsonKVStorage`, with a startup warning.
+* **Several servers, one `WORKING_DIR`**: supported on one host when each server has its own `WORKSPACE` and port, and all of them use the same configuration storage. A new anchor file, WORKING_DIR/config_storage_anchor.json, records the configuration backend and container. A server configured with a different backend or container is refused at startup. With `JsonKVStorage` as the configuration storage, each workspace's configuration directory is claimed exclusively, so a second server on the same workspace is refused where the filesystem supports file locks. With a database configuration storage, two servers on the same workspace are not detected and remain unsupported.
+* **Deployment anchor.** The first start binds the deployment to its configuration container. It adopts the container's identity UUID, or creates one, and records it with the backend type in WORKING_DIR/config_storage_anchor.json. Every later start checks both and refuses another backend type, another UUID, or a container that has lost its UUID (an empty or replaced database). Changing the host, port or credentials is not affected. A changed `LIGHTRAG_CONFIG_STORAGE` (or the `LIGHTRAG_KV_STORAGE` it follows when unset), a different database or a replaced database volume therefore no longer silently moves your configuration. Keep `WORKING_DIR` persistent and include the anchor in backups: a lost anchor rebinds on the next start with only a warning. To rebind on purpose, stop every server and delete the file.
+* **New offline tools:**
+  * `lightrag-migrate-config` moves the configuration storage to a backend of another type, for example from JSON files to PostgreSQL.
+  * `lightrag-clear-storage` clears a workspace offline, configuration storage and ancho file  included.
+
+For more information, see:
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/HKUDS/LightRAG/releases/tag/v1.5.8)
+
+
 ## 1.5.8rc2 (2026-11-22)
 
 Updated to upstream LightRAG **1.5.8rc2**:
