@@ -1,12 +1,12 @@
 {
-  "last_update": "2026-11-17",
+  "last_update": "2026-11-24",
   "paused": false,
   "repository": "rezusnet/hassio-addons",
   "slug": "prowlarr",
   "source": "github",
   "tag_strategy": "lsio-latest",
   "upstream_repo": "linuxserver/docker-prowlarr",
-  "upstream_version": "3.0.2.5780-ls169",
+  "upstream_version": "3.1.0.5799-ls170",
   "app_repo": "Prowlarr/Prowlarr",
   "app_name": "Prowlarr"
 }

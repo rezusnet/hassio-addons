@@ -1,6 +1,11 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 5.3.0_v2.1.3-ls489 (2026-11-24)
+
+Upstream image rebuild (`5.3.0_v2.1.2-ls488` → `5.3.0_v2.1.3-ls489`) — packaging / base-image refresh, no application changes (qBittorrent **5.3.0**).
+
+
 ## 5.3.0_v2.1.2-ls488 (2026-11-23)
 
 Upstream image rebuild (`5.3.0_v2.1.2-ls487` → `5.3.0_v2.1.2-ls488`) — packaging / base-image refresh, no application changes (qBittorrent **5.3.0**).
