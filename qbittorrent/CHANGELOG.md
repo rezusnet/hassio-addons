@@ -1,6 +1,36 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 5.3.1_v2.1.3-ls490 (2026-11-25)
+
+Updated to upstream qBittorrent **5.3.1** (image `5.3.1_v2.1.3-ls490`):
+
+- BUGFIX: Don't try to obtain pieces info when no metadata is available (glassez) #25070
+- BUGFIX: Add mnemonic for Plugins menu item (vafada) #25111
+- BUGFIX: Preserve encoded plus signs in HTTP queries (zepx) #25114
+- BUGFIX: Treat a lockfile that names our own PID as stale (ghz-max) #25128
+- BUGFIX: Correctly update item-by-path mapping on folder renamed (glassez) #25135
+- BUGFIX: Fix unexpected drop behavior when dragging from Firefox on Windows (Chocobo1) #25140
+- BUGFIX: Use system theme fallback icon for Open Destination Folder button (FTA7700) #25153
+- BUGFIX: Fix content layout isn't applied on deduplicated filenames (glassez) #25183
+- BUGFIX: Save search session after restoring it (droplet-gag-saint) #25196
+- BUGFIX: Allow renaming files with invalid names (droplet-gag-saint) #25197
+- BUGFIX: Ensure that recently queued jobs are performed before shutdown (glassez) #25215
+- BUGFIX: Adopt "producer-consumer" pattern in file-based resume data storage (glassez) #25217
+- BUGFIX: Fix WebTorrent trackers are rejected from magnet links (glassez) #25259
+- BUGFIX: Fix performance statistics time units (Chocobo1) #25277
+- WEBUI: Preserve web seed URLs when editing (c8dhjp4tyv-bit) #25096
+- WEBUI: Let search plugins download their own results (Piccirello) #25107
+- WEBUI: Insert translated strings as text instead of HTML (Piccirello) #25145
+- WEBAPI: Fix torrent ID changed event is unhandled (glassez) #25080
+- WEBAPI: Preserve metadata source URI encoding (zepx) #25113
+- WINDOWS: NSIS: Fix wrong registry view (Chocobo1) #25179
+- WINDOWS: NSIS: Remove leftover registry value (Chocobo1) #25180
+- MACOS: Add Homebrew prefix for Apple Silicon to PATH (MaxSiominDev) #25132
+
+[Full release notes](https://github.com/qbittorrent/qBittorrent/releases/tag/release-5.3.1)
+
+
 ## 5.3.0_v2.1.3-ls489 (2026-11-24)
 
 Upstream image rebuild (`5.3.0_v2.1.2-ls488` → `5.3.0_v2.1.3-ls489`) — packaging / base-image refresh, no application changes (qBittorrent **5.3.0**).
