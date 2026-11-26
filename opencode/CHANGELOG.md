@@ -1,6 +1,40 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 2.4.2 (2026-11-26)
+
+Updated to upstream OpenCode **2.4.2**:
+
+### Highlights
+
+- **GPT-6.2 System Prompt**: GPT-6.2 Sol and Astra, and the `gpt-latest` aliases, use a system prompt written for GPT-6.2. ([#66297](https://github.com/anomalyco/opencode/pull/66297))
+- **OpenCode Go Onboarding Fix**: After you connect OpenCode, the model picker lists OpenCode Go first. ([#66363](https://github.com/anomalyco/opencode/pull/66363))
+- **Esc Takes Back Your Last Message**: If the composer is empty, stopping a response with Esc before the model has written anything or called a tool removes your message and puts it back in the composer, images included, so you can edit it and send again. ([#65505](https://github.com/anomalyco/opencode/pull/65505))
+
+### Upgrade notes
+
+- **"Always allow" for a web fetch allows that site only.** It used to allow every URL. Approvals saved by earlier versions stay as they were. ([#66000](https://github.com/anomalyco/opencode/pull/66000))
+- **Automations keep running after a failed run.** A failed run is recorded and the next one runs on schedule. Automations still pause when the session that created them or their directory is gone, or when their setup is no longer valid. A shell command in an automation's code that runs past its timeout is now stopped and fails the call instead of moving to the background. ([#66422](https://github.com/anomalyco/opencode/pull/66422), [#65626](https://github.com/anomalyco/opencode/pull/65626))
+- **Sending to an archived session unarchives it.** This applies to messages, commands, skills and shell commands, including ones sent through the API. ([#66348](https://github.com/anomalyco/opencode/pull/66348))
+- **Plan mode's rules are in the system prompt.** Sessions already in Plan mode get the rules once more after upgrading. ([#63669](https://github.com/anomalyco/opencode/pull/63669))
+
+### Core
+
+#### Improvements
+
+- Added a system prompt for GPT-6.2. ([#66297](https://github.com/anomalyco/opencode/pull/66297))
+- `generate_image` and `generate_video` run inside Code Mode instead of as top-level tools, so their definitions no longer add about 700 tokens to every request. ([#66465](https://github.com/anomalyco/opencode/pull/66465))
+- Moving a session also moves its subagents. ([#66215](https://github.com/anomalyco/opencode/pull/66215))
+- The `report` skill checks the docs, searches for duplicate issues and includes the relevant log lines. ([#66290](https://github.com/anomalyco/opencode/pull/66290))
+- Cost estimates for service tiers that list their own prices use those prices, including their long-context rates. ([#65861](https://github.com/anomalyco/opencode/pull/65861), [#65984](https://github.com/anomalyco/opencode/pull/65984))
+
+#### Bug fixes
+
+*(…release notes truncated — follow the link below for the full list)*
+
+[Full release notes](https://github.com/anomalyco/opencode/releases/tag/v2.4.2)
+
+
 ## 2.4.1 (2026-11-24)
 
 Updated to upstream OpenCode **2.4.1**:

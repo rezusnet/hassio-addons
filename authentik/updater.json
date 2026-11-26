@@ -4,10 +4,10 @@
   "tag_strategy": "direct",
   "tag_keep_v": false,
   "upstream_repo": "goauthentik/authentik",
-  "upstream_version": "2026.8.6",
+  "upstream_version": "2026.8.7",
   "app_repo": "goauthentik/authentik",
   "app_name": "Authentik",
-  "last_update": "2026-11-20",
+  "last_update": "2026-11-26",
   "paused": false,
   "build_suffix": "-r2"
 }

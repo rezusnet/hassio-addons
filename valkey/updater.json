@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-19",
+  "last_update": "2026-11-26",
   "major_version": "9",
   "paused": false,
   "slug": "valkey",
@@ -7,7 +7,7 @@
   "tag_strategy": "suffix",
   "tag_suffix": "-alpine",
   "upstream_repo": "valkey-io/valkey",
-  "upstream_version": "9.2.0",
+  "upstream_version": "9.2.1",
   "app_repo": "valkey-io/valkey",
   "app_name": "Valkey"
 }
