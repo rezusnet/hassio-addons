@@ -1,6 +1,32 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 9.2.1 (2026-11-26)
+
+Updated to upstream Valkey **9.2.1**:
+
+Valkey 9.2.1  -  Released Wed 25 November 2026
+----------------------------------------------
+
+Upgrade urgency MODERATE: Program an upgrade of the server, but it's not urgent.
+
+### Bug Fixes
+* Restore pre-9.2 TLS loading so the server no longer refuses to start or apply TLS configuration when a loaded certificate, such as an expired root left in a `tls-ca-cert-file` bundle, is outside its validity period by @madolson (#5550)
+* Fix a server crash when `PHGET` reads a large path hash while a forkless save is running by @madolson (#5112)
+* Fix a double mutex unlock, which is undefined behavior, when reducing the number of IO threads at runtime by @sarthakaggarwal97 (#5366)
+* Fix dual-channel replication so a replica aborts and resyncs when the primary link breaks while it applies its local buffer, instead of reporting a successful sync on a dead link by @shohamazon (#5417)
+* Fix IO threads resending already-written data to a client that is being closed, which could make a replica dropped for exceeding `client-output-buffer-limit` fail with a protocol error by @dgershko (#5468)
+* Fix `COMMAND GETKEYS EXEC` returning wrong keys and possibly crashing the server when given more than 256 conditions by @madolson (#4712)
+* Fix an uninitialized memory read in `ValkeyModule_CloseKey` when a module changes the type of an open key through `ValkeyModule_Call` by @Baraa-Hasheesh (#5358)
+* Fix a use-after-free that could crash a cluster node receiving a cluster bus forgotten-node extension in which the sender names itself by @roshkhatri (#4675)
+* Fix cluster nodes adopting stale replica claims that form a replication cycle in their cluster view, which could trigger an assertion crash in builds with debug assertions by @Baraa-Hasheesh (#5452)
+* Fix a possible assertion crash with IO threads when more data arrives for a client that has a partially received command and is pending close by @aradz44 (#3245)
+
+**Full Changelog**: https://github.com/valkey-io/valkey/compare/9.2.0...9.2.1
+
+[Full release notes](https://github.com/valkey-io/valkey/releases/tag/9.2.1)
+
+
 ## 9.2.0 (2026-11-19)
 
 Updated to upstream Valkey **9.2.0**:
