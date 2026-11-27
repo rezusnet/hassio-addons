@@ -1,6 +1,37 @@
 <!-- markdownlint-disable -->
 <!-- Changelog entries mirror upstream release notes verbatim; upstream formatting is intentionally preserved, so style rules are disabled for this file. -->
 
+## 1.11.3-ls151 (2026-11-27)
+
+Updated to upstream PairDrop **1.11.3** (image `v1.11.3-ls151`):
+
+### Enhancements
+- Changed language buttons to sort by language code
+
+### Fixes
+- Updated node dependencies
+- Updated dependabot config and add Docker and github-actions
+- Added Persian to RTL languages
+- Fixed language button titles for Chinese language variants (@dday55)
+
+### Languages
+- New language Azerbaijani
+- New language Bengali (@sarf137inverse)
+- New language Greek
+- New language Finnish
+- New language Malayalam (@sreeroop)
+- New language Portuguese
+- New language Slovenian
+- New language Serbian
+- New language Swedish
+- New language Telugu (@agnivesh13)
+- New language Thai
+- New language Uzbek
+- New language Vietnamese
+
+[Full release notes](https://github.com/schlagmichdoch/PairDrop/releases/tag/v1.11.3)
+
+
 ## 1.11.2-ls150 (2026-11-15)
 
 Upstream image rebuild (`v1.11.2-ls149` → `v1.11.2-ls150`) — packaging / base-image refresh, no application changes (PairDrop **1.11.2**).
